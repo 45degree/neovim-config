@@ -9,17 +9,20 @@
 " =========================说明文档============================
 "按键功能:
 "   <f2>                        打开目录
-"
-"
-"
-"
-"
-" =======================================================
+"   <f8>                        打开文件大纲
+"   <f3>                        打开底部终端
+"   <f4>                        打开一个接近满屏的终端
+"   gc                          快速注释代码
+"   gcgc                        取消代码注释
+"   ss                          easymotion
+"   ag                          文件内容模糊搜索
+"   Files                       文件模糊搜索
+"   Far <src> <dst> <path/file> 在file中所有的<src>替换成<dst>
+" =============================================================
 
-
-" =======================================================
+" =============================================================
 " 基本配置
-" =======================================================
+" =============================================================
 
 " 外观配置
 set number         " 显示行号
@@ -70,10 +73,10 @@ set wildmode=longest:list,full " 底部命令tab自动补全
 set clipboard=unnamedplus      " 设置vim使用系统剪切板
 
 " 禁止使用方向键
-" nnoremap <Up> :echo "use k"<CR>
-" nnoremap <Left> :echo "use h"<CR>
-" nnoremap <Right> :echo "use l"<CR>
-" nnoremap <Down> :echo "use j"<CR>
+nnoremap <Up> :echo "use k"<CR>
+nnoremap <Left> :echo "use h"<CR>
+nnoremap <Right> :echo "use l"<CR>
+nnoremap <Down> :echo "use j"<CR>
 
 
 " 解决插入模式下delete/backspace键失效问题
@@ -87,10 +90,11 @@ set mouse=a
 " =============================================================
 
 " 通用插件
-call plug#begin('~/.vim/plugged')
+call plug#begin(stdpath('config').'/plugged')
 
     " 主题颜色
     Plug 'joshdick/onedark.vim'
+    Plug 'morhetz/gruvbox'
 
     " 彩虹括号
     Plug 'luochen1990/rainbow'
@@ -99,19 +103,14 @@ call plug#begin('~/.vim/plugged')
 
     " NERDTree
     Plug 'preservim/nerdtree'
-    autocmd vimenter * NERDTree
-    noremap <f2> :NERDTreeToggle<cr>
+    Plug 'ryanoasis/vim-devicons'
+    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+    Plug  'Xuyuanp/nerdtree-git-plugin'
+    noremap <silent> <f2> :NERDTreeToggle<cr>:NERDTreeRefreshRoot<cr>
 
-    " deoplete补全
-    if has('nvim')
-        Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
-    else
-        Plug 'Shougo/deoplete.nvim'
-        Plug 'roxma/nvim-yarp'
-        Plug 'roxma/vim-hug-neovim-rpc'
-    endif
-    " 启动deoplete补全
-    let g:deoplete#enable_at_startup = 1
+    " coc.nvim配置
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'clangd/coc-clangd', {'do': 'yarn install --frozen-lockfile'}
 
     " Rust配置
     Plug 'rust-lang/rust.vim'
@@ -133,7 +132,57 @@ call plug#begin('~/.vim/plugged')
     Plug 'easymotion/vim-easymotion'
     nmap ss <Plug>(easymotion-s2)
 
+    " 代码提纲
+    Plug 'majutsushi/tagbar'
+    nmap <f8> :TagbarToggle<CR>
+
+    " 语法高亮
+    Plug 'jackguo380/vim-lsp-cxx-highlight'
+
+    " 括号补全
+    Plug 'jiangmiao/auto-pairs'
+
+    "git配置
+    Plug 'airblade/vim-gitgutter'
+    Plug 'tpope/vim-fugitive'
+    Plug 'junegunn/gv.vim'
+
+    " Doxygen工具
+    Plug 'vim-scripts/DoxygenToolkit.vim'
+
+    " 模糊搜索
+    Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
+    Plug 'junegunn/fzf.vim'
+    Plug 'brooth/far.vim'
+
+    " 格式化代码
+    Plug 'sbdchd/neoformat'
+
+    " 静态检查
+    " Plug 'dense-analysis/ale'
+
+    " 成对编辑
+    Plug 'tpope/vim-surround'
+
+    " 快速注释代码
+    Plug 'tpope/vim-commentary' 
+
+    " 浮动终端
+    Plug 'voldikss/vim-floaterm'
+
+    " vim扩展文本对象
+    Plug 'bkad/CamelCaseMotion'
+    Plug  'vim-scripts/argtextobj.vim'
 call plug#end()
 
-" 配置主题颜色
-colorscheme onedark
+" rainbow配置, rainbow配置会对NERDTree和vim-devicons有影响
+let g:rainbow_conf = {
+\    'separately': {
+\       'nerdtree': 0
+\    }
+\}
+
+" 加载Config下的.vim文件
+for file in split(glob(stdpath('config').'/Config/*.vim'), '\n')
+    exe 'source' file
+endfor

@@ -1,1 +1,1 @@
-set guifont=Fira\ Code:h12
+set guifont=SauceCodePro\ Nerd\ Font:b:h11
