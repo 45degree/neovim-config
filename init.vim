@@ -8,8 +8,8 @@
 "
 " =========================说明文档============================
 "按键功能:
-"   <f2>                        打开目录
-"   <f8>                        打开文件大纲
+"   <leader>t                   打开目录
+"   <leader>8                   打开文件大纲
 "   <f3>                        打开底部终端
 "   <f4>                        打开一个接近满屏的终端
 "   gc                          快速注释代码
@@ -33,7 +33,7 @@ set showmode       " 底部显示命令模式还是插入模式
 set showcmd        " 命令模式下显示命令
 set encoding=utf-8 " 编码格式为utf-8
 set t_Co=256       " 设置为256色
-set textwidth=80   " 每行显示80个字符
+set textwidth=100  " 每行显示80个字符
 set wrap           " 折行
 set linebreak      " 单词内部不折行
 set wrapmargin=2   " 折行边缘字符数
@@ -42,7 +42,7 @@ set laststatus=2   " 显示状态栏 0不显示, 1多窗口显示, 2显示
 set ruler          " 状态栏显示光标当前位置
 
 " 缩进设置
-filetype indent on " 文件类型缩进检测
+" filetype indent on " 文件类型缩进检测
 set autoindent     " 格式保持一致
 set tabstop=4      " 设置tan键的宽度
 set shiftwidth=4   " >> , <<, == 的宽度
@@ -85,6 +85,9 @@ set backspace=2
 " 启动鼠标支持
 set mouse=a
 
+" leader设置为空格
+let mapleader="\<space>"
+
 " =============================================================
 " 插件配置
 " =============================================================
@@ -105,8 +108,8 @@ call plug#begin(stdpath('config').'/plugged')
     Plug 'preservim/nerdtree'
     Plug 'ryanoasis/vim-devicons'
     Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-    Plug  'Xuyuanp/nerdtree-git-plugin'
-    noremap <silent> <f2> :NERDTreeToggle<cr>:NERDTreeRefreshRoot<cr>
+    " Plug  'Xuyuanp/nerdtree-git-plugin'
+    noremap <silent> <leader>t :NERDTreeToggle<cr>:NERDTreeRefreshRoot<cr>
 
     " coc.nvim配置
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -127,6 +130,7 @@ call plug#begin(stdpath('config').'/plugged')
 
     " vim缩进线
     Plug 'yggdroot/indentline'
+    let g:indentLine_conceallevel = 0
 
     " 快速定位插件
     Plug 'easymotion/vim-easymotion'
@@ -134,9 +138,10 @@ call plug#begin(stdpath('config').'/plugged')
 
     " 代码提纲
     Plug 'majutsushi/tagbar'
-    nmap <f8> :TagbarToggle<CR>
+    nmap <leader>8 :TagbarToggle<CR>
 
     " 语法高亮
+    Plug 'sheerun/vim-polyglot'
     Plug 'jackguo380/vim-lsp-cxx-highlight'
 
     " 括号补全
@@ -154,6 +159,7 @@ call plug#begin(stdpath('config').'/plugged')
     Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
     Plug 'junegunn/fzf.vim'
     Plug 'brooth/far.vim'
+    noremap  <silent> <c-p> :GFiles<cr>
 
     " 格式化代码
     Plug 'sbdchd/neoformat'
@@ -173,6 +179,12 @@ call plug#begin(stdpath('config').'/plugged')
     " vim扩展文本对象
     Plug 'bkad/CamelCaseMotion'
     Plug  'vim-scripts/argtextobj.vim'
+
+    " markdown
+    Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app & yarn install'}
+
+    " debug
+    Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-bash --force-enable-rust'}
 call plug#end()
 
 " rainbow配置, rainbow配置会对NERDTree和vim-devicons有影响

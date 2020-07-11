@@ -1,0 +1,17 @@
+{
+  // 用于调试本地c/c++程序
+  "configurations": {
+    "Launch": {
+      "adapter": "vscode-cpptools",
+      "configuration": {
+        "request": "launch",
+        "program": "${fileBasenameNoExtension}",
+        "args": [],
+        "cwd": "{workspaceFolder}",
+        "environment": [],
+        "externalConsole": false,
+        "MIMode": "<lldb or gdb>"
+      }
+    }
+  }
+}
