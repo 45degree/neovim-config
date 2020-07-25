@@ -15,8 +15,8 @@
 "   gc                          快速注释代码
 "   gcgc                        取消代码注释
 "   ss                          easymotion
-"   ag                          文件内容模糊搜索
-"   Files                       文件模糊搜索
+"   <leader><Ctrl-p>            文件内容模糊搜索
+"   <Ctrl-p>                    文件模糊搜索
 "   Far <src> <dst> <path/file> 在file中所有的<src>替换成<dst>
 " =============================================================
 
@@ -78,7 +78,7 @@ nnoremap <Left> :echo "use h"<CR>
 nnoremap <Right> :echo "use l"<CR>
 nnoremap <Down> :echo "use j"<CR>
 
-
+" inoremap jj <ESC>
 " 解决插入模式下delete/backspace键失效问题
 set backspace=2
 
@@ -96,30 +96,25 @@ let mapleader="\<space>"
 call plug#begin(stdpath('config').'/plugged')
 
     " 主题颜色
-    Plug 'joshdick/onedark.vim'
-    Plug 'morhetz/gruvbox'
+    Plug 'flazz/vim-colorschemes'
 
     " 彩虹括号
     Plug 'luochen1990/rainbow'
     " 配置插件rainbow
     let g:rainbow_active = 1
 
-    " NERDTree
-    Plug 'preservim/nerdtree'
-    Plug 'ryanoasis/vim-devicons'
-    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-    " Plug  'Xuyuanp/nerdtree-git-plugin'
-    noremap <silent> <leader>t :NERDTreeToggle<cr>:NERDTreeRefreshRoot<cr>
-
     " coc.nvim配置
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    Plug 'clangd/coc-clangd', {'do': 'yarn install --frozen-lockfile'}
+    let g:coc_global_extensions=['coc-clangd', 'coc-explorer', 'coc-vimlsp', 'coc-texlab']
+    noremap <silent> <leader>t :CocCommand explorer<cr>
 
     " Rust配置
     Plug 'rust-lang/rust.vim'
 
     " Rust补全
     Plug 'racer-rust/vim-racer'
+
+    Plug 'bling/vim-bufferline'
 
     " airline配置
     Plug 'vim-airline/vim-airline'
@@ -159,7 +154,8 @@ call plug#begin(stdpath('config').'/plugged')
     Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
     Plug 'junegunn/fzf.vim'
     Plug 'brooth/far.vim'
-    noremap  <silent> <c-p> :GFiles<cr>
+    noremap  <silent> <c-p> :Files<cr>
+    noremap <silent> <leader><c-p> :Ag<cr>
 
     " 格式化代码
     Plug 'sbdchd/neoformat'
@@ -171,7 +167,7 @@ call plug#begin(stdpath('config').'/plugged')
     Plug 'tpope/vim-surround'
 
     " 快速注释代码
-    Plug 'tpope/vim-commentary' 
+    Plug 'tpope/vim-commentary'
 
     " 浮动终端
     Plug 'voldikss/vim-floaterm'

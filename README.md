@@ -8,11 +8,12 @@
 
 该配置文件依赖一下几个工具, 需要提前安装好
 
-1. nodjs
-2. the_silver_searcher
-3. ctags
-4. npm
-5. yarn
+1. nodjs(coc.nvim使用)
+2. the_silver_searcher(Ag使用)
+3. ctags(tagbar使用)
+4. npm(coc.nvim使用)
+5. texlab(coc-texlab使用)
+6. zathura(coc-texlab使用)
 
 确保`neovim`支持`python3`, 如果不支持, 执行以下命令
 
@@ -30,6 +31,7 @@ pip3 install pynvim
 6. c/c++, rust语法高亮
 7. 格式化代码
 8. 浮动终端
+9. latex
 
 ## 安装
 
@@ -45,13 +47,12 @@ pip3 install pynvim
 ```
 > 注意: 如果你没有配置代理服务器而是从软件源中在下的fzf, 并且没有注释原代码, 安装过程中会出现fzf安装卡死的现象
 
-2. `npm`和`yarn`换国内镜像源
+2. `npm`换国内镜像源
 
-将`npm`和`yarn`设置为国内镜像源, 例如换成淘宝镜像源需要执行一下命令
+将`npm`设置为国内镜像源, 例如换成淘宝镜像源需要执行一下命令
 
 ``` shell
 npm config set registry https://registry.npm.taobao.org/
-yarn config set registry https://registry.npm.taobao.org/
 ```
 
 3. 安装字体
