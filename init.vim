@@ -40,7 +40,9 @@ set wrapmargin=2   " 折行边缘字符数
 set scrolloff=5    " 垂直翻滚时保留的行数
 set laststatus=2   " 显示状态栏 0不显示, 1多窗口显示, 2显示
 set ruler          " 状态栏显示光标当前位置
+set termguicolors  " 支持24位彩色
 
+set timeoutlen=500
 " 缩进设置
 " filetype indent on " 文件类型缩进检测
 set autoindent     " 格式保持一致
@@ -78,7 +80,8 @@ nnoremap <Left> :echo "use h"<CR>
 nnoremap <Right> :echo "use l"<CR>
 nnoremap <Down> :echo "use j"<CR>
 
-" inoremap jj <ESC>
+inoremap jj <ESC>
+
 " 解决插入模式下delete/backspace键失效问题
 set backspace=2
 
@@ -86,7 +89,8 @@ set backspace=2
 set mouse=a
 
 " leader设置为空格
-let mapleader="\<space>"
+let g:mapleader="\<space>"
+let g:maplocalleader = ","
 
 " =============================================================
 " 插件配置
@@ -98,6 +102,12 @@ call plug#begin(stdpath('config').'/plugged')
     " 主题颜色
     Plug 'flazz/vim-colorschemes'
 
+    " which key
+    Plug 'liuchengxu/vim-which-key'
+    nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
+    nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
+    vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
+
     " 彩虹括号
     Plug 'luochen1990/rainbow'
     " 配置插件rainbow
@@ -105,15 +115,13 @@ call plug#begin(stdpath('config').'/plugged')
 
     " coc.nvim配置
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    let g:coc_global_extensions=['coc-clangd', 'coc-explorer', 'coc-vimlsp', 'coc-texlab']
-    noremap <silent> <leader>t :CocCommand explorer<cr>
+    let g:coc_global_extensions=['coc-clangd', 'coc-explorer', 'coc-vimlsp', 'coc-texlab', 'coc-rls', 'coc-rust-analyzer']
+    " noremap <silent> <leader>t :CocCommand explorer<cr>
 
     " Rust配置
     Plug 'rust-lang/rust.vim'
 
-    " Rust补全
-    Plug 'racer-rust/vim-racer'
-
+    " buffer设置
     Plug 'bling/vim-bufferline'
 
     " airline配置
@@ -177,7 +185,7 @@ call plug#begin(stdpath('config').'/plugged')
     Plug  'vim-scripts/argtextobj.vim'
 
     " markdown
-    Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app & yarn install'}
+    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
     " debug
     Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-bash --force-enable-rust'}
@@ -190,7 +198,9 @@ let g:rainbow_conf = {
 \    }
 \}
 
+
 " 加载Config下的.vim文件
 for file in split(glob(stdpath('config').'/Config/*.vim'), '\n')
     exe 'source' file
 endfor
+

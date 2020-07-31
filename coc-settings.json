@@ -1,5 +1,6 @@
 {
     "clangd.semanticHighlighting": true,
+    "coc.preferences.colorSupport": true,
     "explorer.icon.enableNerdfont": true,
     "explorer.icon.customIcons":{
       "icons": {},
