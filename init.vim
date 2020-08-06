@@ -26,8 +26,7 @@
 
 " 外观配置
 set number         " 显示行号
-set relativenumber " 显示相对行号
-set cursorline     " 高亮当前行
+set relativenumber " 显示相对行号 set cursorline     " 高亮当前行
 syntax on          " 语法高亮
 set showmode       " 底部显示命令模式还是插入模式
 set showcmd        " 命令模式下显示命令
@@ -115,8 +114,7 @@ call plug#begin(stdpath('config').'/plugged')
 
     " coc.nvim配置
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    let g:coc_global_extensions=['coc-clangd', 'coc-explorer', 'coc-vimlsp', 'coc-texlab', 'coc-rls', 'coc-rust-analyzer']
-    " noremap <silent> <leader>t :CocCommand explorer<cr>
+    let g:coc_global_extensions=['coc-clangd', 'coc-explorer', 'coc-vimlsp', 'coc-texlab', 'coc-rls', 'coc-rust-analyzer', 'coc-pairs']
 
     " Rust配置
     Plug 'rust-lang/rust.vim'
@@ -146,9 +144,6 @@ call plug#begin(stdpath('config').'/plugged')
     " 语法高亮
     Plug 'sheerun/vim-polyglot'
     Plug 'jackguo380/vim-lsp-cxx-highlight'
-
-    " 括号补全
-    Plug 'jiangmiao/auto-pairs'
 
     "git配置
     Plug 'airblade/vim-gitgutter'
@@ -189,6 +184,9 @@ call plug#begin(stdpath('config').'/plugged')
 
     " debug
     Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-bash --force-enable-rust'}
+
+    " wakatime
+    Plug 'wakatime/vim-wakatime'
 call plug#end()
 
 " rainbow配置, rainbow配置会对NERDTree和vim-devicons有影响
