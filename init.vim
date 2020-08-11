@@ -139,7 +139,6 @@ call plug#begin(stdpath('config').'/plugged')
 
     " 代码提纲
     Plug 'majutsushi/tagbar'
-    nmap <leader>8 :TagbarToggle<CR>
 
     " 语法高亮
     Plug 'sheerun/vim-polyglot'
@@ -157,8 +156,6 @@ call plug#begin(stdpath('config').'/plugged')
     Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
     Plug 'junegunn/fzf.vim'
     Plug 'brooth/far.vim'
-    noremap  <silent> <c-p> :Files<cr>
-    noremap <silent> <leader><c-p> :Ag<cr>
 
     " 格式化代码
     Plug 'sbdchd/neoformat'
@@ -187,6 +184,10 @@ call plug#begin(stdpath('config').'/plugged')
 
     " wakatime
     Plug 'wakatime/vim-wakatime'
+
+    " sudo保存
+    Plug 'lambdalisue/suda.vim'
+    let g:suda_smart_edit = 1
 call plug#end()
 
 " rainbow配置, rainbow配置会对NERDTree和vim-devicons有影响

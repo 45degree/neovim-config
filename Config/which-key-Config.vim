@@ -6,10 +6,37 @@ let g:which_key_map.f = {
      \ 's' : [':w', '保存当前文件'],
      \ 'S' : [':wa', '保存所有文件'],
      \ 'c' : [':e $MYVIMRC', '打开vim配置文件'],
-     \ 'f' : [':Neoformat', '格式化代码'],
      \ }
 
+let g:which_key_map.s = {
+     \ 'name' : '+模糊搜索',
+     \ 'f' : [':Files', '文件夹内查找文件'],
+     \ 'a' : [':Ag', '文件夹内查找文件内容'],
+     \ 'g':  [':GFiles', 'git项目内查找文件'],
+     \}
+
+let g:which_key_map.c = {
+     \ 'name': '+代码',
+     \ '1': {
+     \     'name': '+latex',
+     \     'b': [':CocCommand latex.Build', 'latex编译'],
+     \     'p': [':CocCommand latex.ForwardSearch', 'latex预览'],
+     \ },
+     \ '2': {
+     \     'name': '+markdown',
+     \     'p': ['<Plug>MarkdownPreview', 'markdown预览'],
+     \     's': ['<Plug>MarkdownPreviewStop', 'markdown停止预览'],
+     \ },
+     \ 'f' : [':Neoformat', '格式化代码'],
+     \ 't': [':TagbarToggle', '打开代码大纲']
+     \}
+
+let g:which_key_map.T = {
+     \'name': '+终端',
+     \}
+
 let g:which_key_map.t = [':CocCommand explorer', "打开文件树"]
+
 let g:which_key_map.w={
      \ 'name' : '+窗口' ,
      \ 'd' : ['<C-W>c'     , '删除当前窗口']          ,
