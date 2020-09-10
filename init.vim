@@ -42,10 +42,11 @@ set ruler          " 状态栏显示光标当前位置
 set termguicolors  " 支持24位彩色
 
 set timeoutlen=500
+
 " 缩进设置
 " filetype indent on " 文件类型缩进检测
 set autoindent     " 格式保持一致
-set tabstop=4      " 设置tan键的宽度
+set tabstop=4      " 设置tab键的宽度
 set shiftwidth=4   " >> , <<, == 的宽度
 set expandtab      " tab转换成空格
 set softtabstop=4  " tab转换成空格的数量
@@ -99,7 +100,8 @@ let g:maplocalleader = ","
 call plug#begin(stdpath('config').'/plugged')
 
     " 主题颜色
-    Plug 'flazz/vim-colorschemes'
+    Plug 'rafi/awesome-vim-colorschemes'
+    Plug 'hardcoreplayers/oceanic-material'
 
     " which key
     Plug 'liuchengxu/vim-which-key'
@@ -114,54 +116,47 @@ call plug#begin(stdpath('config').'/plugged')
 
     " coc.nvim配置
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    let g:coc_global_extensions=['coc-clangd', 'coc-explorer', 'coc-vimlsp', 'coc-texlab', 'coc-rls', 'coc-rust-analyzer', 'coc-pairs']
+    let g:coc_global_extensions=['coc-git', 'coc-clangd', 'coc-explorer', 'coc-vimlsp', 'coc-texlab', 'coc-rls', 'coc-rust-analyzer', 'coc-highlight', 'coc-json']
+    autocmd CursorHold * silent call CocActionAsync('highlight')
 
     " Rust配置
-    Plug 'rust-lang/rust.vim'
+    Plug 'rust-lang/rust.vim', {'for': 'rust'}
 
     " buffer设置
-    Plug 'bling/vim-bufferline'
+    " Plug 'bling/vim-bufferline'
 
     " airline配置
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
 
     " vim启动页面
-    Plug 'mhinz/vim-startify'
-
-    " vim缩进线
-    Plug 'yggdroot/indentline'
-    let g:indentLine_conceallevel = 0
+    Plug 'hardcoreplayers/dashboard-nvim'
 
     " 快速定位插件
     Plug 'easymotion/vim-easymotion'
     nmap ss <Plug>(easymotion-s2)
 
     " 代码提纲
-    Plug 'majutsushi/tagbar'
+    Plug 'liuchengxu/vista.vim'
 
     " 语法高亮
-    Plug 'sheerun/vim-polyglot'
     Plug 'jackguo380/vim-lsp-cxx-highlight'
 
     "git配置
     Plug 'airblade/vim-gitgutter'
     Plug 'tpope/vim-fugitive'
-    Plug 'junegunn/gv.vim'
+    Plug 'junegunn/gv.vim', {'on' : 'GV'}
+    let g:gitgutter_sign_priority=0
 
     " Doxygen工具
-    Plug 'vim-scripts/DoxygenToolkit.vim'
+    Plug 'vim-scripts/DoxygenToolkit.vim', {'for': ['c', 'cpp']}
 
     " 模糊搜索
-    Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
-    Plug 'junegunn/fzf.vim'
-    Plug 'brooth/far.vim'
+    Plug 'brooth/far.vim', {'on': 'Far'}
+    Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary! && call clap#installer#download_binary()' }
 
     " 格式化代码
-    Plug 'sbdchd/neoformat'
-
-    " 静态检查
-    " Plug 'dense-analysis/ale'
+    Plug 'sbdchd/neoformat', {'on': 'Neoformat'}
 
     " 成对编辑
     Plug 'tpope/vim-surround'
@@ -170,7 +165,7 @@ call plug#begin(stdpath('config').'/plugged')
     Plug 'tpope/vim-commentary'
 
     " 浮动终端
-    Plug 'voldikss/vim-floaterm'
+    Plug 'voldikss/vim-floaterm', {'on': 'FloatermNew'}
 
     " vim扩展文本对象
     Plug 'bkad/CamelCaseMotion'
@@ -180,26 +175,26 @@ call plug#begin(stdpath('config').'/plugged')
     Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
     " debug
-    Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-bash --force-enable-rust'}
+    Plug 'puremourning/vimspector'
+    let g:vimspector_install_gadgets = [ 'vscode-bash-debug', 'vscode-cpptools', 'CodeLLDB' ]
 
     " wakatime
     Plug 'wakatime/vim-wakatime'
 
     " sudo保存
     Plug 'lambdalisue/suda.vim'
+
+    " 自动匹配括号
+    Plug 'jiangmiao/auto-pairs'
     let g:suda_smart_edit = 1
+
+    " jk加速
+    Plug 'rhysd/accelerated-jk', {'on':['<Plug>(accelerated_jk_gj)' , '<Plug>(accelerated_jk_gk)']}
+    nmap j <Plug>(accelerated_jk_gj)
+    nmap k <Plug>(accelerated_jk_gk)
 call plug#end()
-
-" rainbow配置, rainbow配置会对NERDTree和vim-devicons有影响
-let g:rainbow_conf = {
-\    'separately': {
-\       'nerdtree': 0
-\    }
-\}
-
 
 " 加载Config下的.vim文件
 for file in split(glob(stdpath('config').'/Config/*.vim'), '\n')
     exe 'source' file
 endfor
-

@@ -1,5 +1,5 @@
 " 设置主题颜色
-colorscheme materialtheme
+colorscheme oceanic_material
 
 " Doxygen高亮
 autocmd FileType c set syntax=cpp.doxygen

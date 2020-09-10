@@ -9,8 +9,8 @@
 该配置文件依赖一下几个工具, 需要提前安装好
 
 1. nodjs(coc.nvim使用)
-2. the_silver_searcher(Ag使用)
-3. ctags(tagbar使用)
+2. rg(ripgrep使用)
+3. ctags(Vista使用)
 4. npm(coc.nvim使用)
 5. texlab(coc-texlab使用)
 6. zathura(coc-texlab使用)
@@ -66,7 +66,7 @@ npm config set registry https://registry.npm.taobao.org/
 运行以下命令, clone仓库到本地：
 
 ```shell
-git clone https://gitee.com/my_c_plus_plus/vim_configuration ~/.config/nvim
+git clone https://gitee.com/degree45/vim_configuration ~/.config/nvim
 ```
 
 进入`neovim`后执行

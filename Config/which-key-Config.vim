@@ -6,13 +6,24 @@ let g:which_key_map.f = {
      \ 's' : [':w', '保存当前文件'],
      \ 'S' : [':wa', '保存所有文件'],
      \ 'c' : [':e $MYVIMRC', '打开vim配置文件'],
+     \ 'a' : [':DashboardNewFile', '添加一个文件']
      \ }
 
 let g:which_key_map.s = {
-     \ 'name' : '+模糊搜索',
-     \ 'f' : [':Files', '文件夹内查找文件'],
-     \ 'a' : [':Ag', '文件夹内查找文件内容'],
-     \ 'g':  [':GFiles', 'git项目内查找文件'],
+     \ 'name' : '+Clap',
+     \ 'f' : [':Clap files ++finder=rg --ignore --files', '文件夹内查找文件'],
+     \ 'a' : [':Clap grep', '文件夹内查找文件内容'],
+     \ 'g' : [':Clap gfiles', 'git项目内查找文件'],
+     \ 'gd': [':Clap git_diff_files', 'git diff文件'],
+     \ 'c' : [':Clap colors', '改变颜色'],
+     \ 'h' : [':Clap history', '查看历史'],
+     \ 'm' : [':Clap marks', 'Mark 查找']
+     \}
+
+let g:which_key_map.S = {
+     \ 'name' : '+Session',
+     \ 's' : [':SessionSave', 'Session 保存'],
+     \ 'l' : [':SessionLoad', 'Session 加载']
      \}
 
 let g:which_key_map.c = {
@@ -28,11 +39,14 @@ let g:which_key_map.c = {
      \     's': ['<Plug>MarkdownPreviewStop', 'markdown停止预览'],
      \ },
      \ 'f' : [':Neoformat', '格式化代码'],
-     \ 't': [':TagbarToggle', '打开代码大纲']
+     \ 't': [':Vista!!', '打开代码大纲'],
+     \ 'd': ['Generator_debug_template()', '生成debug模板']
      \}
 
 let g:which_key_map.T = {
-     \'name': '+终端',
+     \ 'name': '+终端',
+     \ 'b' : [':FloatermNew --wintype=normal --height=0.2', '底部终端'],
+     \ 'n' : [':FloatermNew --height=0.9 --width=0.9 --wintype=floating', '一般浮动终端']
      \}
 
 let g:which_key_map.t = [':CocCommand explorer', "打开文件树"]

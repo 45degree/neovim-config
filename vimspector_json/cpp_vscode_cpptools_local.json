@@ -5,9 +5,10 @@
       "adapter": "vscode-cpptools",
       "configuration": {
         "request": "launch",
-        "program": "${fileBasenameNoExtension}",
+        "program": "${fileDirname}/${fileBasenameNoExtension}",
         "args": [],
-        "cwd": "{workspaceFolder}",
+        "stopAtEntry": false,
+        "cwd": "${workspaceFolder}",
         "environment": [],
         "externalConsole": false,
         "MIMode": "<lldb or gdb>"

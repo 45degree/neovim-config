@@ -1,5 +1,42 @@
 {
     "clangd.semanticHighlighting": true,
+    "suggest.triggerAfterInsertEnter": false,
+    "suggest.timeout": 500,
+    "suggest.noselect": true,
+    "suggest.labelMaxLength": 30,
+    "suggest.detailMaxLength": 30,
+    "suggest.detailField": "abbr",
+    "suggest.snippetIndicator": "",
+    "suggest.triggerCompletionWait": 100,
+    "suggest.echodocSupport": true,
+    "suggest.completionItemKindLabels": {
+        "keyword": "",
+        "variable": "",
+        "value": "",
+        "operator": "",
+        "function": "",
+        "reference": "渚",
+        "constant": "",
+        "method": "",
+        "struct": "פּ",
+        "class": "",
+        "interface": "",
+        "text": "",
+        "enum": "",
+        "enumMember": "",
+        "module": "",
+        "color": "",
+        "property": "",
+        "field": "料",
+        "unit": "",
+        "event": "鬒",
+        "file": "",
+        "folder": "",
+        "snippet": "",
+        "typeParameter": "",
+        "default": ""
+    },
+    "diagnostic.signOffset": 1,
     "coc.preferences.colorSupport": true,
     "explorer.icon.enableNerdfont": true,
     "explorer.icon.customIcons":{
@@ -85,10 +122,15 @@
         "[c": "", //"gitPrev",
         "]c": "", //"gitNext",
         "<<": "", //"gitStage",
-        ">>": "", //"gitUnstage"
+        ">>": ""  //"gitUnstage"
     },
     "texlab.path": "/usr/bin/texlab",
     "latex.forwardSearch.executable": "zathura",
     "latex.forwardSearch.args": ["--synctex-forward", "%l:1:%f", "%p"],
-    "latex.build.onSave": true
+    "latex.build.onSave": true,
+
+    "git.enableGutters": false,
+    "git.virtualTextPrefix": " ❯❯❯ ",
+    "git.addGBlameToBufferVar": true,
+    "git.addGBlameToVirtualText": true
 }
