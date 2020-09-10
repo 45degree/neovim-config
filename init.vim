@@ -172,7 +172,7 @@ call plug#begin(stdpath('config').'/plugged')
     Plug  'vim-scripts/argtextobj.vim'
 
     " markdown
-    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+    Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install', 'for': ['markdown', 'vim-plug']}
 
     " debug
     Plug 'puremourning/vimspector'

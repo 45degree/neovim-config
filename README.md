@@ -12,6 +12,7 @@
 2. rg(ripgrep使用)
 3. ctags(Vista使用)
 4. npm(coc.nvim使用)
+5. yarn(markdown-preview.nvim使用)
 5. texlab(coc-texlab使用)
 6. zathura(coc-texlab使用)
 
@@ -37,25 +38,16 @@ pip3 install pynvim
 
 ### 安装之前的操作
 
-1. 设置代理服务器
+1. `npm`和`yarn`换国内镜像源
 
-本插件内置`fzf`, 下载之前最好配置代理服务器, 否则容易下载失败, 如果没有配置代理服务器,
-也可以先从软件源中下载好`fzf`, 并在`init.vim`中注释掉以下代码
-
-```vimscript
-#Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
-```
-> 注意: 如果你没有配置代理服务器而是从软件源中在下的fzf, 并且没有注释原代码, 安装过程中会出现fzf安装卡死的现象
-
-2. `npm`换国内镜像源
-
-将`npm`设置为国内镜像源, 例如换成淘宝镜像源需要执行一下命令
+将`npm`和`yarn`设置为国内镜像源, 例如换成淘宝镜像源需要执行一下命令
 
 ``` shell
 npm config set registry https://registry.npm.taobao.org/
+yarn config set registry https://registry.npm.taobao.org/
 ```
 
-3. 安装字体
+2. 安装字体
 
 > 没有安装字体neovim也能正常工作, 但是部分地方会有乱码
 
@@ -78,5 +70,5 @@ git clone https://gitee.com/degree45/vim_configuration ~/.config/nvim
 ## 已知的问题
 
 1. 在部分终端中`NerdFont`字体显示不完全, 其中包括(kde, deepin V20)
-2. `vim-gitgutter`和`vimspector`显示冲突, 具体表现为，对于新加的行，vimspector的断点符号无法显示
 
+选用mono字体, 或则换一个终端(推荐`alacritty`), 或则使用`nvim-qt`
