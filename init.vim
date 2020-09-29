@@ -100,8 +100,10 @@ let g:maplocalleader = ","
 call plug#begin(stdpath('config').'/plugged')
 
     " 主题颜色
+    Plug 'flazz/vim-colorschemes'
     Plug 'rafi/awesome-vim-colorschemes'
     Plug 'hardcoreplayers/oceanic-material'
+    Plug 'FuDesign2008/randomTheme.vim'
 
     " which key
     Plug 'liuchengxu/vim-which-key'
@@ -175,8 +177,7 @@ call plug#begin(stdpath('config').'/plugged')
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install', 'for': ['markdown', 'vim-plug']}
 
     " debug
-    Plug 'puremourning/vimspector'
-    let g:vimspector_install_gadgets = [ 'vscode-bash-debug', 'vscode-cpptools', 'CodeLLDB' ]
+    Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-bash --force-enable-rust'}
 
     " wakatime
     Plug 'wakatime/vim-wakatime'

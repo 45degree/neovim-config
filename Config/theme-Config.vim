@@ -1,5 +1,6 @@
 " 设置主题颜色
-colorscheme oceanic_material
+let g:random_theme_start = 'favorite:dark'
+let g:favorite_color_schemes = ['molokai', 'oceanic_material', 'space-vim-dark', 'one']
 
 " Doxygen高亮
 autocmd FileType c set syntax=cpp.doxygen
