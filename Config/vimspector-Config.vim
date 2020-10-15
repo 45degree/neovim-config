@@ -83,4 +83,3 @@ endfunction
 
 sign define vimspectorBP text= texthl=Normal
 sign define vimspectorBPDisabled text= texthl=Normal
-sign define vimspectorPC text= texthl=SpellBad

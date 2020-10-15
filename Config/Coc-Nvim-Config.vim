@@ -140,3 +140,35 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 " nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+if has('win32')
+    let lua_lsp = stdpath('config').'\plugged\lua-language-server'
+    call coc#config('languageserver', {
+        \ 'lua-language-server': {
+        \     'cwd': lua_lsp,
+        \     'command': lua_lsp . '\bin\Windows\lua-language-server.exe',
+        \     'args': ['-E', lua_lsp . '\main.lua'],
+        \     'filetypes': ['lua'],
+        \ }
+    \})
+elseif has('unix')
+    let lua_lsp = stdpath('config').'/plugged/lua-language-server'
+    call coc#config('languageserver', {
+        \ 'lua-language-server': {
+        \     'cwd': lua_lsp,
+        \     'command': lua_lsp . '/bin/Linux/lua-language-server',
+        \     'args': ['-E', lua_lsp . '/main.lua'],
+        \     'filetypes': ['lua'],
+        \ }
+    \})
+elseif has('mac')
+    let lua_lsp = stdpath('config').'/plugged/lua-language-server'
+    call coc#config('languageserver', {
+        \ 'lua-language-server': {
+        \     'cwd': lua_lsp,
+        \     'command': lua_lsp . '/bin/macOS/lua-language-server',
+        \     'args': ['-E', lua_lsp . '/main.lua'],
+        \     'filetypes': ['lua'],
+        \ }
+    \})
+endif

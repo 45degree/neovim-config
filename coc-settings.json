@@ -48,9 +48,9 @@
       "dirPatternMatches": {}
     },
     "explorer.file.column.git.showIgnored": true,
-    "explorer.file.column.git.icon.added": "",
-    "explorer.file.column.git.icon.untracked": "",
-    "explorer.file.column.git.icon.modified": "",
+    "explorer.file.column.git.icon.added": "+",
+    "explorer.file.column.git.icon.untracked": "+",
+    "explorer.file.column.git.icon.modified": "●",
     "explorer.file.column.git.icon.mixed": "",
     "explorer.keyMappings": {
         "i": false, // cancel default mapkey
@@ -130,7 +130,21 @@
     "latex.build.onSave": true,
 
     "git.enableGutters": false,
+    "git.signOffset": 99,
     "git.virtualTextPrefix": " ❯❯❯ ",
     "git.addGBlameToBufferVar": true,
     "git.addGBlameToVirtualText": true
+
+    // language server
+   //  "languageserver": {
+   //      "lua-language-server": {
+   //          "cwd": "~/dotfile/lua-language-server",
+   //          "command": "/home/qijinwen/dotfile/lua-language-server/bin/Linux/lua-language-server",
+   //          "args": ["-E", "/home/qijinwen/dotfile/lua-language-server/main.lua"],
+   //          "filetypes": ["lua"],
+   //          "trace.server": "verbose"
+   //      }
+   //  },
+
+   //  "Lua.diagnostics.disable": ["lowercase-global", "undefined-global"]
 }

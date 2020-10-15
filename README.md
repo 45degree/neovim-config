@@ -47,7 +47,11 @@ npm config set registry https://registry.npm.taobao.org/
 yarn config set registry https://registry.npm.taobao.org/
 ```
 
-2. 安装字体
+2. 设置代理服务器
+
+因为需要从`github`的release页面下载文件, 最好设置代理服务器加速下载
+
+3. 安装字体
 
 > 没有安装字体neovim也能正常工作, 但是部分地方会有乱码
 

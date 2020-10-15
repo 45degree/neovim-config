@@ -55,7 +55,7 @@ set softtabstop=4  " tab转换成空格的数量
 set showmatch      " 自动高亮匹配括号
 set hlsearch       " 高亮搜索结果
 set incsearch      " 每输入一个字符自动跳到第一个搜索结果
-set ignorecase     " 搜索忽略大小写
+set noignorecase   " 搜索不忽略大小写
 set smartcase      " 搜索时智能忽略大小写
 
 " 编辑
@@ -118,18 +118,29 @@ call plug#begin(stdpath('config').'/plugged')
 
     " coc.nvim配置
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    let g:coc_global_extensions=['coc-git', 'coc-clangd', 'coc-explorer', 'coc-vimlsp', 'coc-texlab', 'coc-rls', 'coc-rust-analyzer', 'coc-highlight', 'coc-json']
+    let g:coc_global_extensions=['coc-git', 'coc-clangd', 'coc-explorer', 'coc-vimlsp', 'coc-texlab', 'coc-rls', 'coc-rust-analyzer', 'coc-highlight', 'coc-json', 'coc-sh']
     autocmd CursorHold * silent call CocActionAsync('highlight')
+
+    "Lua 语言服务器配置
+    if has('win32')
+        Plug 'sumneko/lua-language-server', {'do': 'cd 3rd/luamake && ninja.exe -f ninja/msvc.ninja && cd ../.. && ./3rd/luamake/luamake.exe rebuild'}
+    elseif has('unix')
+        Plug 'sumneko/lua-language-server', {'do': 'cd 3rd/luamake && ninja -f ninja/linux.ninja && cd ../.. && ./3rd/luamake/luamake rebuild'}
+    elseif has('mac')
+        Plug 'sumneko/lua-language-server', {'do': 'cd 3rd/luamake && ninja -f ninja/macos.ninja && cd ../.. && ./3rd/luamake/luamake rebuild'}
+    endif
 
     " Rust配置
     Plug 'rust-lang/rust.vim', {'for': 'rust'}
 
-    " buffer设置
-    " Plug 'bling/vim-bufferline'
-
-    " airline配置
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
+    " spaceline配置
+    Plug 'hardcoreplayers/spaceline.vim'
+    " Use the icon plugin for better behavior
+    Plug 'ryanoasis/vim-devicons'
+    let g:spaceline_seperate_style = 'arrow-fade'
+    let g:spaceline_git_branch_icon = ' '
+    let g:spaceline_diff_tool = "git-gutter"
+    let g:spaceline_custom_diff_icon = [' ',' ',' ']
 
     " vim启动页面
     Plug 'hardcoreplayers/dashboard-nvim'
@@ -149,13 +160,19 @@ call plug#begin(stdpath('config').'/plugged')
     Plug 'tpope/vim-fugitive'
     Plug 'junegunn/gv.vim', {'on' : 'GV'}
     let g:gitgutter_sign_priority=0
+    let g:gitgutter_sign_added = '█'
+    let g:gitgutter_sign_modified = '█'
+    let g:gitgutter_sign_removed = '█'
+    let g:gitgutter_sign_removed_first_line = '█'
+    let g:gitgutter_sign_removed_above_and_below = '█'
+    let g:gitgutter_sign_modified_removed = '█'
 
     " Doxygen工具
     Plug 'vim-scripts/DoxygenToolkit.vim', {'for': ['c', 'cpp']}
 
     " 模糊搜索
     Plug 'brooth/far.vim', {'on': 'Far'}
-    Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary! && call clap#installer#download_binary()' }
+    Plug 'liuchengxu/vim-clap', { 'do': { -> clap#installer#force_download() } }
 
     " 格式化代码
     Plug 'sbdchd/neoformat', {'on': 'Neoformat'}
