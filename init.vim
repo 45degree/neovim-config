@@ -32,7 +32,7 @@ set showmode       " 底部显示命令模式还是插入模式
 set showcmd        " 命令模式下显示命令
 set encoding=utf-8 " 编码格式为utf-8
 set t_Co=256       " 设置为256色
-set textwidth=100  " 每行显示80个字符
+set textwidth=100  " 每行显示100个字符
 set wrap           " 折行
 set linebreak      " 单词内部不折行
 set wrapmargin=2   " 折行边缘字符数
@@ -40,7 +40,6 @@ set scrolloff=5    " 垂直翻滚时保留的行数
 set laststatus=2   " 显示状态栏 0不显示, 1多窗口显示, 2显示
 set ruler          " 状态栏显示光标当前位置
 set termguicolors  " 支持24位彩色
-
 set timeoutlen=500
 
 " 缩进设置
@@ -103,7 +102,7 @@ call plug#begin(stdpath('config').'/plugged')
     Plug 'flazz/vim-colorschemes'
     Plug 'rafi/awesome-vim-colorschemes'
     Plug 'hardcoreplayers/oceanic-material'
-    Plug 'FuDesign2008/randomTheme.vim'
+    " Plug 'FuDesign2008/randomTheme.vim'
 
     " which key
     Plug 'liuchengxu/vim-which-key'
@@ -113,7 +112,6 @@ call plug#begin(stdpath('config').'/plugged')
 
     " 彩虹括号
     Plug 'luochen1990/rainbow'
-    " 配置插件rainbow
     let g:rainbow_active = 1
 
     " coc.nvim配置
@@ -135,8 +133,9 @@ call plug#begin(stdpath('config').'/plugged')
 
     " spaceline配置
     Plug 'hardcoreplayers/spaceline.vim'
-    " Use the icon plugin for better behavior
     Plug 'ryanoasis/vim-devicons'
+    let g:spaceline_custom_vim_status = {"n": " ","V":" ","v":" ","\<C-v>": " ","i":" ","R":" ","s":" ","t":" ","c":" ","!":" "}
+    let g:spaceline_colorscheme = 'space'
     let g:spaceline_seperate_style = 'arrow-fade'
     let g:spaceline_git_branch_icon = ' '
     let g:spaceline_diff_tool = "git-gutter"
@@ -184,7 +183,7 @@ call plug#begin(stdpath('config').'/plugged')
     Plug 'tpope/vim-commentary'
 
     " 浮动终端
-    Plug 'voldikss/vim-floaterm', {'on': 'FloatermNew'}
+    Plug 'voldikss/vim-floaterm'
 
     " vim扩展文本对象
     Plug 'bkad/CamelCaseMotion'
@@ -210,7 +209,11 @@ call plug#begin(stdpath('config').'/plugged')
     Plug 'rhysd/accelerated-jk', {'on':['<Plug>(accelerated_jk_gj)' , '<Plug>(accelerated_jk_gk)']}
     nmap j <Plug>(accelerated_jk_gj)
     nmap k <Plug>(accelerated_jk_gk)
-call plug#end()
+
+    " Man 帮助手册
+    Plug 'vim-utils/vim-man'
+
+    call plug#end()
 
 " 加载Config下的.vim文件
 for file in split(glob(stdpath('config').'/Config/*.vim'), '\n')
