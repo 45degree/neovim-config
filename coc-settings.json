@@ -47,6 +47,7 @@
       "patternMatches": {},
       "dirPatternMatches": {}
     },
+    "explorer.file.column.indent.indentLine": false,
     "explorer.file.column.git.showIgnored": true,
     "explorer.file.column.git.icon.added": "+",
     "explorer.file.column.git.icon.untracked": "+",

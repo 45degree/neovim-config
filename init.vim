@@ -116,7 +116,20 @@ call plug#begin(stdpath('config').'/plugged')
 
     " coc.nvim配置
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    let g:coc_global_extensions=['coc-git', 'coc-clangd', 'coc-explorer', 'coc-vimlsp', 'coc-texlab', 'coc-rls', 'coc-rust-analyzer', 'coc-highlight', 'coc-json', 'coc-sh']
+    let g:coc_global_extensions=[
+                \ 'coc-git',
+                \ 'coc-clangd',
+                \ 'coc-explorer',
+                \ 'coc-vimlsp',
+                \ 'coc-texlab',
+                \ 'coc-rls',
+                \ 'coc-rust-analyzer',
+                \ 'coc-highlight',
+                \ 'coc-json',
+                \ 'coc-sh',
+                \ 'coc-cmake'
+                \ ]
+
     autocmd CursorHold * silent call CocActionAsync('highlight')
 
     "Lua 语言服务器配置
@@ -213,9 +226,15 @@ call plug#begin(stdpath('config').'/plugged')
     " Man 帮助手册
     Plug 'vim-utils/vim-man'
 
+    " 命名
+    Plug 'voldikss/vim-codelf'
+    let g:codelf_enable_popup_menu = v:true
+
     call plug#end()
 
 " 加载Config下的.vim文件
 for file in split(glob(stdpath('config').'/Config/*.vim'), '\n')
     exe 'source' file
 endfor
+
+
