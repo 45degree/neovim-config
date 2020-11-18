@@ -1,0 +1,4 @@
+# vala 配置
+
+[[plugins]]
+repo = 'arrufat/vala.vim'

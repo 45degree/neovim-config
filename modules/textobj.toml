@@ -1,0 +1,7 @@
+# 扩展文本对象插件
+
+[[plugins]]
+repo = 'bkad/CamelCaseMotion'
+
+[[plugins]]
+repo = 'vim-scripts/argtextobj.vim'

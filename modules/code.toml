@@ -1,0 +1,39 @@
+# 代码配置 #
+
+# lsp补全
+[[plugins]]
+repo = 'neoclide/coc.nvim'
+rev = 'release'
+hook_add = '''
+    let g:coc_global_extensions=[
+                 \ 'coc-git',
+                 \ 'coc-explorer',
+                 \ 'coc-vimlsp',
+                 \ 'coc-highlight',
+                 \ 'coc-json',
+                 \ ]
+     autocmd CursorHold * silent call CocActionAsync('highlight')
+'''
+
+# 代码提纲
+[[plugins]]
+repo = 'liuchengxu/vista.vim'
+
+# 代码重构
+[[plugins]]
+repo = 'brooth/far.vim'
+
+# 格式化代码
+[[plugins]]
+repo = 'sbdchd/neoformat'
+
+# 快速注释代码
+[[plugins]]
+repo = 'tpope/vim-commentary'
+
+# 代码debug
+[[plugins]]
+repo = 'puremourning/vimspector'
+hook_add = '''
+    let g:vimspector_install_gadgets = []
+'''

@@ -6,18 +6,6 @@
 "          |_|  |_|\__, |  \__, | \_/  |_|_| |_| |_|
 "                  |___/      |_|
 "
-" =========================说明文档============================
-"按键功能:
-"   <leader>t                   打开目录
-"   <leader>8                   打开文件大纲
-"   <f3>                        打开底部终端
-"   <f4>                        打开一个接近满屏的终端
-"   gc                          快速注释代码
-"   gcgc                        取消代码注释
-"   ss                          easymotion
-"   <leader><Ctrl-p>            文件内容模糊搜索
-"   <Ctrl-p>                    文件模糊搜索
-"   Far <src> <dst> <path/file> 在file中所有的<src>替换成<dst>
 " =============================================================
 
 " =============================================================
@@ -27,7 +15,6 @@
 " 外观配置
 set number         " 显示行号
 set relativenumber " 显示相对行号 set cursorline     " 高亮当前行
-syntax on          " 语法高亮
 set showmode       " 底部显示命令模式还是插入模式
 set showcmd        " 命令模式下显示命令
 set encoding=utf-8 " 编码格式为utf-8
@@ -91,150 +78,45 @@ set mouse=a
 let g:mapleader="\<space>"
 let g:maplocalleader = ","
 
-" =============================================================
-" 插件配置
-" =============================================================
+" " =============================================================
+" " 插件配置
+" " =============================================================
 
-" 通用插件
-call plug#begin(stdpath('config').'/plugged')
+set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
-    " 主题颜色
-    Plug 'flazz/vim-colorschemes'
-    Plug 'rafi/awesome-vim-colorschemes'
-    Plug 'hardcoreplayers/oceanic-material'
-    " Plug 'FuDesign2008/randomTheme.vim'
+if dein#load_state('~/.cache/dein')
+    call dein#begin('~/.cache/dein')
 
-    " which key
-    Plug 'liuchengxu/vim-which-key'
-    nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
-    nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
-    vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
+    call dein#load_toml(stdpath('config').'/modules/appearance.toml')
+    call dein#load_toml(stdpath('config').'/modules/general.toml')
+    call dein#load_toml(stdpath('config').'/modules/git.toml')
+    call dein#load_toml(stdpath('config').'/modules/textobj.toml')
 
-    " 彩虹括号
-    Plug 'luochen1990/rainbow'
-    let g:rainbow_active = 1
+    call dein#load_toml(stdpath('config').'/modules/code.toml')
+    call dein#load_toml(stdpath('config').'/modules/lang/cpp.toml')
+    call dein#end()
 
-    " coc.nvim配置
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    let g:coc_global_extensions=[
-                \ 'coc-git',
-                \ 'coc-clangd',
-                \ 'coc-explorer',
-                \ 'coc-vimlsp',
-                \ 'coc-texlab',
-                \ 'coc-rls',
-                \ 'coc-rust-analyzer',
-                \ 'coc-highlight',
-                \ 'coc-json',
-                \ 'coc-sh',
-                \ 'coc-cmake'
-                \ ]
+    call dein#begin('~/.cache/dein')
+    call dein#load_toml(stdpath('config').'/option/lang/rust.toml')
+    call dein#load_toml(stdpath('config').'/option/lang/vala.toml')
+    call dein#load_toml(stdpath('config').'/option/lang/latex.toml')
+    call dein#end()
+    call dein#save_state()
 
-    autocmd CursorHold * silent call CocActionAsync('highlight')
 
-    "Lua 语言服务器配置
-    if has('win32')
-        Plug 'sumneko/lua-language-server', {'do': 'cd 3rd/luamake && ninja.exe -f ninja/msvc.ninja && cd ../.. && ./3rd/luamake/luamake.exe rebuild'}
-    elseif has('unix')
-        Plug 'sumneko/lua-language-server', {'do': 'cd 3rd/luamake && ninja -f ninja/linux.ninja && cd ../.. && ./3rd/luamake/luamake rebuild'}
-    elseif has('mac')
-        Plug 'sumneko/lua-language-server', {'do': 'cd 3rd/luamake && ninja -f ninja/macos.ninja && cd ../.. && ./3rd/luamake/luamake rebuild'}
-    endif
+endif
 
-    " Rust配置
-    Plug 'rust-lang/rust.vim', {'for': 'rust'}
-
-    " spaceline配置
-    Plug 'hardcoreplayers/spaceline.vim'
-    Plug 'ryanoasis/vim-devicons'
-    let g:spaceline_custom_vim_status = {"n": " ","V":" ","v":" ","\<C-v>": " ","i":" ","R":" ","s":" ","t":" ","c":" ","!":" "}
-    let g:spaceline_colorscheme = 'space'
-    let g:spaceline_seperate_style = 'arrow-fade'
-    let g:spaceline_git_branch_icon = ' '
-    let g:spaceline_diff_tool = "git-gutter"
-    let g:spaceline_custom_diff_icon = [' ',' ',' ']
-
-    " vim启动页面
-    Plug 'hardcoreplayers/dashboard-nvim'
-
-    " 快速定位插件
-    Plug 'easymotion/vim-easymotion'
-    nmap ss <Plug>(easymotion-s2)
-
-    " 代码提纲
-    Plug 'liuchengxu/vista.vim'
-
-    " 语法高亮
-    Plug 'jackguo380/vim-lsp-cxx-highlight'
-
-    "git配置
-    Plug 'airblade/vim-gitgutter'
-    Plug 'tpope/vim-fugitive'
-    Plug 'junegunn/gv.vim', {'on' : 'GV'}
-    let g:gitgutter_sign_priority=0
-    let g:gitgutter_sign_added = '█'
-    let g:gitgutter_sign_modified = '█'
-    let g:gitgutter_sign_removed = '█'
-    let g:gitgutter_sign_removed_first_line = '█'
-    let g:gitgutter_sign_removed_above_and_below = '█'
-    let g:gitgutter_sign_modified_removed = '█'
-
-    " Doxygen工具
-    Plug 'vim-scripts/DoxygenToolkit.vim', {'for': ['c', 'cpp']}
-
-    " 模糊搜索
-    Plug 'brooth/far.vim', {'on': 'Far'}
-    Plug 'liuchengxu/vim-clap', { 'do': { -> clap#installer#force_download() } }
-
-    " 格式化代码
-    Plug 'sbdchd/neoformat', {'on': 'Neoformat'}
-
-    " 成对编辑
-    Plug 'tpope/vim-surround'
-
-    " 快速注释代码
-    Plug 'tpope/vim-commentary'
-
-    " 浮动终端
-    Plug 'voldikss/vim-floaterm'
-
-    " vim扩展文本对象
-    Plug 'bkad/CamelCaseMotion'
-    Plug  'vim-scripts/argtextobj.vim'
-
-    " markdown
-    Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install', 'for': ['markdown', 'vim-plug']}
-
-    " debug
-    Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-bash --force-enable-rust'}
-
-    " wakatime
-    Plug 'wakatime/vim-wakatime'
-
-    " sudo保存
-    Plug 'lambdalisue/suda.vim'
-
-    " 自动匹配括号
-    Plug 'jiangmiao/auto-pairs'
-    let g:suda_smart_edit = 1
-
-    " jk加速
-    Plug 'rhysd/accelerated-jk', {'on':['<Plug>(accelerated_jk_gj)' , '<Plug>(accelerated_jk_gk)']}
-    nmap j <Plug>(accelerated_jk_gj)
-    nmap k <Plug>(accelerated_jk_gk)
-
-    " Man 帮助手册
-    Plug 'vim-utils/vim-man'
-
-    " 命名
-    Plug 'voldikss/vim-codelf'
-    let g:codelf_enable_popup_menu = v:true
-
-    call plug#end()
+syntax on          " 语法高亮
 
 " 加载Config下的.vim文件
 for file in split(glob(stdpath('config').'/Config/*.vim'), '\n')
     exe 'source' file
 endfor
 
-
+hi! Normal guibg=NONE
+hi! SignColumn guibg=NONE
+hi! MatchParen guifg=#F07178 guibg=#202331
+hi! LineNr guibg=NONE guifg=#a6accd
+hi! CursorLineNr guifg=#82aaff
+hi! NormalFloat guifg=#A6ACCD guibg=#292D3E
+hi! VertSplit guifg=#4E5579

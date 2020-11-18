@@ -36,7 +36,6 @@
         "typeParameter": "",
         "default": ""
     },
-    "diagnostic.signOffset": 1,
     "coc.preferences.colorSupport": true,
     "explorer.icon.enableNerdfont": true,
     "explorer.icon.customIcons":{
@@ -47,13 +46,13 @@
       "patternMatches": {},
       "dirPatternMatches": {}
     },
+    "explorer.git.showIgnored": true,
     "explorer.file.column.indent.indentLine": false,
-    "explorer.file.column.git.showIgnored": true,
-    "explorer.file.column.git.icon.added": "+",
-    "explorer.file.column.git.icon.untracked": "+",
-    "explorer.file.column.git.icon.modified": "●",
-    "explorer.file.column.git.icon.mixed": "",
-    "explorer.keyMappings": {
+    "explorer.git.icon.status.added": "+",
+    "explorer.git.icon.status.untracked": "+",
+    "explorer.git.icon.status.modified": "●",
+    "explorer.git.icon.status.mixed": "",
+    "explorer.keyMappings.global": {
         "i": false, // cancel default mapkey
 
         "gk": "", //"expandablePrev",
@@ -134,18 +133,13 @@
     "git.signOffset": 99,
     "git.virtualTextPrefix": " ❯❯❯ ",
     "git.addGBlameToBufferVar": true,
-    "git.addGBlameToVirtualText": true
+    "git.addGBlameToVirtualText": true,
 
     // language server
-   //  "languageserver": {
-   //      "lua-language-server": {
-   //          "cwd": "~/dotfile/lua-language-server",
-   //          "command": "/home/qijinwen/dotfile/lua-language-server/bin/Linux/lua-language-server",
-   //          "args": ["-E", "/home/qijinwen/dotfile/lua-language-server/main.lua"],
-   //          "filetypes": ["lua"],
-   //          "trace.server": "verbose"
-   //      }
-   //  },
-
-   //  "Lua.diagnostics.disable": ["lowercase-global", "undefined-global"]
+     "languageserver": {
+        "vala": {
+            "command": "vala-language-server",
+            "filetypes": ["vala", "genie"]
+        }
+     }
 }

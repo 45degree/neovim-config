@@ -1,0 +1,8 @@
+# Rust配置
+
+[[plugins]]
+repo = 'rust-lang/rust.vim'
+hook_source = '''
+    call add(g:coc_global_extensions, 'coc-rls')
+    call add(g:coc_global_extensions, 'coc-rust-analyzer')
+'''

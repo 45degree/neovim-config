@@ -1,4 +1,3 @@
-let g:clap_theme = 'material_design_dark'
 let g:clap_current_selection_sign= { 'text': '➤', 'texthl': "ClapCurrentSelectionSign", "linehl": "ClapCurrentSelection"}
 let g:clap_layout = { 'relative': 'editor' }
 let g:clap_enable_icon = 1
