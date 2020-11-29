@@ -2,6 +2,12 @@
 
 [[plugins]]
 repo = 'jackguo380/vim-lsp-cxx-highlight'
+hook_source = '''
+    call add(g:coc_global_extensions, 'coc-clangd')
+    call add(g:coc_global_extensions, 'coc-cmake')
+
+    call add(g:vimspector_install_gadgets, 'vscode-cpptools')
+'''
 
 [[plugins]]
 repo = 'vim-scripts/DoxygenToolkit.vim'

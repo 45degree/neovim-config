@@ -1,3 +1,8 @@
+" which_key 按键映射
+nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
+nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
+vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
+
 call which_key#register('<space>', "g:which_key_map")
 let g:which_key_map={}
 
@@ -45,7 +50,7 @@ let g:which_key_map.c = {
 
 let g:which_key_map.T = {
      \ 'name': '+终端',
-     \ 'b' : [':FloatermNew --wintype=normal --height=0.2', '底部终端'],
+     \ 'b' : [':CocCommand terminal.Toggle', '底部终端'],
      \ 'n' : [':FloatermNew --height=0.9 --width=0.9 --wintype=floating', '一般浮动终端']
      \}
 

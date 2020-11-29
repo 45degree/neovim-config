@@ -48,10 +48,10 @@
     },
     "explorer.git.showIgnored": true,
     "explorer.file.column.indent.indentLine": false,
-    "explorer.git.icon.status.added": "+",
-    "explorer.git.icon.status.untracked": "+",
-    "explorer.git.icon.status.modified": "●",
-    "explorer.git.icon.status.mixed": "",
+    "explorer.git.icon.status.added": " ",
+    "explorer.git.icon.status.untracked": " ",
+    "explorer.git.icon.status.modified": " ",
+    "explorer.git.icon.status.mixed": " ",
     "explorer.keyMappings.global": {
         "i": false, // cancel default mapkey
 

@@ -82,12 +82,7 @@ let g:maplocalleader = ","
 " " 插件配置
 " " =============================================================
 
-if &compatible
-  set nocompatible
-endif
-
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
-let g:dein#auto_recache = 1
 
 if dein#load_state('~/.cache/dein')
     call dein#begin('~/.cache/dein')
@@ -99,13 +94,17 @@ if dein#load_state('~/.cache/dein')
 
     call dein#load_toml(stdpath('config').'/modules/code.toml')
     call dein#load_toml(stdpath('config').'/modules/lang/cpp.toml')
+    call dein#end()
 
-    call dein#load_toml(stdpath('config').'/option/lang/rust.toml')
+    call dein#begin('~/.cache/dein')
+    if luaeval('require("option_config").get("rust")')
+        call dein#load_toml(stdpath('config').'/option/lang/rust.toml')
+    end
+
     call dein#load_toml(stdpath('config').'/option/lang/vala.toml')
     call dein#load_toml(stdpath('config').'/option/lang/latex.toml')
     call dein#end()
     call dein#save_state()
-
 
 endif
 

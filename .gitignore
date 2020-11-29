@@ -1,2 +1,13 @@
 plugged/
 .netrwhist
+
+.xmake/
+
+# vimspector
+
+vimspector-gadget/*
+!vimspector-gadget/gadgets
+
+## vimspector linux
+vimspector-gadget/gadgets/linux/*
+!vimspector-gadget/gadgets/linux/.gadgets.d
