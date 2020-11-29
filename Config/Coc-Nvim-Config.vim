@@ -1,5 +1,23 @@
 " 该文件用于配置coc.nvim
 
+" 定义插件
+let g:coc_global_extensions=[
+             \ 'coc-git',
+             \ 'coc-explorer',
+             \ 'coc-vimlsp',
+             \ 'coc-highlight',
+             \ 'coc-json',
+             \ ]
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" " c插件
+call add(g:coc_global_extensions, 'coc-clangd')
+call add(g:coc_global_extensions, 'coc-cmake')
+
+" " rust插件
+call add(g:coc_global_extensions, 'coc-rls')
+call add(g:coc_global_extensions, 'coc-rust-analyzer')
+
 " TextEdit might fail if hidden is not set.
 set hidden
 

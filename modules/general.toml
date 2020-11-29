@@ -5,7 +5,7 @@ repo = 'haya14busa/dein-command.vim'
 # which key
 [[plugins]]
 repo = 'liuchengxu/vim-which-key'
-hook_add = '''
+hook_post_source = '''
     nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
     nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
     vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
@@ -14,14 +14,14 @@ hook_add = '''
 # 彩虹括号
 [[plugins]]
 repo = 'luochen1990/rainbow'
-hook_add = '''
+hook_post_source = '''
     let g:rainbow_active = 1
 '''
 
 # sudo保存
 [[plugins]]
 repo = 'lambdalisue/suda.vim'
-hook_add = '''
+hook_post_source = '''
     let g:suda_smart_edit = 1
 '''
 
@@ -44,14 +44,14 @@ repo = 'vim-utils/vim-man'
 # 命名
 [[plugins]]
 repo = 'voldikss/vim-codelf'
-hook_add = '''
+hook_post_source = '''
     let g:codelf_enable_popup_menu = v:true
 '''
 
 # 快速定位插件
 [[plugins]]
 repo = 'easymotion/vim-easymotion'
-hook_add = '''
+hook_post_source = '''
     nmap ss <Plug>(easymotion-s2)
 '''
 
@@ -77,6 +77,6 @@ repo = 'voldikss/vim-floaterm'
 # markdown
 [[plugins]]
 repo = 'iamcco/markdown-preview.nvim'
-build = '''
-sh -c "cd app && yarn install"
+hook_post_update = '''
+    call mkdp#util#install()
 '''

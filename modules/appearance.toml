@@ -17,7 +17,7 @@ repo = 'kyazdani42/nvim-web-devicons'
 
 [[plugins]]
 repo = 'glepnir/spaceline.vim'
-hook_add = '''
+hook_post_source = '''
       let g:spaceline_custom_vim_status = {"n": " ","V":" ","v":" ","\<C-v>": " ","i":" ","R":" ","s":" ","t":" ","c":" ","!":" "}
       let g:spaceline_colorscheme = 'space'
       let g:spaceline_seperate_style = 'arrow-fade'
@@ -28,7 +28,7 @@ hook_add = '''
 
 [[plugins]]
 repo = 'bagrat/vim-buffet'
-hook_add = '''
+hook_post_source = '''
     let g:buffet_powerline_separators = 1
     let g:buffet_tab_icon = "\uf00a"
     let g:buffet_left_trunc_icon = "\uf0a8"

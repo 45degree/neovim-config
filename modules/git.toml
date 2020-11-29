@@ -2,7 +2,7 @@
 
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
-hook_add = '''
+hook_post_source = '''
     let g:gitgutter_sign_priority=0
     let g:gitgutter_sign_added = '█'
     let g:gitgutter_sign_modified = '█'

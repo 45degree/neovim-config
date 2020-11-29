@@ -1,3 +1,7 @@
+" 添加调试器接口
+let g:vimspector_install_gadgets = []
+call add(g:vimspector_install_gadgets, 'vscode-cpptools')
+
 let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
 
 function! s:read_template_into_buffer(template)
@@ -43,10 +47,12 @@ function! s:get_current_entry() abort
   if g:clap_enable_icon
       let curline = curline[4:]
   endif
-  let s:current_dir = expand(stdpath('config').'/vimspector_json')
+  let s:current_dir = expand(finddir('vimspector_json', stdpath('config')))
+  echo s:current_dir
   return s:smart_concatenate(s:current_dir, curline)
 endfunction
 
+" 移动时预览
 function! s:sync_on_move_impl() abort
   let current_entry = s:get_current_entry()
   let g:debug_c = current_entry
@@ -58,10 +64,16 @@ function! s:sync_on_move_impl() abort
 endfunction
 
 function! s:get_all_template() abort
-    let l:files = split(globpath(stdpath('config').'/vimspector_json', '*'))
+    " let l:files = split(globpath(stdpath('config').'/vimspector_json', '*'))
+    let l:files = split(globpath(finddir('vimspector_json', stdpath('config')), '*'))
+    echo l:files
     let l:all_file_name = []
     for item in l:files
-        let l:file_name = split(item, '/')[-1]
+        if has('win32')
+            let l:file_name = split(item, '\')[-1]
+        else
+            let l:file_name = split(item, '/')[-1]
+        endif
         if g:clap_enable_icon
             let l:file_name = clap#icon#get(item).' '.l:file_name
         end
