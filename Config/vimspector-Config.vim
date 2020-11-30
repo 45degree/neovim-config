@@ -1,6 +1,6 @@
 " 添加调试器接口
 let g:vimspector_install_gadgets = []
-let g:vimspector_base_dir = finddir('vimspector-gadget', stdpath('config'))
+let g:vimspector_base_dir = stdpath('config').'/vimspector-gadget'
 call add(g:vimspector_install_gadgets, 'vscode-cpptools')
 call add(g:vimspector_install_gadgets, 'CodeLLDB')
 

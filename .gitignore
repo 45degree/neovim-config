@@ -11,3 +11,6 @@ vimspector-gadget/*
 ## vimspector linux
 vimspector-gadget/gadgets/linux/*
 !vimspector-gadget/gadgets/linux/.gadgets.d
+
+## vimspector windows
+vimspector-gadget/gadgets/windows/*
