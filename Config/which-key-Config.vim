@@ -48,11 +48,7 @@ let g:which_key_map.c = {
      \ 'd': ['Generator_debug_template()', '生成debug模板']
      \}
 
-let g:which_key_map.T = {
-     \ 'name': '+终端',
-     \ 'b' : [':CocCommand terminal.Toggle', '底部终端'],
-     \ 'n' : [':FloatermNew --height=0.9 --width=0.9 --wintype=floating', '一般浮动终端']
-     \}
+let g:which_key_map.T = [':FloatermNew --height=0.9 --width=0.9 --wintype=floating', '终端']
 
 let g:which_key_map.t = [':CocCommand explorer', "打开文件树"]
 

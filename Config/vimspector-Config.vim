@@ -4,8 +4,10 @@ let g:vimspector_base_dir = stdpath('config').'/vimspector-gadget'
 call add(g:vimspector_install_gadgets, 'vscode-cpptools')
 call add(g:vimspector_install_gadgets, 'CodeLLDB')
 
+" vimspector 配置
 let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
 
+" vimspector 模板生成器
 function! s:read_template_into_buffer(template)
     let l:file = a:template
     if g:clap_enable_icon
@@ -50,7 +52,6 @@ function! s:get_current_entry() abort
       let curline = curline[4:]
   endif
   let s:current_dir = expand(finddir('vimspector_json', stdpath('config')))
-  echo s:current_dir
   return s:smart_concatenate(s:current_dir, curline)
 endfunction
 
@@ -66,9 +67,7 @@ function! s:sync_on_move_impl() abort
 endfunction
 
 function! s:get_all_template() abort
-    " let l:files = split(globpath(stdpath('config').'/vimspector_json', '*'))
-    let l:files = split(globpath(finddir('vimspector_json', stdpath('config')), '*'))
-    echo l:files
+    let l:files = split(globpath(stdpath('config').'/vimspector_json', '*'))
     let l:all_file_name = []
     for item in l:files
         if has('win32')
