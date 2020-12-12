@@ -18,6 +18,15 @@ call add(g:coc_global_extensions, 'coc-cmake')
 call add(g:coc_global_extensions, 'coc-rls')
 call add(g:coc_global_extensions, 'coc-rust-analyzer')
 
+" " html 插件
+call add(g:coc_global_extensions, 'coc-html')
+
+" " javascript typescript 插件
+call add(g:coc_global_extensions, 'coc-tsserver')
+
+" " Vue 插件
+call add(g:coc_global_extensions, 'coc-vetur')
+
 " TextEdit might fail if hidden is not set.
 set hidden
 

@@ -135,6 +135,8 @@
     "git.addGBlameToBufferVar": true,
     "git.addGBlameToVirtualText": true,
 
+    "omnisharp.version": "v1.37.3",
+
     // language server
      "languageserver": {
         "vala": {
