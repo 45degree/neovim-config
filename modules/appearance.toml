@@ -4,6 +4,9 @@
 repo = 'kaicataldo/material.vim'
 
 [[plugins]]
+repo = 'morhetz/gruvbox'
+
+[[plugins]]
 repo = 'wsdjeg/dein-ui.vim'
 
 [[plugins]]

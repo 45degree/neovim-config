@@ -129,8 +129,11 @@
     "latex.forwardSearch.args": ["--synctex-forward", "%l:1:%f", "%p"],
     "latex.build.onSave": true,
 
+    // "rust-analyzer.diagnostics.disabled": ["unresolved-import"],
+    "rust-analyzer.updates.channel": "stable",
+    "rust-analyzer.procMacro.enable": true,
+
     "git.enableGutters": false,
-    "git.signOffset": 99,
     "git.virtualTextPrefix": " ❯❯❯ ",
     "git.addGBlameToBufferVar": true,
     "git.addGBlameToVirtualText": true,

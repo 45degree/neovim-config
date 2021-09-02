@@ -25,7 +25,7 @@ call add(g:coc_global_extensions, 'coc-html')
 call add(g:coc_global_extensions, 'coc-tsserver')
 
 " " Vue 插件
-call add(g:coc_global_extensions, 'coc-vetur')
+" call add(g:coc_global_extensions, 'coc-vetur')
 
 " TextEdit might fail if hidden is not set.
 set hidden

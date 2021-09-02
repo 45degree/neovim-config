@@ -66,5 +66,5 @@ repo = 'voldikss/vim-floaterm'
 [[plugins]]
 repo = 'iamcco/markdown-preview.nvim'
 build = '''
-sh -c "cd app && yarn install"
+sh -c "cd app && npm install"
 '''
