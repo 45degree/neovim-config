@@ -25,6 +25,15 @@ let g:which_key_map.s = {
      \ 'm' : [':Clap marks', 'Mark 查找']
      \}
 
+let g:which_key_map.g = {
+    \ 'name' : '+Generator',
+    \ 't': {
+    \   'name': '+翻译',
+    \   'e': [':TranslateW --target_lang=zh --source_lang=en', '(单词)英译中'],
+    \   'z': [':TranslateW --target_lang=en --source_lang=zh', '(单词)中译英']
+    \ }
+    \}
+
 let g:which_key_map.S = {
      \ 'name' : '+Session',
      \ 's' : [':SessionSave', 'Session 保存'],

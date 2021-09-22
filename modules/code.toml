@@ -27,3 +27,7 @@ repo = 'tpope/vim-commentary'
 # 代码debug
 [[plugins]]
 repo = 'puremourning/vimspector'
+
+# 静态检查
+[[plugins]]
+repo = 'dense-analysis/ale'

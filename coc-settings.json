@@ -1,5 +1,11 @@
 {
     "clangd.semanticHighlighting": true,
+    "clangd.arguments": [
+        "--clang-tidy",
+        "-header-insertion=never"
+    ],
+    "coc.preferences.semanticTokensHighlights": false,
+    "diagnostic.displayByAle": true,
     "suggest.triggerAfterInsertEnter": false,
     "suggest.timeout": 500,
     "suggest.noselect": true,

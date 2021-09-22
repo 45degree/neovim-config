@@ -84,6 +84,8 @@ let g:maplocalleader = ","
 
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
+let g:ale_disable_lsp = 1
+
 if dein#load_state('~/.cache/dein')
     call dein#begin('~/.cache/dein')
 
