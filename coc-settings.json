@@ -1,5 +1,6 @@
 {
     "clangd.semanticHighlighting": true,
+    "clangd.trace.server": "verbose",
     "clangd.arguments": [
         "--clang-tidy",
         "-header-insertion=never"
@@ -145,6 +146,8 @@
     "git.addGBlameToVirtualText": true,
 
     "omnisharp.version": "v1.37.3",
+
+    "cmake.lsp.enable": true,
 
     // language server
      "languageserver": {

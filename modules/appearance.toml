@@ -7,6 +7,9 @@ repo = 'kaicataldo/material.vim'
 repo = 'morhetz/gruvbox'
 
 [[plugins]]
+repo = 'SpaceVim/SpaceVim-theme'
+
+[[plugins]]
 repo = 'wsdjeg/dein-ui.vim'
 
 [[plugins]]
