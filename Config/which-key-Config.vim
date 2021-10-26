@@ -57,7 +57,7 @@ let g:which_key_map.c = {
      \ 'd': ['Generator_debug_template()', '生成debug模板']
      \}
 
-let g:which_key_map.T = [':FloatermNew --height=0.9 --width=0.9 --wintype=floating', '终端']
+let g:which_key_map.T = [':FloatermToggle terminal --cwd=<root>', '终端']
 
 let g:which_key_map.t = [':CocCommand explorer', "打开文件树"]
 
@@ -77,3 +77,15 @@ let g:which_key_map.w={
      \ 's' : ['<C-W>s'     , '上下分屏']              ,
      \ 'v' : ['<C-W>v'     , '左右分屏']              ,
      \ }
+
+let g:which_key_map.b={
+    \ 'name': '+Buffer',
+    \ '1': [':BufferGoto 1', '移动到buffer 1'],
+    \ '2': [':BufferGoto 2', '移动到buffer 2'],
+    \ '3': [':BufferGoto 3', '移动到buffer 3'],
+    \ '4': [':BufferGoto 4', '移动到buffer 4'],
+    \ '5': [':BufferGoto 5', '移动到buffer 5'],
+    \ '6': [':BufferGoto 6', '移动到buffer 6'],
+    \ '7': [':BufferGoto 7', '移动到buffer 7'],
+    \ '8': [':BufferGoto 8', '移动到buffer 8']
+    \}

@@ -47,7 +47,7 @@ hook_add = '''
 [[plugins]]
 repo = 'liuchengxu/vim-clap'
 hook_post_update = '''
-    call clap#installer#force_download()
+    call clap#installer#download_binary()
 '''
 
 # 成对编辑

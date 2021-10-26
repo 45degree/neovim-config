@@ -13,19 +13,7 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 " " c插件
 call add(g:coc_global_extensions, 'coc-clangd')
 call add(g:coc_global_extensions, 'coc-cmake')
-
-" " rust插件
-call add(g:coc_global_extensions, 'coc-rls')
-call add(g:coc_global_extensions, 'coc-rust-analyzer')
-
-" " html 插件
-call add(g:coc_global_extensions, 'coc-html')
-
-" " javascript typescript 插件
-call add(g:coc_global_extensions, 'coc-tsserver')
-
-" " Vue 插件
-" call add(g:coc_global_extensions, 'coc-vetur')
+call add(g:coc_global_extensions, 'coc-clang-format-style-options')
 
 " TextEdit might fail if hidden is not set.
 set hidden

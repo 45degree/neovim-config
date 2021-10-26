@@ -20,6 +20,7 @@ set showcmd        " 命令模式下显示命令
 set encoding=utf-8 " 编码格式为utf-8
 set t_Co=256       " 设置为256色
 set textwidth=100  " 每行显示100个字符
+set cc=100
 set wrap           " 折行
 set linebreak      " 单词内部不折行
 set wrapmargin=2   " 折行边缘字符数
@@ -84,7 +85,10 @@ let g:maplocalleader = ","
 
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
-let g:ale_disable_lsp = 1
+" let g:ale_disable_lsp = 1
+
+lua option_config = require('option_config')
+lua option_config.read(vim.api.nvim_eval('stdpath("config")') .. '/option_config.json')
 
 if dein#load_state('~/.cache/dein')
     call dein#begin('~/.cache/dein')
@@ -99,13 +103,23 @@ if dein#load_state('~/.cache/dein')
     call dein#end()
 
     call dein#begin('~/.cache/dein')
-    if luaeval('require("option_config").get("rust")')
+    if luaeval('option_config.getLanguage("rust")')
         call dein#load_toml(stdpath('config').'/option/lang/rust.toml')
     end
 
-    call dein#load_toml(stdpath('config').'/option/lang/vala.toml')
-    call dein#load_toml(stdpath('config').'/option/lang/latex.toml')
+    if luaeval('option_config.getLanguage("vala")')
+        call dein#load_toml(stdpath('config').'/option/lang/vala.toml')
+    end
+
+    if luaeval('option_config.getLanguage("latex")')
+        call dein#load_toml(stdpath('config').'/option/lang/latex.toml')
+    end
+
+    if luaeval('option_config.getLanguage("glslx")')
+        call dein#load_toml(stdpath('config').'/option/lang/glslx.toml')
+    end
     call dein#end()
+
     call dein#save_state()
 
 endif
@@ -117,10 +131,9 @@ for file in split(glob(stdpath('config').'/Config/*.vim'), '\n')
     exe 'source' file
 endfor
 
-hi! Normal guibg=NONE
-hi! SignColumn guibg=NONE
-hi! MatchParen guifg=#F07178 guibg=#202331
-hi! LineNr guibg=NONE guifg=#a6accd
-hi! CursorLineNr guifg=#82aaff
-hi! NormalFloat guifg=#A6ACCD guibg=#292D3E
-hi! VertSplit guifg=#4E5579
+for file in split(glob(stdpath('config').'/Config/extra/*.vim'), '\n')
+    exe 'source' file
+endfor
+
+let bufferline = get(g:, 'bufferline', {})
+let bufferline.icons='both'

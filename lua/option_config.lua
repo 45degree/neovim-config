@@ -1,33 +1,26 @@
 local json = require('json.json')
+local io = require('io')
 
 local option_config_list = {}
 
-local function get(name)
-    for k,v in ipairs(option_config_list) do
-        if v == name then
-            return true
-        end
-    end
-    return true
+local function readFile(fileName)
+    local f = assert(io.open(fileName,'r'))
+    local content = f:read('*all')
+    f:close()
+    return content
 end
 
-local function set(name)
-    option_config_list.insert(name)
-end
-
--- general option_config.json
-local function write(path)
-
+local function getLanguage(name)
+    return option_config_list['extra_language'][name]
 end
 
 -- read option_config.json
 local function read(path)
-
+    local content = readFile(path)
+    option_config_list=json.decode(content)
 end
 
 return {
-    get = get,
-    set = set,
-    write = write,
+    getLanguage = getLanguage,
     read = read,
 }

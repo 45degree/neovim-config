@@ -1,0 +1,12 @@
+{
+  "extra_language": {
+    "rust": true,
+    "vala": false,
+    "latex": false,
+    "glslx": true,
+    "python": true,
+    "html": true,
+    "vue": false,
+    "javascript": false
+  }
+}

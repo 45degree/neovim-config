@@ -10,6 +10,9 @@ repo = 'morhetz/gruvbox'
 repo = 'SpaceVim/SpaceVim-theme'
 
 [[plugins]]
+repo = 'sainnhe/edge'
+
+[[plugins]]
 repo = 'wsdjeg/dein-ui.vim'
 
 [[plugins]]
@@ -30,8 +33,8 @@ hook_add = '''
 
 # 状态栏
 [[plugins]]
-repo = 'glepnir/spaceline.vim'
+repo = 'glepnir/galaxyline.nvim'
 
 # tab栏
 [[plugins]]
-repo = 'bagrat/vim-buffet'
+repo = 'romgrk/barbar.nvim'

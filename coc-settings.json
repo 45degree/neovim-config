@@ -5,8 +5,8 @@
         "--clang-tidy",
         "-header-insertion=never"
     ],
+    "codeLens.enable": true,
     "coc.preferences.semanticTokensHighlights": false,
-    "diagnostic.displayByAle": true,
     "suggest.triggerAfterInsertEnter": false,
     "suggest.timeout": 500,
     "suggest.noselect": true,
@@ -145,15 +145,8 @@
     "git.addGBlameToBufferVar": true,
     "git.addGBlameToVirtualText": true,
 
-    "omnisharp.version": "v1.37.3",
+    "omnisharp.version": "latest",
+    "omnisharp.debug.server": true,
 
-    "cmake.lsp.enable": true,
-
-    // language server
-     "languageserver": {
-        "vala": {
-            "command": "vala-language-server",
-            "filetypes": ["vala", "genie"]
-        }
-     }
+    "cmake.lsp.enable": true
 }
