@@ -38,3 +38,6 @@ repo = 'glepnir/galaxyline.nvim'
 # tab栏
 [[plugins]]
 repo = 'romgrk/barbar.nvim'
+
+[[plugins]]
+repo = 'danilamihailov/beacon.nvim'

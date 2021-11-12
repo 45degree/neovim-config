@@ -33,4 +33,7 @@ repo = 'puremourning/vimspector'
 # repo = 'dense-analysis/ale'
 
 [[plugins]]
-repo = 'pboettch/vim-cmake-syntax'
+repo = 'nvim-treesitter/nvim-treesitter'
+build = '''
+    :TSUpdate
+'''

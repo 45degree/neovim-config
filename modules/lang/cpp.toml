@@ -1,7 +1,7 @@
 # c语言配置 #
 
-[[plugins]]
-repo = 'jackguo380/vim-lsp-cxx-highlight'
+# [[plugins]]
+# repo = 'jackguo380/vim-lsp-cxx-highlight'
 
 [[plugins]]
 repo = 'vim-scripts/DoxygenToolkit.vim'

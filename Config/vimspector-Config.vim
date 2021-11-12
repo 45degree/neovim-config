@@ -5,7 +5,7 @@ call add(g:vimspector_install_gadgets, 'vscode-cpptools')
 call add(g:vimspector_install_gadgets, 'CodeLLDB')
 
 " vimspector 配置
-let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
+let g:vimspector_enable_mappings = 'HUMAN'
 
 " vimspector 模板生成器
 function! s:read_template_into_buffer(template)
