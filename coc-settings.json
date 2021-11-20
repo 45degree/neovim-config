@@ -145,8 +145,5 @@
     "git.addGBlameToBufferVar": true,
     "git.addGBlameToVirtualText": true,
 
-    "omnisharp.version": "latest",
-    "omnisharp.debug.server": true,
-
     "cmake.lsp.enable": true
 }

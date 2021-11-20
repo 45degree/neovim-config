@@ -1,4 +1,4 @@
-"=============================================================
+" =============================================================
 "           __  __             __     ___
 "          |  \/  |_   _    __ \ \   / (_)_ __ ___
 "          | |\/| | | | |  / _` \ \ / /| | '_ ` _ \
@@ -118,6 +118,11 @@ if dein#load_state('~/.cache/dein')
     if luaeval('option_config.getLanguage("glslx")')
         call dein#load_toml(stdpath('config').'/option/lang/glslx.toml')
     end
+
+    if luaeval('option_config.getLanguage("csharp")')
+        call dein#load_toml(stdpath('config').'/option/lang/csharp.toml')
+    end
+
     call dein#end()
 
     call dein#save_state()
@@ -138,3 +143,19 @@ endfor
 let bufferline = get(g:, 'bufferline', {})
 let bufferline.icons='both'
 
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
+  -- ignore_install = { "javascript" }, -- List of parsers to ignore installing
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+    -- disable = { "c", "rust" },  -- list of language that will be disabled
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+}
+EOF

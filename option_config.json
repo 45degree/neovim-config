@@ -6,7 +6,8 @@
     "glslx": true,
     "python": true,
     "html": true,
+    "csharp": false,
     "vue": false,
-    "javascript": false
+    "javascript": true
   }
 }
