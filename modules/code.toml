@@ -32,5 +32,6 @@ repo = 'puremourning/vimspector'
 # [[plugins]]
 # repo = 'dense-analysis/ale'
 
+# 代码高亮
 [[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter'

@@ -25,24 +25,6 @@ hook_add = '''
     nmap k <Plug>(accelerated_jk_gk)
 '''
 
-# Man 帮助手册
-[[plugins]]
-repo = 'vim-utils/vim-man'
-
-# 命名
-[[plugins]]
-repo = 'voldikss/vim-codelf'
-hook_add = '''
-    let g:codelf_enable_popup_menu = v:true
-'''
-
-# 快速定位插件
-[[plugins]]
-repo = 'easymotion/vim-easymotion'
-hook_add = '''
-    nmap ss <Plug>(easymotion-s2)
-'''
-
 # 模糊搜索
 [[plugins]]
 repo = 'liuchengxu/vim-clap'
