@@ -1,3 +1,6 @@
 [submodule "lua/json"]
 	path = lua/json
 	url = https://github.com/rxi/json.lua.git
+[submodule "bin/xkb-switch-win"]
+	path = bin/xkb-switch-win
+	url = https://github.com/DeXP/xkb-switch-win.git

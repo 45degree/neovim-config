@@ -40,9 +40,9 @@ repo = 'tpope/vim-surround'
 [[plugins]]
 repo = 'gcmt/wildfire.vim'
 
-# 浮动终端
+# 终端
 [[plugins]]
-repo = 'voldikss/vim-floaterm'
+repo = 'skywind3000/vim-terminal-help'
 
 # markdown
 [[plugins]]
@@ -54,3 +54,7 @@ sh -c "cd app && npm install"
 # 翻译
 [[plugins]]
 repo = 'voldikss/vim-translator'
+
+# 缩进线
+[[plugins]]
+repo = 'lukas-reineke/indent-blankline.nvim'
