@@ -158,4 +158,15 @@ require'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = false,
   },
 }
+
+vim.opt.list = true
+vim.opt.listchars:append("space:⋅")
+
+require("indent_blankline").setup {
+    space_char_blankline = " ",
+    show_current_context = true,
+    show_current_context_start = true,
+    buftype_exclude = { "terminal" },
+    filetype_exclude = { "dashboard", "coc-explorer" },
+}
 EOF
