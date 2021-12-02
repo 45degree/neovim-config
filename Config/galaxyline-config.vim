@@ -151,6 +151,7 @@ gls.right[2] = {
     provider = 'FileSize',
     separator = '| ',
     condition = condition.buffer_not_empty,
+    separator_highlight = {'NONE',colors.bg},
     highlight = {colors.fg,colors.bg}
   }
 }

@@ -1,6 +1,11 @@
 if luaeval('option_config.getLanguage("csharp")')
 
-" no highlight
-let g:OmniSharp_highlighting = 0
+    call coc#config('languageserver', {
+    \     "csharp": {
+    \         "command": "csharp-ls",
+    \         "trace.server": "verbose",
+    \         "filetypes": ["cs"]
+    \     }
+    \ })
 
 end
