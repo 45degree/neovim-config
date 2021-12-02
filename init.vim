@@ -119,10 +119,6 @@ if dein#load_state('~/.cache/dein')
         call dein#load_toml(stdpath('config').'/option/lang/glslx.toml')
     end
 
-    if luaeval('option_config.getLanguage("csharp")')
-        call dein#load_toml(stdpath('config').'/option/lang/csharp.toml')
-    end
-
     call dein#end()
 
     call dein#save_state()
