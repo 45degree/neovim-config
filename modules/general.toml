@@ -48,7 +48,7 @@ repo = 'skywind3000/vim-terminal-help'
 [[plugins]]
 repo = 'iamcco/markdown-preview.nvim'
 build = '''
-sh -c "cd app && npm install"
+    call mkdp#util#install()
 '''
 
 # 翻译
