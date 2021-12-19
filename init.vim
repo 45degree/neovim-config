@@ -127,18 +127,6 @@ endif
 
 syntax on          " 语法高亮
 
-" 加载Config下的.vim文件
-for file in split(glob(stdpath('config').'/Config/*.vim'), '\n')
-    exe 'source' file
-endfor
-
-for file in split(glob(stdpath('config').'/Config/extra/*.vim'), '\n')
-    exe 'source' file
-endfor
-
-let bufferline = get(g:, 'bufferline', {})
-let bufferline.icons='both'
-
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
@@ -164,6 +152,18 @@ require("indent_blankline").setup {
     filetype_exclude = { "dashboard", "coc-explorer"},
 }
 EOF
+
+" 加载Config下的.vim文件
+for file in split(glob(stdpath('config').'/Config/*.vim'), '\n')
+    exe 'source' file
+endfor
+
+for file in split(glob(stdpath('config').'/Config/extra/*.vim'), '\n')
+    exe 'source' file
+endfor
+
+let bufferline = get(g:, 'bufferline', {})
+let bufferline.icons='both'
 
 if exists('g:nvui')
     set guifontwide=WenQuanYi\ Micro\ Hei
