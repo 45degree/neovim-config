@@ -13,6 +13,9 @@ repo = 'SpaceVim/SpaceVim-theme'
 repo = 'sainnhe/edge'
 
 [[plugins]]
+repo = 'ajmwagar/vim-deus'
+
+[[plugins]]
 repo = 'wsdjeg/dein-ui.vim'
 
 [[plugins]]

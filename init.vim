@@ -136,6 +136,11 @@ for file in split(glob(stdpath('config').'/Config/extra/*.vim'), '\n')
     exe 'source' file
 endfor
 
+augroup fmt
+  autocmd!
+  autocmd BufWritePre * undojoin | Neoformat
+augroup END
+
 let bufferline = get(g:, 'bufferline', {})
 let bufferline.icons='both'
 
@@ -156,12 +161,26 @@ require'nvim-treesitter.configs'.setup {
 }
 
 vim.opt.list = true
+vim.cmd [[highlight IndentBlanklineIndent1 guifg=#666666 gui=nocombine]]
+vim.cmd [[highlight IndentBlanklineIndent2 guifg=#666666 gui=nocombine]]
+vim.cmd [[highlight IndentBlanklineIndent3 guifg=#666666 gui=nocombine]]
+vim.cmd [[highlight IndentBlanklineIndent4 guifg=#666666 gui=nocombine]]
+vim.cmd [[highlight IndentBlanklineIndent5 guifg=#666666 gui=nocombine]]
+vim.cmd [[highlight IndentBlanklineIndent6 guifg=#666666 gui=nocombine]]
 
 require("indent_blankline").setup {
     show_current_context = true,
     show_current_context_start = true,
     buftype_exclude = { "terminal", "nofile", "prompt"},
     filetype_exclude = { "dashboard", "coc-explorer"},
+    char_highlight_list = {
+        "IndentBlanklineIndent1",
+        "IndentBlanklineIndent2",
+        "IndentBlanklineIndent3",
+        "IndentBlanklineIndent4",
+        "IndentBlanklineIndent5",
+        "IndentBlanklineIndent6",
+    },
 }
 EOF
 
