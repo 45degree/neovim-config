@@ -16,6 +16,15 @@ repo = 'sainnhe/edge'
 repo = 'ajmwagar/vim-deus'
 
 [[plugins]]
+repo = 'folke/tokyonight.nvim'
+
+[[plugins]]
+repo = 'sainnhe/everforest'
+
+[[plugins]]
+repo = 'mhartington/oceanic-next'
+
+[[plugins]]
 repo = 'wsdjeg/dein-ui.vim'
 
 [[plugins]]
