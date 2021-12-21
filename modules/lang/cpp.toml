@@ -2,6 +2,3 @@
 
 [[plugins]]
 repo = 'vim-scripts/DoxygenToolkit.vim'
-
-[[plugins]]
-repo = 'jackguo380/vim-lsp-cxx-highlight'
