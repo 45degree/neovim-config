@@ -25,6 +25,9 @@ repo = 'sainnhe/everforest'
 repo = 'mhartington/oceanic-next'
 
 [[plugins]]
+repo = 'glepnir/zephyr-nvim'
+
+[[plugins]]
 repo = 'wsdjeg/dein-ui.vim'
 
 [[plugins]]
@@ -38,10 +41,7 @@ repo = 'kyazdani42/nvim-web-devicons'
 
 # 彩虹括号
 [[plugins]]
-repo = 'luochen1990/rainbow'
-hook_add = '''
-    let g:rainbow_active = 1
-'''
+repo = 'p00f/nvim-ts-rainbow'
 
 # 状态栏
 [[plugins]]
