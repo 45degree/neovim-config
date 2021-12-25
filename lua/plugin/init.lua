@@ -1,0 +1,71 @@
+local appearance = require('plugin.appearance')
+local code = require('plugin.code')
+local general = require('plugin.general')
+local git = require('plugin.git')
+local textobj = require('plugin.textobj')
+local cpp = require('plugin.lang.cpp')
+
+-- option extra plugins
+local vala = require('plugin.option.lang.vala')
+local rust = require('plugin.option.lang.rust')
+local latex = require('plugin.option.lang.latex')
+local glslx = require('plugin.option.lang.glslx')
+local javascript = require('plugin.option.lang.javascript')
+local csharp = require('plugin.option.lang.csharp')
+local python = require('plugin.option.lang.python')
+local vue = require('plugin.option.lang.vue')
+local html = require('plugin.option.lang.html')
+
+local option_config = require('option_config')
+-- option_config.read(vim.api.nvim_eval('stdpath("config")') .. '/option_config.json')
+
+vim.cmd [[packadd packer.nvim]]
+
+return require('packer').startup(function()
+    -- Packer can manage itself
+    use 'wbthomason/packer.nvim'
+
+    appearance(use)
+    code(use)
+    general(use)
+    git(use)
+    textobj(use)
+    cpp(use)
+
+    if option_config.getLanguage("vala") then
+        vala(use)
+    end
+
+    if option_config.getLanguage("glslx") then
+        glslx(use)
+    end
+    
+    if option_config.getLanguage("rust") then
+        rust(use)
+    end
+    
+    if option_config.getLanguage("latex") then
+        latex(use)
+    end
+
+    if option_config.getLanguage("javascript") then
+        javascript(use)
+    end
+
+    if option_config.getLanguage("html") then
+        html(use)
+    end
+
+    if option_config.getLanguage("csharp") then
+        csharp(use)
+    end
+
+    if option_config.getLanguage("python") then
+        python(use)
+    end
+
+    if option_config.getLanguage("vue") then
+        vue(use)
+    end
+
+end)

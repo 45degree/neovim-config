@@ -1,4 +1,0 @@
-# c语言配置 #
-
-[[plugins]]
-repo = 'vim-scripts/DoxygenToolkit.vim'

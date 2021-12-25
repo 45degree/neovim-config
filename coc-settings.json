@@ -141,9 +141,9 @@
     "rust-analyzer.procMacro.enable": true,
 
     "git.enableGutters": false,
-    "git.virtualTextPrefix": " ❯❯❯ ",
+    // "git.virtualTextPrefix": " ❯❯❯ ",
     "git.addGBlameToBufferVar": true,
-    "git.addGBlameToVirtualText": true,
+    // "git.addGBlameToVirtualText": true,
 
     "cmake.lsp.enable": true
 }

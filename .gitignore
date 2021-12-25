@@ -14,3 +14,5 @@ vimspector-gadget/gadgets/linux/*
 
 ## vimspector windows
 vimspector-gadget/gadgets/windows/*
+
+plugin/*

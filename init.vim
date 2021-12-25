@@ -29,6 +29,7 @@ set laststatus=2   " 显示状态栏 0不显示, 1多窗口显示, 2显示
 set ruler          " 状态栏显示光标当前位置
 set termguicolors  " 支持24位彩色
 set timeoutlen=500
+syntax on          " 语法高亮
 
 " 缩进设置
 " filetype indent on " 文件类型缩进检测
@@ -83,114 +84,16 @@ let g:maplocalleader = ","
 " " 插件配置
 " " =============================================================
 
-set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
-
-" let g:ale_disable_lsp = 1
-
 lua option_config = require('option_config')
 lua option_config.read(vim.api.nvim_eval('stdpath("config")') .. '/option_config.json')
 
-if dein#load_state('~/.cache/dein')
-    call dein#begin('~/.cache/dein')
-
-    call dein#load_toml(stdpath('config').'/modules/appearance.toml')
-    call dein#load_toml(stdpath('config').'/modules/general.toml')
-    call dein#load_toml(stdpath('config').'/modules/git.toml')
-    call dein#load_toml(stdpath('config').'/modules/textobj.toml')
-
-    call dein#load_toml(stdpath('config').'/modules/code.toml')
-    call dein#load_toml(stdpath('config').'/modules/lang/cpp.toml')
-    call dein#end()
-
-    call dein#begin('~/.cache/dein')
-    if luaeval('option_config.getLanguage("rust")')
-        call dein#load_toml(stdpath('config').'/option/lang/rust.toml')
-    end
-
-    if luaeval('option_config.getLanguage("vala")')
-        call dein#load_toml(stdpath('config').'/option/lang/vala.toml')
-    end
-
-    if luaeval('option_config.getLanguage("latex")')
-        call dein#load_toml(stdpath('config').'/option/lang/latex.toml')
-    end
-
-    if luaeval('option_config.getLanguage("glslx")')
-        call dein#load_toml(stdpath('config').'/option/lang/glslx.toml')
-    end
-
-    call dein#end()
-
-    call dein#save_state()
-
-endif
-
-syntax on          " 语法高亮
 
 " 加载Config下的.vim文件
 for file in split(glob(stdpath('config').'/Config/*.vim'), '\n')
     exe 'source' file
 endfor
 
-for file in split(glob(stdpath('config').'/Config/extra/*.vim'), '\n')
-    exe 'source' file
-endfor
-
-augroup fmt
-  autocmd!
-  autocmd BufWritePre * undojoin | Neoformat
-augroup END
-
-let bufferline = get(g:, 'bufferline', {})
-let bufferline.icons='both'
-
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
-  -- ignore_install = { "javascript" }, -- List of parsers to ignore installing
-  highlight = {
-    enable = true,              -- false will disable the whole extension
-    -- disable = { "c", "cpp", "rust" },  -- list of language that will be disabled
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = false,
-  },
-  rainbow = {
-    enable = true,
-    -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
-    extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-    max_file_lines = nil, -- Do not enable for files with more than n lines, int
-    -- colors = {}, -- table of hex strings
-    -- termcolors = {} -- table of colour name strings
-  }
-}
-
-vim.opt.list = true
-vim.cmd [[highlight IndentBlanklineIndent1 guifg=#666666 gui=nocombine]]
-vim.cmd [[highlight IndentBlanklineIndent2 guifg=#666666 gui=nocombine]]
-vim.cmd [[highlight IndentBlanklineIndent3 guifg=#666666 gui=nocombine]]
-vim.cmd [[highlight IndentBlanklineIndent4 guifg=#666666 gui=nocombine]]
-vim.cmd [[highlight IndentBlanklineIndent5 guifg=#666666 gui=nocombine]]
-vim.cmd [[highlight IndentBlanklineIndent6 guifg=#666666 gui=nocombine]]
-
-require("indent_blankline").setup {
-    show_current_context = true,
-    show_current_context_start = true,
-    buftype_exclude = { "terminal", "nofile", "prompt"},
-    filetype_exclude = { "dashboard", "coc-explorer"},
-    char_highlight_list = {
-        "IndentBlanklineIndent1",
-        "IndentBlanklineIndent2",
-        "IndentBlanklineIndent3",
-        "IndentBlanklineIndent4",
-        "IndentBlanklineIndent5",
-        "IndentBlanklineIndent6",
-    },
-}
-EOF
+lua require('plugin')
 
 if exists('g:nvui')
     set guifontwide=WenQuanYi\ Micro\ Hei:h10
