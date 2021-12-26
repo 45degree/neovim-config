@@ -5,7 +5,3 @@ colorscheme zephyr
 if (has('nvim'))
   let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
 endif
-
-" Doxygen高亮
-autocmd FileType c set syntax=cpp.doxygen
-autocmd FileType cpp set syntax=cpp.doxygen

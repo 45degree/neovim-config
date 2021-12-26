@@ -1,7 +1,18 @@
 return function(use)
 
     -- 代码格式化
-    use 'sbdchd/neoformat'
+    use {
+        'sbdchd/neoformat',
+        config = function()
+            -- Doxygen高亮
+            vim.api.nvim_exec([[
+                augroup fmt
+                  autocmd!
+                  autocmd BufWritePre * undojoin | Neoformat
+                augroup END
+            ]], false)
+        end
+    }
 
     -- 代码提纲
     use {
