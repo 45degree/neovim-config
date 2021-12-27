@@ -4,6 +4,7 @@ local general = require('plugin.general')
 local git = require('plugin.git')
 local textobj = require('plugin.textobj')
 local cpp = require('plugin.lang.cpp')
+local python = require('plugin.lang.python')
 
 -- option extra plugins
 local vala = require('plugin.option.lang.vala')
@@ -12,7 +13,6 @@ local latex = require('plugin.option.lang.latex')
 local glslx = require('plugin.option.lang.glslx')
 local javascript = require('plugin.option.lang.javascript')
 local csharp = require('plugin.option.lang.csharp')
-local python = require('plugin.option.lang.python')
 local vue = require('plugin.option.lang.vue')
 local html = require('plugin.option.lang.html')
 

@@ -16,3 +16,6 @@ vimspector-gadget/gadgets/linux/*
 vimspector-gadget/gadgets/windows/*
 
 plugin/*
+
+## option file
+option_config.json
