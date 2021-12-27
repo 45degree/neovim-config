@@ -1,18 +1,25 @@
 {
-  // 用于调试本地c/c++程序
-  "configurations": {
-    "Launch": {
-      "adapter": "vscode-cpptools",
-      "configuration": {
-        "request": "launch",
-        "program": "${fileDirname}/${fileBasenameNoExtension}",
-        "args": [],
-        "stopAtEntry": false,
-        "cwd": "${workspaceFolder}",
-        "environment": [],
-        "externalConsole": false,
-        "MIMode": "<lldb or gdb>"
-      }
+    // 用于调试本地c/c++程序
+    "configurations": {
+        "Launch": {
+            "adapter": "vscode-cpptools",
+            "configuration": {
+                "request": "launch",
+                "program": "${fileDirname}/${fileBasenameNoExtension}",
+                "args": [],
+                "stopAtEntry": false,
+                "cwd": "${workspaceFolder}",
+                "environment": [],
+                "externalConsole": false,
+                "MIMode": "gdb",
+                "setupCommands": [
+                    {
+                        "description": "Enable pretty-printing for gdb",
+                        "text": "-enable-pretty-printing",
+                        "ignoreFailures": true
+                    }
+                ]
+            }
+        }
     }
-  }
 }
