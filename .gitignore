@@ -15,7 +15,7 @@ vimspector-gadget/gadgets/linux/*
 ## vimspector windows
 vimspector-gadget/gadgets/windows/*
 
-plugin/*
+plugin/packer_*
 
 ## option file
 option_config.json
