@@ -1,12 +1,12 @@
 {
-    "clangd.semanticHighlighting": true,
     "clangd.trace.server": "verbose",
     "clangd.arguments": [
         "--clang-tidy",
         "-header-insertion=never"
     ],
+    "semanticTokens.filetypes":["lua", "vim"],
     "codeLens.enable": true,
-    "coc.preferences.semanticTokensHighlights": false,
+    "sumneko-lua.enableNvimLuaDev": true,
     "suggest.triggerAfterInsertEnter": false,
     "suggest.timeout": 500,
     "suggest.noselect": true,
@@ -43,7 +43,6 @@
         "typeParameter": "",
         "default": ""
     },
-    "coc.preferences.colorSupport": true,
     "explorer.icon.enableNerdfont": true,
     "explorer.icon.customIcons":{
       "icons": {},

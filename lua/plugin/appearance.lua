@@ -265,7 +265,6 @@ return function(use)
 
     -- tab栏
     use 'romgrk/barbar.nvim'
-    use 'danilamihailov/beacon.nvim'
 
     -- 缩进线
     use {

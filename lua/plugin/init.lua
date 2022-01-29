@@ -5,6 +5,7 @@ local git = require('plugin.git')
 local textobj = require('plugin.textobj')
 local cpp = require('plugin.lang.cpp')
 local python = require('plugin.lang.python')
+local lua = require('plugin.lang.lua')
 
 -- option extra plugins
 local vala = require('plugin.option.lang.vala')
@@ -31,6 +32,8 @@ return require('packer').startup(function()
     git(use)
     textobj(use)
     cpp(use)
+    python(use)
+    lua(use)
 
     if option_config.getLanguage("vala") then
         vala(use)
@@ -58,10 +61,6 @@ return require('packer').startup(function()
 
     if option_config.getLanguage("csharp") then
         csharp(use)
-    end
-
-    if option_config.getLanguage("python") then
-        python(use)
     end
 
     if option_config.getLanguage("vue") then

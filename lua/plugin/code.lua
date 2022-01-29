@@ -28,6 +28,14 @@ return function(use)
     -- 代码debug
     use 'puremourning/vimspector'
 
+    -- 彩虹括号
+    use {
+        'luochen1990/rainbow',
+        config = function()
+            vim.g.rainbow_active = 1
+        end
+    }
+
     -- 代码高亮
     use {
         'nvim-treesitter/nvim-treesitter',
@@ -40,6 +48,7 @@ return function(use)
               ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
               sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
               -- ignore_install = { "javascript" }, -- List of parsers to ignore installing
+              ignore_install = { "vim", "lua", "ocamllex" }, -- List of parsers to ignore installing
               highlight = {
                 enable = true,              -- false will disable the whole extension
                 -- disable = { "c", "cpp", "rust" },  -- list of language that will be disabled

@@ -26,7 +26,10 @@ return function(use)
   use {
       'liuchengxu/vim-clap',
       run = function()
-          vim.call('clap#installer#download_binary()')
+          vim.call('clap#installer#download_binary')
+      end,
+      config = function()
+          vim.g.clap_theme = 'material_design_dark'
       end
   }
 
