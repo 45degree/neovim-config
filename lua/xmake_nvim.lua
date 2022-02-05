@@ -5,7 +5,10 @@ local XMake = {
 
 function XMake:Build(targetName)
     print('begin to build '..targetName)
-    os.execute('xmake build '..targetName)
+    local cmd = io.popen('xmake build '..targetName)
+    for line in cmd:lines() do
+        print(line)
+    end
     print('build '..targetName..'finished')
 end
 

@@ -17,12 +17,14 @@ let g:which_key_map.f = {
 let g:which_key_map.s = {
      \ 'name' : '+Clap',
      \ 'f' : [':Clap files ++finder=rg --ignore --files', '文件夹内查找文件'],
-     \ 'a' : [':Clap grep', '文件夹内查找文件内容'],
+     \ 'a' : [':Clap grep2', '文件夹内查找文件内容'],
      \ 'g' : [':Clap gfiles', 'git项目内查找文件'],
      \ 'gd': [':Clap git_diff_files', 'git diff文件'],
      \ 'c' : [':Clap colors', '改变颜色'],
      \ 'h' : [':Clap history', '查看历史'],
-     \ 'm' : [':Clap marks', 'Mark 查找']
+     \ 'm' : [':Clap marks', 'Mark 查找'],
+     \ 'r' : [':Clap recent_files', '最近的文件'],
+     \ 'b' : [':Clap blines', '当前buffer内查找']
      \}
 
 let g:which_key_map.g = {
