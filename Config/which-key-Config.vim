@@ -43,21 +43,27 @@ let g:which_key_map.S = {
      \}
 
 let g:which_key_map.c = {
-     \ 'name': '+代码',
-     \ '1': {
-     \     'name': '+latex',
-     \     'b': [':CocCommand latex.Build', 'latex编译'],
-     \     'p': [':CocCommand latex.ForwardSearch', 'latex预览'],
-     \ },
-     \ '2': {
-     \     'name': '+markdown',
-     \     'p': ['<Plug>MarkdownPreview', 'markdown预览'],
-     \     's': ['<Plug>MarkdownPreviewStop', 'markdown停止预览'],
-     \ },
-     \ 'f' : [':Neoformat', '格式化代码'],
-     \ 't': [':Vista!!', '打开代码大纲'],
-     \ 'd': ['Generator_debug_template()', '生成debug模板']
-     \}
+    \ 'name': '+代码',
+    \ '1': {
+    \     'name': '+latex',
+    \     'b': [':CocCommand latex.Build', 'latex编译'],
+    \     'p': [':CocCommand latex.ForwardSearch', 'latex预览'],
+    \ },
+    \ '2': {
+    \     'name': '+markdown',
+    \     'p': ['<Plug>MarkdownPreview', 'markdown预览'],
+    \     's': ['<Plug>MarkdownPreviewStop', 'markdown停止预览'],
+    \ },
+    \ 'g': [':GitGutterPreviewHunk', '显示Git更改功能'],
+    \ 'f': [':Neoformat', '格式化代码'],
+    \ 't': [':Vista!!', '打开代码大纲'],
+    \ 'd': {
+    \     'name': '+debug',
+    \     'g': ['Generator_debug_template()', '生成debug模板'],
+    \     's': ['<Plug>VimspectorBalloonEval', '显示变量值'],
+    \     'c': [':VimspectorReset', '关闭调试'],
+    \ },
+    \}
 
 let g:which_key_map.t = [':CocCommand explorer', "打开文件树"]
 
