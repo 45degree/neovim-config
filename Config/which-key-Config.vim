@@ -54,7 +54,12 @@ let g:which_key_map.c = {
     \     'p': ['<Plug>MarkdownPreview', 'markdown预览'],
     \     's': ['<Plug>MarkdownPreviewStop', 'markdown停止预览'],
     \ },
-    \ 'g': [':GitGutterPreviewHunk', '显示Git更改功能'],
+    \ 'g': {
+    \     'name': '+git',
+    \     'p': [':GitGutterPreviewHunk', '显示Git更改功能'],
+    \     'do': [':DiffviewOpen', 'git diff open'],
+    \     'dc': [':DiffviewClose', 'git diff close'],
+    \ },
     \ 'f': [':Neoformat', '格式化代码'],
     \ 't': [':Vista!!', '打开代码大纲'],
     \ 'd': {

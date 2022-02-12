@@ -59,5 +59,13 @@ return function(use)
 
   }
 
+  -- 菜单
+  use {
+      'gelguy/wilder.nvim',
+      config = function ()
+          vim.call('wilder#setup', {modes = {':', '/', '?'}})
+      end
+  }
+
 
 end
