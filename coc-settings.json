@@ -7,6 +7,7 @@
     "semanticTokens.filetypes":["lua", "vim"],
     "codeLens.enable": true,
     "sumneko-lua.enableNvimLuaDev": true,
+    "diagnostic.displayByAle": true,
     "suggest.triggerAfterInsertEnter": false,
     "suggest.timeout": 500,
     "suggest.noselect": true,
@@ -144,5 +145,6 @@
     "git.addGBlameToBufferVar": true,
     // "git.addGBlameToVirtualText": true,
 
-    "cmake.lsp.enable": true
+    "cmake.lsp.enable": true,
+    "Lua.telemetry.enable": true
 }

@@ -134,6 +134,13 @@ return function(use)
         end
     }
 
+    use {
+        'dense-analysis/ale',
+        config = function()
+            vim.g.ale_disable_lsp = 1
+            vim.b.ale_linters = { 'clangtidy' }
+        end
+    }
 
     -- 代码补全
     use { 'neoclide/coc.nvim', branch= 'release'}

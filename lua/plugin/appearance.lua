@@ -1,6 +1,7 @@
 return function(use)
     -- 颜色主题
     use 'kaicataldo/material.vim'
+    use "rebelot/kanagawa.nvim"
     use 'morhetz/gruvbox'
     use 'SpaceVim/SpaceVim-theme'
     use 'sainnhe/edge'
