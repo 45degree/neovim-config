@@ -67,5 +67,7 @@ return function(use)
       end
   }
 
+  -- 窗口选择
+  use 't9md/vim-choosewin'
 
 end
