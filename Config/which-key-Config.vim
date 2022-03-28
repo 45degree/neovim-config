@@ -61,7 +61,7 @@ let g:which_key_map.c = {
     \     'do': [':DiffviewOpen', 'git diff open'],
     \     'dc': [':DiffviewClose', 'git diff close'],
     \ },
-    \ 'f': [':Neoformat', '格式化代码'],
+    \ 'f': [':Format', '格式化代码'],
     \ 't': [':Vista!!', '打开代码大纲'],
     \ 'd': {
     \     'name': '+debug',

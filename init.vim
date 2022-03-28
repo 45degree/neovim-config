@@ -80,6 +80,9 @@ set mouse=a
 let g:mapleader="\<space>"
 let g:maplocalleader = ","
 
+" esc 在终端模式下返回normal模式
+:tnoremap <Esc> <C-\><C-n>
+
 " " =============================================================
 " " 插件配置
 " " =============================================================
@@ -97,5 +100,5 @@ lua require('plugin')
 
 if exists('g:nvui')
     set guifontwide=WenQuanYi\ Micro\ Hei:h10
-    set guifont=JetbrainsMono\ Nerd\ Font:h10
+    set guifont=JetBrainsMonoExtraBold\ Nerd\ Font:h10
 endif

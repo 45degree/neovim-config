@@ -9,7 +9,6 @@ return function(use)
     use 'folke/tokyonight.nvim'
     use 'sainnhe/everforest'
     use 'mhartington/oceanic-next'
-    use 'glepnir/zephyr-nvim'
 
     -- 图标
     use 'ryanoasis/vim-devicons'
@@ -29,33 +28,28 @@ return function(use)
                 ['find_word']          = 'SPC f a',
                 ['book_marks']         = 'SPC f b',
             }
-            vim.g.dashboard_custom_header = {
-                '',
-                '⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⣿⡿⠿⢿⣿⣿⣿⣿⣿⣿',
-                '⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⠛⠛⠉⠉⠉⠙⠻⣅⠀⠈⢧⠀⠈⠛⠉⠉⢻⣿⣿',
-                '⣿⣿⣿⣿⣿⣿⠿⠋⠀⠀⠀⠀⠀⠀⠀⠀⣤⡶⠟⠀⠀⣈⠓⢤⣶⡶⠿⠛⠻⣿',
-                '⣿⣿⣿⣿⣿⢣⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⢿⣀⣴⠶⠿⠿⢷⡄⠀⠀⢀⣤⣾⣿',
-                '⣿⣿⣿⣿⣡⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣦⣤⣤⡀⠀⢷⡀⠀⠀⣻⣿⣿',
-                '⣿⣿⣿⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡈⠛⠶⠛⠃⠈⠈⢿⣿⣿',
-                '⣿⣿⠟⠘⠀⠀⠀⠀⠀⠀⠀⠀⢀⡆⠀⠀⠀⠀⠀⠀⣧⠀⠀⠀⠀⠀⠀⠈⣿⣿',
-                '⣿⠏⠀⠁⠀⠀⠀⠀⠀⠀⠀⢀⣶⡄⠀⠀⠀⠀⠀⠀⣡⣄⣿⡆⠀⠀⠀⠀⣿⣿',
-                '⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠚⠛⠛⢛⣲⣶⣿⣷⣉⠉⢉⣥⡄⠀⠀⠀⠨⣿⣿',
-                '⡇⢠⡆⠀⠀⢰⠀⠀⠀⠀⢸⣿⣧⣠⣿⣿⣿⣿⣿⣿⣷⣾⣿⡅⠀⠀⡄⠠⢸⣿',
-                '⣧⠸⣇⠀⠀⠘⣤⡀⠀⠀⠘⣿⣿⣿⣿⣿⠟⠛⠻⣿⣿⣿⡿⢁⠀⠀⢰⠀⢸⣿',
-                '⣿⣷⣽⣦⠀⠀⠙⢷⡀⠀⠀⠙⠻⠿⢿⣷⣾⣿⣶⠾⢟⣥⣾⣿⣧⠀⠂⢀⣿⣿',
-                '⣿⣿⣿⣿⣷⣆⣠⣤⣤⣤⣀⣀⡀⠀⠒⢻⣶⣾⣿⣿⣿⣿⣿⣿⣿⢀⣀⣾⣿⣿',
-                '',
-            }
+        end
+    }
+
+    use {
+        "SmiteshP/nvim-gps",
+        config = function ()
+            -- Default config
+            require("nvim-gps").setup()
         end
     }
 
     -- 状态栏
     use {
         'glepnir/galaxyline.nvim',
+        after = "nvim-gps",
+
         config = function()
             local gl = require('galaxyline')
             local colors = require('galaxyline.theme').default
             local condition = require('galaxyline.condition')
+            local gps = require("nvim-gps");
+
             local gls = gl.section
             gl.short_line_list = {'NvimTree','vista','dbui','packer', 'coc-explorer'}
 
@@ -201,6 +195,18 @@ return function(use)
                 icon = '  ',
                 highlight = {colors.blue,colors.bg},
               }
+            }
+
+            gls.left[15] = {
+                nvimGPS = {
+                    provider = function()
+                        return gps.get_location()
+                    end,
+                    condition = function()
+                        return gps.is_available()
+                    end,
+                    highlight = {colors.fg,colors.bg},
+                }
             }
 
             gls.right[1] = {

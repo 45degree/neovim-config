@@ -1,19 +1,5 @@
 return function(use)
 
-    -- 代码格式化
-    -- use {
-    --     'sbdchd/neoformat',
-    --     config = function()
-    --         -- Doxygen高亮
-    --         vim.api.nvim_exec([[
-    --             augroup fmt
-    --               autocmd!
-    --               autocmd BufWritePre * undojoin | Neoformat
-    --             augroup END
-    --         ]], false)
-    --     end
-    -- }
-
     -- 代码提纲
     use {
         'liuchengxu/vista.vim',
@@ -33,14 +19,6 @@ return function(use)
     -- 代码debug
     use 'puremourning/vimspector'
 
-    -- 彩虹括号
-    use {
-        'luochen1990/rainbow',
-        config = function()
-            vim.g.rainbow_active = 1
-        end
-    }
-
     -- todo comments
     use {
       "folke/todo-comments.nvim",
@@ -54,16 +32,12 @@ return function(use)
     -- 代码高亮
     use {
         'nvim-treesitter/nvim-treesitter',
-        requires = {
-            -- 彩虹括号
-            'p00f/nvim-ts-rainbow'
-        },
         config = function()
             require'nvim-treesitter.configs'.setup {
               ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
               sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
               -- ignore_install = { "javascript" }, -- List of parsers to ignore installing
-              ignore_install = { "vim", "lua", "ocamllex" }, -- List of parsers to ignore installing
+              ignore_install = {}, -- List of parsers to ignore installing
               highlight = {
                 enable = true,              -- false will disable the whole extension
                 -- disable = { "c", "cpp", "rust" },  -- list of language that will be disabled
@@ -85,10 +59,24 @@ return function(use)
         end
     }
 
+    use {
+        'p00f/nvim-ts-rainbow',
+        after = "nvim-treesitter"
+    }
+
+    use {
+        "andymass/vim-matchup",
+        after = "nvim-treesitter",
+        config = function ()
+            vim.cmd [[let g:matchup_matchparen_offscreen = {'method': 'popup'}]]
+        end
+    }
+
     -- diff view
     use {
         'sindrets/diffview.nvim',
         requires = 'nvim-lua/plenary.nvim',
+        cmd = "DiffviewOpen",
         config = function()
             require 'diffview'.setup {
                 diff_binaries = false,    -- Show diffs for binaries
@@ -131,14 +119,6 @@ return function(use)
                 },
                 hooks = {}         -- See ':h diffview-config-hooks'
             }
-        end
-    }
-
-    use {
-        'dense-analysis/ale',
-        config = function()
-            vim.g.ale_disable_lsp = 1
-            vim.b.ale_linters = { 'clangtidy' }
         end
     }
 

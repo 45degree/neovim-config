@@ -4,10 +4,8 @@
         "--clang-tidy",
         "-header-insertion=never"
     ],
-    "semanticTokens.filetypes":["lua", "vim"],
     "codeLens.enable": true,
     "sumneko-lua.enableNvimLuaDev": true,
-    "diagnostic.displayByAle": true,
     "suggest.triggerAfterInsertEnter": false,
     "suggest.timeout": 1000,
     "suggest.noselect": true,
