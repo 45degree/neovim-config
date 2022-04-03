@@ -77,7 +77,6 @@ return function(use)
     use 'gcmt/wildfire.vim'
 
     -- 终端
-    -- use 'skywind3000/vim-terminal-help'
     use {
         "akinsho/toggleterm.nvim",
         opt = true,
