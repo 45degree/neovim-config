@@ -1,3 +1,5 @@
+---@diagnostic disable: undefined-global
+
 return function(use)
 
     use 'liuchengxu/vim-which-key'

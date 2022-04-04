@@ -30,7 +30,7 @@ return function(use)
                 [[ \/_/\/_/\/____/\/___/  \/__/    \/_/\/_/\/_/\/_/]],
             }
             dashboard.section.buttons.val = {
-                dashboard.button( "h", "ﭯ  History" , ":Clap history <CR>"),
+                dashboard.button( "h", "  History" , ":Clap history <CR>"),
                 dashboard.button( "c", "  Color" , ":Clap colors <CR>"),
             }
             local handle = io.popen('fortune')
