@@ -42,11 +42,11 @@ return require('packer').startup(function()
     if option_config.getLanguage("glslx") then
         glslx(use)
     end
-    
+
     if option_config.getLanguage("rust") then
         rust(use)
     end
-    
+
     if option_config.getLanguage("latex") then
         latex(use)
     end

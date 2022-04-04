@@ -45,11 +45,6 @@ let g:which_key_map.S = {
 
 let g:which_key_map.c = {
     \ 'name': '+代码',
-    \ '1': {
-    \     'name': '+latex',
-    \     'b': [':CocCommand latex.Build', 'latex编译'],
-    \     'p': [':CocCommand latex.ForwardSearch', 'latex预览'],
-    \ },
     \ '2': {
     \     'name': '+markdown',
     \     'p': ['<Plug>MarkdownPreview', 'markdown预览'],
@@ -71,7 +66,7 @@ let g:which_key_map.c = {
     \ },
     \}
 
-let g:which_key_map.t = [':CocCommand explorer', "打开文件树"]
+let g:which_key_map.t = [':NvimTreeToggle', "打开文件树"]
 
 let g:which_key_map.w={
      \ 'name' : '+窗口' ,
