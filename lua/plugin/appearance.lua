@@ -1,3 +1,5 @@
+---@diagnostic disable: undefined-global
+
 return function(use)
     -- 颜色主题
     use 'kaicataldo/material.vim'
@@ -33,12 +35,6 @@ return function(use)
                 dashboard.button( "h", "  History" , ":Clap history <CR>"),
                 dashboard.button( "c", "  Color" , ":Clap colors <CR>"),
             }
-            local handle = io.popen('fortune')
-            local fortune = handle:read("*a")
-            handle:close()
-            dashboard.section.footer.val = fortune
-            dashboard.config.opts.noautocmd = true
-            vim.cmd[[autocmd User AlphaReady echo 'ready']]
             alpha.setup(dashboard.config)
         end
     }

@@ -40,13 +40,9 @@ return function(use)
             "hrsh7th/cmp-nvim-lsp", --neovim 内置 LSP 客户端的 nvim-cmp 源
             "hrsh7th/cmp-buffer", --从buffer中智能提示
             "hrsh7th/cmp-nvim-lua", --nvim-cmp source for neovim Lua API.
-            "octaltree/cmp-look", --用于完成英语单词
             "hrsh7th/cmp-path", --自动提示硬盘上的文件
-            "hrsh7th/cmp-calc", --输入数学算式（如1+1=）自动计算
-            "f3fora/cmp-spell", --nvim-cmp 的拼写源基于 vim 的拼写建议
-            "hrsh7th/cmp-emoji", --输入: 可以显示表情
-            "L3MON4D3/LuaSnip",
-            'saadparwaiz1/cmp_luasnip',
+            "SirVer/ultisnips",
+            'quangnguyen30192/cmp-nvim-ultisnips',
         },
         config = function()
             local lspkind = require('lspkind')
@@ -55,7 +51,7 @@ return function(use)
                 snippet = {
                   -- REQUIRED - you must specify a snippet engine
                   expand = function(args)
-                    require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+                    vim.fn["UltiSnips#Anon"](args.body)
                   end,
                 },
                 mapping = {
@@ -73,9 +69,10 @@ return function(use)
                 },
                 sources = cmp.config.sources({
                     { name = 'nvim_lsp' },
-                },
-                {
+                    { name = 'ultisnips' },
                     { name = 'buffer' },
+                    { name = 'path' },
+                    { name = 'nvim_lua' }
                 }),
                 formatting = {
                   format = lspkind.cmp_format({
