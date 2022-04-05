@@ -242,7 +242,12 @@ return function(use)
     }
 
     -- 自动匹配括号
-    use 'jiangmiao/auto-pairs'
+    use {
+        'windwp/nvim-autopairs',
+        config = function ()
+            require('nvim-autopairs').setup{}
+        end
+    }
 
     -- jk加速
     use {

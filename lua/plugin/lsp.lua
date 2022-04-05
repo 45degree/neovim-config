@@ -3,26 +3,24 @@
 return function(use)
 
     -- 代码补全
-    use {
-        "neovim/nvim-lspconfig",
-        config = function ()
-            local opts = { noremap=true, silent=true }
-            vim.api.nvim_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-            vim.api.nvim_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-            vim.api.nvim_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-            vim.api.nvim_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-            vim.api.nvim_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-            vim.api.nvim_set_keymap('n', 'ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-        end
-    }
+    use "neovim/nvim-lspconfig"
     use {
         "williamboman/nvim-lsp-installer",
+        requires = "ray-x/lsp_signature.nvim",
         config = function()
+            require "lsp_signature".setup{}
             local lsp_installer = require("nvim-lsp-installer")
-            -- Register a handler that will be called for each installed server when it's ready (i.e. when installation is finished
-            -- or if the server is already installed).
             lsp_installer.on_server_ready(function(server)
-                local opts = {}
+                local opts = {
+                    on_attach = function(client, bufnr)
+                        require "lsp_signature".on_attach({
+                            bind = true, -- This is mandatory, otherwise border config won't get registered.
+                            handler_opts = {
+                                border = "rounded"
+                            }
+                        }, bufnr)
+                    end,
+                }
                 if server.name == "clangd" then
                     opts.cmd = {
                         "clangd",
@@ -155,21 +153,7 @@ return function(use)
       requires = "kyazdani42/nvim-web-devicons",
       config = function()
         require("trouble").setup {
-          -- your configuration comes here
-          -- or leave it empty to use the default settings
-          -- refer to the configuration section below
         }
-        vim.cmd [[
-            sign define DiagnosticSignError text= linehl= texthl=DiagnosticSignError numhl=
-            sign define DiagnosticSignWarn text= linehl= texthl=DiagnosticSignWarn numhl=
-            sign define DiagnosticSignInfo text= linehl= texthl=DiagnosticSignInfo numhl=
-            sign define DiagnosticSignHint text=💡 linehl= texthl=DiagnosticSignHint numhl=
-        ]]
-        local signs = { Error = " ", Warning = " ", Hint = " ", Information = " " }
-        for type, icon in pairs(signs) do
-          local hl = "LspDiagnosticsSign" .. type
-          vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-        end
         vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
           vim.lsp.diagnostic.on_publish_diagnostics, {
             underline = true,
@@ -193,6 +177,71 @@ return function(use)
               Information = "#0db9d7",
               Hint = "#10B981"
             })
+        end
+    }
+
+    use {
+        'tami5/lspsaga.nvim',
+        config = function ()
+            local lspsaga = require 'lspsaga'
+            lspsaga.setup { -- defaults ...
+                debug = false,
+                use_saga_diagnostic_sign = true,
+                -- diagnostic sign
+                error_sign = "",
+                warn_sign = "",
+                hint_sign = "",
+                infor_sign = "",
+                diagnostic_header_icon = "   ",
+                -- code action title icon
+                code_action_icon = " ",
+                code_action_prompt = {
+                  enable = true,
+                  sign = true,
+                  sign_priority = 9,
+                  virtual_text = true,
+                },
+                finder_definition_icon = "  ",
+                finder_reference_icon = "  ",
+                max_preview_lines = 10,
+                finder_action_keys = {
+                  open = "o",
+                  vsplit = "s",
+                  split = "i",
+                  quit = "q",
+                  scroll_down = "<C-f>",
+                  scroll_up = "<C-b>",
+                },
+                code_action_keys = {
+                  quit = "q",
+                  exec = "<CR>",
+                },
+                rename_action_keys = {
+                  quit = "<C-c>",
+                  exec = "<CR>",
+                },
+                definition_preview_icon = "  ",
+                border_style = "single",
+                rename_prompt_prefix = "➤",
+                rename_output_qflist = {
+                  enable = false,
+                  auto_open_qflist = false,
+                },
+                server_filetype_map = {},
+                diagnostic_prefix_format = "%d. ",
+                diagnostic_message_format = "%m %c",
+                highlight_prefix = false,
+            }
+
+            --- In lsp attach function
+            local opts = { noremap=true, silent=true }
+            vim.api.nvim_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+            vim.api.nvim_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+            vim.api.nvim_set_keymap('n', 'K',  '<cmd>Lspsaga hover_doc<cr>', opts)
+            vim.api.nvim_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+            vim.api.nvim_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+            vim.api.nvim_set_keymap('n', 'rn', '<cmd>Lspsaga rename<cr>', opts)
+            vim.api.nvim_set_keymap('n', 'ca', '<cmd>Lspsaga code_action<cr>', opts)
         end
     }
 
