@@ -41,6 +41,7 @@ return function(use)
             "hrsh7th/cmp-buffer", --从buffer中智能提示
             "hrsh7th/cmp-nvim-lua", --nvim-cmp source for neovim Lua API.
             "hrsh7th/cmp-path", --自动提示硬盘上的文件
+            "onsails/lspkind-nvim",
             "SirVer/ultisnips",
             'quangnguyen30192/cmp-nvim-ultisnips',
         },
@@ -70,80 +71,131 @@ return function(use)
                 sources = cmp.config.sources({
                     { name = 'nvim_lsp' },
                     { name = 'ultisnips' },
+                },
+                {
                     { name = 'buffer' },
                     { name = 'path' },
                     { name = 'nvim_lua' }
                 }),
                 formatting = {
-                  format = lspkind.cmp_format({
-                    mode = 'symbol_text', -- show only symbol annotations
-                    maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+                    format = function(entry, vim_item)
+                        local lspkind_icons = {
+                            Text = "",
+                            Method = "",
+                            Function = "",
+                            Constructor = "",
+                            Field = "",
+                            Variable = "",
+                            Class = "ﴯ",
+                            Interface = "",
+                            Module = "",
+                            Property = "ﰠ",
+                            Unit = "",
+                            Value = "",
+                            Enum = "",
+                            Keyword = "",
+                            Snippet = "",
+                            Color = "",
+                            File = "",
+                            Reference = "",
+                            Folder = "",
+                            EnumMember = "",
+                            Constant = "",
+                            Struct = "",
+                            Event = "",
+                            Operator = "",
+                            TypeParameter = "",
+                        }
 
-                    -- The function below will be called before any actual modifications from lspkind
-                    -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
-                    before = function (entry, vim_item)
-                      return vim_item
-                    end
-                  })
+                        local max_len = 20
+                        if string.len(vim_item.abbr) > max_len then
+                          vim_item.abbr = string.sub(vim_item.abbr, 1, max_len - 2) .. "··"
+                        end
+
+                        -- load lspkind icons
+                        vim_item.kind = string.format("%s %s", lspkind_icons[vim_item.kind], vim_item.kind)
+                        vim_item.menu = ({
+                            -- cmp_tabnine = "[TN]",
+                            buffer = "[BUF]",
+                                orgmode = "[ORG]",
+                                nvim_lsp = "[LSP]",
+                                nvim_lua = "[LUA]",
+                                path = "[PATH]",
+                                tmux = "[TMUX]",
+                                luasnip = "[SNIP]",
+                                spell = "[SPELL]",
+                            })[entry.source.name]
+                        return vim_item
+                    end,
+
+                    -- format = lspkind.cmp_format({
+                    --   mode = 'symbol', -- show only symbol annotations
+                    --   maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+                    --
+                    --   -- The function below will be called before any actual modifications from lspkind
+                    --   -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
+                    --   before = function (entry, vim_item)
+                    --     return vim_item
+                    --   end
+                    -- })
                 }
             })
         end
     }
 
-    use {
-        "onsails/lspkind-nvim",
-        config = function()
-            require('lspkind').init({
-                -- DEPRECATED (use mode instead): enables text annotations
-                --
-                -- default: true
-                -- with_text = true,
-
-                -- defines how annotations are shown
-                -- default: symbol
-                -- options: 'text', 'text_symbol', 'symbol_text', 'symbol'
-                mode = 'symbol_text',
-
-                -- default symbol map
-                -- can be either 'default' (requires nerd-fonts font) or
-                -- 'codicons' for codicon preset (requires vscode-codicons font)
-                --
-                -- default: 'default'
-                preset = 'default',
-
-                -- override preset symbols
-                --
-                -- default: {}
-                symbol_map = {
-                  Text = "",
-                  Method = "",
-                  Function = "",
-                  Constructor = "",
-                  Field = "ﰠ",
-                  Variable = "",
-                  Class = "ﴯ",
-                  Interface = "",
-                  Module = "",
-                  Property = "ﰠ",
-                  Unit = "塞",
-                  Value = "",
-                  Enum = "",
-                  Keyword = "",
-                  Snippet = "",
-                  Color = "",
-                  File = "",
-                  Reference = "",
-                  Folder = "",
-                  EnumMember = "",
-                  Constant = "",
-                  Struct = "פּ",
-                  Event = "",
-                  Operator = "",
-                  TypeParameter = ""
-                },
-            })
-        end
-    }
+    -- use {
+    --     config = function()
+    --         require('lspkind').init({
+    --             -- DEPRECATED (use mode instead): enables text annotations
+    --             --
+    --             -- default: true
+    --             -- with_text = true,
+    --
+    --             -- defines how annotations are shown
+    --             -- default: symbol
+    --             -- options: 'text', 'text_symbol', 'symbol_text', 'symbol'
+    --             mode = 'symbol',
+    --
+    --             -- default symbol map
+    --             -- can be either 'default' (requires nerd-fonts font) or
+    --             -- 'codicons' for codicon preset (requires vscode-codicons font)
+    --             --
+    --             -- default: 'default'
+    --             preset = 'codicons',
+    --
+    --             -- override preset symbols
+    --             --
+    --             -- default: {}
+    --             symbol_map = {
+    --               Text = "",
+    --               Method = "",
+    --               Function = "",
+    --               Constructor = "",
+    --               Field = "ﰠ",
+    --               Variable = "",
+    --               Class = "ﴯ",
+    --               Interface = "",
+    --               Module = "",
+    --               Property = "ﰠ",
+    --               Unit = "塞",
+    --               Value = "",
+    --               Enum = "",
+    --               Keyword = "",
+    --               Snippet = "",
+    --               Color = "",
+    --               File = "",
+    --               Reference = "",
+    --               Folder = "",
+    --               EnumMember = "",
+    --               Constant = "",
+    --               Struct = "פּ",
+    --               Event = "",
+    --               Operator = "",
+    --               TypeParameter = ""
+    --             },
+    --         })
+    --     end
+    -- }
 
     use {
       "folke/trouble.nvim",
