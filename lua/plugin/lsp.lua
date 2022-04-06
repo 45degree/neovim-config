@@ -6,12 +6,18 @@ return function(use)
     use "neovim/nvim-lspconfig"
     use {
         "williamboman/nvim-lsp-installer",
-        requires = "ray-x/lsp_signature.nvim",
+        requires = {
+            "ray-x/lsp_signature.nvim",
+            "hrsh7th/cmp-nvim-lsp", --neovim 内置 LSP 客户端的 nvim-cmp 源
+        },
         config = function()
             require "lsp_signature".setup{}
             local lsp_installer = require("nvim-lsp-installer")
+            local capabilities = vim.lsp.protocol.make_client_capabilities()
+            capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
             lsp_installer.on_server_ready(function(server)
                 local opts = {
+                    capabilities = capabilities,
                     on_attach = function(client, bufnr)
                         require "lsp_signature".on_attach({
                             bind = true, -- This is mandatory, otherwise border config won't get registered.
@@ -37,7 +43,6 @@ return function(use)
     use {
         "hrsh7th/nvim-cmp",
         requires = {
-            "hrsh7th/cmp-nvim-lsp", --neovim 内置 LSP 客户端的 nvim-cmp 源
             "hrsh7th/cmp-buffer", --从buffer中智能提示
             "hrsh7th/cmp-nvim-lua", --nvim-cmp source for neovim Lua API.
             "hrsh7th/cmp-path", --自动提示硬盘上的文件
@@ -48,6 +53,13 @@ return function(use)
         config = function()
             local lspkind = require('lspkind')
             local cmp = require 'cmp'
+            -- If you want insert `(` after select function or method item
+            local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+            cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
+
+            -- add a lisp filetype (wrap my-function), FYI: Hardcoded = { "clojure", "clojurescript", "fennel", "janet" }
+            cmp_autopairs.lisp[#cmp_autopairs.lisp+1] = "racket"
+
             cmp.setup ({
                 snippet = {
                   -- REQUIRED - you must specify a snippet engine
@@ -127,75 +139,10 @@ return function(use)
                             })[entry.source.name]
                         return vim_item
                     end,
-
-                    -- format = lspkind.cmp_format({
-                    --   mode = 'symbol', -- show only symbol annotations
-                    --   maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-                    --
-                    --   -- The function below will be called before any actual modifications from lspkind
-                    --   -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
-                    --   before = function (entry, vim_item)
-                    --     return vim_item
-                    --   end
-                    -- })
                 }
             })
         end
     }
-
-    -- use {
-    --     config = function()
-    --         require('lspkind').init({
-    --             -- DEPRECATED (use mode instead): enables text annotations
-    --             --
-    --             -- default: true
-    --             -- with_text = true,
-    --
-    --             -- defines how annotations are shown
-    --             -- default: symbol
-    --             -- options: 'text', 'text_symbol', 'symbol_text', 'symbol'
-    --             mode = 'symbol',
-    --
-    --             -- default symbol map
-    --             -- can be either 'default' (requires nerd-fonts font) or
-    --             -- 'codicons' for codicon preset (requires vscode-codicons font)
-    --             --
-    --             -- default: 'default'
-    --             preset = 'codicons',
-    --
-    --             -- override preset symbols
-    --             --
-    --             -- default: {}
-    --             symbol_map = {
-    --               Text = "",
-    --               Method = "",
-    --               Function = "",
-    --               Constructor = "",
-    --               Field = "ﰠ",
-    --               Variable = "",
-    --               Class = "ﴯ",
-    --               Interface = "",
-    --               Module = "",
-    --               Property = "ﰠ",
-    --               Unit = "塞",
-    --               Value = "",
-    --               Enum = "",
-    --               Keyword = "",
-    --               Snippet = "",
-    --               Color = "",
-    --               File = "",
-    --               Reference = "",
-    --               Folder = "",
-    --               EnumMember = "",
-    --               Constant = "",
-    --               Struct = "פּ",
-    --               Event = "",
-    --               Operator = "",
-    --               TypeParameter = ""
-    --             },
-    --         })
-    --     end
-    -- }
 
     use {
       "folke/trouble.nvim",
@@ -203,17 +150,22 @@ return function(use)
       config = function()
         require("trouble").setup {
         }
-        vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-          vim.lsp.diagnostic.on_publish_diagnostics, {
-            underline = true,
-            -- This sets the spacing and the prefix, obviously.
+
+        vim.diagnostic.config{
             virtual_text = {
-              spacing = 4,
-              prefix = ''
-            }
-          }
-        )
+                prefix = '',
+                sources = "always"
+            },
+            float = {
+                sources = "always"
+            },
+            update_in_insert = false,
+        }
       end
+    }
+
+    use {
+        "nvim-telescope/telescope.nvim"
     }
 
     use {
@@ -245,7 +197,7 @@ return function(use)
                 -- code action title icon
                 code_action_icon = " ",
                 code_action_prompt = {
-                  enable = true,
+                  enable = false,
                   sign = true,
                   sign_priority = 9,
                   virtual_text = true,
@@ -284,13 +236,20 @@ return function(use)
 
             --- In lsp attach function
             local opts = { noremap=true, silent=true }
-            vim.api.nvim_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-            vim.api.nvim_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+            vim.api.nvim_set_keymap('n', 'gD', '<cmd>Telescope diagnostic theme=dropdown<cr>', opts)
+            vim.api.nvim_set_keymap('n', 'gd', '<cmd>Telescope lsp_definitions theme=dropdown<cr>', opts)
             vim.api.nvim_set_keymap('n', 'K',  '<cmd>Lspsaga hover_doc<cr>', opts)
-            vim.api.nvim_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-            vim.api.nvim_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+            vim.api.nvim_set_keymap('n', 'gi', '<cmd>Telescope lsp_implementations theme=dropdown<cr>', opts)
+            vim.api.nvim_set_keymap('n', 'gr', '<cmd>Telescope lsp_references theme=dropdown<cr>', opts)
             vim.api.nvim_set_keymap('n', 'rn', '<cmd>Lspsaga rename<cr>', opts)
             vim.api.nvim_set_keymap('n', 'ca', '<cmd>Lspsaga code_action<cr>', opts)
+        end
+    }
+
+    use {
+        'j-hui/fidget.nvim',
+        config = function ()
+            require("fidget").setup{}
         end
     }
 
