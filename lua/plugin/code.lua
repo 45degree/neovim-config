@@ -6,7 +6,7 @@ return function(use)
     use {
         'liuchengxu/vista.vim',
         config = function()
-            vim.g.vista_default_executive = 'coc'
+            vim.g.vista_default_executive = 'nvim_lsp'
         end
     }
 

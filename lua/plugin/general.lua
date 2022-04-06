@@ -259,15 +259,7 @@ return function(use)
     }
 
     -- 模糊搜索
-    use {
-        'liuchengxu/vim-clap',
-        run = function()
-            vim.call('clap#installer#download_binary')
-        end,
-        config = function()
-            vim.g.clap_theme = 'material_design_dark'
-        end
-    }
+    use "nvim-telescope/telescope.nvim"
 
     -- 成对编辑
     use 'tpope/vim-surround'

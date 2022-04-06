@@ -43,15 +43,13 @@ return function(use)
     use {
         "hrsh7th/nvim-cmp",
         requires = {
+            "SirVer/ultisnips",
+            'quangnguyen30192/cmp-nvim-ultisnips',
             "hrsh7th/cmp-buffer", --从buffer中智能提示
             "hrsh7th/cmp-nvim-lua", --nvim-cmp source for neovim Lua API.
             "hrsh7th/cmp-path", --自动提示硬盘上的文件
-            "onsails/lspkind-nvim",
-            "SirVer/ultisnips",
-            'quangnguyen30192/cmp-nvim-ultisnips',
         },
         config = function()
-            local lspkind = require('lspkind')
             local cmp = require 'cmp'
             -- If you want insert `(` after select function or method item
             local cmp_autopairs = require('nvim-autopairs.completion.cmp')
@@ -146,6 +144,7 @@ return function(use)
 
     use {
       "folke/trouble.nvim",
+      after = "nvim-cmp",
       requires = "kyazdani42/nvim-web-devicons",
       config = function()
         require("trouble").setup {
@@ -165,11 +164,8 @@ return function(use)
     }
 
     use {
-        "nvim-telescope/telescope.nvim"
-    }
-
-    use {
         'folke/lsp-colors.nvim',
+        after = "nvim-cmp",
         config = function()
             -- Lua
             require("lsp-colors").setup({
@@ -183,6 +179,7 @@ return function(use)
 
     use {
         'tami5/lspsaga.nvim',
+        after = "telescope.nvim",
         config = function ()
             local lspsaga = require 'lspsaga'
             lspsaga.setup { -- defaults ...
@@ -236,7 +233,6 @@ return function(use)
 
             --- In lsp attach function
             local opts = { noremap=true, silent=true }
-            vim.api.nvim_set_keymap('n', 'gD', '<cmd>Telescope diagnostic theme=dropdown<cr>', opts)
             vim.api.nvim_set_keymap('n', 'gd', '<cmd>Telescope lsp_definitions theme=dropdown<cr>', opts)
             vim.api.nvim_set_keymap('n', 'K',  '<cmd>Lspsaga hover_doc<cr>', opts)
             vim.api.nvim_set_keymap('n', 'gi', '<cmd>Telescope lsp_implementations theme=dropdown<cr>', opts)
