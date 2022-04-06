@@ -19,7 +19,7 @@ let g:which_key_map.s = {
      \ 'f' : [':Telescope find_files', '文件夹内查找文件'],
      \ 'a' : [':Telescope live_grep', '文件夹内查找文件内容'],
      \ 'g' : [':Telescope git_files', 'git项目内查找文件'],
-     \ 'c' : [':Telescope colorschemes', '改变颜色'],
+     \ 'c' : [':Telescope colorscheme', '改变颜色'],
      \ 'h' : [':Telescope oldfiles', '查看历史'],
      \ 'm' : [':Telescope marks', 'Mark 查找'],
      \ 'b' : [':Telescope buffers', '查找所有buffer'],
