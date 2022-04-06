@@ -32,11 +32,11 @@ return function(use)
                 [[ \/_/\/_/\/____/\/___/  \/__/    \/_/\/_/\/_/\/_/]],
             }
             dashboard.section.buttons.val = {
-                dashboard.button( "f", "   file", ":Telescope find_files <cr>"),
+                dashboard.button( "f", "  file", ":Telescope find_files <cr>"),
                 dashboard.button( "h", "ﭯ  History", ":Telescope oldfiles <cr>"),
                 dashboard.button( "c", "  Color" , ":Telescope colorscheme <cr>"),
-                dashboard.button( "b", "   marks" , ":Telescope marks <cr>"),
-                dashboard.button( "b", "   word" , ":Telescope live_grep <cr>"),
+                dashboard.button( "b", "  marks" , ":Telescope marks <cr>"),
+                dashboard.button( "b", "  word" , ":Telescope live_grep <cr>"),
             }
             alpha.setup(dashboard.config)
         end
