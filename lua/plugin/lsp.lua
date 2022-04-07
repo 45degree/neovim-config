@@ -30,7 +30,6 @@ return function(use)
                 if server.name == "clangd" then
                     opts.cmd = {
                         "clangd",
-                        "--clang-tidy",
                         "-header-insertion=never",
                     }
                 end
@@ -246,6 +245,21 @@ return function(use)
         'j-hui/fidget.nvim',
         config = function ()
             require("fidget").setup{}
+        end
+    }
+
+    -- lint
+    use {
+        "mfussenegger/nvim-lint",
+        config = function ()
+            require('lint').linters_by_ft = {
+                cpp = {'clangtidy'}
+            }
+
+            vim.cmd [[
+                au BufEnter <buffer> lua require('lint').try_lint()
+                au BufWritePost <buffer> lua require('lint').try_lint()
+            ]]
         end
     }
 
