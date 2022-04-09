@@ -2,7 +2,85 @@
 
 return function(use)
 
-    use 'liuchengxu/vim-which-key'
+    -- use 'liuchengxu/vim-which-key'
+
+    use {
+        'folke/which-key.nvim',
+        config = function ()
+            require("which-key").setup {
+            }
+
+            local wk = require("which-key")
+            wk.register({
+                f = {
+                    name = "+文件", -- optional group name
+                    s = {"<cmd>w<cr>", "保存当前文件"},
+                    S = {"<cmd>wa<cr>", "保存所有文件"},
+                    c = {"<cmd>e $MYVIMRC<cr>", "打开vim配置文件"},
+                },
+                s = {
+                    name = '+Search',
+                    f = {"<cmd>Telescope find_files<cr>", "文件夹内查找文件"},
+                    a = {"<cmd>Telescope live_grep<cr>", "文件夹内查找文件内容"},
+                    g = {"<cmd>Telescope git_files<cr>", "git项目内查找文件"},
+                    c = {"<cmd>Telescope colorscheme<cr>", "改变颜色"},
+                    h = {"<cmd>Telescope oldfiles<cr>", "查看历史"},
+                    m = {"<cmd>Telescope marks<cr>", "Mark 查找"},
+                    b = {"<cmd>Telescope buffers<cr>", "查找所有buffer"},
+                },
+                c = {
+                    name = "+代码",
+                    ['2'] = {
+                        name = "+markdown",
+                        p = {"<Plug>MarkdownPreview", "markdown预览"},
+                        s = {"<Plug>MarkdownPreviewStop", "markdown停止预览"}
+                    },
+                    g = {
+                        name = '+git',
+                        c = { require('vgit').buffer_hunk_preivew, "显示Git当前行更改"},
+                        p = { require("vgit").project_diff_preview, "显示Git项目更改" },
+                        h = { require("vgit").buffer_history_preview, "显示当前文件历史更改" },
+                    },
+                    t = {"<cmd>Vista!!<cr>", '打开代码大纲'},
+                    d = {
+                        name = '+debug',
+                        g = { require('config.VimspectorTemplate').GenTemplate, "生成调试模板"},
+                        s = {'<Plug>VimspectorBalloonEval', '显示变量值'},
+                        c = {'<cmd>VimspectorReset<cr>', '关闭调试'}
+                    }
+                },
+                t = {'<cmd>NvimTreeToggle<cr>', "打开文件树"},
+                w = {
+                    name = "+窗口",
+                    c = {'<Plug>(choosewin)', '选择窗口'},
+                    d = {'<C-W>c', '删除当前窗口'},
+                    w = {'<C-W>w', '移动到其他窗口'},
+                    h = {'<C-W>h', '移动到左边窗口'},
+                    j = {'<C-W>j', '移动到下边窗口'},
+                    l = {'<C-W>l', '移动到右边窗口'},
+                    k = {'<C-W>k', '移动到上边窗口'},
+                    H = {'<C-W>5<', '窗口向左扩展'},
+                    J = {':resize +5', '窗口向下扩展'},
+                    L = {'<C-W>5>', '窗口向右扩展'},
+                    K = {':resize -5', '窗口向上扩展'},
+                    ['='] = {'<C-W>=', '平衡调整窗口'},
+                    s = {'<C-W>s', '上下分屏'},
+                    v = {'<C-W>v', '左右分屏'},
+                },
+                b = {
+                    name = '+Buffer',
+                    ['1']= { ':BufferGoto 1', '移动到buffer 1' },
+                    ['2']= { ':BufferGoto 2', '移动到buffer 2' },
+                    ['3']= { ':BufferGoto 3', '移动到buffer 3' },
+                    ['4']= { ':BufferGoto 4', '移动到buffer 4' },
+                    ['5']= { ':BufferGoto 5', '移动到buffer 5' },
+                    ['6']= { ':BufferGoto 6', '移动到buffer 6' },
+                    ['7']= { ':BufferGoto 7', '移动到buffer 7' },
+                    ['8']= { ':BufferGoto 8', '移动到buffer 8' }
+                }
+            }, { prefix = "<leader>" })
+        end
+    }
 
     -- sudo保存
     use {
@@ -259,7 +337,12 @@ return function(use)
     }
 
     -- 模糊搜索
-    use "nvim-telescope/telescope.nvim"
+    use {
+        "nvim-telescope/telescope.nvim",
+        config = function()
+            require("telescope").setup()
+        end
+    }
 
     -- 成对编辑
     use 'tpope/vim-surround'

@@ -87,43 +87,37 @@ return function(use)
                     { name = 'nvim_lua' }
                 }),
                 formatting = {
+                    fields = { "kind", "abbr", "menu" },
                     format = function(entry, vim_item)
                         local lspkind_icons = {
-                            Text = " ",
-                            Method = " ",
-                            Function = " ",
-                            Constructor = " ",
-                            Field = " ",
-                            Variable = " ",
-                            Class = " ",
-                            Interface = " ",
-                            Module = " ",
-                            Property = " ",
-                            Unit = " ",
-                            Value = " ",
-                            Enum = " ",
-                            Keyword = " ",
-                            Snippet = " ",
-                            Color = " ",
-                            File = " ",
-                            Reference = " ",
-                            Folder = " ",
-                            EnumMember = " ",
-                            Constant = " ",
-                            Struct = "  ",
-                            Event = " ",
-                            Operator = " ",
-                            TypeParameter = " ",
+                            Text = "",
+                            Method = "",
+                            Function = "",
+                            Constructor = "",
+                            Field = "",
+                            Variable = "",
+                            Class = "",
+                            Interface = "",
+                            Module = "",
+                            Property = "",
+                            Unit = "",
+                            Value = "",
+                            Enum = "",
+                            Keyword = "",
+                            Snippet = "",
+                            Color = "",
+                            File = "",
+                            Reference = "",
+                            Folder = "",
+                            EnumMember = "",
+                            Constant = "",
+                            Struct = "",
+                            Event = "",
+                            Operator = "",
+                            TypeParameter = "",
                         }
 
-                        local max_len = 20
-                        if string.len(vim_item.abbr) > max_len then
-                          vim_item.abbr = string.sub(vim_item.abbr, 1, max_len - 2) .. "··"
-                        end
-
-                        -- load lspkind icons
-                        vim_item.kind = string.format("%s %s", lspkind_icons[vim_item.kind], vim_item.kind)
-                        vim_item.menu = ({
+                        local menus = {
                             -- cmp_tabnine = "[TN]",
                             buffer = "[BUF]",
                             orgmode = "[ORG]",
@@ -133,7 +127,19 @@ return function(use)
                             tmux = "[TMUX]",
                             luasnip = "[SNIP]",
                             spell = "[SPELL]",
-                        })[entry.source.name]
+                        }
+
+                        local max_len = 20
+                        if string.len(vim_item.abbr) > max_len then
+                          vim_item.abbr = string.sub(vim_item.abbr, 1, max_len - 2) .. "··"
+                        end
+
+                        -- load lspkind icons
+                        -- vim_item.kind = string.format("%s %s", lspkind_icons[vim_item.kind], vim_item.kind)
+                        vim_item.menu = string.format("%s %s", menus[entry.source.name], vim_item.kind);
+                        vim_item.kind = lspkind_icons[vim_item.kind]
+                        -- vim_item.menu = ({
+                        -- })[entry.source.name]
                         return vim_item
                     end,
                 }
@@ -249,17 +255,30 @@ return function(use)
     }
 
     -- lint
-    use {
-        "mfussenegger/nvim-lint",
-        config = function ()
-            require('lint').linters_by_ft = {
-                cpp = {'clangtidy'}
-            }
+    -- use {
+    --     "mfussenegger/nvim-lint",
+    --     config = function ()
+    --         require('lint').linters_by_ft = {
+    --             cpp = {'clangtidy'}
+    --         }
+    --
+    --         vim.cmd [[
+    --             au BufEnter <buffer> lua require('lint').try_lint()
+    --             au BufWritePost <buffer> lua require('lint').try_lint()
+    --         ]]
+    --     end
+    -- }
 
-            vim.cmd [[
-                au BufEnter <buffer> lua require('lint').try_lint()
-                au BufWritePost <buffer> lua require('lint').try_lint()
-            ]]
+    use {
+        'jose-elias-alvarez/null-ls.nvim',
+        after = "nvim-cmp",
+        config = function ()
+            require("null-ls").setup({
+                sources = {
+                    require("null-ls").builtins.formatting.clang_format,
+                    require("null-ls").builtins.diagnostics.cppcheck,
+                },
+            })
         end
     }
 
