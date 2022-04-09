@@ -35,8 +35,8 @@ return function(use)
                 dashboard.button( "f", "  file", ":Telescope find_files <cr>"),
                 dashboard.button( "h", "  History", ":Telescope oldfiles <cr>"),
                 dashboard.button( "c", "  Color" , ":Telescope colorscheme <cr>"),
-                dashboard.button( "b", "  marks" , ":Telescope marks <cr>"),
-                dashboard.button( "b", "  word" , ":Telescope live_grep <cr>"),
+                dashboard.button( "m", "  marks" , ":Telescope marks <cr>"),
+                dashboard.button( "w", "  word" , ":Telescope live_grep <cr>"),
             }
             alpha.setup(dashboard.config)
         end
