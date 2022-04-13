@@ -37,14 +37,14 @@ return function(use)
                     },
                     g = {
                         name = '+git',
-                        c = { require('vgit').buffer_hunk_preivew, "显示Git当前行更改"},
+                        c = { require('vgit').buffer_hunk_preview, "显示Git当前行更改"},
                         p = { require("vgit").project_diff_preview, "显示Git项目更改" },
                         h = { require("vgit").buffer_history_preview, "显示当前文件历史更改" },
                     },
                     t = {"<cmd>Vista!!<cr>", '打开代码大纲'},
                     d = {
                         name = '+debug',
-                        g = { require('config.VimspectorTemplate').GenTemplate, "生成调试模板"},
+                        g = { require('config.vimspectorTemplate').GenTemplate, "生成调试模板"},
                         s = {'<Plug>VimspectorBalloonEval', '显示变量值'},
                         c = {'<cmd>VimspectorReset<cr>', '关闭调试'}
                     }
@@ -100,7 +100,6 @@ return function(use)
         "kyazdani42/nvim-tree.lua",
         after = "project.nvim",
         config = function ()
-            vim.g.nvim_tree_indent_markers = 0
             vim.g.nvim_tree_git_hl = 1
             vim.g.nvim_tree_highlight_opened_files = 0
             vim.g.nvim_tree_root_folder_modifier = ':~'
@@ -236,7 +235,7 @@ return function(use)
                 },
                 git = {
                   enable = true,
-                  ignore = true,
+                  ignore = false,
                   timeout = 400,
                 },
                 actions = {
