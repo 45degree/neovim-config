@@ -42,6 +42,7 @@ return function(use)
                         h = { require("vgit").buffer_history_preview, "显示当前文件历史更改" },
                     },
                     t = {"<cmd>Vista!!<cr>", '打开代码大纲'},
+                    T = {"<cmd>Trouble<cr>", '打开代码诊断'},
                     d = {
                         name = '+debug',
                         g = { require('config.vimspectorTemplate').GenTemplate, "生成调试模板"},
