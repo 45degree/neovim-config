@@ -154,17 +154,6 @@ return function(use)
       config = function()
         require("trouble").setup {
         }
-
-        vim.diagnostic.config{
-            virtual_text = {
-                prefix = '',
-                sources = "always"
-            },
-            float = {
-                sources = "always"
-            },
-            update_in_insert = false,
-        }
       end
     }
 
@@ -236,6 +225,17 @@ return function(use)
                 highlight_prefix = false,
             }
 
+            vim.diagnostic.config{
+                virtual_text = {
+                    prefix = '',
+                    sources = "always"
+                },
+                float = {
+                    sources = "always"
+                },
+                update_in_insert = false,
+            }
+
             --- In lsp attach function
             local opts = { noremap=true, silent=true }
             vim.api.nvim_set_keymap('n', 'gd', '<cmd>Telescope lsp_definitions theme=dropdown<cr>', opts)
@@ -253,21 +253,6 @@ return function(use)
             require("fidget").setup{}
         end
     }
-
-    -- lint
-    -- use {
-    --     "mfussenegger/nvim-lint",
-    --     config = function ()
-    --         require('lint').linters_by_ft = {
-    --             cpp = {'clangtidy'}
-    --         }
-    --
-    --         vim.cmd [[
-    --             au BufEnter <buffer> lua require('lint').try_lint()
-    --             au BufWritePost <buffer> lua require('lint').try_lint()
-    --         ]]
-    --     end
-    -- }
 
     use {
         'jose-elias-alvarez/null-ls.nvim',
