@@ -1,0 +1,14 @@
+{
+    // 用于调试本地c/c++程序
+    "configurations": {
+        "launch": {
+            "adapter": "CodeLLDB",
+            "filetypes": [ "cpp" ],
+            "configuration": {
+                "request": "launch",
+                "program": "${workspaceRoot}/${fileBasenameNoExtension}",
+                "cwd": "${workspaceRoot}"
+            }
+        }
+    }
+}
