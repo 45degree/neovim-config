@@ -61,23 +61,29 @@ return function(use)
                     l = {'<C-W>l', '移动到右边窗口'},
                     k = {'<C-W>k', '移动到上边窗口'},
                     H = {'<C-W>5<', '窗口向左扩展'},
-                    J = {':resize +5', '窗口向下扩展'},
+                    J = {'<cmd>resize +5<cr>', '窗口向下扩展'},
                     L = {'<C-W>5>', '窗口向右扩展'},
-                    K = {':resize -5', '窗口向上扩展'},
+                    K = {'<cmd>resize -5<cr>', '窗口向上扩展'},
                     ['='] = {'<C-W>=', '平衡调整窗口'},
                     s = {'<C-W>s', '上下分屏'},
                     v = {'<C-W>v', '左右分屏'},
                 },
                 b = {
                     name = '+Buffer',
-                    ['1']= { ':BufferGoto 1', '移动到buffer 1' },
-                    ['2']= { ':BufferGoto 2', '移动到buffer 2' },
-                    ['3']= { ':BufferGoto 3', '移动到buffer 3' },
-                    ['4']= { ':BufferGoto 4', '移动到buffer 4' },
-                    ['5']= { ':BufferGoto 5', '移动到buffer 5' },
-                    ['6']= { ':BufferGoto 6', '移动到buffer 6' },
-                    ['7']= { ':BufferGoto 7', '移动到buffer 7' },
-                    ['8']= { ':BufferGoto 8', '移动到buffer 8' }
+                    d = {
+                        name = '+delete',
+                        ['c']= { '<cmd>BufferCloseAllButCurrent<cr>', '删除所有未显示Buffer'},
+                        ['p']= { '<cmd>BufferCloseAllButPinned<cr>',  '删除所有未固定Buffer'},
+                    },
+                    ['p'] = { '<cmd>BufferPin<cr>',    '固定Buffer'},
+                    ['1'] = { '<cmd>BufferGoto 1<cr>', '移动到buffer1' },
+                    ['2'] = { '<cmd>BufferGoto 2<cr>', '移动到buffer2' },
+                    ['3'] = { '<cmd>BufferGoto 3<cr>', '移动到buffer3' },
+                    ['4'] = { '<cmd>BufferGoto 4<cr>', '移动到buffer4' },
+                    ['5'] = { '<cmd>BufferGoto 5<cr>', '移动到buffer5' },
+                    ['6'] = { '<cmd>BufferGoto 6<cr>', '移动到buffer6' },
+                    ['7'] = { '<cmd>BufferGoto 7<cr>', '移动到buffer7' },
+                    ['8'] = { '<cmd>BufferGoto 8<cr>', '移动到buffer8' }
                 }
             }, { prefix = "<leader>" })
         end
@@ -148,7 +154,6 @@ return function(use)
                 },
                 auto_reload_on_write = true,
                 disable_netrw = false,
-                hide_root_folder = false,
                 hijack_cursor = false,
                 hijack_netrw = true,
                 hijack_unnamed_buffer_when_opening = false,
