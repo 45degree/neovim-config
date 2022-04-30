@@ -2,8 +2,6 @@
 
 return function(use)
 
-    -- use 'liuchengxu/vim-which-key'
-
     use {
         'folke/which-key.nvim',
         config = function ()
@@ -148,7 +146,6 @@ return function(use)
                 },
                 auto_reload_on_write = true,
                 disable_netrw = false,
-                hide_root_folder = false,
                 hijack_cursor = false,
                 hijack_netrw = true,
                 hijack_unnamed_buffer_when_opening = false,
