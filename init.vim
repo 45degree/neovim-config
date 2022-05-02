@@ -34,10 +34,10 @@ syntax on          " 语法高亮
 " 缩进设置
 " filetype indent on " 文件类型缩进检测
 set autoindent     " 格式保持一致
-set tabstop=4      " 设置tab键的宽度
-set shiftwidth=4   " >> , <<, == 的宽度
+set tabstop=2      " 设置tab键的宽度
+set shiftwidth=2   " >> , <<, == 的宽度
 set expandtab      " tab转换成空格
-set softtabstop=4  " tab转换成空格的数量
+set softtabstop=2  " tab转换成空格的数量
 
 " 搜索配置
 set showmatch      " 自动高亮匹配括号
