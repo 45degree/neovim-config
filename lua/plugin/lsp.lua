@@ -135,11 +135,8 @@ return function(use)
                         end
 
                         -- load lspkind icons
-                        -- vim_item.kind = string.format("%s %s", lspkind_icons[vim_item.kind], vim_item.kind)
                         vim_item.menu = string.format("%s %s", menus[entry.source.name], vim_item.kind);
                         vim_item.kind = lspkind_icons[vim_item.kind]
-                        -- vim_item.menu = ({
-                        -- })[entry.source.name]
                         return vim_item
                     end,
                 }
@@ -263,8 +260,24 @@ return function(use)
                     require("null-ls").builtins.formatting.clang_format,
                     require("null-ls").builtins.diagnostics.cppcheck,
                 },
+                -- you can reuse a shared lspconfig on_attach callback here
+                on_attach = function(client, bufnr)
+                    if client.supports_method("textDocument/formatting") then
+                        vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+                        vim.api.nvim_create_autocmd("BufWritePre", {
+                            group = augroup,
+                            buffer = bufnr,
+                            -- on 0.8, you should use vim.lsp.buf.format instead
+                            callback = function ()
+                                local bufnr = vim.api.nvim_get_current_buf()
+                                local util = require 'vim.lsp.util'
+                                local params = util.make_formatting_params({})
+                                client.request('textDocument/formatting', params, nil, bufnr)
+                            end
+                        })
+                    end
+                end,
             })
         end
     }
-
 end
