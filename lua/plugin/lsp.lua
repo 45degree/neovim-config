@@ -15,6 +15,7 @@ return function(use)
             local lsp_installer = require("nvim-lsp-installer")
             local capabilities = vim.lsp.protocol.make_client_capabilities()
             capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+            capabilities.offsetEncoding = 'utf-8'
             lsp_installer.on_server_ready(function(server)
                 local opts = {
                     capabilities = capabilities,
@@ -272,7 +273,7 @@ return function(use)
                             buffer = bufnr,
                             -- on 0.8, you should use vim.lsp.buf.format instead
                             callback = function ()
-                                local bufnr = vim.api.nvim_get_current_buf()
+                                -- local bufnr = vim.api.nvim_get_current_buf()
                                 local util = require 'vim.lsp.util'
                                 local params = util.make_formatting_params({})
                                 client.request('textDocument/formatting', params, nil, bufnr)

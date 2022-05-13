@@ -7,7 +7,7 @@ return function(use)
     use 'sainnhe/edge'
     use 'folke/tokyonight.nvim'
     use 'sainnhe/everforest'
-    use 'mhartington/oceanic-next'
+    use 'sainnhe/sonokai'
 
     -- 图标
     use 'ryanoasis/vim-devicons'
