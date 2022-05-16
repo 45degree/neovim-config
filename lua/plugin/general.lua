@@ -122,20 +122,20 @@ return function(use)
             }
             vim.g.nvim_tree_show_icons = { git = 1, folders = 1, files = 1, folder_arrows = 1 }
             vim.g.nvim_tree_icons = {
-                default = "",
-                symlink = "",
+                default = "",
+                symlink = "",
                 git = {
-                   unstaged = "",
-                   staged = "",
-                   unmerged =  "",
-                   renamed = "",
-                   untracked = "",
-                   deleted = "",
-                   ignored = ""
+                   unstaged = "✗",
+                   staged = "✓",
+                   unmerged =  "",
+                   renamed = "➜",
+                   untracked = "★",
+                   deleted = "",
+                   ignored = "◌"
                 },
                 folder = {
-                   arrow_open = "",
-                   arrow_closed = "",
+                   arrow_open = "",
+                   arrow_closed = "",
                    default = "",
                    open = "",
                    empty = "",
@@ -212,6 +212,20 @@ return function(use)
                         { key = "H",                            action = "" }
                     },
                   },
+                },
+                renderer = {
+                  indent_markers = {
+                    enable = false,
+                    icons = {
+                      corner = "└ ",
+                      edge = "│ ",
+                      none = "  ",
+                    },
+                  },
+                  icons = {
+                    webdev_colors = true,
+                    git_placement = "signcolumn",
+                  }
                 },
                 hijack_directories = {
                   enable = true,
