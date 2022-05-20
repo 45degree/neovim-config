@@ -38,35 +38,35 @@ return require('packer').startup(function()
     lua(use)
 
     if option_config.getLanguage("vala") then
-        vala(use)
+      vala(use)
     end
 
     if option_config.getLanguage("glslx") then
-        glslx(use)
+      glslx(use)
     end
 
     if option_config.getLanguage("rust") then
-        rust(use)
+      rust(use)
     end
 
     if option_config.getLanguage("latex") then
-        latex(use)
+      latex(use)
     end
 
     if option_config.getLanguage("javascript") then
-        javascript(use)
+      javascript(use)
     end
 
     if option_config.getLanguage("html") then
-        html(use)
+      html(use)
     end
 
     if option_config.getLanguage("csharp") then
-        csharp(use)
+      csharp(use)
     end
 
     if option_config.getLanguage("vue") then
-        vue(use)
+      vue(use)
     end
 
 end)

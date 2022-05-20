@@ -1,4 +1,4 @@
 return function(use)
-    use 'bkad/CamelCaseMotion'
-    use 'vim-scripts/argtextobj.vim'
+  use 'bkad/CamelCaseMotion'
+  use 'vim-scripts/argtextobj.vim'
 end
