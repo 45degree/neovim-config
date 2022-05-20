@@ -25,6 +25,7 @@ return function(use)
           h = {"<cmd>Telescope oldfiles<cr>", "查看历史"},
           m = {"<cmd>Telescope marks<cr>", "Mark 查找"},
           b = {"<cmd>Telescope buffers<cr>", "查找所有buffer"},
+          r = {"<cmd>lua require('spectre').open()<cr>", "查找并替换"}
         },
         c = {
           name = "+代码",
@@ -421,7 +422,21 @@ return function(use)
     'gelguy/wilder.nvim',
     event = "CmdlineEnter",
     config = function ()
+      local wilder = require('wilder')
       vim.call('wilder#setup', {modes = {':', '/', '?'}})
+      wilder.set_option('renderer', wilder.popupmenu_renderer(
+        wilder.popupmenu_border_theme({
+          highlights = {
+            border = 'Normal', -- highlight to use for the border
+          },
+          highlighter = wilder.basic_highlighter(),
+          -- 'single', 'double', 'rounded' or 'solid'
+          -- can also be a list of 8 characters, see :h wilder#popupmenu_border_theme() for more details
+          border = 'rounded',
+          max_height = '20%', -- to set a fixed height, set max_height to the same value
+          reverse = 0
+        })
+      ))
     end
   }
 

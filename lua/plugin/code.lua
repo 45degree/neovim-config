@@ -85,4 +85,6 @@ return function(use)
       vim.cmd [[let g:matchup_matchparen_offscreen = {'method': 'popup'}]]
     end
   }
+
+  use 'nvim-pack/nvim-spectre'
 end
