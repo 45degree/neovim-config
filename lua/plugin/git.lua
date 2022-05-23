@@ -2,138 +2,55 @@ return function(use)
 
     -- git标记
     use {
-      "tanvirtin/vgit.nvim",
-      config = function ()
-        require('vgit').setup({
-          settings = {
-            hls = {
-              GitBackgroundPrimary = 'NormalFloat',
-              GitBackgroundSecondary = {
-                  gui = nil,
-                  fg = nil,
-                  bg = nil,
-                  sp = nil,
-                  override = false,
-              },
-              GitBorder = 'LineNr',
-              GitLineNr = 'LineNr',
-              GitComment = 'Comment',
-              GitSignsAdd = {
-                  gui = nil,
-                  fg = '#d7ffaf',
-                  bg = nil,
-                  sp = nil,
-                  override = false,
-              },
-              GitSignsChange = {
-                  gui = nil,
-                  fg = '#7AA6DA',
-                  bg = nil,
-                  sp = nil,
-                  override = false,
-              },
-              GitSignsDelete = {
-                  gui = nil,
-                  fg = '#e95678',
-                  bg = nil,
-                  sp = nil,
-                  override = false,
-              },
-              GitSignsAddLn = 'DiffAdd',
-              GitSignsDeleteLn = 'DiffDelete',
-              GitWordAdd = {
-                  gui = nil,
-                  fg = nil,
-                  bg = '#5d7a22',
-                  sp = nil,
-                  override = false,
-              },
-              GitWordDelete = {
-                  gui = nil,
-                  fg = nil,
-                  bg = '#960f3d',
-                  sp = nil,
-                  override = false,
-              },
-            },
-            live_blame = {
-              enabled = false,
-            },
-            live_gutter = {
-              enabled = true,
-            },
-            authorship_code_lens = {
-              enabled = false,
-            },
-            screen = {
-              diff_preference = 'unified',
-            },
-            project_diff_preview = {
-              keymaps = {
-                buffer_stage = 's',
-                buffer_unstage = 'u',
-                stage_all = 'a',
-                unstage_all = 'd',
-                reset_all = 'r',
-              },
-            },
-            signs = {
-              priority = 0,
-              definitions = {
-                GitSignsAddLn = {
-                  linehl = 'GitSignsAddLn',
-                  texthl = nil,
-                  numhl = nil,
-                  icon = nil,
-                  text = '',
-                },
-                GitSignsDeleteLn = {
-                  linehl = 'GitSignsDeleteLn',
-                  texthl = nil,
-                  numhl = nil,
-                  icon = nil,
-                  text = '',
-                },
-                GitSignsAdd = {
-                  texthl = 'GitSignsAdd',
-                  numhl = nil,
-                  icon = nil,
-                  linehl = nil,
-                  text = '┃',
-                },
-                GitSignsDelete = {
-                  texthl = 'GitSignsDelete',
-                  numhl = nil,
-                  icon = nil,
-                  linehl = nil,
-                  text = '┃',
-                },
-                GitSignsChange = {
-                  texthl = 'GitSignsChange',
-                  numhl = nil,
-                  icon = nil,
-                  linehl = nil,
-                  text = '┃',
-                },
-              },
-              usage = {
-                screen = {
-                  add = 'GitSignsAddLn',
-                  remove = 'GitSignsDeleteLn',
-                },
-                main = {
-                  add = 'GitSignsAdd',
-                  remove = 'GitSignsDelete',
-                  change = 'GitSignsChange',
-                },
-              },
-            },
-            symbols = {
-                void = '⣿',
-            },
-          }
-        })
+      'lewis6991/gitsigns.nvim',
+      config = function()
+        require('gitsigns').setup {
+          signs = {
+            add          = {hl = 'GitSignsAdd'   , text = '│', numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'},
+            change       = {hl = 'GitSignsChange', text = '│', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
+            delete       = {hl = 'GitSignsDelete', text = '│', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
+            topdelete    = {hl = 'GitSignsDelete', text = '│', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
+            changedelete = {hl = 'GitSignsChange', text = '│', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
+          },
+          signcolumn = true,  -- Toggle with `:Gitsigns toggle_signs`
+          numhl      = false, -- Toggle with `:Gitsigns toggle_numhl`
+          linehl     = false, -- Toggle with `:Gitsigns toggle_linehl`
+          word_diff  = false, -- Toggle with `:Gitsigns toggle_word_diff`
+          watch_gitdir = {
+            interval = 1000,
+            follow_files = true
+          },
+          attach_to_untracked = true,
+          current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
+          current_line_blame_opts = {
+            virt_text = true,
+            virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
+            delay = 1000,
+            ignore_whitespace = false,
+          },
+          current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>',
+          sign_priority = 6,
+          update_debounce = 100,
+          status_formatter = nil, -- Use default
+          max_file_length = 40000,
+          preview_config = {
+            -- Options passed to nvim_open_win
+            border = 'single',
+            style = 'minimal',
+            relative = 'cursor',
+            row = 0,
+            col = 1
+          },
+          yadm = {
+            enable = false
+          },
+        }
       end
+    }
+
+    use {
+      'sindrets/diffview.nvim',
+      requires = 'nvim-lua/plenary.nvim'
     }
 
     -- 内置git命令
