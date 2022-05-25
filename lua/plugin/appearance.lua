@@ -5,9 +5,16 @@ return function(use)
   use "rebelot/kanagawa.nvim"
   use 'ellisonleao/gruvbox.nvim'
   use 'sainnhe/edge'
-  use 'folke/tokyonight.nvim'
   use 'sainnhe/everforest'
   use 'sainnhe/sonokai'
+  use {
+    'folke/tokyonight.nvim',
+    config = function()
+      vim.g.tokyonight_transparent = true
+      vim.g.tokyonight_transparent_sidebar = true
+      vim.g.tokyonight_lualine_bold = true
+    end
+  }
 
   -- 图标
   use 'ryanoasis/vim-devicons'
