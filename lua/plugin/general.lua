@@ -50,7 +50,8 @@ return function(use)
             g = { require('config.vimspectorTemplate').GenTemplate, "生成调试模板"},
             s = {'<Plug>VimspectorBalloonEval', '显示变量值'},
             c = {'<cmd>VimspectorReset<cr>', '关闭调试'}
-          }
+          },
+          D = {"<cmd>DogeGenerate<cr>", "生成代码文档注释" },
         },
         t = {'<cmd>NvimTreeToggle<cr>', "打开文件树"},
         w = {

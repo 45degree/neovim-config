@@ -130,6 +130,7 @@ return function(use)
               path = "[PATH]",
               tmux = "[TMUX]",
               luasnip = "[SNIP]",
+              utilsnips = "[SNIP]",
               spell = "[SPELL]",
             }
 
@@ -147,6 +148,9 @@ return function(use)
       })
     end
   }
+
+  -- 代码片段
+  use 'honza/vim-snippets'
 
   use {
     "folke/trouble.nvim",
@@ -261,8 +265,10 @@ return function(use)
     config = function ()
       require("null-ls").setup({
         sources = {
-          require("null-ls").builtins.formatting.clang_format,
-          require("null-ls").builtins.diagnostics.cppcheck,
+          require("null-ls").builtins.formatting.clang_format.with({
+            filetypes = { "c", "cpp" },
+          }),
+          require("null-ls").builtins.diagnostics.cppcheck;
         },
         -- you can reuse a shared lspconfig on_attach callback here
         on_attach = function(client, bufnr)
