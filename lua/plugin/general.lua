@@ -111,45 +111,6 @@ return function(use)
     "kyazdani42/nvim-tree.lua",
     after = "project.nvim",
     config = function ()
-      vim.g.nvim_tree_git_hl = 1
-      vim.g.nvim_tree_highlight_opened_files = 0
-      vim.g.nvim_tree_root_folder_modifier = ':~'
-      vim.g.nvim_tree_add_trailing = 0
-      vim.g.nvim_tree_group_empty = 0
-      vim.g.nvim_tree_icon_padding = ' '
-      vim.g.nvim_tree_symlink_arrow = '➛ '
-      vim.g.nvim_tree_respect_buf_cwd = 0
-      vim.g.nvim_tree_create_in_closed_folder = 0
-      vim.g.nvim_tree_special_files = {
-        ["Cargo.toml"] = true,
-        Makefile = true,
-        ["README.md"] = true,
-        ["readme.md"] = true,
-      }
-      vim.g.nvim_tree_show_icons = { git = 1, folders = 1, files = 1, folder_arrows = 1 }
-      vim.g.nvim_tree_icons = {
-        default = "",
-        symlink = "",
-        git = {
-          unstaged = "✗",
-          staged = "✓",
-          unmerged =  "",
-          renamed = "➜",
-          untracked = "★",
-          deleted = "",
-          ignored = "◌"
-        },
-        folder = {
-          arrow_open = "",
-          arrow_closed = "",
-          default = "",
-          open = "",
-          empty = "",
-          empty_open = "",
-          symlink = "",
-          symlink_open ="",
-        }
-      }
       require'nvim-tree'.setup {
         update_cwd = true,
         update_focused_file = {
@@ -220,6 +181,11 @@ return function(use)
           },
         },
         renderer = {
+          add_trailing = false,
+          group_empty = false,
+          highlight_git = true,
+          highlight_opened_files = "none",
+          root_folder_modifier = ":~",
           indent_markers = {
             enable = false,
             icons = {
@@ -231,7 +197,39 @@ return function(use)
           icons = {
             webdev_colors = true,
             git_placement = "signcolumn",
-          }
+            padding = " ",
+            symlink_arrow = " ➛ ",
+            show = {
+              file = true,
+              folder = true,
+              folder_arrow = true,
+              git = true,
+            },
+            glyphs = {
+              default = "",
+              symlink = "",
+              folder = {
+                arrow_closed = "",
+                arrow_open = "",
+                default = "",
+                open = "",
+                empty = "",
+                empty_open = "",
+                symlink = "",
+                symlink_open = "",
+              },
+              git = {
+                unstaged = "✗",
+                staged = "✓",
+                unmerged = "",
+                renamed = "➜",
+                untracked = "★",
+                deleted = "",
+                ignored = "◌",
+              },
+            },
+          },
+          special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md" }
         },
         hijack_directories = {
           enable = true,
