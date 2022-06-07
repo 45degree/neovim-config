@@ -7,6 +7,8 @@ return function(use)
   use 'sainnhe/edge'
   use 'sainnhe/everforest'
   use 'sainnhe/sonokai'
+  use 'glepnir/zephyr-nvim'
+  use 'olimorris/onedarkpro.nvim'
   use {
     'folke/tokyonight.nvim',
     config = function()

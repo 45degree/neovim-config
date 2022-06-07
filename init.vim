@@ -100,5 +100,5 @@ endfor
 lua require('plugin')
 
 if exists('g:nvui')
-    set guifont=JetBrainsMonoExtraBold\ Nerd\ Font:h9
+    set guifont=JetBrainsMonoExtraBold\ Nerd\ Font:h10
 endif
