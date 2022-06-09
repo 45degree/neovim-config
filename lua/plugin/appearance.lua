@@ -6,6 +6,7 @@ return function(use)
   use 'ellisonleao/gruvbox.nvim'
   use 'sainnhe/edge'
   use 'sainnhe/everforest'
+  use 'rmehri01/onenord.nvim'
   use 'sainnhe/sonokai'
   use 'glepnir/zephyr-nvim'
   use 'olimorris/onedarkpro.nvim'
