@@ -1,37 +1,5 @@
 local M = {}
 
-local function config_dapi_and_sign()
-  local dap_install = require "dap-install"
-  dap_install.setup {
-    installation_path = vim.fn.stdpath("data") .. "/dapinstall/",
-  }
-
-  local dap_breakpoint = {
-    error = {
-      text = "🛑",
-      texthl = "LspDiagnosticsSignError",
-      linehl = "",
-      numhl = "",
-    },
-    rejected = {
-      text = "",
-      texthl = "LspDiagnosticsSignHint",
-      linehl = "",
-      numhl = "",
-    },
-    stopped = {
-      text = "⭐️",
-      texthl = "LspDiagnosticsSignInformation",
-      linehl = "DiagnosticUnderlineInfo",
-      numhl = "LspDiagnosticsSignInformation",
-    },
-  }
-
-  vim.fn.sign_define("DapBreakpoint", dap_breakpoint.error)
-  vim.fn.sign_define("DapStopped", dap_breakpoint.stopped)
-  vim.fn.sign_define("DapBreakpointRejected", dap_breakpoint.rejected)
-end
-
 local function config_dapui()
   local dap, dapui = require "dap", require "dapui"
 
@@ -61,32 +29,29 @@ local function config_dapui()
 end
 
 local function config_debuggers()
-  local dap = require "dap"
-  -- TODO: wait dap-ui for fixing temrinal layout
-  -- the "30" of "30vsplit: doesn't work
-  dap.defaults.fallback.terminal_win_cmd = '30vsplit new' -- this will be overrided by dapui
-  dap.set_log_level("DEBUG")
-
   -- load from json file
   require('dap.ext.vscode').load_launchjs(nil, { cppdbg = { 'cpp' } })
-  -- config per launage
-  -- require("user.dap.dap-cpp")
-  -- require("user.dap.di-go")
-
-  -- require("user.dap.dap-cpp")
-  -- require("user.dap.dap-go")
-  -- require("user.dap.dap-python")
-  -- require("user.dap.dap-lua")
-  -- require("user.dap.dap-cpp")
-  -- require("config.dap.python").setup()
-  -- require("config.dap.rust").setup()
-  -- require("config.dap.go").setup()
+  require('config.dap.di-python')
+  require('config.dap.di-cpp')
 end
 
 function M.setup()
-  config_dapi_and_sign()
-  config_dapui()
+  -- config_dapui()
   config_debuggers() -- Debugger
+
+  -- Shorten function name
+  local keymap = vim.api.nvim_set_keymap
+  -- set key map
+  keymap("n", "<F9>", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", {})
+  keymap("n", "<leader><F9>", "<cmd>lua require'dap'.set_breakpoint(vim.fn.input '[Condition] > ')<cr>", {})
+  -- keymap("n", "<leader>dr", "lua require'dap'.repl.open()<cr>", opts)
+  -- keymap('n', '<F10>', '<cmd>lua require"user.dap.dap-util".reload_continue()<CR>', {})
+  keymap("n", "<F4>", "<cmd>lua require'dap'.terminate()<cr>", {})
+  keymap("n", "<F5>", "<cmd>lua require'dap'.continue()<cr>", {})
+  keymap("n", "<F10>", "<cmd>lua require'dap'.step_over()<cr>", {})
+  keymap("n", "<F11>", "<cmd>lua require'dap'.step_into()<cr>", {})
+  keymap("n", "<F12>", "<cmd>lua require'dap'.step_out()<cr>", {})
+  keymap("n", "<leader><F8>", "<cmd>lua require'dap'.run_to_cursor() <cr>", {})
 end
 
 return M
