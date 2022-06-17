@@ -199,4 +199,12 @@ return function(use)
       }
     end
   }
+
+  -- 提示
+  use {
+    'rcarriga/nvim-notify',
+    config = function ()
+      vim.notify = require("notify")
+    end
+  }
 end

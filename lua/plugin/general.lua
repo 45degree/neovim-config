@@ -45,11 +45,10 @@ return function(use)
           },
           t = {"<cmd>Vista!!<cr>", '打开代码大纲'},
           T = {"<cmd>Trouble<cr>", '打开代码诊断'},
+          c = {vim.lsp.buf.incoming_calls, "查看调用链" },
           d = {
             name = '+debug',
-            g = { require('config.vimspectorTemplate').GenTemplate, "生成调试模板"},
-            s = {'<Plug>VimspectorBalloonEval', '显示变量值'},
-            c = {'<cmd>VimspectorReset<cr>', '关闭调试'},
+            c = {require'dap'.terminate, '关闭调试'},
           },
           D = {"<cmd>DogeGenerate<cr>", "生成代码文档注释" },
         },

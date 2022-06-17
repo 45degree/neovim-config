@@ -39,21 +39,6 @@ return function(use)
     end
   }
 
-  -- 代码debug
-  -- use {
-  --   'puremourning/vimspector',
-  --   config = function()
-  --     vim.g.vimspector_install_gadgets = {"vscode-cpptools", "CodeLLDB"}
-  --     vim.g.vimspector_base_dir = vim.fn.stdpath('config')..'/vimspector-gadget'
-  --     vim.g.vimspector_enable_mappings = 'HUMAN'
-  --
-  --     vim.cmd [[
-  --       sign define vimspectorBP text= texthl=Normal
-  --       sign define vimspectorBPDisabled text= texthl=Normal
-  --     ]]
-  --   end
-  -- }
-
   -- todo comments
   use {
     "folke/todo-comments.nvim",

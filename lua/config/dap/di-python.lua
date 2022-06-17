@@ -1,23 +1,30 @@
 local dap_install = require("dap-install")
 dap_install.config(
 	"python",
-  {}
-  -- { -- use default config
-  --     adapters = {
-  --         type = "executable",
-  --         command = "/home/raven/.local/share/nvim/dapinstall/python/bin/python",
-  --         args = {"-m", "debugpy.adapter"}
-  --     },
-  --     configurations = {
-  --         {
-  --             type = "python",
-  --             request = "launch",
-  --             name = "Launch file",
-  --             program = "${file}",
-  --             pythonPath = function()
-  --               return "/usr/bin/python"
-  --             end,
-  --         },
-  --     }
--- }
+  {
+    configurations = {
+      {
+        type = "python",
+        request = "launch",
+        name = "Launch file",
+        program = "${file}",
+        pythonPath = function()
+          local h = {}
+          if vim.fn.has('win32') == 1 then
+            h = io.open("where python")
+            vim.notify("can't find python in windows", "error")
+            return ""
+          else
+            h = io.popen('command -v python')
+            if h == nil then
+              return "/usr/bin/python"
+            end
+          end
+
+          local lines = h:lines();
+          return lines()
+        end
+      },
+    }
+  }
 )
