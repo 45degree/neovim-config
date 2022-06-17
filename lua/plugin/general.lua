@@ -48,7 +48,7 @@ return function(use)
           c = {vim.lsp.buf.incoming_calls, "查看调用链" },
           d = {
             name = '+debug',
-            c = {require'dap'.terminate, '关闭调试'},
+            c = {require 'dap'.terminate, '关闭调试'},
           },
           D = {"<cmd>DogeGenerate<cr>", "生成代码文档注释" },
         },
