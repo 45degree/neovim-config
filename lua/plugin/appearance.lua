@@ -11,6 +11,10 @@ return function(use)
   use 'glepnir/zephyr-nvim'
   use 'olimorris/onedarkpro.nvim'
   use {
+    "catppuccin/nvim",
+    as = "catppuccin"
+  }
+  use {
     'folke/tokyonight.nvim',
     config = function()
       vim.g.tokyonight_transparent = true

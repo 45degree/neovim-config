@@ -1,5 +1,5 @@
 " 设置主题颜色
-colorscheme onenord
+colorscheme catppuccin
 if (has('nvim'))
   let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
 endif
