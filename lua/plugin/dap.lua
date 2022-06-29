@@ -3,6 +3,7 @@ return function(use)
     'mfussenegger/nvim-dap',
     config = function ()
       vim.fn.sign_define("DapBreakpoint", {text=' ', texthl='', linehl='', numhl=''})
+      vim.fn.sign_define("DapBreakpointCondition", {text=' ', texthl='', linehl='', numhl=''})
       vim.fn.sign_define("DapStopped", { text = " ", texthl = "", linehl = "", numhl = ""})
       vim.fn.sign_define("DapBreakpointRejected", { text = "⭐️", texthl = "", linehl = "", numhl = ""})
 
@@ -52,7 +53,10 @@ return function(use)
             position = "left", -- Can be "left", "right", "top", "bottom"
           },
           {
-            elements = { "repl" },
+            elements = {
+              "repl",
+              "console",
+            },
             size = 5,
             position = "bottom", -- Can be "left", "right", "top", "bottom"
           }

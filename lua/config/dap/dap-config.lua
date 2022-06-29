@@ -36,7 +36,7 @@ local function config_debuggers()
 end
 
 function M.setup()
-  -- config_dapui()
+  config_dapui()
   config_debuggers() -- Debugger
 
   -- Shorten function name
@@ -48,9 +48,11 @@ function M.setup()
   -- keymap('n', '<F10>', '<cmd>lua require"user.dap.dap-util".reload_continue()<CR>', {})
   keymap("n", "<F4>", "<cmd>lua require'dap'.terminate()<cr>", {})
   keymap("n", "<F5>", "<cmd>lua require'dap'.continue()<cr>", {})
+  keymap("n", "<F6>", "<cmd>lua require'dap'.pause()<cr>", {})
   keymap("n", "<F10>", "<cmd>lua require'dap'.step_over()<cr>", {})
   keymap("n", "<F11>", "<cmd>lua require'dap'.step_into()<cr>", {})
   keymap("n", "<F12>", "<cmd>lua require'dap'.step_out()<cr>", {})
+  keymap("n", "DK", "<cmd>lua require'dapui'.eval()<cr>", {})
   keymap("n", "<leader><F8>", "<cmd>lua require'dap'.run_to_cursor() <cr>", {})
 end
 
