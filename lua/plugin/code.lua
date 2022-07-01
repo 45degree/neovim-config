@@ -96,5 +96,5 @@ return function(use)
   use 'nvim-pack/nvim-spectre'
 
   -- 格式化
-  use 'gpanders/editorconfig.nvim'
+  use 'editorconfig/editorconfig-vim'
 end

@@ -252,7 +252,13 @@ return function(use)
         filters = {
           dotfiles = true,
           custom = {},
-          exclude = {},
+          exclude = {
+            '.clang-tidy',
+            '.clang-format',
+            '.editorconfig',
+            '.gitignore',
+            '.gitmodules'
+          },
         },
         git = {
           enable = true,
