@@ -11,12 +11,17 @@ return function(use)
       "hrsh7th/cmp-nvim-lsp", --neovim 内置 LSP 客户端的 nvim-cmp 源
     },
     config = function()
+      require('nvim-lsp-installer').setup{}
       require "lsp_signature".setup{}
-      local lsp_installer = require("nvim-lsp-installer")
+
+      local lspinstaller = require('nvim-lsp-installer')
+      local lspconfig = require('lspconfig')
+
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
       capabilities.offsetEncoding = 'utf-8'
-      lsp_installer.on_server_ready(function(server)
+
+      for _, server in ipairs(lspinstaller.get_installed_servers()) do
         local opts = {
           capabilities = capabilities,
           on_attach = function(client, bufnr)
@@ -34,9 +39,8 @@ return function(use)
             "-header-insertion=never",
           }
         end
-
-        server:setup(opts)
-      end)
+        lspconfig[server.name]:setup(opt)
+      end
     end
   }
 

@@ -17,14 +17,11 @@ function XMake:Debug(targetName, args)
     program = project.GetTargetExecPath(targetName),
     args = args,
     cwd = project.GetTargetRunDir(targetName),
-    env = project.GetTargetEnvs(targetName)
+    env = project.GetTargetEnvs(targetName),
+    externalConsole = false,
   }
 
   dap.run(vim.tbl_extend('force', dap_config, config.dap_configuration))
-  -- vim.api.nvim_command('cclose')
-  -- if config.dap_open_command then
-  --   config.dap_open_command()
-  -- end
 end
 
 return XMake;

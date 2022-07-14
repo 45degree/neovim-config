@@ -33,7 +33,11 @@ function M.GetTargetEnvs(targetName)
 
   local env = string.gsub(targetData:split('__end__')[1], "", "")
 
-  return load('return '..env)()
+  if vim.fn.has('win32') == 1 then
+    env = string.gsub(env, "\\", "\\\\")
+  end
+
+  return loadstring('return '..env)()
 end
 
 function M.GetTargetRunDir(targetName)

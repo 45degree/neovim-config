@@ -20,9 +20,9 @@ local config = {
     copy_compile_commands = true,
     dap_configuration = {
       name = "Launch file",
-      type = 'cppdbg',
+      type = 'codelldb',
       request = 'launch',
-      stopOnEntry = true,
+      stopOnEntry = false,
     },
     dap_open_command = require('dap').repl.open,
   },

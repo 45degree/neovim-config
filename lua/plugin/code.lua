@@ -53,11 +53,16 @@ return function(use)
   use {
     'nvim-treesitter/nvim-treesitter',
     config = function()
+      local ignoreLang = {}
+      if vim.fn.has("WIN32") then
+        table.insert(ignoreLang, "rnoweb")
+      end
+
       require'nvim-treesitter.configs'.setup {
         ensure_installed = "all",
         sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
         -- ignore_install = { "javascript" }, -- List of parsers to ignore installing
-        ignore_install = { "swift" }, -- List of parsers to ignore installing
+        ignore_install = ignoreLang, -- List of parsers to ignore installing
         highlight = {
           enable = true,              -- false will disable the whole extension
           -- disable = { "c", "cpp", "rust" },  -- list of language that will be disabled

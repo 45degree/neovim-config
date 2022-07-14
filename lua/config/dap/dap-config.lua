@@ -29,10 +29,19 @@ local function config_dapui()
 end
 
 local function config_debuggers()
+  local dap = require("dap")
+
   -- load from json file
   require('dap.ext.vscode').load_launchjs(nil, { cppdbg = { 'cpp' } })
-  require('config.dap.di-python')
-  require('config.dap.di-cpp')
+
+  dap.adapters.python = require('config.dap.di-python').adapters
+  dap.configurations.python = require('config.dap.di-python').configurations
+
+  dap.adapters.ccppr_vsc = require('config.dap.di-cpp').adapters
+  dap.configurations.ccppr_vsc = require('config.dap.di-cpp').configurations
+
+  dap.adapters.codelldb = require('config.dap.di-codelldb').adapters
+  dap.configurations.codelldb = require('config.dap.di-codelldb').configurations
 end
 
 function M.setup()
