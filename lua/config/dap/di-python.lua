@@ -3,7 +3,7 @@ local dbg_path = require("dap-install.config.settings").options["installation_pa
 
 local M = {}
 
-M.adapter = {
+M.adapters = {
   type = "executable",
   command = dbg_path .. "bin/python",
   args = { "-m", "debugpy.adapter" },

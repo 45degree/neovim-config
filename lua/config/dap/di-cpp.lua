@@ -3,7 +3,8 @@ local dbg_path = require("dap-install.config.settings").options["installation_pa
 
 local M = {}
 
-M.adapter = {
+M.adapters = {
+  id = 'cppdbg',
   type = "executable",
   command = dbg_path .. "extension/debugAdapters/bin/OpenDebugAD7",
 }

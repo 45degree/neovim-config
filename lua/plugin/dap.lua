@@ -29,8 +29,8 @@ return function(use)
         icons = { expanded = "▾", collapsed = "▸" },
         mappings = {
           -- Use a table to apply multiple mappings
-          expand = { "o", "<2-LeftMouse>", "<CR>" },
-          open = "O",
+          expand = { "<2-LeftMouse>", "<CR>" },
+          open = "o",
           remove = "d",
           edit = "e",
           repl = "r",
