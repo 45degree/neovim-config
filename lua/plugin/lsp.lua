@@ -5,22 +5,24 @@ return function(use)
   -- 代码补全
   use "neovim/nvim-lspconfig"
   use {
-    "williamboman/nvim-lsp-installer",
+    "williamboman/mason.nvim",
     requires = {
+      "williamboman/mason-lspconfig.nvim",
       "ray-x/lsp_signature.nvim",
       "hrsh7th/cmp-nvim-lsp", --neovim 内置 LSP 客户端的 nvim-cmp 源
     },
-    after = "nvim-lspconfig",
     config = function()
-      require('nvim-lsp-installer').setup{}
+      -- require('nvim-lsp-installer').setup{}
+      require("mason").setup{}
+      require("mason-lspconfig").setup()
       require "lsp_signature".setup{}
 
-      local lspinstaller = require('nvim-lsp-installer')
+      local lspinstaller = require('mason-lspconfig')
       local lspconfig = require('lspconfig')
 
       for _, server in ipairs(lspinstaller.get_installed_servers()) do
-        local config = require('config.lsp')(server.name)
-        lspconfig[server.name].setup(config)
+        local config = require('config.lsp')(server)
+        lspconfig[server].setup(config)
       end
     end
   }

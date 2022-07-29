@@ -17,7 +17,6 @@ return function(use)
 
   use {
     'rcarriga/nvim-dap-ui',
-    requires = 'mfussenegger/nvim-dap',
     config = function ()
       local status_ok, dapui = pcall(require, 'dapui')
       if not status_ok then
@@ -76,6 +75,7 @@ return function(use)
 
   use {
     'theHamsta/nvim-dap-virtual-text',
+    after = "nvim-dap",
     config = function()
       require("nvim-dap-virtual-text").setup {
           enabled = true,                     -- enable this plugin (the default)
@@ -96,18 +96,21 @@ return function(use)
 
   use {
     'nvim-telescope/telescope-dap.nvim',
+    after = "telescope.nvim",
     config = function ()
       require('telescope').load_extension('dap')
     end
   }
 
-  use { 
-    'ravenxrz/DAPInstall.nvim',
+  use {
+    'rcarriga/cmp-dap',
+    after = 'nvim-cmp',
     config = function ()
-      local dap_install = require "dap-install"
-      dap_install.setup {
-        installation_path = vim.fn.stdpath("data") .. "/dapinstall/",
-      }
+      require("cmp").setup.filetype({ "dap-repl", "dapui_watches" }, {
+        sources = {
+          { name = "dap" },
+        },
+      })
     end
   }
 end

@@ -7,7 +7,7 @@ return function(use)
       'simrat39/rust-tools.nvim',
       after = {
         "nvim-dap",
-        "DAPInstall.nvim"
+        "mason.nvim"
       },
       config = function ()
         local adapterFunc = require('config.dap.di-codelldb').adapters

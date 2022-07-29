@@ -3,7 +3,7 @@ return function (use)
   use {
     'p00f/clangd_extensions.nvim',
     after = {
-      "nvim-lsp-installer",
+      "mason.nvim",
       "nvim-lspconfig"
     },
     config = function ()

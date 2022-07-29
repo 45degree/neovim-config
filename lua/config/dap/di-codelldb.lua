@@ -1,4 +1,5 @@
-local dbg_path = require("dap-install.config.settings").options["installation_path"] .. "codelldb/"
+-- local dbg_path = require("dap-install.config.settings").options["installation_path"] .. "codelldb/"
+local dbg_path = require("mason.settings").current.install_root_dir .. "/packages/codelldb/"
 local codelldb_path = dbg_path .. "extension/adapter/codelldb"
 
 local lldb_path;

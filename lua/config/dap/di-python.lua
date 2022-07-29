@@ -1,5 +1,4 @@
-local dap_install = require("dap-install")
-local dbg_path = require("dap-install.config.settings").options["installation_path"] .. "python/"
+local dbg_path = require("mason.settings").current.install_root_dir .. "/packages/debugpy/"
 
 local M = {}
 
