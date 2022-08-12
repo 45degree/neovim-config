@@ -1,5 +1,5 @@
 " 设置主题颜色
-colorscheme catppuccin
+colorscheme edge
 let g:catppuccin_flavour = "mocha" " latte, frappe, macchiato, mocha
 
 if (has('nvim'))

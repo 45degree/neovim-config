@@ -359,13 +359,13 @@ use {
   }
 
   -- jk加速
-  use {
-    'rhysd/accelerated-jk',
-    config = function()
-      vim.api.nvim_set_keymap('n', 'j', '<Plug>(accelerated_jk_gj)', {})
-      vim.api.nvim_set_keymap('n', 'k', '<Plug>(accelerated_jk_gk)', {})
-    end
-  }
+  -- use {
+  --   'rhysd/accelerated-jk',
+  --   config = function()
+  --     vim.api.nvim_set_keymap('n', 'j', '<Plug>(accelerated_jk_gj)', {})
+  --     vim.api.nvim_set_keymap('n', 'k', '<Plug>(accelerated_jk_gk)', {})
+  --   end
+  -- }
 
   -- 模糊搜索
   use {
