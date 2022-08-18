@@ -197,7 +197,7 @@ use {
             nowait = true,
           },
           mappings = {
-            ["<2-LeftMouse>"] = "open",
+            ["<2-LeftMouse>"] = "open_with_window_picker",
             ["<cr>"] = "open_with_window_picker",
             ["a"] = {
               "add",
@@ -505,7 +505,7 @@ use {
           -- filter using buffer options
           bo = {
             -- if the file type is one of following, the window will be ignored
-            filetype = { 'neo-tree', "neo-tree-popup", "notify", "quickfix" },
+            filetype = { 'neo-tree', "neo-tree-popup", "notify", "quickfix", "Trouble" },
 
             -- if the buffer type is one of following, the window will be ignored
             buftype = { 'terminal' },

@@ -231,7 +231,7 @@ return function(use)
             quit = "q",
             exec = "<CR>",
         },
-        rename_action_quit = "q",
+        rename_action_quit = "<esc>",
         rename_in_select = true,
         definition_preview_icon = "  ",
         -- show symbols in winbar must nightly
