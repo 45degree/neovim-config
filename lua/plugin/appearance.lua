@@ -150,52 +150,23 @@ return function(use)
     end
   }
 
-  use {
-    "SmiteshP/nvim-gps",
-    config = function ()
-      -- Default config
-      require("nvim-gps").setup()
-    end
-  }
-
   -- 状态栏
   use {
     'nvim-lualine/lualine.nvim',
     requires = 'kyazdani42/nvim-web-devicons',
-    after = "nvim-gps",
     config = function ()
-      local gps = require("nvim-gps")
-      require('lualine').setup {
-        options = {
-          icons_enabled = true,
-          theme = 'auto',
-          component_separators = { left = '', right = ''},
-          section_separators = { left = '', right = ''},
-          disabled_filetypes = {'NvimTree','vista','dbui','packer', 'coc-explorer', 'neo-tree'},
-          always_divide_middle = true,
-          globalstatus = false,
-        },
-        sections = {
-          lualine_a = {'mode'},
-          lualine_b = {'branch', 'diff', 'diagnostics'},
-          lualine_c = {'filename', { gps.get_location, cond = gps.is_available }},
-          lualine_x = {'encoding', 'fileformat', 'filetype'},
-          lualine_y = {'progress'},
-          lualine_z = {'location'}
-        },
-        inactive_sections = {
-          lualine_a = {},
-          lualine_b = {},
-          lualine_c = {'filename'},
-          lualine_x = {'location'},
-          lualine_y = {},
-          lualine_z = {}
-        },
-        tabline = {},
-        extensions = {}
-      }
+      require('config.lualine')
     end
   }
+
+  if vim.fn.has('nvim-0.8') == 1 then
+    use {
+      'fgheng/winbar.nvim',
+      config = function ()
+        require('config.winbar')
+      end
+    }
+  end
 
   -- tab栏
   use {
