@@ -80,19 +80,19 @@ return function(use)
           name = '+Buffer',
           d = {
             name = '+delete',
-            ['c']= { '<cmd>BufferCloseAllButCurrent<cr>', '删除所有未显示Buffer'},
-            ['p']= { '<cmd>BufferCloseAllButPinned<cr>',  '删除所有未固定Buffer'},
+            ['r']= { '<cmd>BufferLineCloseRight<cr>', '删除所有右边Buffer'},
+            ['l']= { '<cmd>BufferLineCloseLeft<cr>',  '删除所有左边Buffer'},
           },
-          ['p'] = { '<cmd>BufferPin<cr>',    '固定Buffer'},
-          ['j'] = { '<cmd>BufferPick<cr>',   'Buffer跳转'},
-          ['1'] = { '<cmd>BufferGoto 1<cr>', '移动到buffer1' },
-          ['2'] = { '<cmd>BufferGoto 2<cr>', '移动到buffer2' },
-          ['3'] = { '<cmd>BufferGoto 3<cr>', '移动到buffer3' },
-          ['4'] = { '<cmd>BufferGoto 4<cr>', '移动到buffer4' },
-          ['5'] = { '<cmd>BufferGoto 5<cr>', '移动到buffer5' },
-          ['6'] = { '<cmd>BufferGoto 6<cr>', '移动到buffer6' },
-          ['7'] = { '<cmd>BufferGoto 7<cr>', '移动到buffer7' },
-          ['8'] = { '<cmd>BufferGoto 8<cr>', '移动到buffer8' }
+          ['p'] = { '<cmd>BufferLineTogglePin<cr>', '固定Buffer'},
+          ['j'] = { '<cmd>BufferLinePick<cr>', 'Buffer跳转'},
+          ['1'] = { '<cmd>BufferLineGotoBuffer 1<cr>', '移动到buffer1' },
+          ['2'] = { '<cmd>BufferLineGotoBuffer 2<cr>', '移动到buffer2' },
+          ['3'] = { '<cmd>BufferLineGotoBuffer 3<cr>', '移动到buffer3' },
+          ['4'] = { '<cmd>BufferLineGotoBuffer 4<cr>', '移动到buffer4' },
+          ['5'] = { '<cmd>BufferLineGotoBuffer 5<cr>', '移动到buffer5' },
+          ['6'] = { '<cmd>BufferLineGotoBuffer 6<cr>', '移动到buffer6' },
+          ['7'] = { '<cmd>BufferLineGotoBuffer 7<cr>', '移动到buffer7' },
+          ['8'] = { '<cmd>BufferLineGotoBuffer 8<cr>', '移动到buffer8' }
         }
       }, { prefix = "<leader>" })
     end
@@ -357,15 +357,6 @@ use {
         require('nvim-autopairs').setup{}
     end
   }
-
-  -- jk加速
-  -- use {
-  --   'rhysd/accelerated-jk',
-  --   config = function()
-  --     vim.api.nvim_set_keymap('n', 'j', '<Plug>(accelerated_jk_gj)', {})
-  --     vim.api.nvim_set_keymap('n', 'k', '<Plug>(accelerated_jk_gk)', {})
-  --   end
-  -- }
 
   -- 模糊搜索
   use {
