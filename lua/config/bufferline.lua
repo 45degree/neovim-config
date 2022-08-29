@@ -1,8 +1,3 @@
-local separator_style = "slant"
-if vim.fn.exists('g:neovide') == 1 then
-  separator_style = "padded_slant"
-end
-
 require('bufferline').setup {
   options = {
     mode = "buffers", -- set to "tabs" to only show tabpages instead
@@ -15,7 +10,7 @@ require('bufferline').setup {
     middle_mouse_command = nil,          -- can be a string | function, see "Mouse actions"
     indicator = {
       icon = '▎', -- this should be omitted if indicator style is not 'icon'
-      style = 'none', -- 'icon' | 'underline' | 'none',
+      style = 'icon', -- 'icon' | 'underline' | 'none',
     },
     buffer_close_icon = '',
     modified_icon = '●',
@@ -78,7 +73,7 @@ require('bufferline').setup {
     persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
     -- can also be a table containing 2 custom separators
     -- [focused and unfocused]. eg: { '|', '|' }
-    separator_style = separator_style,  --"slant" | "thick" | "thin" | { 'any', 'any' },
+    separator_style = "thick", --"slant" | "thick" | "thin" | { 'any', 'any' },
     enforce_regular_tabs = false,
     always_show_bufferline = true,
     sort_by = 'id',

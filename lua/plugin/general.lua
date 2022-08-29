@@ -56,7 +56,7 @@ return function(use)
             name = '+debug',
             c = {require 'dap'.terminate, '关闭调试'},
           },
-          D = {"<cmd>DogeGenerate<cr>", "生成代码文档注释" },
+          D = {require('neogen').generate, "生成代码文档注释" },
         },
         t = {'<cmd>Neotree toggle<cr>', "打开文件树"},
         w = {

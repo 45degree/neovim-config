@@ -20,23 +20,11 @@ return function(use)
 
   -- 快速文档
   use {
-    'kkoomen/vim-doge',
-    run = ':call doge#install()',
-    config = function ()
-      vim.g.doge_enable_mappings = 0
-      vim.g.doge_doc_standard_python = 'google'
-      vim.g.doge_doc_standard_php = 'phpdoc'
-      vim.g.doge_doc_standard_javascript = 'jsdoc'
-      vim.g.doge_doc_standard_typescript = 'jsdoc'
-      vim.g.doge_doc_standard_lua = 'ldoc'
-      vim.g.doge_doc_standard_java = 'javadoc'
-      vim.g.doge_doc_standard_groovy ='javadoc'
-      vim.g.doge_doc_standard_ruby = 'YARD'
-      vim.g.doge_doc_standard_cpp = 'doxygen_javadoc'
-      vim.g.doge_doc_standard_c = 'doxygen_javadoc'
-      vim.g.doge_doc_standard_sh = 'google'
-      vim.g.doge_doc_standard_rs = 'rustdoc'
-    end
+    "danymat/neogen",
+    requires = "nvim-treesitter/nvim-treesitter",
+    config = function()
+      require('neogen').setup {}
+    end,
   }
 
   -- todo comments
