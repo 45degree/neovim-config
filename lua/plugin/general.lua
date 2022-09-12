@@ -80,8 +80,9 @@ return function(use)
           name = '+Buffer',
           d = {
             name = '+delete',
-            ['r']= { '<cmd>BufferLineCloseRight<cr>', '删除所有右边Buffer'},
-            ['l']= { '<cmd>BufferLineCloseLeft<cr>',  '删除所有左边Buffer'},
+            ['r'] = { '<cmd>BufferLineCloseRight<cr>', '删除所有右边Buffer'},
+            ['l'] = { '<cmd>BufferLineCloseLeft<cr>',  '删除所有左边Buffer'},
+            ['c'] = { '<cmd>BufOnly<cr>', '只保留当前buffer'}
           },
           ['p'] = { '<cmd>BufferLineTogglePin<cr>', '固定Buffer'},
           ['j'] = { '<cmd>BufferLinePick<cr>', 'Buffer跳转'},
@@ -507,20 +508,10 @@ use {
     end,
   }
 
-  -- 局部配哦
+  -- 删除其他buffer
   use {
-    "klen/nvim-config-local",
-    config = function()
-      require('config-local').setup {
-        -- Default configuration (optional)
-        config_files = { ".vimrc.lua", ".vimrc" },  -- Config file patterns to load (lua supported)
-        hashfile = vim.fn.stdpath("data") .. "/config-local", -- Where the plugin keeps files data
-        autocommands_create = true,                 -- Create autocommands (VimEnter, DirectoryChanged)
-        commands_create = true,                     -- Create commands (ConfigSource, ConfigEdit, ConfigTrust, ConfigIgnore)
-        silent = false,                             -- Disable plugin messages (Config loaded/ignored)
-        lookup_parents = false,                     -- Lookup config files in parent directories
-      }
-    end
+    'numtostr/BufOnly.nvim',
+    cmd = 'BufOnly',
   }
 
 end
