@@ -37,9 +37,9 @@ local conditions = {
 local config = {
   options = {
     icons_enabled = true,
-    disabled_filetypes = {'NvimTree','vista','dbui','packer', 'coc-explorer', 'neo-tree'},
+    disabled_filetypes = {'NvimTree','vista','dbui','packer', 'coc-explorer'},
     always_divide_middle = true,
-    globalstatus = false,
+    globalstatus = true,
 
     -- Disable sections and component separators
     component_separators = '',

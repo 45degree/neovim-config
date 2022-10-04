@@ -25,7 +25,7 @@ set wrap           " 折行
 set linebreak      " 单词内部不折行
 set wrapmargin=2   " 折行边缘字符数
 set scrolloff=5    " 垂直翻滚时保留的行数
-set laststatus=2   " 显示状态栏 0不显示, 1多窗口显示, 2显示
+set laststatus=3   " 显示状态栏 0不显示, 1多窗口显示, 2显示, 3 全局唯一
 set ruler          " 状态栏显示光标当前位置
 set termguicolors  " 支持24位彩色
 set timeoutlen=500

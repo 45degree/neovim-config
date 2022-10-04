@@ -80,20 +80,23 @@ return function(use)
           name = '+Buffer',
           d = {
             name = '+delete',
-            ['r'] = { '<cmd>BufferLineCloseRight<cr>', '删除所有右边Buffer'},
-            ['l'] = { '<cmd>BufferLineCloseLeft<cr>',  '删除所有左边Buffer'},
-            ['c'] = { '<cmd>BufOnly<cr>', '只保留当前buffer'}
+            ['r'] = { '<cmd>BufferCloseBuffersLeft<cr>', '删除所有右边Buffer'},
+            ['l'] = { '<cmd>BufferCloseBuffersRight<cr>',  '删除所有左边Buffer'},
+            ['p'] = {'<cmd>BufferCloseAllButPinned<cr>', '删除所有未固定Buffer'},
+            ['cp'] = {'<cmd>BufferCloseAllButCurrentOrPinned<cr>', '删除所有未固定和非当前Buffer'},
+            ['c'] = { '<cmd>BufferCloseAllButCurrent<cr>', '只保留当前buffer'},
+            ['v'] = { '<cmd>BufferCloseAllButVisible<cr>', '只保留可见buffer'}
           },
-          ['p'] = { '<cmd>BufferLineTogglePin<cr>', '固定Buffer'},
-          ['j'] = { '<cmd>BufferLinePick<cr>', 'Buffer跳转'},
-          ['1'] = { '<cmd>BufferLineGotoBuffer 1<cr>', '移动到buffer1' },
-          ['2'] = { '<cmd>BufferLineGotoBuffer 2<cr>', '移动到buffer2' },
-          ['3'] = { '<cmd>BufferLineGotoBuffer 3<cr>', '移动到buffer3' },
-          ['4'] = { '<cmd>BufferLineGotoBuffer 4<cr>', '移动到buffer4' },
-          ['5'] = { '<cmd>BufferLineGotoBuffer 5<cr>', '移动到buffer5' },
-          ['6'] = { '<cmd>BufferLineGotoBuffer 6<cr>', '移动到buffer6' },
-          ['7'] = { '<cmd>BufferLineGotoBuffer 7<cr>', '移动到buffer7' },
-          ['8'] = { '<cmd>BufferLineGotoBuffer 8<cr>', '移动到buffer8' }
+          ['p'] = { '<cmd>BufferPin<cr>', '固定Buffer'},
+          ['j'] = { '<cmd>BufferPick<cr>', 'Buffer跳转'},
+          ['1'] = { '<cmd>BufferGoto 1<cr>', '移动到buffer1' },
+          ['2'] = { '<cmd>BufferGoto 2<cr>', '移动到buffer2' },
+          ['3'] = { '<cmd>BufferGoto 3<cr>', '移动到buffer3' },
+          ['4'] = { '<cmd>BufferGoto 4<cr>', '移动到buffer4' },
+          ['5'] = { '<cmd>BufferGoto 5<cr>', '移动到buffer5' },
+          ['6'] = { '<cmd>BufferGoto 6<cr>', '移动到buffer6' },
+          ['7'] = { '<cmd>BufferGoto 7<cr>', '移动到buffer7' },
+          ['8'] = { '<cmd>BufferGoto 8<cr>', '移动到buffer8' }
         }
       }, { prefix = "<leader>" })
     end
@@ -138,6 +141,10 @@ use {
         enable_diagnostics = true,
         sort_case_insensitive = false, -- used when sorting files and directories in the tree
         sort_function = nil , -- use a custom function for sorting files and directories in the tree 
+        source_selector = {
+          winbar = true,
+          statusline = false
+        },
         default_component_configs = {
           container = {
             enable_character_fade = true
@@ -497,7 +504,7 @@ use {
           -- filter using buffer options
           bo = {
             -- if the file type is one of following, the window will be ignored
-            filetype = { 'neo-tree', "neo-tree-popup", "notify", "quickfix", "Trouble", "vista_kind" },
+            filetype = { 'neo-tree', "neo-tree-popup", "notify", "quickfix", "Trouble" },
 
             -- if the buffer type is one of following, the window will be ignored
             buftype = { 'terminal' },
@@ -507,11 +514,4 @@ use {
       })
     end,
   }
-
-  -- 删除其他buffer
-  use {
-    'numtostr/BufOnly.nvim',
-    cmd = 'BufOnly',
-  }
-
 end

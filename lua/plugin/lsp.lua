@@ -49,6 +49,10 @@ return function(use)
             vim.fn["UltiSnips#Anon"](args.body)
           end,
         },
+        enabled = function()
+          return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt"
+              or require("cmp_dap").is_dap_buffer()
+        end,
         window = {
           completion = cmp.config.window.bordered(),
           documentation = cmp.config.window.bordered(),
@@ -170,6 +174,18 @@ return function(use)
     config = function ()
       local saga = require("lspsaga")
       saga.init_lsp_saga({
+        symbol_in_winbar = {
+            in_custom = true,
+            enable = false,
+            separator = '> ',
+            show_file = true,
+            -- define how to customize filename, eg: %:., %
+            -- if not set, use default value `%:t`
+            -- more information see `vim.fn.expand` or `expand`
+            -- ## only valid after set `show_file = true`
+            file_formatter = "",
+            click_support = false,
+        },
       })
 
       vim.diagnostic.config{

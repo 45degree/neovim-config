@@ -1,3 +1,5 @@
+---@diagnostic disable: undefined-global
+
 local M = {}
 
 local function config_dapui()
@@ -29,7 +31,7 @@ local function config_dapui()
 end
 
 local function config_debuggers()
-  local dap = require("dap")
+  local dap = require("dap");
 
   -- load from json file
   require('dap.ext.vscode').load_launchjs(nil, { cppdbg = { 'cpp' } })

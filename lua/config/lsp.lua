@@ -1,3 +1,5 @@
+---@diagnostic disable: undefined-global, deprecated
+
 local clangd_flags = {
   "--all-scopes-completion",
   "--suggest-missing-includes",
@@ -21,7 +23,7 @@ return function (server)
 
   local opts = {
     capabilities = capabilities,
-    on_attach = function(client, bufnr)
+    on_attach = function(_, bufnr)
       require "lsp_signature".on_attach({
         bind = true, -- This is mandatory, otherwise border config won't get registered.
         handler_opts = {

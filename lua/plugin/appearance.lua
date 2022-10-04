@@ -88,8 +88,8 @@ return function(use)
           neogit = false,
           vim_sneak = false,
           fern = false,
-          barbar = false,
-          bufferline = true,
+          barbar = true,
+          bufferline = false,
           markdown = true,
           lightspeed = false,
           ts_rainbow = false,
@@ -159,20 +159,11 @@ return function(use)
     end
   }
 
-  if vim.fn.has('nvim-0.8') == 1 then
-    use {
-      'fgheng/winbar.nvim',
-      config = function ()
-        require('config.winbar')
-      end
-    }
-  end
-
   -- tab栏
   use {
-    'akinsho/bufferline.nvim',
+    'romgrk/barbar.nvim',
     config = function ()
-      require('config.bufferline')
+      require('config.barbar')
     end
   }
 

@@ -106,7 +106,7 @@ return function(use)
     'rcarriga/cmp-dap',
     after = 'nvim-cmp',
     config = function ()
-      require("cmp").setup.filetype({ "dap-repl", "dapui_watches" }, {
+      require("cmp").setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
         sources = {
           { name = "dap" },
         },
