@@ -6,7 +6,7 @@ local function config_dapui()
   local dap, dapui = require "dap", require "dapui"
 
   local debug_open = function()
-    dapui.open()
+    require('dapui').open({ reset = true })
     vim.api.nvim_command("DapVirtualTextEnable")
   end
   local debug_close = function()

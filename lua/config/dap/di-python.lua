@@ -4,7 +4,7 @@ local M = {}
 
 M.adapters = {
   type = "executable",
-  command = dbg_path .. "bin/python",
+  command = dbg_path .. "venv/bin/python",
   args = { "-m", "debugpy.adapter" },
 }
 

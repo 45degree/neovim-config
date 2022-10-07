@@ -1,6 +1,11 @@
 local Path = require('plenary.path')
 local script_path = Path:new(debug.getinfo(1).source:sub(2))
 
+local dap_type = 'cppdbg';
+if vim.fn.has('win32') then
+  dap_type = 'codelldb'
+end
+
 local config = {
   defaults = {
     cmake_executable = 'xmake',
@@ -20,7 +25,7 @@ local config = {
     copy_compile_commands = true,
     dap_configuration = {
       name = "Launch file",
-      type = 'codelldb',
+      type = dap_type,
       request = 'launch',
       stopOnEntry = false,
     },

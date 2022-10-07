@@ -1,5 +1,5 @@
 function string.split(self, delimiter)
-  input = tostring(self)
+  local input = tostring(self)
   delimiter = tostring(delimiter)
 
   if delimiter == "" then

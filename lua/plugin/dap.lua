@@ -56,7 +56,7 @@ return function(use)
               "repl",
               "console",
             },
-            size = 5,
+            size = 0.25,
             position = "bottom", -- Can be "left", "right", "top", "bottom"
           }
         },
