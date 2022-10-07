@@ -10,103 +10,12 @@ return function(use)
   use 'sainnhe/sonokai'
   use 'glepnir/zephyr-nvim'
   use 'olimorris/onedarkpro.nvim'
+  use {'kartikp10/noctis.nvim', requires = { 'rktjmp/lush.nvim' }}
   use {
     "catppuccin/nvim",
     as = "catppuccin",
     config = function ()
-      require("catppuccin").setup({
-        dim_inactive = {
-          enabled = false,
-          shade = "dark",
-          percentage = 0.15,
-        },
-        transparent_background = false,
-        term_colors = false,
-        compile = {
-          enabled = false,
-          path = vim.fn.stdpath "cache" .. "/catppuccin",
-      },
-      styles = {
-          comments = { "italic" },
-          conditionals = { "italic" },
-          loops = {},
-          functions = {},
-          keywords = {},
-          strings = {},
-          variables = {},
-          numbers = {},
-          booleans = {},
-          properties = {},
-          types = {},
-          operators = {},
-        },
-        integrations = {
-          treesitter = true,
-          native_lsp = {
-            enabled = true,
-            virtual_text = {
-              errors = { "italic" },
-              hints = { "italic" },
-              warnings = { "italic" },
-              information = { "italic" },
-            },
-            underlines = {
-              errors = { "underline" },
-              hints = { "underline" },
-              warnings = { "underline" },
-              information = { "underline" },
-            },
-          },
-          coc_nvim = false,
-          lsp_trouble = false,
-          cmp = true,
-          lsp_saga = false,
-          gitgutter = false,
-          gitsigns = true,
-          leap = false,
-          telescope = true,
-          nvimtree = {
-            enabled = false,
-            show_root = true,
-            transparent_panel = false,
-          },
-          neotree = {
-            enabled = true,
-            show_root = true,
-            transparent_panel = false,
-          },
-          dap = {
-            enabled = true,
-            enable_ui = false,
-          },
-          which_key = true,
-          indent_blankline = {
-            enabled = true,
-            colored_indent_levels = true,
-          },
-          dashboard = false,
-          neogit = false,
-          vim_sneak = false,
-          fern = false,
-          barbar = true,
-          bufferline = false,
-          markdown = true,
-          lightspeed = false,
-          ts_rainbow = false,
-          hop = false,
-          notify = true,
-          telekasten = true,
-          symbols_outline = true,
-          mini = false,
-          aerial = false,
-          vimwiki = true,
-          beacon = false,
-          navic = false,
-          overseer = false,
-        },
-        color_overrides = {},
-        highlight_overrides = {},
-      })
+      require("catppuccin").setup()
     end
   }
 
@@ -202,6 +111,53 @@ return function(use)
     config = function ()
       vim.notify = require("notify")
       require("telescope").load_extension("notify")
+    end
+  }
+
+  -- 显示颜色
+  use 'NvChad/nvim-colorizer.lua'
+
+  -- 显示图片
+  use 'samodostal/image.nvim'
+
+  -- mark
+  use {
+    'chentoast/marks.nvim',
+    config= function ()
+      require'marks'.setup {
+        -- whether to map keybinds or not. default true
+        default_mappings = true,
+        -- which builtin marks to show. default {}
+        builtin_marks = { ".", "<", ">", "^" },
+        -- whether movements cycle back to the beginning/end of buffer. default true
+        cyclic = true,
+        -- whether the shada file is updated after modifying uppercase marks. default false
+        force_write_shada = false,
+        -- how often (in ms) to redraw signs/recompute mark positions. 
+        -- higher values will have better performance but may cause visual lag, 
+        -- while lower values may cause performance penalties. default 150.
+        refresh_interval = 250,
+        -- sign priorities for each type of mark - builtin marks, uppercase marks, lowercase
+        -- marks, and bookmarks.
+        -- can be either a table with all/none of the keys, or a single number, in which case
+        -- the priority applies to all marks.
+        -- default 10.
+        sign_priority = { lower=10, upper=15, builtin=8, bookmark=20 },
+        -- disables mark tracking for specific filetypes. default {}
+        excluded_filetypes = {},
+        -- marks.nvim allows you to configure up to 10 bookmark groups, each with its own
+        -- sign/virttext. Bookmarks can be used to group together positions and quickly move
+        -- across multiple buffers. default sign is '!@#$%^&*()' (from 0 to 9), and
+        -- default virt_text is "".
+        bookmark_0 = {
+          sign = "⚑",
+          virt_text = "hello world",
+          -- explicitly prompt for a virtual line annotation when setting a bookmark from this group.
+          -- defaults to false.
+          annotate = false,
+        },
+        mappings = {}
+      }
     end
   }
 end

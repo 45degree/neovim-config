@@ -186,6 +186,12 @@ return function(use)
             file_formatter = "",
             click_support = false,
         },
+        code_action_icon = '',
+        code_action_lightbulb = {
+          sign = false,
+          update_time = 150,
+          virtual_text = true,
+        },
       })
 
       vim.diagnostic.config{

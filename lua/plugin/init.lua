@@ -1,3 +1,5 @@
+---@diagnostic disable: undefined-global
+
 local appearance = require('plugin.appearance')
 local code = require('plugin.code')
 local lsp = require('plugin.lsp')
