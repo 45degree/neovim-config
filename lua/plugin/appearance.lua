@@ -3,7 +3,12 @@
 return function(use)
   -- 颜色主题
   use "rebelot/kanagawa.nvim"
-  use 'ellisonleao/gruvbox.nvim'
+  use {
+    'sainnhe/gruvbox-material',
+    config = function ()
+      require('config.colorTheme.gruvbox-material')
+    end
+  }
   use 'sainnhe/edge'
   use 'sainnhe/everforest'
   use 'rmehri01/onenord.nvim'
@@ -15,7 +20,7 @@ return function(use)
     "catppuccin/nvim",
     as = "catppuccin",
     config = function ()
-      require("catppuccin").setup()
+      require('config.colorTheme.catppuccin')
     end
   }
 
@@ -37,8 +42,8 @@ return function(use)
     "goolord/alpha-nvim",
     config = function ()
       -- require'alpha'.setup(require'alpha.themes.dashboard'.config)
-      local alpha = require'alpha'
-      local dashboard = require'alpha.themes.dashboard'
+      local alpha = require 'alpha'
+      local dashboard = require 'alpha.themes.dashboard'
       dashboard.section.header.val = {
         [[                               __                ]],
         [[  ___     ___    ___   __  __ /\_\    ___ ___    ]],
