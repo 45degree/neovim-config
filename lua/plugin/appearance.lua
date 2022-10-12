@@ -120,5 +120,10 @@ return function(use)
   }
 
   -- 显示颜色
-  use 'NvChad/nvim-colorizer.lua'
+  use {
+    'NvChad/nvim-colorizer.lua',
+    config = function ()
+      require'colorizer'.setup()
+    end
+  }
 end

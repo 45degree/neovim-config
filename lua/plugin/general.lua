@@ -51,7 +51,6 @@ return function(use)
           },
           t = {"<cmd>Vista!!<cr>", '打开代码大纲'},
           T = {"<cmd>Trouble<cr>", '打开代码诊断'},
-          c = {vim.lsp.buf.incoming_calls, "查看调用链" },
           d = {
             name = '+debug',
             c = {require 'dap'.terminate, '关闭调试'},
