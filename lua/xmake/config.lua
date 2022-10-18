@@ -1,28 +1,16 @@
-local Path = require('plenary.path')
-local script_path = Path:new(debug.getinfo(1).source:sub(2))
-
 local dap_type = 'cppdbg';
 if vim.fn.has('win32') then
   dap_type = 'codelldb'
 end
 
+local xmake_executable = 'xmake'
+if vim.fn.has('UNIX') then
+  xmake_executable = vim.env.HOME.."/.local/bin/xmake"
+end
+
 local config = {
   defaults = {
-    cmake_executable = 'xmake',
-    save_before_build = true,
-    parameters_file = 'neovim.json',
-    build_dir = tostring(Path:new('{cwd}', 'build', '{os}-{build_type}')),
-    samples_path = tostring(script_path:parent():parent():parent() / 'samples'),
-    default_projects_path = tostring(Path:new(vim.loop.os_homedir(), 'Projects')),
-    configure_args = { '-D', 'CMAKE_EXPORT_COMPILE_COMMANDS=1' },
-    build_args = {},
-    on_build_output = nil,
-    quickfix = {
-      pos = 'botright',
-      height = 10,
-      only_on_error = false,
-    },
-    copy_compile_commands = true,
+    xmake_executable = xmake_executable,
     dap_configuration = {
       name = "Launch file",
       type = dap_type,
