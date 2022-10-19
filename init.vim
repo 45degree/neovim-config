@@ -63,6 +63,15 @@ set wildmode=longest:list,full " 底部命令tab自动补全
 set clipboard=unnamedplus      " 设置vim使用系统剪切板
 set signcolumn=yes
 
+
+" 使用nushell 作为默认的shell
+if has('WIN32')
+  let &shell = 'nu'
+  let &shellcmdflag = '-c'
+  let &shellquote = ""
+  let &shellxquote = ""
+endif
+
 " 禁止使用方向键
 nnoremap <Up> :echo "use k"<CR>
 nnoremap <Left> :echo "use h"<CR>
