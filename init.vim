@@ -78,8 +78,8 @@ set backspace=2
 set mouse=a
 
 " leader设置为空格
-let g:mapleader="\<space>"
-let g:maplocalleader = ","
+let g:mapleader=","
+" let g:maplocalleader = ","
 
 " esc 在终端模式下返回normal模式
 :tnoremap <Esc> <C-\><C-n>

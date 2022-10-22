@@ -97,7 +97,7 @@ return function(use)
           ['7'] = { '<cmd>BufferGoto 7<cr>', '移动到buffer7' },
           ['8'] = { '<cmd>BufferGoto 8<cr>', '移动到buffer8' }
         }
-      }, { prefix = "<leader>" })
+      }, { prefix = "<space>" })
     end
   }
 

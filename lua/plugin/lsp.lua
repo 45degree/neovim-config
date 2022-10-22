@@ -12,7 +12,6 @@ return function(use)
       "hrsh7th/cmp-nvim-lsp", --neovim 内置 LSP 客户端的 nvim-cmp 源
     },
     config = function()
-      -- require('nvim-lsp-installer').setup{}
       require("mason").setup{}
       require("mason-lspconfig").setup()
       require "lsp_signature".setup{}
