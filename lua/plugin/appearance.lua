@@ -9,6 +9,7 @@ return function(use)
       require('config.colorTheme.gruvbox-material')
     end
   }
+  use 'luisiacc/gruvbox-baby'
   use 'sainnhe/edge'
   use 'sainnhe/everforest'
   use 'rmehri01/onenord.nvim'

@@ -71,6 +71,11 @@ nnoremap <Down> :echo "use j"<CR>
 
 inoremap jj <ESC>
 
+" nvim tui true color
+if (has('nvim'))
+  let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
+endif
+
 " 解决插入模式下delete/backspace键失效问题
 set backspace=2
 

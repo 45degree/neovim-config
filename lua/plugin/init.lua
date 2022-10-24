@@ -21,7 +21,9 @@ local vue = require('plugin.option.lang.vue')
 local html = require('plugin.option.lang.html')
 
 local option_config = require('option_config')
--- option_config.read(vim.api.nvim_eval('stdpath("config")') .. '/option_config.json')
+option_config.read(vim.api.nvim_eval('stdpath("config")') .. '/option_config.json')
+
+vim.cmd('colorscheme '.. option_config.getColorTheme())
 
 vim.cmd [[packadd packer.nvim]]
 

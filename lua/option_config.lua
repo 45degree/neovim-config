@@ -14,6 +14,10 @@ local function getLanguage(name)
     return option_config_list['extra_language'][name]
 end
 
+local function getColorTheme()
+  return option_config_list['colortheme']
+end
+
 -- read option_config.json
 local function read(path)
     local content = readFile(path)
@@ -21,6 +25,7 @@ local function read(path)
 end
 
 return {
-    getLanguage = getLanguage,
-    read = read,
+  getLanguage = getLanguage,
+  getColorTheme = getColorTheme,
+  read = read,
 }

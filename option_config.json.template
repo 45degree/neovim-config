@@ -1,4 +1,5 @@
 {
+  "colortheme": "gruvbox-baby",
   "extra_language": {
     "rust": false,
     "vala": false,
