@@ -2,21 +2,18 @@
 
 return function(use)
   -- 颜色主题
-  use "rebelot/kanagawa.nvim"
   use {
     'sainnhe/gruvbox-material',
     config = function ()
       require('config.colorTheme.gruvbox-material')
     end
   }
-  use 'luisiacc/gruvbox-baby'
   use 'sainnhe/edge'
   use 'sainnhe/everforest'
   use 'rmehri01/onenord.nvim'
   use 'sainnhe/sonokai'
   use 'glepnir/zephyr-nvim'
   use 'olimorris/onedarkpro.nvim'
-  use {'kartikp10/noctis.nvim', requires = { 'rktjmp/lush.nvim' }}
   use {
     "catppuccin/nvim",
     as = "catppuccin",
@@ -24,7 +21,6 @@ return function(use)
       require('config.colorTheme.catppuccin')
     end
   }
-
   use {
     'folke/tokyonight.nvim',
     config = function()
