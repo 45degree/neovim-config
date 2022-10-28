@@ -49,7 +49,7 @@ return function(use)
             p = { "<cmd>DiffviewOpen<cr>", "显示Git项目更改" },
             h = { "<cmd>DiffviewFileHistory<cr>", "显示当前文件历史更改" },
           },
-          t = {"<cmd>Vista!!<cr>", '打开代码大纲'},
+          t = {"<cmd>AerialToggle<cr>", '打开代码大纲'},
           T = {"<cmd>Trouble<cr>", '打开代码诊断'},
           d = {
             name = '+debug',

@@ -4,9 +4,9 @@ return function(use)
 
   -- 代码提纲
   use {
-    'liuchengxu/vista.vim',
+    'stevearc/aerial.nvim',
     config = function()
-      vim.g.vista_default_executive = 'nvim_lsp'
+      require('aerial').setup()
     end
   }
 
