@@ -4,7 +4,7 @@ if vim.fn.has('win32') then
 end
 
 local xmake_executable = 'xmake'
-if vim.fn.has('UNIX') then
+if vim.fn.has('UNIX') == 1 then
   xmake_executable = vim.env.HOME.."/.local/bin/xmake"
 end
 

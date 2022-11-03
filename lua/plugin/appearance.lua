@@ -17,6 +17,7 @@ return function(use)
   use {
     "catppuccin/nvim",
     as = "catppuccin",
+    run = ":CatppuccinCompile",
     config = function ()
       require('config.colorTheme.catppuccin')
     end

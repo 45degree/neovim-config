@@ -23,11 +23,10 @@ local html = require('plugin.option.lang.html')
 local option_config = require('option_config')
 option_config.read(vim.api.nvim_eval('stdpath("config")') .. '/option_config.json')
 
-vim.cmd('colorscheme '.. option_config.getColorTheme())
 
 vim.cmd [[packadd packer.nvim]]
 
-return require('packer').startup(function()
+require('packer').startup(function()
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
@@ -74,3 +73,5 @@ return require('packer').startup(function()
     end
 
 end)
+
+vim.cmd('colorscheme '.. option_config.getColorTheme())
