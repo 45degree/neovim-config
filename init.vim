@@ -19,8 +19,8 @@ set showmode       " 底部显示命令模式还是插入模式
 set showcmd        " 命令模式下显示命令
 set encoding=utf-8 " 编码格式为utf-8
 set t_Co=256       " 设置为256色
-set textwidth=100  " 每行显示100个字符
-set cc=100
+set textwidth=120  " 每行显示100个字符
+set cc=120
 set wrap           " 折行
 set linebreak      " 单词内部不折行
 set wrapmargin=2   " 折行边缘字符数

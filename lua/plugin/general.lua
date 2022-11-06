@@ -328,8 +328,21 @@ use {
 
   -- 下划线
   use {
-    "itchyny/vim-cursorword",
-    event = {"BufReadPre", "BufNewFile"}
+    "yamatsum/nvim-cursorline",
+    config = function ()
+      require('nvim-cursorline').setup {
+        cursorline = {
+          enable = false,
+          timeout = 1000,
+          number = false,
+        },
+        cursorword = {
+          enable = true,
+          min_length = 3,
+          hl = { underline = true },
+        }
+      }
+    end
   }
 
   use {
@@ -418,9 +431,6 @@ use {
   -- 成对编辑
   use 'tpope/vim-surround'
 
-  -- 快速选中
-  use 'gcmt/wildfire.vim'
-
   -- 终端
   use {
     "akinsho/toggleterm.nvim",
@@ -457,14 +467,6 @@ use {
     ft = "markdown",
     run = function()
         vim.call('mkdp#util#install')
-    end
-  }
-
-  -- 翻译
-  use {
-    'voldikss/vim-translator',
-    config = function()
-      vim.g.translator_default_engines = {'haici', 'bing'}
     end
   }
 

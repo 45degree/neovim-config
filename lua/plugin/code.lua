@@ -49,14 +49,6 @@ return function(use)
     end
   }
 
-  use {
-    "andymass/vim-matchup",
-    after = "nvim-treesitter",
-    config = function ()
-      vim.cmd [[let g:matchup_matchparen_offscreen = {'method': 'popup'}]]
-    end
-  }
-
   -- 搜粟替换
   use 'nvim-pack/nvim-spectre'
 
