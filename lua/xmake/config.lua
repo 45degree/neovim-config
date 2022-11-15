@@ -1,5 +1,5 @@
-local dap_type = 'cppdbg';
-if vim.fn.has('win32') then
+local dap_type = 'cpptool';
+if vim.fn.has('WIN32') == 1 then
   dap_type = 'codelldb'
 end
 
@@ -16,6 +16,13 @@ local config = {
       type = dap_type,
       request = 'launch',
       stopOnEntry = false,
+      setupCommands = {
+        {
+          description =  'enable pretty printing',
+          text = '-enable-pretty-printing',
+          ignoreFailures = false
+        },
+      },
     },
     dap_open_command = require('dap').repl.open,
   },

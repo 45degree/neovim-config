@@ -108,5 +108,5 @@ lua require('config.dap.dap-config').setup()
 " lua require('config.dap.dap-ui')
 
 if exists('g:nvui') || exists('g:goneovim')
-  set guifont=JetBrainsMono\ Nerd\ Font:h10
+  set guifont=JetBrainsMono\ Nerd\ Font:h10:sb
 endif

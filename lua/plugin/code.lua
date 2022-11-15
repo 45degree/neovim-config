@@ -49,6 +49,21 @@ return function(use)
     end
   }
 
+  -- tags
+  -- use {
+  --   "ludovicchabant/vim-gutentags",
+  --   config = function ()
+  --     vim.g.gutentags_modules = {'ctags'}
+  --     vim.g.gutentags_define_advanced_commands = 1
+  --     vim.g.gutentags_cache_dir = vim.fn.expand('~/.cache/tags')
+  --     vim.g.gutentags_file_list_command = {
+  --       markers = {
+  --         ['.git'] = [[bash -c "git ls-files; git ls-files --others --exclude-standard"]],
+  --       },
+  --     }
+  --   end
+  -- }
+
   -- 搜粟替换
   use 'nvim-pack/nvim-spectre'
 
