@@ -101,6 +101,14 @@ return function(use)
     end
   }
 
+  -- 快速跳转
+  use {
+    'ggandor/leap.nvim',
+    config = function ()
+      require('leap').add_default_mappings()
+    end
+  }
+
   -- sudo保存
   use {
     'lambdalisue/suda.vim',

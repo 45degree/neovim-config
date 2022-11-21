@@ -32,7 +32,6 @@ return function(use)
   }
 
   -- 图标
-  use 'ryanoasis/vim-devicons'
   use {
     'DaikyXendo/nvim-material-icon',
     requires = "kyazdani42/nvim-web-devicons",
