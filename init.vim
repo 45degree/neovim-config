@@ -96,6 +96,17 @@ let g:mapleader=","
 lua option_config = require('option_config')
 lua option_config.read(vim.api.nvim_eval('stdpath("config")') .. '/option_config.json')
 
+lua << EOF
+  vim.api.nvim_create_autocmd(
+    {"BufNewFile", "BufRead"},
+    {
+      pattern = {"*.frag", "*.vert"},
+      callback = function()
+        vim.cmd("set filetype=glsl")
+      end
+    }
+  )
+EOF
 
 " 加载Config下的.vim文件
 for file in split(glob(stdpath('config').'/Config/*.vim'), '\n')
