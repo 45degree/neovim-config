@@ -14,7 +14,9 @@ return function(use)
     config = function()
       require("mason").setup{}
       require("mason-lspconfig").setup()
-      require "lsp_signature".setup{}
+      require "lsp_signature".setup{
+        hint_prefix = " "
+      }
 
       local lspinstaller = require('mason-lspconfig')
       local lspconfig = require('lspconfig')
