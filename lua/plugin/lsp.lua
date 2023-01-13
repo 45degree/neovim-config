@@ -172,7 +172,7 @@ return function(use)
     after = "telescope.nvim",
     config = function ()
       local saga = require("lspsaga")
-      saga.init_lsp_saga({
+      saga.setup({
         symbol_in_winbar = {
             in_custom = true,
             enable = false,
