@@ -176,23 +176,51 @@ return function(use)
       local saga = require("lspsaga")
       saga.setup({
         symbol_in_winbar = {
-            in_custom = true,
-            enable = false,
-            separator = '> ',
-            show_file = true,
-            -- define how to customize filename, eg: %:., %
-            -- if not set, use default value `%:t`
-            -- more information see `vim.fn.expand` or `expand`
-            -- ## only valid after set `show_file = true`
-            file_formatter = "",
-            click_support = false,
+          enable = true,
+          separator = ' > ',
+          hide_keyword = true,
+          show_file = true,
+          folder_level = 2,
+          respect_root = false,
+          color_mode = false,
         },
-        code_action_icon = '',
-        code_action_lightbulb = {
-          sign = false,
-          update_time = 150,
-          virtual_text = true,
+        code_action = {
+          num_shortcut = true,
+          keys = {
+            -- string |table type
+            quit = 'q',
+            exec = '<CR>',
+          },
         },
+        rename = {
+          quit = 'q',
+          exec = '<CR>',
+          mark = 'x',
+          confirm = '<CR>',
+          in_select = true,
+          whole_project = false,
+        },
+        ui = {
+          -- currently only round theme
+          theme = 'round',
+          title = true,
+          -- border type can be single,double,rounded,solid,shadow.
+          border = 'single',
+          winblend = 0,
+          expand = '',
+          collapse = '',
+          preview = ' ',
+          code_action = '💡',
+          diagnostic = '🐞',
+          incoming = ' ',
+          outgoing = ' ',
+          colors = {
+            --float window normal background color
+            normal_bg = 'NONE',
+            --title background color
+            title_bg = '#afd700',
+          },
+        }
       })
 
       vim.diagnostic.config{
