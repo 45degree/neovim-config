@@ -2,14 +2,6 @@
 
 return function(use)
 
-  -- 代码提纲
-  use {
-    'stevearc/aerial.nvim',
-    config = function()
-      require('aerial').setup()
-    end
-  }
-
   -- 快速注释
   use {
     'numToStr/Comment.nvim',
