@@ -197,8 +197,7 @@ return function(use)
           exec = '<CR>',
           mark = 'x',
           confirm = '<CR>',
-          in_select = true,
-          whole_project = false,
+          in_select = false,
         },
         ui = {
           -- currently only round theme
