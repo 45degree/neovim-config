@@ -1,35 +1,34 @@
 return {
   -- 代码补全
-   "neovim/nvim-lspconfig",
+  "neovim/nvim-lspconfig",
 
-   {
-     "williamboman/mason.nvim",
-     lazy = false,
-     dependences = {
-       "williamboman/mason-lspconfig.nvim",
-       "ray-x/lsp_signature.nvim",
-       "hrsh7th/cmp-nvim-lsp", --neovim 内置 LSP 客户端的 nvim-cmp 源
-     },
-     config = function()
-       require("mason").setup{}
-       require("mason-lspconfig").setup()
-       require "lsp_signature".setup{
-         hint_prefix = " "
-       }
+  {
+    "williamboman/mason.nvim",
+    dependencies = {
+      "williamboman/mason-lspconfig.nvim",
+      "ray-x/lsp_signature.nvim",
+      "hrsh7th/cmp-nvim-lsp", --neovim 内置 LSP 客户端的 nvim-cmp 源
+    },
+    config = function()
+      require("mason").setup{}
+      require("mason-lspconfig").setup()
+      require "lsp_signature".setup{
+        hint_prefix = " "
+      }
 
-       local lspinstaller = require('mason-lspconfig')
-       local lspconfig = require('lspconfig')
+      local lspinstaller = require('mason-lspconfig')
+      local lspconfig = require('lspconfig')
 
-       for _, server in ipairs(lspinstaller.get_installed_servers()) do
-         local config = require('config.lsp')(server)
-         lspconfig[server].setup(config)
-       end
-     end
+      for _, server in ipairs(lspinstaller.get_installed_servers()) do
+        local config = require('config.lsp')(server)
+        lspconfig[server].setup(config)
+      end
+    end
   },
 
   {
     "hrsh7th/nvim-cmp",
-    dependences = {
+     dependencies = {
       "SirVer/ultisnips",
       'quangnguyen30192/cmp-nvim-ultisnips',
       "hrsh7th/cmp-buffer", --从buffer中智能提示
@@ -47,7 +46,7 @@ return {
 
   {
     "folke/trouble.nvim",
-    dependences = {
+    dependencies = {
       "nvim-cmp",
       "kyazdani42/nvim-web-devicons",
     },
@@ -59,7 +58,7 @@ return {
 
   {
     'folke/lsp-colors.nvim',
-    dependences = { "nvim-cmp" },
+    dependencies = { "nvim-cmp" },
     config = function()
       -- Lua
       require("lsp-colors").setup({
@@ -73,7 +72,7 @@ return {
 
   {
     'glepnir/lspsaga.nvim',
-    dependences = {"telescope.nvim"},
+    dependencies = {"telescope.nvim"},
     config = function ()
       require('config.plugins.lspsaga')
     end
@@ -88,7 +87,7 @@ return {
 
   {
     'jose-elias-alvarez/null-ls.nvim',
-    dependences = {"nvim-cmp"},
+    dependencies = {"nvim-cmp"},
     config = function ()
       require("null-ls").setup({
         sources = {

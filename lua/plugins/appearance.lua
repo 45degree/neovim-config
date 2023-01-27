@@ -61,7 +61,7 @@ return {
   -- 图标
   {
     'DaikyXendo/nvim-material-icon',
-    dependences = {"kyazdani42/nvim-web-devicons"},
+    dependencies = {"kyazdani42/nvim-web-devicons"},
     config = function ()
       local web_devicons_ok, web_devicons = pcall(require, "nvim-web-devicons")
       if not web_devicons_ok then
@@ -129,7 +129,7 @@ return {
   -- 状态栏
   {
     'nvim-lualine/lualine.nvim',
-    dependences = {'kyazdani42/nvim-web-devicons'},
+    dependencies = {'kyazdani42/nvim-web-devicons'},
     config = function ()
       require('config.plugins.lualine')
     end
@@ -147,27 +147,11 @@ return {
   {
     'lukas-reineke/indent-blankline.nvim',
     config = function()
-      vim.opt.list = true
-      vim.cmd [[highlight IndentBlanklineIndent1 guifg=#666666 gui=nocombine]]
-      vim.cmd [[highlight IndentBlanklineIndent2 guifg=#666666 gui=nocombine]]
-      vim.cmd [[highlight IndentBlanklineIndent3 guifg=#666666 gui=nocombine]]
-      vim.cmd [[highlight IndentBlanklineIndent4 guifg=#666666 gui=nocombine]]
-      vim.cmd [[highlight IndentBlanklineIndent5 guifg=#666666 gui=nocombine]]
-      vim.cmd [[highlight IndentBlanklineIndent6 guifg=#666666 gui=nocombine]]
-
       require("indent_blankline").setup {
         show_current_context = true,
         show_current_context_start = true,
         buftype_exclude = { "terminal", "nofile", "prompt"},
         filetype_exclude = { "dashboard", "coc-explorer", "NvimTree", "neo-tree"},
-        char_highlight_list = {
-          "IndentBlanklineIndent1",
-          "IndentBlanklineIndent2",
-          "IndentBlanklineIndent3",
-          "IndentBlanklineIndent4",
-          "IndentBlanklineIndent5",
-          "IndentBlanklineIndent6",
-        },
       }
     end
   },
@@ -175,7 +159,7 @@ return {
   -- 提示
   {
     'rcarriga/nvim-notify',
-    dependences = {"nvim-telescope/telescope.nvim"},
+    dependencies = {"nvim-telescope/telescope.nvim"},
     config = function ()
       vim.notify = require("notify")
       require("telescope").load_extension("notify")

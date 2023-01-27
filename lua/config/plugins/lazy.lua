@@ -118,7 +118,7 @@ return {
       disable_events = { "UIEnter", "BufReadPre" },
       ttl = 3600 * 24 * 5, -- keep unused modules for up to 5 days
     },
-    reset_packpath = false, -- reset the package path to improve startup time
+    reset_packpath = true, -- reset the package path to improve startup time
     rtp = {
       reset = true, -- reset the runtime path to $VIMRUNTIME and your config directory
       ---@type string[]

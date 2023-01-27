@@ -10,7 +10,7 @@ return {
   -- 快速文档
   {
     "danymat/neogen",
-    dependences = {"nvim-treesitter/nvim-treesitter"},
+    dependencies = {"nvim-treesitter/nvim-treesitter"},
     config = function()
       require('neogen').setup {}
     end,
@@ -19,7 +19,7 @@ return {
   -- todo comments
   {
     "folke/todo-comments.nvim",
-    dependences = {"nvim-lua/plenary.nvim"},
+    dependencies = {"nvim-lua/plenary.nvim"},
     config = function()
       require("todo-comments").setup {
       }
@@ -29,7 +29,7 @@ return {
   -- 代码高亮
   {
     'nvim-treesitter/nvim-treesitter',
-    dependences = {
+    dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
       'p00f/nvim-ts-rainbow',
     },

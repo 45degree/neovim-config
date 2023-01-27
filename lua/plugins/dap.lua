@@ -1,6 +1,9 @@
 return {
   {
     'mfussenegger/nvim-dap',
+    dependencies = {
+      "rcarriga/nvim-dap-ui",
+    },
     config = function ()
       vim.fn.sign_define("DapBreakpoint", {text=' ', texthl='', linehl='', numhl=''})
       vim.fn.sign_define("DapBreakpointCondition", {text=' ', texthl='', linehl='', numhl=''})
@@ -75,7 +78,7 @@ return {
 
   {
     'theHamsta/nvim-dap-virtual-text',
-    after = "nvim-dap",
+    dependencies = {"nvim-dap"},
     config = function()
       require("nvim-dap-virtual-text").setup {
           enabled = true,                     -- enable this plugin (the default)
@@ -96,7 +99,7 @@ return {
 
   {
     'nvim-telescope/telescope-dap.nvim',
-    dependences = {
+    dependencies = {
       "telescope.nvim"
     },
     config = function ()
