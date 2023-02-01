@@ -29,9 +29,9 @@ local plugins = require('plugins')
 require("lazy").setup(plugins.plugins, plugins.opts)
 
 
-local option_config = require('option_config')
-option_config.read(vim.api.nvim_eval('stdpath("config")') .. '/option_config.json')
-vim.cmd('colorscheme '.. option_config.getColorTheme())
+-- local option_config = require('option_config')
+-- option_config.read(vim.api.nvim_eval('stdpath("config")') .. '/option_config.json')
+-- vim.cmd('colorscheme '.. option_config.getColorTheme())
 require('config.fcitx-config')
 require('config.dap.dap-config').setup()
 

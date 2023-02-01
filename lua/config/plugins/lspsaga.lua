@@ -2,12 +2,12 @@ local saga = require("lspsaga")
 saga.setup({
   symbol_in_winbar = {
     enable = true,
-    separator = ' > ',
+    separator = " > ",
     hide_keyword = true,
     show_file = true,
     folder_level = 2,
     respect_root = false,
-    color_mode = false,
+    color_mode = true,
   },
   code_action = {
     num_shortcut = true,
@@ -25,25 +25,22 @@ saga.setup({
     in_select = false,
   },
   ui = {
-    -- currently only round theme
-    theme = 'round',
+    -- Currently, only the round theme exists
+    theme = "round",
+    -- This option only works in Neovim 0.9
     title = true,
-    -- border type can be single,double,rounded,solid,shadow.
-    border = 'single',
+    -- Border type can be single, double, rounded, solid, shadow.
+    border = "single",
     winblend = 0,
-    expand = '',
-    collapse = '',
-    preview = ' ',
-    code_action = '💡',
-    diagnostic = '🐞',
-    incoming = ' ',
-    outgoing = ' ',
-    colors = {
-      --float window normal background color
-      normal_bg = 'NONE',
-      --title background color
-      title_bg = '#afd700',
-    },
+    expand = "",
+    collapse = "",
+    preview = " ",
+    code_action = "💡",
+    diagnostic = "🐞",
+    incoming = " ",
+    outgoing = " ",
+    hover = ' ',
+    kind = {},
   }
 })
 

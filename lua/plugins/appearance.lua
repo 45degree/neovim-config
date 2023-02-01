@@ -4,6 +4,7 @@ return {
   -- 颜色主题
   {
     'sainnhe/gruvbox-material',
+    lazy = false,
     priority = 1000,
     config = function ()
       require('config.colorTheme.gruvbox-material')
@@ -12,36 +13,47 @@ return {
 
   {
     'sainnhe/edge',
+    lazy = false,
     priority = 1000,
+    config = function()
+      -- load the colorscheme here
+      vim.cmd([[colorscheme edge]])
+    end,
   },
 
   {
     'sainnhe/everforest',
+    lazy = false,
     priority = 1000,
   },
 
   {
     'rmehri01/onenord.nvim',
+    lazy = false,
     priority = 1000,
   },
 
   {
     'sainnhe/sonokai',
+    lazy = false,
     priority = 1000,
   },
 
   {
     'glepnir/zephyr-nvim',
+    lazy = false,
     priority = 1000,
   },
 
   {
     'olimorris/onedarkpro.nvim',
+    lazy = false,
     priority = 1000,
   },
 
   {
     "catppuccin/nvim",
+    lazy = false,
     name = "catppuccin",
     build = ":CatppuccinCompile",
     config = function ()
@@ -51,6 +63,7 @@ return {
 
   {
     'folke/tokyonight.nvim',
+    lazy = false,
     config = function()
       vim.g.tokyonight_transparent = true
       vim.g.tokyonight_transparent_sidebar = true
@@ -161,6 +174,10 @@ return {
     'rcarriga/nvim-notify',
     dependencies = {"nvim-telescope/telescope.nvim"},
     config = function ()
+      require("notify").setup({
+        background_colour = "#000000",
+      })
+
       vim.notify = require("notify")
       require("telescope").load_extension("notify")
     end
