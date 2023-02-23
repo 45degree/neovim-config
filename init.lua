@@ -34,7 +34,3 @@ require("lazy").setup(plugins.plugins, plugins.opts)
 -- vim.cmd('colorscheme '.. option_config.getColorTheme())
 require('config.fcitx-config')
 require('config.dap.dap-config').setup()
-
-if vim.fn.exists("g:nvui") or vim.fn.exists("g:goneovim") then
-  vim.opt.guifont = "JetBrainsMono Nerd Font:h10:sb"
-end
