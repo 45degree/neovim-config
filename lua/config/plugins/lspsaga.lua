@@ -41,7 +41,10 @@ saga.setup({
     outgoing = " ",
     hover = ' ',
     kind = {},
-  }
+  },
+  diagnostic = {
+    on_insert = false,
+  },
 })
 
 vim.diagnostic.config{
