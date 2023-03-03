@@ -12,6 +12,7 @@ function XMake:Build(targetName, args)
 end
 
 function XMake:Debug(targetName, args)
+  args = util.split_args(args)
   local dap_config = {
     name = targetName,
     program = project.GetTargetExecPath(targetName),

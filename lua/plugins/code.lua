@@ -53,5 +53,10 @@ return {
         create_commands = true,
       })
     end
+  },
+
+  -- xmake
+  {
+    dir = vim.fn.stdpath('config')..'/xmake.nvim'
   }
 }
