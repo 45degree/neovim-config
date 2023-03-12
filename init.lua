@@ -34,3 +34,8 @@ require("lazy").setup(plugins.plugins, plugins.opts)
 -- vim.cmd('colorscheme '.. option_config.getColorTheme())
 require('config.fcitx-config')
 require('config.dap.dap-config').setup()
+
+if vim.fn.exists('g:gonvim_running') then
+  vim.opt.guifont = "SauceCodePro Nerd Font:h10:sb"
+  vim.opt.guifontwide="Sarasa Fixed SC:h10:sb"
+end
