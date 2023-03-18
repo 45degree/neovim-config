@@ -18,7 +18,37 @@ function M.GetProjectTarget()
     end,
   }):sync()
 
-  return targetData:split('__end__')[1]:split('\n')
+  local targets = {};
+  for k, v in pairs(targetData:split('__end__')[1]:split('\n')) do
+    v = v:trim();
+    if v ~= "" then
+      print(k, v, type(v))
+      table.insert(targets, v);
+    end
+  end
+  return targets;
+end
+
+function M.GetProjectBinaryTarget()
+  local targetData = ""
+  Job:new({
+    command = config.defaults.xmake_executable,
+    args = {'lua', Path:new(__dirname, './xmakeScript/binary_target.lua'):__tostring()},
+    env = { PATH = vim.env.PATH, ['COLORTERM'] = 'nocolor' },
+    on_stdout = function(_, data)
+      targetData = targetData..'\n'..tostring(data)
+    end,
+  }):sync()
+
+  local targets = {};
+  for k, v in pairs(targetData:split('__end__')[1]:split('\n')) do
+    v = v:trim();
+    if v ~= "" then
+      print(k, v, type(v))
+      table.insert(targets, v);
+    end
+  end
+  return targets;
 end
 
 function M.GetTargetEnvs(targetName)

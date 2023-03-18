@@ -14,12 +14,12 @@ local project = require('xmake.util.project')
 local actions = require "telescope.actions"
 local action_state = require "telescope.actions.state"
 
-local targetSelect = function(opts)
+local debugTargetSelect = function(opts)
   opts = opts or {}
   pickers.new(opts, {
     prompt_title = "targetSelect",
     finder = finders.new_table {
-      results = project.GetProjectTarget(),
+      results = project.GetProjectBinaryTarget(),
     },
     sorter = conf.generic_sorter(opts),
     attach_mappings = function(prompt_bufnr, map)
@@ -38,7 +38,7 @@ end
 
 local command = function (commandArgs)
   if commandArgs.fargs[1] == "Debug" then
-    targetSelect({});
+    debugTargetSelect({});
   end
 end
 
@@ -61,4 +61,4 @@ local function complete(arg, cmd_line)
 end
 
 
-vim.api.nvim_create_user_command('XMake', command, { nargs = '*', complete = complete})
+vim.api.nvim_create_user_command('XMake', command, { nargs = 1, complete = complete})
