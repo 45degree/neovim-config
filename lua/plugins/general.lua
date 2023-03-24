@@ -4,17 +4,17 @@ return {
 
   {
     'folke/which-key.nvim',
-    config = function ()
-      require('config.plugins.which-key-nvim')
-    end
+    config = function()
+      require 'config.plugins.which-key-nvim'
+    end,
   },
 
   -- 快速跳转
   {
     'ggandor/leap.nvim',
-    config = function ()
+    config = function()
       require('leap').add_default_mappings()
-    end
+    end,
   },
 
   -- sudo保存
@@ -22,52 +22,52 @@ return {
     'lambdalisue/suda.vim',
     config = function()
       vim.g.suda_smart_edit = 1
-    end
+    end,
   },
 
   {
     'ethanholz/nvim-lastplace',
     config = function()
-      require'nvim-lastplace'.setup {
-        lastplace_ignore_buftype = {"quickfix", "nofile", "help"},
-        lastplace_ignore_filetype = {"gitcommit", "gitrebase", "svn", "hgcommit"},
-        lastplace_open_folds = true
+      require('nvim-lastplace').setup {
+        lastplace_ignore_buftype = { 'quickfix', 'nofile', 'help' },
+        lastplace_ignore_filetype = { 'gitcommit', 'gitrebase', 'svn', 'hgcommit' },
+        lastplace_open_folds = true,
       }
-    end
+    end,
   },
 
   {
-    "nvim-neo-tree/neo-tree.nvim",
-    branch = "v2.x",
+    'nvim-neo-tree/neo-tree.nvim',
+    branch = 'v2.x',
     dependencies = {
-      "nvim-lua/plenary.nvim",
-      "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
-      "MunifTanjim/nui.nvim",
+      'nvim-lua/plenary.nvim',
+      'kyazdani42/nvim-web-devicons', -- not strictly required, but recommended
+      'MunifTanjim/nui.nvim',
     },
-    config = function ()
-      require('config.plugins.neo-tree-nvim')
-    end
+    config = function()
+      require 'config.plugins.neo-tree-nvim'
+    end,
   },
 
   -- Lua
   {
-    "ahmedkhalf/project.nvim",
+    'ahmedkhalf/project.nvim',
     config = function()
-      require("project_nvim").setup {
+      require('project_nvim').setup {
         sync_root_with_cwd = true,
         respect_buf_cwd = true,
         update_focused_file = {
           enable = true,
-          update_root = true
+          update_root = true,
         },
       }
-    end
+    end,
   },
 
   -- 下划线
   {
-    "yamatsum/nvim-cursorline",
-    config = function ()
+    'yamatsum/nvim-cursorline',
+    config = function()
       require('nvim-cursorline').setup {
         cursorline = {
           enable = false,
@@ -78,14 +78,14 @@ return {
           enable = true,
           min_length = 3,
           hl = { underline = true },
-        }
+        },
       }
-    end
+    end,
   },
 
   {
-    "hrsh7th/vim-eft",
-    config = function ()
+    'hrsh7th/vim-eft',
+    config = function()
       vim.api.nvim_set_keymap('n', ';', '<Plug>(eft-repeat)', {})
       vim.api.nvim_set_keymap('x', ';', '<Plug>(eft-repeat)', {})
       vim.api.nvim_set_keymap('o', ';', '<Plug>(eft-repeat)', {})
@@ -105,23 +105,23 @@ return {
       vim.api.nvim_set_keymap('n', 'T', '<Plug>(eft-T)', {})
       vim.api.nvim_set_keymap('x', 'T', '<Plug>(eft-T)', {})
       vim.api.nvim_set_keymap('o', 'T', '<Plug>(eft-T)', {})
-    end
+    end,
   },
 
   -- 自动匹配括号
   {
     'windwp/nvim-autopairs',
-    config = function ()
-        require('nvim-autopairs').setup{}
-    end
+    config = function()
+      require('nvim-autopairs').setup {}
+    end,
   },
 
   -- 模糊搜索
   {
-      "nvim-telescope/telescope.nvim",
-      config = function()
-        require('config.plugins.telescope')
-      end
+    'nvim-telescope/telescope.nvim',
+    config = function()
+      require 'config.plugins.telescope'
+    end,
   },
 
   -- 成对编辑
@@ -129,32 +129,32 @@ return {
 
   -- 终端
   {
-    "akinsho/toggleterm.nvim",
-    event = "BufRead",
-    config = function ()
-      require('config.plugins.toggleterm')
-    end
+    'akinsho/toggleterm.nvim',
+    event = 'BufRead',
+    config = function()
+      require 'config.plugins.toggleterm'
+    end,
   },
 
   -- markdown
   {
     'iamcco/markdown-preview.nvim',
-    ft = "markdown",
+    ft = 'markdown',
     build = function()
-      vim.call('mkdp#util#install')
+      vim.call 'mkdp#util#install'
     end,
-    config = function ()
-      require('config.plugins.markdown-preview')
-    end
+    config = function()
+      require 'config.plugins.markdown-preview'
+    end,
   },
 
   -- 菜单
   {
     'gelguy/wilder.nvim',
-    event = "CmdlineEnter",
-    config = function ()
-      require('config.plugins.wilder')
-    end
+    event = 'CmdlineEnter',
+    config = function()
+      require 'config.plugins.wilder'
+    end,
   },
 
   -- 窗口选择
@@ -162,7 +162,7 @@ return {
     -- only needed if you want to use the commands with "_with_window_picker" suffix
     's1n7ax/nvim-window-picker',
     config = function()
-      require('config.plugins.nvim-window-picker')
+      require 'config.plugins.nvim-window-picker'
     end,
-  }
+  },
 }

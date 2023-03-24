@@ -1,6 +1,5 @@
 ---@diagnostic disable: undefined-global
 
-
 -- For light version.
 -- set background=light
 

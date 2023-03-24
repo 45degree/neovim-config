@@ -1,3 +1,3 @@
 return {
-  'arrufat/vala.vim'
+  'arrufat/vala.vim',
 }

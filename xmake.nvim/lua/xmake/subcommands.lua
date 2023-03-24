@@ -1,5 +1,5 @@
-local xmake = require('xmake')
-local project = require('xmake.util.project')
+local xmake = require 'xmake'
+local project = require 'xmake.util.project'
 
 local subcommands = {}
 
@@ -44,7 +44,7 @@ function subcommands.run(subcommand)
     return
   end
 
-  local target = ""
+  local target = ''
   local args = {}
   for k, v in ipairs(subcommand.fargs) do
     if k == 2 then

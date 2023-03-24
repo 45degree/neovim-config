@@ -3,14 +3,14 @@ return {
   {
     'numToStr/Comment.nvim',
     config = function()
-        require('Comment').setup()
-    end
+      require('Comment').setup()
+    end,
   },
 
   -- 快速文档
   {
-    "danymat/neogen",
-    dependencies = {"nvim-treesitter/nvim-treesitter"},
+    'danymat/neogen',
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
     config = function()
       require('neogen').setup {}
     end,
@@ -18,12 +18,11 @@ return {
 
   -- todo comments
   {
-    "folke/todo-comments.nvim",
-    dependencies = {"nvim-lua/plenary.nvim"},
+    'folke/todo-comments.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
-      require("todo-comments").setup {
-      }
-    end
+      require('todo-comments').setup {}
+    end,
   },
 
   -- 代码高亮
@@ -34,8 +33,8 @@ return {
       'p00f/nvim-ts-rainbow',
     },
     config = function()
-      require('config.plugins.nvim-treesitter')
-    end
+      require 'config.plugins.nvim-treesitter'
+    end,
   },
 
   -- 搜粟替换
@@ -47,16 +46,16 @@ return {
   -- 高亮搜索
   {
     'asiryk/auto-hlsearch.nvim',
-    config = function ()
-      require("auto-hlsearch").setup({
-        remap_keys = { "/", "?", "*", "#", "n", "N" },
+    config = function()
+      require('auto-hlsearch').setup {
+        remap_keys = { '/', '?', '*', '#', 'n', 'N' },
         create_commands = true,
-      })
-    end
+      }
+    end,
   },
 
   -- xmake
   {
-    dir = vim.fn.stdpath('config')..'/xmake.nvim'
-  }
+    dir = vim.fn.stdpath 'config' .. '/xmake.nvim',
+  },
 }

@@ -1,8 +1,8 @@
-local saga = require("lspsaga")
-saga.setup({
+local saga = require 'lspsaga'
+saga.setup {
   symbol_in_winbar = {
     enable = true,
-    separator = " > ",
+    separator = ' > ',
     hide_keyword = true,
     show_file = true,
     folder_level = 2,
@@ -26,42 +26,42 @@ saga.setup({
   },
   ui = {
     -- Currently, only the round theme exists
-    theme = "round",
+    theme = 'round',
     -- This option only works in Neovim 0.9
     title = true,
     -- Border type can be single, double, rounded, solid, shadow.
-    border = "single",
+    border = 'single',
     winblend = 0,
-    expand = "",
-    collapse = "",
-    preview = " ",
-    code_action = "💡",
-    diagnostic = "🐞",
-    incoming = " ",
-    outgoing = " ",
+    expand = '',
+    collapse = '',
+    preview = ' ',
+    code_action = '💡',
+    diagnostic = '🐞',
+    incoming = ' ',
+    outgoing = ' ',
     hover = ' ',
     kind = {},
   },
   diagnostic = {
     on_insert = false,
   },
-})
+}
 
-vim.diagnostic.config{
+vim.diagnostic.config {
   virtual_text = {
     prefix = '',
-    sources = "always"
+    sources = 'always',
   },
   float = {
-    sources = "always"
+    sources = 'always',
   },
   update_in_insert = false,
 }
 
 --- In lsp attach function
-local opts = { noremap=true, silent=true }
+local opts = { noremap = true, silent = true }
 vim.api.nvim_set_keymap('n', 'gd', '<cmd>Telescope lsp_definitions theme=dropdown<cr>', opts)
-vim.api.nvim_set_keymap('n', 'K',  '<cmd>Lspsaga hover_doc<cr>', opts)
+vim.api.nvim_set_keymap('n', 'K', '<cmd>Lspsaga hover_doc<cr>', opts)
 vim.api.nvim_set_keymap('n', 'gi', '<cmd>Telescope lsp_implementations theme=dropdown<cr>', opts)
 vim.api.nvim_set_keymap('n', 'gr', '<cmd>Telescope lsp_references theme=dropdown<cr>', opts)
 vim.api.nvim_set_keymap('n', 'rn', '<cmd>Lspsaga rename<cr>', opts)

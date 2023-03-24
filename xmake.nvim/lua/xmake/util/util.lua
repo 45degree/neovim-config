@@ -1,14 +1,14 @@
-local Job = require('plenary.job')
-local Path = require('plenary.path')
-local config = require('xmake.config')
-local scandir = require('plenary.scandir')
+local Job = require 'plenary.job'
+local Path = require 'plenary.path'
+local config = require 'xmake.config'
+local scandir = require 'plenary.scandir'
 local utils = {}
 
 local function append_to_quickfix(lines)
   vim.fn.setqflist({}, 'a', { lines = lines })
   -- Scrolls the quickfix buffer if not active
   if vim.bo.buftype ~= 'quickfix' then
-    vim.api.nvim_command('cbottom')
+    vim.api.nvim_command 'cbottom'
   end
   if config.on_build_output then
     config.on_build_output(lines)
@@ -17,7 +17,7 @@ end
 
 local function show_quickfix()
   vim.api.nvim_command(config.quickfix.pos .. ' copen ' .. config.quickfix.height)
-  vim.api.nvim_command('wincmd p')
+  vim.api.nvim_command 'wincmd p'
 end
 
 local function read_to_quickfix()
@@ -60,7 +60,9 @@ local function read_to_quickfix()
 
           if found_newline then
             if not result_line then
-              return vim.api.nvim_err_writeln('Broken data thing due to: ' .. tostring(result_line) .. ' ' .. tostring(data))
+              return vim.api.nvim_err_writeln(
+                'Broken data thing due to: ' .. tostring(result_line) .. ' ' .. tostring(data)
+              )
             end
 
             table.insert(lines, err and err or result_line)
@@ -131,7 +133,7 @@ function utils.join_args(args)
 
   -- Add quotes if argument contain spaces
   for index, arg in ipairs(args) do
-    if arg:find(' ') then
+    if arg:find ' ' then
       args[index] = '"' .. arg .. '"'
     end
   end
@@ -145,7 +147,7 @@ function utils.copy_folder(folder, destination)
     local target_entry = destination / entry:sub(#folder.filename + 2)
     local source_entry = Path:new(entry)
     if source_entry:is_file() then
-      if not source_entry:copy({ destination = target_entry.filename }) then
+      if not source_entry:copy { destination = target_entry.filename } then
         error('Unable to copy ' .. target_entry)
       end
     else
@@ -160,7 +162,7 @@ function utils.run(cmd, args, opts)
   end
 
   if config.save_before_build and cmd == config.cmake_executable then
-    vim.api.nvim_command('silent! wall')
+    vim.api.nvim_command 'silent! wall'
   end
 
   vim.fn.setqflist({}, ' ', { title = cmd .. ' ' .. table.concat(args, ' ') })
@@ -169,19 +171,19 @@ function utils.run(cmd, args, opts)
     show_quickfix()
   end
 
-  utils.last_job = Job:new({
+  utils.last_job = Job:new {
     command = cmd,
     args = args,
     cwd = opts.cwd,
     env = opts.env,
     on_exit = vim.schedule_wrap(function(_, code, signal)
-      append_to_quickfix({ 'Exited with code ' .. (signal == 0 and code or 128 + signal) })
+      append_to_quickfix { 'Exited with code ' .. (signal == 0 and code or 128 + signal) }
       if not opts.force_quickfix then
         show_quickfix()
-        vim.api.nvim_command('cbottom')
+        vim.api.nvim_command 'cbottom'
       end
     end),
-  })
+  }
 
   utils.last_job:start()
   utils.last_job.stderr:read_start(read_to_quickfix())
