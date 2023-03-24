@@ -1,11 +1,11 @@
-local json = require 'json.json'
-local io = require 'io'
+local json = require('json.json')
+local io = require('io')
 
 local option_config_list = {}
 
 local function readFile(fileName)
   local f = assert(io.open(fileName, 'r'))
-  local content = f:read '*all'
+  local content = f:read('*all')
   f:close()
   return content
 end

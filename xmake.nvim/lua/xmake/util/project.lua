@@ -1,11 +1,11 @@
-require 'xmake.util.string'
-local Job = require 'plenary.job'
-local Path = require 'plenary.path'
-local config = require 'xmake.config'
+require('xmake.util.string')
+local Job = require('plenary.job')
+local Path = require('plenary.path')
+local config = require('xmake.config')
 
 local M = {}
 
-local __dirname = debug.getinfo(1, 'S').source:sub(2, -1):match '^.*/'
+local __dirname = debug.getinfo(1, 'S').source:sub(2, -1):match('^.*/')
 
 function M.GetProjectTarget()
   local targetData = ''
@@ -19,7 +19,7 @@ function M.GetProjectTarget()
   }):sync()
 
   local targets = {}
-  for k, v in pairs(targetData:split('__end__')[1]:split '\n') do
+  for k, v in pairs(targetData:split('__end__')[1]:split('\n')) do
     v = v:trim()
     if v ~= '' then
       print(k, v, type(v))
@@ -41,7 +41,7 @@ function M.GetProjectBinaryTarget()
   }):sync()
 
   local targets = {}
-  for k, v in pairs(targetData:split('__end__')[1]:split '\n') do
+  for k, v in pairs(targetData:split('__end__')[1]:split('\n')) do
     v = v:trim()
     if v ~= '' then
       print(k, v, type(v))
@@ -64,7 +64,7 @@ function M.GetTargetEnvs(targetName)
 
   local env = string.gsub(targetData:split('__end__')[1], '', '')
 
-  if vim.fn.has 'win32' == 1 then
+  if vim.fn.has('win32') == 1 then
     env = string.gsub(env, '\\', '\\\\')
   end
 

@@ -12,7 +12,7 @@ return {
     'danymat/neogen',
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
     config = function()
-      require('neogen').setup {}
+      require('neogen').setup({})
     end,
   },
 
@@ -21,7 +21,7 @@ return {
     'folke/todo-comments.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
-      require('todo-comments').setup {}
+      require('todo-comments').setup({})
     end,
   },
 
@@ -33,7 +33,7 @@ return {
       'p00f/nvim-ts-rainbow',
     },
     config = function()
-      require 'config.plugins.nvim-treesitter'
+      require('config.plugins.nvim-treesitter')
     end,
   },
 
@@ -47,15 +47,15 @@ return {
   {
     'asiryk/auto-hlsearch.nvim',
     config = function()
-      require('auto-hlsearch').setup {
+      require('auto-hlsearch').setup({
         remap_keys = { '/', '?', '*', '#', 'n', 'N' },
         create_commands = true,
-      }
+      })
     end,
   },
 
   -- xmake
   {
-    dir = vim.fn.stdpath 'config' .. '/xmake.nvim',
+    dir = vim.fn.stdpath('config') .. '/xmake.nvim',
   },
 }

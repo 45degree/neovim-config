@@ -7,8 +7,8 @@ return {
       'nvim-lspconfig',
     },
     config = function()
-      local clangdConfig = require 'config.lsp' 'clangd'
-      require('clangd_extensions').setup {
+      local clangdConfig = require('config.lsp')('clangd')
+      require('clangd_extensions').setup({
         server = clangdConfig,
         extensions = {
           -- defaults:
@@ -72,7 +72,7 @@ return {
             },
           },
         },
-      }
+      })
     end,
   },
 }

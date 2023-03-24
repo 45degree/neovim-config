@@ -10,17 +10,17 @@ return {
       'hrsh7th/cmp-nvim-lsp', --neovim 内置 LSP 客户端的 nvim-cmp 源
     },
     config = function()
-      require('mason').setup {}
+      require('mason').setup({})
       require('mason-lspconfig').setup()
-      require('lsp_signature').setup {
+      require('lsp_signature').setup({
         hint_prefix = ' ',
-      }
+      })
 
-      local lspinstaller = require 'mason-lspconfig'
-      local lspconfig = require 'lspconfig'
+      local lspinstaller = require('mason-lspconfig')
+      local lspconfig = require('lspconfig')
 
       for _, server in ipairs(lspinstaller.get_installed_servers()) do
-        local config = require 'config.lsp'(server)
+        local config = require('config.lsp')(server)
         lspconfig[server].setup(config)
       end
     end,
@@ -37,7 +37,7 @@ return {
       'windwp/nvim-autopairs',
     },
     config = function()
-      require 'config.plugins.nvim-cmp'
+      require('config.plugins.nvim-cmp')
     end,
   },
 
@@ -51,7 +51,7 @@ return {
       'kyazdani42/nvim-web-devicons',
     },
     config = function()
-      require('trouble').setup {}
+      require('trouble').setup({})
     end,
   },
 
@@ -60,12 +60,12 @@ return {
     dependencies = { 'nvim-cmp' },
     config = function()
       -- Lua
-      require('lsp-colors').setup {
+      require('lsp-colors').setup({
         Error = '#db4b4b',
         Warning = '#e0af68',
         Information = '#0db9d7',
         Hint = '#10B981',
-      }
+      })
     end,
   },
 
@@ -73,14 +73,14 @@ return {
     'glepnir/lspsaga.nvim',
     dependencies = { 'telescope.nvim' },
     config = function()
-      require 'config.plugins.lspsaga'
+      require('config.plugins.lspsaga')
     end,
   },
 
   {
     'j-hui/fidget.nvim',
     config = function()
-      require('fidget').setup {}
+      require('fidget').setup({})
     end,
   },
 
@@ -93,34 +93,34 @@ return {
       'nvim-cmp',
     },
     config = function()
-      require('mason-null-ls').setup {
+      require('mason-null-ls').setup({
         automatic_setup = true,
-      }
-      require('mason-null-ls').setup_handlers {
+      })
+      require('mason-null-ls').setup_handlers({
         function(source_name, methods)
           -- all sources with no handler get passed here
 
           -- To keep the original functionality of `automatic_setup = true`,
           -- please add the below.
-          require 'mason-null-ls.automatic_setup'(source_name, methods)
+          require('mason-null-ls.automatic_setup')(source_name, methods)
         end,
-      }
-      require('null-ls').setup {
+      })
+      require('null-ls').setup({
         -- you can reuse a shared lspconfig on_attach callback here
         on_attach = function(client, bufnr)
-          if client.supports_method 'textDocument/formatting' then
-            vim.api.nvim_clear_autocmds { group = augroup, buffer = bufnr }
+          if client.supports_method('textDocument/formatting') then
+            vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
             vim.api.nvim_create_autocmd('BufWritePre', {
               group = augroup,
               buffer = bufnr,
               -- on 0.8, you should use vim.lsp.buf.format instead
               callback = function()
-                vim.lsp.buf.format { bufnr = bufnr }
+                vim.lsp.buf.format({ bufnr = bufnr })
               end,
             })
           end
         end,
-      }
+      })
     end,
   },
 }

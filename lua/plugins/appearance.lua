@@ -7,7 +7,7 @@ return {
     lazy = false,
     priority = 1000,
     config = function()
-      require 'config.colorTheme.gruvbox-material'
+      require('config.colorTheme.gruvbox-material')
     end,
   },
 
@@ -25,15 +25,15 @@ return {
     dependencies = { 'rktjmp/lush.nvim' },
     config = function()
       -- your optional config goes here, see below.
-      require('bluloco').setup {
+      require('bluloco').setup({
         style = 'auto', -- "auto" | "dark" | "light"
         transparent = false,
         italics = false,
-        terminal = vim.fn.has 'gui_running' == 1, -- bluoco colors are enabled in gui terminals per default.
+        terminal = vim.fn.has('gui_running') == 1, -- bluoco colors are enabled in gui terminals per default.
         guicursor = true,
-      }
+      })
 
-      vim.cmd [[colorscheme bluloco]]
+      vim.cmd([[colorscheme bluloco]])
     end,
   },
 
@@ -87,7 +87,7 @@ return {
     name = 'catppuccin',
     build = ':CatppuccinCompile',
     config = function()
-      require 'config.colorTheme.catppuccin'
+      require('config.colorTheme.catppuccin')
     end,
   },
 
@@ -116,11 +116,11 @@ return {
         return
       end
 
-      web_devicons.setup {
+      web_devicons.setup({
         override = material_icon.get_icons(),
-      }
+      })
 
-      require('nvim-material-icon').setup {
+      require('nvim-material-icon').setup({
         -- your personnal icons can go here (to override)
         -- you can specify color or cterm_color instead of specifying both of them
         -- DevIcon will be appended to `name`
@@ -138,7 +138,7 @@ return {
         -- globally enable default icons (default to false)
         -- will get overriden by `get_icons` option
         default = true,
-      }
+      })
     end,
   },
 
@@ -147,8 +147,8 @@ return {
     'goolord/alpha-nvim',
     config = function()
       -- require'alpha'.setup(require'alpha.themes.dashboard'.config)
-      local alpha = require 'alpha'
-      local dashboard = require 'alpha.themes.dashboard'
+      local alpha = require('alpha')
+      local dashboard = require('alpha.themes.dashboard')
       dashboard.section.header.val = {
         [[                               __                ]],
         [[  ___     ___    ___   __  __ /\_\    ___ ___    ]],
@@ -176,7 +176,7 @@ return {
       'kyazdani42/nvim-web-devicons',
     },
     config = function()
-      require 'config.plugins.lualine'
+      require('config.plugins.lualine')
     end,
   },
 
@@ -184,7 +184,7 @@ return {
   {
     'romgrk/barbar.nvim',
     config = function()
-      require 'config.plugins.barbar'
+      require('config.plugins.barbar')
     end,
   },
 
@@ -192,12 +192,12 @@ return {
   {
     'lukas-reineke/indent-blankline.nvim',
     config = function()
-      require('indent_blankline').setup {
+      require('indent_blankline').setup({
         show_current_context = true,
         show_current_context_start = true,
         buftype_exclude = { 'terminal', 'nofile', 'prompt' },
         filetype_exclude = { 'dashboard', 'coc-explorer', 'NvimTree', 'neo-tree' },
-      }
+      })
     end,
   },
 
@@ -206,12 +206,12 @@ return {
     'rcarriga/nvim-notify',
     dependencies = { 'nvim-telescope/telescope.nvim' },
     config = function()
-      require('notify').setup {
+      require('notify').setup({
         background_colour = '#000000',
-      }
+      })
 
-      vim.notify = require 'notify'
-      require('telescope').load_extension 'notify'
+      vim.notify = require('notify')
+      require('telescope').load_extension('notify')
     end,
   },
 

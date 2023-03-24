@@ -1,7 +1,7 @@
-local project = require 'xmake.util.project'
-local util = require 'xmake.util.util'
-local dap = require 'dap'
-local config = require 'xmake.config'
+local project = require('xmake.util.project')
+local util = require('xmake.util.util')
+local dap = require('dap')
+local config = require('xmake.config')
 
 local XMake = {}
 

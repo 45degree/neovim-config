@@ -17,11 +17,11 @@ return {
     config = function()
       local status_ok, dapui = pcall(require, 'dapui')
       if not status_ok then
-        vim.notify 'dapui not found'
+        vim.notify('dapui not found')
         return
       end
 
-      dapui.setup {
+      dapui.setup({
         icons = { expanded = '▾', collapsed = '▸' },
         mappings = {
           -- Use a table to apply multiple mappings
@@ -66,7 +66,7 @@ return {
           },
         },
         windows = { indent = 1 },
-      }
+      })
     end,
   },
 
@@ -74,7 +74,7 @@ return {
     'theHamsta/nvim-dap-virtual-text',
     dependencies = { 'nvim-dap' },
     config = function()
-      require('nvim-dap-virtual-text').setup {
+      require('nvim-dap-virtual-text').setup({
         enabled = true, -- enable this plugin (the default)
         enabled_commands = true, -- create commands DapVirtualTextEnable, DapVirtualTextDisable, DapVirtualTextToggle, (DapVirtualTextForceRefresh for refreshing when debug adapter did not notify its termination)
         highlight_changed_variables = true, -- highlight changed values with NvimDapVirtualTextChanged, else always NvimDapVirtualText
@@ -87,7 +87,7 @@ return {
         virt_lines = false, -- show virtual lines instead of virtual text (will flicker!)
         virt_text_win_col = nil, -- position the virtual text at a fixed window column (starting from the first text column) ,
         -- e.g. 80 to position at column 80, see `:h nvim_buf_set_extmark()`
-      }
+      })
     end,
   },
 
@@ -97,7 +97,7 @@ return {
       'telescope.nvim',
     },
     config = function()
-      require('telescope').load_extension 'dap'
+      require('telescope').load_extension('dap')
     end,
   },
 

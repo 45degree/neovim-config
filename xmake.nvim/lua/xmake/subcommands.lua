@@ -1,5 +1,5 @@
-local xmake = require 'xmake'
-local project = require 'xmake.util.project'
+local xmake = require('xmake')
+local project = require('xmake.util.project')
 
 local subcommands = {}
 

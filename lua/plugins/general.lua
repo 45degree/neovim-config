@@ -5,7 +5,7 @@ return {
   {
     'folke/which-key.nvim',
     config = function()
-      require 'config.plugins.which-key-nvim'
+      require('config.plugins.which-key-nvim')
     end,
   },
 
@@ -28,11 +28,11 @@ return {
   {
     'ethanholz/nvim-lastplace',
     config = function()
-      require('nvim-lastplace').setup {
+      require('nvim-lastplace').setup({
         lastplace_ignore_buftype = { 'quickfix', 'nofile', 'help' },
         lastplace_ignore_filetype = { 'gitcommit', 'gitrebase', 'svn', 'hgcommit' },
         lastplace_open_folds = true,
-      }
+      })
     end,
   },
 
@@ -45,7 +45,7 @@ return {
       'MunifTanjim/nui.nvim',
     },
     config = function()
-      require 'config.plugins.neo-tree-nvim'
+      require('config.plugins.neo-tree-nvim')
     end,
   },
 
@@ -53,14 +53,14 @@ return {
   {
     'ahmedkhalf/project.nvim',
     config = function()
-      require('project_nvim').setup {
+      require('project_nvim').setup({
         sync_root_with_cwd = true,
         respect_buf_cwd = true,
         update_focused_file = {
           enable = true,
           update_root = true,
         },
-      }
+      })
     end,
   },
 
@@ -68,7 +68,7 @@ return {
   {
     'yamatsum/nvim-cursorline',
     config = function()
-      require('nvim-cursorline').setup {
+      require('nvim-cursorline').setup({
         cursorline = {
           enable = false,
           timeout = 1000,
@@ -79,7 +79,7 @@ return {
           min_length = 3,
           hl = { underline = true },
         },
-      }
+      })
     end,
   },
 
@@ -112,7 +112,7 @@ return {
   {
     'windwp/nvim-autopairs',
     config = function()
-      require('nvim-autopairs').setup {}
+      require('nvim-autopairs').setup({})
     end,
   },
 
@@ -120,7 +120,7 @@ return {
   {
     'nvim-telescope/telescope.nvim',
     config = function()
-      require 'config.plugins.telescope'
+      require('config.plugins.telescope')
     end,
   },
 
@@ -132,7 +132,7 @@ return {
     'akinsho/toggleterm.nvim',
     event = 'BufRead',
     config = function()
-      require 'config.plugins.toggleterm'
+      require('config.plugins.toggleterm')
     end,
   },
 
@@ -141,10 +141,10 @@ return {
     'iamcco/markdown-preview.nvim',
     ft = 'markdown',
     build = function()
-      vim.call 'mkdp#util#install'
+      vim.call('mkdp#util#install')
     end,
     config = function()
-      require 'config.plugins.markdown-preview'
+      require('config.plugins.markdown-preview')
     end,
   },
 
@@ -153,7 +153,7 @@ return {
     'gelguy/wilder.nvim',
     event = 'CmdlineEnter',
     config = function()
-      require 'config.plugins.wilder'
+      require('config.plugins.wilder')
     end,
   },
 
@@ -162,7 +162,7 @@ return {
     -- only needed if you want to use the commands with "_with_window_picker" suffix
     's1n7ax/nvim-window-picker',
     config = function()
-      require 'config.plugins.nvim-window-picker'
+      require('config.plugins.nvim-window-picker')
     end,
   },
 }

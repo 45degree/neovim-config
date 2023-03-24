@@ -2,7 +2,7 @@ return {
   {
     'lewis6991/gitsigns.nvim',
     config = function()
-      require 'config.plugins.gitsigns'
+      require('config.plugins.gitsigns')
     end,
   },
 
