@@ -31,10 +31,14 @@ require('lazy').setup(plugins.plugins, plugins.opts)
 -- local option_config = require('option_config')
 -- option_config.read(vim.api.nvim_eval('stdpath("config")') .. '/option_config.json')
 -- vim.cmd('colorscheme '.. option_config.getColorTheme())
-require('config.fcitx-config')
+if vim.fn.has('win32') ~= 1 then
+  require('config.fcitx-config')
+end
 require('config.dap.dap-config').setup()
 
-if vim.fn.exists('g:gonvim_running') then
-  vim.opt.guifont = 'JetBrainsMono Nerd Font:h10:sb'
-  vim.opt.guifontwide = 'Sarasa Fixed SC:h10:sb'
+if vim.fn.exists('g:gonvim_running') == 1 then
+  vim.opt.guifont = 'Maple Mono:h10'
+  vim.opt.guifontwide = 'Symbols Nerd Font,Sarasa Fixed SC:h10'
+elseif vim.fn.exists('g:neovide') == 1 then
+  vim.opt.guifont = 'Maple Mono,Sarasa Fixed SC,Symbols Nerd Font 2048-em:h10:sb'
 end
