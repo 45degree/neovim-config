@@ -1,5 +1,5 @@
 -- Unless you are still migrating, remove the deprecated commands from v1.x
-vim.cmd [[ let g:neo_tree_remove_legacy_commands = 1 ]]
+vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 
 -- If you want icons for diagnostic errors, you'll need to define them somewhere:
 vim.fn.sign_define('DiagnosticSignError', { text = ' ', texthl = 'DiagnosticSignError' })
@@ -7,13 +7,13 @@ vim.fn.sign_define('DiagnosticSignWarn', { text = ' ', texthl = 'DiagnosticSi
 vim.fn.sign_define('DiagnosticSignInfo', { text = ' ', texthl = 'DiagnosticSignInfo' })
 vim.fn.sign_define('DiagnosticSignHint', { text = '', texthl = 'DiagnosticSignHint' })
 
-require('neo-tree').setup {
+require('neo-tree').setup({
   event_handlers = {
     {
       event = 'neo_tree_window_after_close',
       handler = function()
         if require('dap').session() then
-          require('dapui').open { reset = true }
+          require('dapui').open({ reset = true })
         end
       end,
     },
@@ -67,16 +67,16 @@ require('neo-tree').setup {
     git_status = {
       symbols = {
         -- Change type
-        added = '', -- or "✚", but this is redundant info if you use git_status_colors on the name
-        modified = '', -- or "", but this is redundant info if you use git_status_colors on the name
-        deleted = '', -- this can only be used in the git_status source
-        renamed = '', -- this can only be used in the git_status source
+        added = ' ', -- or "✚", but this is redundant info if you use git_status_colors on the name
+        modified = ' ', -- or "", but this is redundant info if you use git_status_colors on the name
+        deleted = ' ', -- this can only be used in the git_status source
+        renamed = ' ', -- this can only be used in the git_status source
         -- Status type
-        untracked = '★',
-        ignored = '',
-        unstaged = '✗',
-        staged = '✓',
-        conflict = '',
+        untracked = ' ',
+        ignored = ' ',
+        unstaged = ' ',
+        staged = ' ',
+        conflict = ' ',
       },
     },
   },
@@ -192,6 +192,6 @@ require('neo-tree').setup {
       },
     },
   },
-}
+})
 
-vim.cmd [[nnoremap \ :Neotree reveal<cr>]]
+vim.cmd([[nnoremap \ :Neotree reveal<cr>]])

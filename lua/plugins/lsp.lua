@@ -10,7 +10,18 @@ return {
       'hrsh7th/cmp-nvim-lsp', --neovim 内置 LSP 客户端的 nvim-cmp 源
     },
     config = function()
-      require('mason').setup({})
+      require('mason').setup({
+        ui = {
+          icons = {
+            -- The list icon to use for installed packages.
+            package_installed = ' ',
+            -- The list icon to use for packages that are installing, or queued for installation.
+            package_pending = ' ',
+            -- The list icon to use for packages that are not installed.
+            package_uninstalled = ' ',
+          },
+        },
+      })
       require('mason-lspconfig').setup()
       require('lsp_signature').setup({
         hint_prefix = ' ',
