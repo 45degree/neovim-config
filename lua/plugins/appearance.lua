@@ -104,8 +104,8 @@ return {
 
   -- 图标
   {
-    'DaikyXendo/nvim-material-icon',
-    dependencies = { 'kyazdani42/nvim-web-devicons' },
+    'kyazdani42/nvim-web-devicons',
+    dependencies = { 'DaikyXendo/nvim-material-icon' },
     config = function()
       local web_devicons_ok, web_devicons = pcall(require, 'nvim-web-devicons')
       if not web_devicons_ok then
