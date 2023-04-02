@@ -1,6 +1,7 @@
 return {
   {
     'mfussenegger/nvim-dap',
+    event = 'BufEnter',
     dependencies = {
       'rcarriga/nvim-dap-ui',
     },
@@ -14,7 +15,7 @@ return {
 
   {
     'rcarriga/nvim-dap-ui',
-    event = 'VeryLazy',
+    event = 'BufEnter',
     config = function()
       local status_ok, dapui = pcall(require, 'dapui')
       if not status_ok then
@@ -73,6 +74,7 @@ return {
 
   {
     'theHamsta/nvim-dap-virtual-text',
+    event = 'BufEnter',
     dependencies = { 'nvim-dap' },
     config = function()
       require('nvim-dap-virtual-text').setup({

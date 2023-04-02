@@ -42,10 +42,16 @@ return {
   },
 
   -- 搜粟替换
-  'nvim-pack/nvim-spectre',
+  {
+    'nvim-pack/nvim-spectre',
+    event = 'BufEnter',
+  },
 
   -- 格式化
-  'editorconfig/editorconfig-vim',
+  {
+    'editorconfig/editorconfig-vim',
+    event = 'BufEnter',
+  },
 
   -- 高亮搜索
   {

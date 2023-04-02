@@ -3,12 +3,6 @@ return {
   {
     'williamboman/mason.nvim',
     event = 'VeryLazy',
-    dependencies = {
-      'neovim/nvim-lspconfig',
-      'williamboman/mason-lspconfig.nvim',
-      'ray-x/lsp_signature.nvim',
-      'hrsh7th/cmp-nvim-lsp', --neovim 内置 LSP 客户端的 nvim-cmp 源
-    },
     config = function()
       require('mason').setup({
         ui = {
@@ -22,10 +16,28 @@ return {
           },
         },
       })
-      require('mason-lspconfig').setup()
+    end,
+  },
+
+  {
+    'ray-x/lsp_signature.nvim',
+    event = 'LspAttach',
+    config = function()
       require('lsp_signature').setup({
         hint_prefix = ' ',
       })
+    end,
+  },
+
+  {
+    'williamboman/mason-lspconfig.nvim',
+    event = 'VeryLazy',
+    dependencies = {
+      'neovim/nvim-lspconfig',
+      'williamboman/mason.nvim',
+    },
+    config = function()
+      require('mason-lspconfig').setup()
 
       local lspinstaller = require('mason-lspconfig')
       local lspconfig = require('lspconfig')
@@ -47,6 +59,7 @@ return {
       'hrsh7th/cmp-nvim-lua', --nvim-cmp source for neovim Lua API.
       'hrsh7th/cmp-path', --自动提示硬盘上的文件
       'windwp/nvim-autopairs',
+      'hrsh7th/cmp-nvim-lsp', --neovim 内置 LSP 客户端的 nvim-cmp 源
     },
     config = function()
       require('config.plugins.nvim-cmp')
@@ -54,7 +67,10 @@ return {
   },
 
   -- 代码片段
-  'honza/vim-snippets',
+  {
+    'honza/vim-snippets',
+    event = 'LspAttach',
+  },
 
   {
     'folke/trouble.nvim',

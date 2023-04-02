@@ -1,3 +1,6 @@
 return {
-  'arrufat/vala.vim',
+  {
+    'arrufat/vala.vim',
+    ft = 'vala',
+  },
 }

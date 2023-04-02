@@ -1,3 +1,6 @@
 return {
-  'Eric-Song-Nop/vim-glslx',
+  {
+    'Eric-Song-Nop/vim-glslx',
+    ft = 'glsl',
+  },
 }

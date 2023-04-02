@@ -42,6 +42,7 @@ return {
 
   {
     'nvim-neo-tree/neo-tree.nvim',
+    event = 'BufEnter',
     branch = 'v2.x',
     dependencies = {
       'nvim-lua/plenary.nvim',
@@ -56,6 +57,7 @@ return {
   -- Lua
   {
     'ahmedkhalf/project.nvim',
+    event = 'UIEnter',
     config = function()
       require('project_nvim').setup({
         sync_root_with_cwd = true,
@@ -71,6 +73,7 @@ return {
   -- 下划线
   {
     'yamatsum/nvim-cursorline',
+    event = 'BufEnter',
     config = function()
       require('nvim-cursorline').setup({
         cursorline = {
@@ -89,6 +92,7 @@ return {
 
   {
     'hrsh7th/vim-eft',
+    event = 'BufEnter',
     config = function()
       vim.api.nvim_set_keymap('n', ';', '<Plug>(eft-repeat)', {})
       vim.api.nvim_set_keymap('x', ';', '<Plug>(eft-repeat)', {})
@@ -131,12 +135,15 @@ return {
   },
 
   -- 成对编辑
-  'tpope/vim-surround',
+  {
+    'tpope/vim-surround',
+    event = 'BufEnter',
+  },
 
   -- 终端
   {
     'akinsho/toggleterm.nvim',
-    event = 'BufRead',
+    event = 'BufEnter',
     config = function()
       require('config.plugins.toggleterm')
     end,

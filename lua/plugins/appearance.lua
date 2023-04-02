@@ -282,6 +282,7 @@ return {
   -- 显示颜色
   {
     'NvChad/nvim-colorizer.lua',
+    event = 'BufEnter',
     config = function()
       require('colorizer').setup()
     end,
