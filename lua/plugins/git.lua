@@ -1,6 +1,7 @@
 return {
   {
     'lewis6991/gitsigns.nvim',
+    event = 'VeryLazy',
     config = function()
       require('config.plugins.gitsigns')
     end,
@@ -8,11 +9,15 @@ return {
 
   {
     'sindrets/diffview.nvim',
+    event = 'VeryLazy',
     dependencies = {
       'nvim-lua/plenary.nvim',
     },
   },
 
   -- 内置git命令
-  'tpope/vim-fugitive',
+  {
+    'tpope/vim-fugitive',
+    event = 'VeryLazy',
+  },
 }

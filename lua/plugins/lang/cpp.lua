@@ -2,6 +2,7 @@ return {
 
   {
     'p00f/clangd_extensions.nvim',
+    ft = { 'cpp', 'c' },
     dependencies = {
       'mason.nvim',
       'nvim-lspconfig',

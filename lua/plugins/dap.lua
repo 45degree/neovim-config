@@ -14,6 +14,7 @@ return {
 
   {
     'rcarriga/nvim-dap-ui',
+    event = 'VeryLazy',
     config = function()
       local status_ok, dapui = pcall(require, 'dapui')
       if not status_ok then
@@ -93,6 +94,7 @@ return {
 
   {
     'nvim-telescope/telescope-dap.nvim',
+    event = 'VeryLazy',
     dependencies = {
       'telescope.nvim',
     },
@@ -103,7 +105,8 @@ return {
 
   {
     'rcarriga/cmp-dap',
-    after = 'nvim-cmp',
+    dependencies = 'nvim-cmp',
+    event = 'LspAttach',
     config = function()
       require('cmp').setup.filetype({ 'dap-repl', 'dapui_watches', 'dapui_hover' }, {
         sources = {

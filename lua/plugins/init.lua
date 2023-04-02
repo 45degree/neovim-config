@@ -17,8 +17,8 @@ local csharp = require('plugins.option.lang.csharp')
 local vue = require('plugins.option.lang.vue')
 local html = require('plugins.option.lang.html')
 
-local option_config = require('option_config')
-option_config.read(vim.api.nvim_eval('stdpath("config")') .. '/option_config.json')
+OptionConfig = require('option_config')
+OptionConfig.read(vim.api.nvim_eval('stdpath("config")') .. '/option_config.json')
 
 local plugins = {}
 
@@ -38,35 +38,35 @@ mergePlugins(plugins, cppPlugin)
 mergePlugins(plugins, luaPlugin)
 mergePlugins(plugins, pythonPlugin)
 
-if option_config.getLanguage('vala') then
+if OptionConfig.getLanguage('vala') then
   mergePlugins(plugins, vala)
 end
 
-if option_config.getLanguage('glslx') then
+if OptionConfig.getLanguage('glslx') then
   mergePlugins(plugins, glslx)
 end
 
-if option_config.getLanguage('rust') then
+if OptionConfig.getLanguage('rust') then
   mergePlugins(plugins, rust)
 end
 
-if option_config.getLanguage('latex') then
+if OptionConfig.getLanguage('latex') then
   mergePlugins(plugins, latex)
 end
 
-if option_config.getLanguage('javascript') then
+if OptionConfig.getLanguage('javascript') then
   mergePlugins(plugins, javascript)
 end
 
-if option_config.getLanguage('html') then
+if OptionConfig.getLanguage('html') then
   mergePlugins(plugins, html)
 end
 
-if option_config.getLanguage('csharp') then
+if OptionConfig.getLanguage('csharp') then
   mergePlugins(plugins, csharp)
 end
 
-if option_config.getLanguage('vue') then
+if OptionConfig.getLanguage('vue') then
   mergePlugins(plugins, vue)
 end
 

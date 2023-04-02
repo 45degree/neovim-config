@@ -1,10 +1,10 @@
 return {
   -- 代码补全
-  'neovim/nvim-lspconfig',
-
   {
     'williamboman/mason.nvim',
+    event = 'VeryLazy',
     dependencies = {
+      'neovim/nvim-lspconfig',
       'williamboman/mason-lspconfig.nvim',
       'ray-x/lsp_signature.nvim',
       'hrsh7th/cmp-nvim-lsp', --neovim 内置 LSP 客户端的 nvim-cmp 源
@@ -39,6 +39,7 @@ return {
 
   {
     'hrsh7th/nvim-cmp',
+    event = 'LspAttach',
     dependencies = {
       'SirVer/ultisnips',
       'quangnguyen30192/cmp-nvim-ultisnips',
@@ -57,6 +58,7 @@ return {
 
   {
     'folke/trouble.nvim',
+    event = 'LspAttach',
     dependencies = {
       'nvim-cmp',
       'kyazdani42/nvim-web-devicons',
@@ -68,6 +70,7 @@ return {
 
   {
     'folke/lsp-colors.nvim',
+    event = 'LspAttach',
     dependencies = { 'nvim-cmp' },
     config = function()
       -- Lua
@@ -82,6 +85,7 @@ return {
 
   {
     'glepnir/lspsaga.nvim',
+    event = 'LspAttach',
     dependencies = { 'telescope.nvim' },
     config = function()
       require('config.plugins.lspsaga')
@@ -90,6 +94,7 @@ return {
 
   {
     'j-hui/fidget.nvim',
+    event = 'LspAttach',
     config = function()
       require('fidget').setup({})
     end,

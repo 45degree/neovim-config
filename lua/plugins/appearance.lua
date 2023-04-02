@@ -6,8 +6,12 @@ return {
     'sainnhe/gruvbox-material',
     lazy = false,
     priority = 1000,
+    cond = function()
+      return OptionConfig.getColorTheme() == 'gruvbox-material'
+    end,
     config = function()
       require('config.colorTheme.gruvbox-material')
+      vim.cmd([[colorscheme gruvbox-material]])
     end,
   },
 
@@ -15,7 +19,12 @@ return {
     'AlexvZyl/nordic.nvim',
     lazy = false,
     priority = 1000,
-    config = function() end,
+    cond = function()
+      return OptionConfig.getColorTheme() == 'nordic'
+    end,
+    config = function()
+      vim.cmd([[colorscheme nordic]])
+    end,
   },
 
   {
@@ -23,6 +32,9 @@ return {
     lazy = false,
     priority = 1000,
     dependencies = { 'rktjmp/lush.nvim' },
+    cond = function()
+      return OptionConfig.getColorTheme() == 'bluloco'
+    end,
     config = function()
       -- your optional config goes here, see below.
       require('bluloco').setup({
@@ -32,6 +44,8 @@ return {
         terminal = vim.fn.has('gui_running') == 1, -- bluoco colors are enabled in gui terminals per default.
         guicursor = true,
       })
+
+      vim.cmd([[colorscheme bluloco]])
     end,
   },
 
@@ -39,38 +53,69 @@ return {
     'JoosepAlviste/palenightfall.nvim',
     lazy = false,
     priority = 1000,
-    config = function() end,
+    cond = function()
+      return OptionConfig.getColorTheme() == 'palenightfall'
+    end,
+    config = function()
+      vim.cmd([[colorscheme palenightfall]])
+    end,
   },
 
   {
     'sainnhe/edge',
     lazy = false,
+    cond = function()
+      return OptionConfig.getColorTheme() == 'edge'
+    end,
     priority = 1000,
-    config = function() end,
+    config = function()
+      vim.cmd([[colorscheme edge]])
+    end,
   },
 
   {
     'sainnhe/everforest',
     lazy = false,
     priority = 1000,
+    cond = function()
+      return OptionConfig.getColorTheme() == 'everforest'
+    end,
+    config = function()
+      vim.cmd([[colorscheme everforest]])
+    end,
   },
 
   {
     'rmehri01/onenord.nvim',
     lazy = false,
     priority = 1000,
+    cond = function()
+      return OptionConfig.getColorTheme() == 'onenord'
+    end,
+    config = function()
+      vim.cmd([[colorscheme onenord]])
+    end,
   },
 
   {
     'sainnhe/sonokai',
     lazy = false,
     priority = 1000,
+    cond = function()
+      return OptionConfig.getColorTheme() == 'sonokai'
+    end,
+    config = function()
+      vim.cmd([[colorscheme sonokai]])
+    end,
   },
 
   {
     'glepnir/zephyr-nvim',
     lazy = false,
     priority = 1000,
+    cond = function()
+      return OptionConfig.getColorTheme() == 'zephyr'
+    end,
     config = function()
       vim.cmd([[colorscheme zephyr]])
     end,
@@ -80,6 +125,12 @@ return {
     'olimorris/onedarkpro.nvim',
     lazy = false,
     priority = 1000,
+    cond = function()
+      return OptionConfig.getColorTheme() == 'onedarkpro'
+    end,
+    config = function()
+      vim.cmd([[colorscheme onedarkpro]])
+    end,
   },
 
   {
@@ -87,18 +138,26 @@ return {
     lazy = false,
     name = 'catppuccin',
     build = ':CatppuccinCompile',
+    cond = function()
+      return OptionConfig.getColorTheme() == 'catppuccin'
+    end,
     config = function()
       require('config.colorTheme.catppuccin')
+      vim.cmd([[colorscheme catppuccin]])
     end,
   },
 
   {
     'folke/tokyonight.nvim',
     lazy = false,
+    cond = function()
+      return OptionConfig.getColorTheme() == 'tokyonight'
+    end,
     config = function()
       vim.g.tokyonight_transparent = true
       vim.g.tokyonight_transparent_sidebar = true
       vim.g.tokyonight_lualine_bold = true
+      vim.cmd([[colorscheme tokyonight]])
     end,
   },
 
@@ -173,6 +232,7 @@ return {
   -- 状态栏
   {
     'nvim-lualine/lualine.nvim',
+    event = 'BufEnter',
     dependencies = {
       'kyazdani42/nvim-web-devicons',
     },
@@ -184,6 +244,7 @@ return {
   -- tab栏
   {
     'romgrk/barbar.nvim',
+    event = 'BufEnter',
     config = function()
       require('config.plugins.barbar')
     end,
@@ -192,6 +253,7 @@ return {
   -- 缩进线
   {
     'lukas-reineke/indent-blankline.nvim',
+    event = 'VeryLazy',
     config = function()
       require('indent_blankline').setup({
         show_current_context = true,
@@ -205,6 +267,7 @@ return {
   -- 提示
   {
     'rcarriga/nvim-notify',
+    event = 'VeryLazy',
     dependencies = { 'nvim-telescope/telescope.nvim' },
     config = function()
       require('notify').setup({

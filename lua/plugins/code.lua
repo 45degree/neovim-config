@@ -2,6 +2,7 @@ return {
   -- 快速注释
   {
     'numToStr/Comment.nvim',
+    event = 'BufEnter',
     config = function()
       require('Comment').setup()
     end,
@@ -10,6 +11,7 @@ return {
   -- 快速文档
   {
     'danymat/neogen',
+    event = 'BufEnter',
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
     config = function()
       require('neogen').setup({})
@@ -19,6 +21,7 @@ return {
   -- todo comments
   {
     'folke/todo-comments.nvim',
+    event = 'BufEnter',
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
       require('todo-comments').setup({})
@@ -28,6 +31,7 @@ return {
   -- 代码高亮
   {
     'nvim-treesitter/nvim-treesitter',
+    event = 'VeryLazy',
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
       'p00f/nvim-ts-rainbow',
@@ -46,6 +50,7 @@ return {
   -- 高亮搜索
   {
     'asiryk/auto-hlsearch.nvim',
+    event = 'VeryLazy',
     config = function()
       require('auto-hlsearch').setup({
         remap_keys = { '/', '?', '*', '#', 'n', 'N' },
@@ -57,5 +62,6 @@ return {
   -- xmake
   {
     dir = vim.fn.stdpath('config') .. '/xmake.nvim',
+    event = 'CmdlineEnter',
   },
 }
