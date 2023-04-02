@@ -164,6 +164,7 @@ return {
   -- 图标
   {
     'kyazdani42/nvim-web-devicons',
+    event = 'BufEnter',
     dependencies = { 'DaikyXendo/nvim-material-icon' },
     config = function()
       local web_devicons_ok, web_devicons = pcall(require, 'nvim-web-devicons')
