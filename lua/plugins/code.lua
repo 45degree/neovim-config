@@ -31,7 +31,7 @@ return {
   -- 代码高亮
   {
     'nvim-treesitter/nvim-treesitter',
-    event = 'VeryLazy',
+    event = 'BufEnter',
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
       'p00f/nvim-ts-rainbow',

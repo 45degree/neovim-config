@@ -1,5 +1,5 @@
 -- Set barbar's options
-require('bufferline').setup({
+require('barbar').setup({
   -- Enable/disable animations
   animation = true,
   -- Enable/disable auto-hiding the tab bar when there is a single buffer
@@ -47,7 +47,7 @@ require('bufferline').setup({
     -- Configure the icons on the bufferline when modified or pinned.
     -- Supports all the base icon options.
     modified = { button = '●' },
-    pinned = { button = '車' },
+    pinned = { button = '' },
     -- Configure the icons on the bufferline based on the visibility of a buffer.
     -- Supports all the base icon options, plus `modified` and `pinned`.
     alternate = { filetype = { enabled = false } },
