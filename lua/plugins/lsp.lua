@@ -55,9 +55,9 @@ return {
     dependencies = {
       'SirVer/ultisnips',
       'quangnguyen30192/cmp-nvim-ultisnips',
-      'hrsh7th/cmp-buffer', --从buffer中智能提示
+      'hrsh7th/cmp-buffer',   --从buffer中智能提示
       'hrsh7th/cmp-nvim-lua', --nvim-cmp source for neovim Lua API.
-      'hrsh7th/cmp-path', --自动提示硬盘上的文件
+      'hrsh7th/cmp-path',     --自动提示硬盘上的文件
       'windwp/nvim-autopairs',
       'hrsh7th/cmp-nvim-lsp', --neovim 内置 LSP 客户端的 nvim-cmp 源
     },

@@ -1,9 +1,9 @@
-local cmp = require 'cmp'
+local cmp = require('cmp')
 -- If you want insert `(` after select function or method item
-local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
-cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done { map_char = { tex = '' } })
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done({ map_char = { tex = '' } }))
 
-cmp.setup {
+cmp.setup({
   snippet = {
     -- REQUIRED - you must specify a snippet engine
     expand = function(args)
@@ -23,15 +23,15 @@ cmp.setup {
     ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
     -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
     ['<C-y>'] = cmp.config.disable,
-    ['<C-e>'] = cmp.mapping {
+    ['<C-e>'] = cmp.mapping({
       i = cmp.mapping.abort(),
       c = cmp.mapping.close(),
-    },
-    ['<CR>'] = cmp.mapping.confirm { select = true }, -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-    ['<Tab>'] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
-    ['<S-Tab>'] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
-    ['<Up>'] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
-    ['<Down>'] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
+    }),
+    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    ['<Tab>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+    ['<S-Tab>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+    ['<Up>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+    ['<Down>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
   },
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
@@ -96,4 +96,4 @@ cmp.setup {
       return vim_item
     end,
   },
-}
+})

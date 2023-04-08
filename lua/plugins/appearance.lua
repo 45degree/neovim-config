@@ -288,4 +288,44 @@ return {
       require('colorizer').setup()
     end,
   },
+
+  -- 代码折叠
+  {
+    'kevinhwang91/nvim-ufo',
+    dependencies = { 'kevinhwang91/promise-async' },
+    event = 'BufEnter',
+    config = function()
+      vim.o.foldcolumn = '1' -- '0' is not bad
+      vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+      vim.o.foldlevelstart = 99
+      vim.o.foldenable = true
+      vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+      require('ufo').setup({})
+    end,
+    enable = function()
+      return vim.fn.has('nvim-0.9') == 1
+    end,
+  },
+
+  {
+    'luukvbaal/statuscol.nvim',
+    event = 'BufEnter',
+    after = 'kevinhwang91/nvim-ufo',
+    config = function()
+      local builtin = require('statuscol.builtin')
+      require('statuscol').setup({
+        relculright = true,
+        ft_ignore = { 'neo-tree' },
+        segments = {
+          { text = { builtin.foldfunc }, click = 'v:lua.ScFa' },
+          { sign = { name = { '.*' }, maxwidth = 1 }, click = 'v:lua.ScSa' },
+          { text = { builtin.lnumfunc }, click = 'v:lua.ScLa' },
+          { sign = { name = { 'GitSigns' }, maxwidth = 2, colwidth = 1 }, click = 'v:lua.ScSa' },
+        },
+      })
+    end,
+    enable = function()
+      return vim.fn.has('nvim-0.9') == 1
+    end,
+  },
 }
