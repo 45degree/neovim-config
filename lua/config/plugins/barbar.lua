@@ -17,7 +17,7 @@ require('barbar').setup({
   -- Valid options are 'left' (the default) and 'right'
   focus_on_close = 'left',
   -- Hide inactive buffers and file extensions. Other options are `alternate`, `current`, and `visible`.
-  hide = { extensions = true, inactive = true },
+  hide = { extensions = true, inactive = false },
   -- Disable highlighting alternate buffers
   highlight_alternate = false,
   -- Disable highlighting file icons in inactive buffers
