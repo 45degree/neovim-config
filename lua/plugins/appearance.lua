@@ -315,7 +315,7 @@ return {
       local builtin = require('statuscol.builtin')
       require('statuscol').setup({
         relculright = true,
-        ft_ignore = { 'neo-tree' },
+        ft_ignore = { 'neo-tree', 'toggleterm' },
         segments = {
           { text = { builtin.foldfunc }, click = 'v:lua.ScFa' },
           { sign = { name = { '.*' }, maxwidth = 1 }, click = 'v:lua.ScSa' },
