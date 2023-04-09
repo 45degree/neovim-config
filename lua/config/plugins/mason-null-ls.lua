@@ -1,17 +1,3 @@
-require('mason-null-ls').setup({
-  automatic_setup = true,
-})
-
-require('mason-null-ls').setup_handlers({
-  function(source_name, methods)
-    -- all sources with no handler get passed here
-
-    -- To keep the original functionality of `automatic_setup = true`,
-    -- please add the below.
-    require('mason-null-ls.automatic_setup')(source_name, methods)
-  end,
-})
-
 require('null-ls').setup({
   -- you can reuse a shared lspconfig on_attach callback here
   on_attach = function(client, bufnr)
@@ -27,4 +13,17 @@ require('null-ls').setup({
       })
     end
   end,
+})
+
+require('mason-null-ls').setup({
+  automatic_setup = true,
+  handlers = {
+    function(source_name, methods)
+      -- all sources with no handler get passed here
+
+      -- To keep the original functionality of `automatic_setup = true`,
+      -- please add the below.
+      require('mason-null-ls.automatic_setup')(source_name, methods)
+    end,
+  },
 })
