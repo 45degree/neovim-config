@@ -316,7 +316,7 @@ return {
       require('statuscol').setup({
         relculright = true,
         ft_ignore = { 'neo-tree', 'toggleterm' },
-        bt_ignore = { 'nofile' },
+        bt_ignore = { 'nofile', 'prompt' },
         segments = {
           { text = { builtin.foldfunc },                                  click = 'v:lua.ScFa' },
           { sign = { name = { '.*' }, maxwidth = 1 },                     click = 'v:lua.ScSa' },
