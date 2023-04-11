@@ -16,9 +16,9 @@ require('catppuccin').setup({
   styles = {
     comments = { 'italic' },
     conditionals = { 'italic' },
-    loops = {},
-    functions = {},
-    keywords = {},
+    loops = { 'italic' },
+    functions = { 'bold' },
+    keywords = { 'italic' },
     strings = {},
     variables = {},
     numbers = {},
@@ -35,7 +35,7 @@ require('catppuccin').setup({
     beacon = false,
     cmp = true,
     coc_nvim = false,
-    dashboard = true,
+    dashboard = false,
     fern = false,
     fidget = true,
     gitgutter = false,
@@ -67,7 +67,7 @@ require('catppuccin').setup({
     ts_rainbow = false,
     vim_sneak = false,
     vimwiki = false,
-    which_key = false,
+    which_key = true,
     -- Special integrations, see https://github.com/catppuccin/nvim#special-integrations
     dap = {
       enabled = true,

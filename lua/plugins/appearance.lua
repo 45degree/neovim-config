@@ -139,11 +139,17 @@ return {
     name = 'catppuccin',
     build = ':CatppuccinCompile',
     cond = function()
-      return OptionConfig.getColorTheme() == 'catppuccin'
+      local theme = OptionConfig.getColorTheme()
+      return theme == 'catppuccin-latte'
+        or theme == 'catppuccin-frappe'
+        or theme == ' catppuccin-macchiato'
+        or theme == 'catppuccin-mocha'
+        or theme == 'catppuccin'
     end,
     config = function()
       require('config.colorTheme.catppuccin')
-      vim.cmd([[colorscheme catppuccin]])
+      local theme = OptionConfig.getColorTheme()
+      vim.cmd('colorscheme ' .. theme)
     end,
   },
 
