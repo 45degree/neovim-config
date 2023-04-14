@@ -23,13 +23,14 @@ return function(server)
 
   local opts = {
     capabilities = capabilities,
-    on_attach = function(_, bufnr)
+    on_attach = function(client, bufnr)
       require('lsp_signature').on_attach({
         bind = true, -- This is mandatory, otherwise border config won't get registered.
         handler_opts = {
           border = 'rounded',
         },
       }, bufnr)
+      client.server_capabilities.semanticTokensProvider = nil
     end,
   }
   if server == 'clangd' then
