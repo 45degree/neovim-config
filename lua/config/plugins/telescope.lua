@@ -1,4 +1,4 @@
-require('telescope').setup {
+require('telescope').setup({
   defaults = {
     prompt_prefix = '   ',
     selection_caret = '> ',
@@ -39,5 +39,5 @@ require('telescope').setup {
       n = { ['q'] = require('telescope.actions').close },
     },
   },
-}
-require('telescope').load_extension 'projects'
+})
+require('telescope').load_extension('projects')

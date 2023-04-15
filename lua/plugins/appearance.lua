@@ -167,6 +167,55 @@ return {
     end,
   },
 
+  {
+    'rebelot/kanagawa.nvim',
+    lazy = false,
+    cond = function()
+      local theme = OptionConfig.getColorTheme()
+      return theme == 'kanagawa' or theme == 'kanagawa-dragon' or theme == 'kanagawa-lotus' or theme == 'kanagawa-wave'
+    end,
+    build = ':KanagawaCompile',
+    config = function()
+      require('config.colorTheme.kanagawa')
+      local theme = OptionConfig.getColorTheme()
+      vim.cmd('colorscheme ' .. theme)
+    end,
+  },
+
+  {
+    'loctvl842/monokai-pro.nvim',
+    lazy = false,
+    cond = function()
+      local theme = OptionConfig.getColorTheme()
+      return theme == 'monokai-pro'
+    end,
+    config = function()
+      require('config.colorTheme.monokai-pro')
+      local theme = OptionConfig.getColorTheme()
+      vim.cmd('colorscheme ' .. theme)
+    end,
+  },
+
+  {
+    'EdenEast/nightfox.nvim',
+    lazy = false,
+    cond = function()
+      local theme = OptionConfig.getColorTheme()
+      return theme == 'nightfox'
+        or theme == 'dayfox'
+        or theme == 'dawnfox'
+        or theme == 'duskfox'
+        or theme == 'nordfox'
+        or theme == 'terafox'
+        or theme == 'carbonfox'
+    end,
+    config = function()
+      require('config.colorTheme.nightfox')
+      local theme = OptionConfig.getColorTheme()
+      vim.cmd('colorscheme ' .. theme)
+    end,
+  },
+
   -- 图标
   {
     'kyazdani42/nvim-web-devicons',
