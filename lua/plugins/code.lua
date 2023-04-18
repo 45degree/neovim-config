@@ -34,7 +34,7 @@ return {
     event = 'BufEnter',
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
-      'p00f/nvim-ts-rainbow',
+      'HiPhish/nvim-ts-rainbow2',
     },
     config = function()
       require('config.plugins.nvim-treesitter')
