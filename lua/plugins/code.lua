@@ -70,4 +70,15 @@ return {
     dir = vim.fn.stdpath('config') .. '/xmake.nvim',
     event = 'CmdlineEnter',
   },
+
+  -- 项目模板
+  {
+    'nvimdev/template.nvim',
+    cmd = { 'Template', 'TemProject' },
+    config = function()
+      require('template').setup({
+        temp_dir = vim.fn.stdpath('config') .. '/template',
+      })
+    end,
+  },
 }
