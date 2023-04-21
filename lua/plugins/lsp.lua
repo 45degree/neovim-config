@@ -55,6 +55,7 @@ return {
     dependencies = {
       'rafamadriz/friendly-snippets',
       'L3MON4D3/LuaSnip',
+      'ray-x/lsp_signature.nvim',
       'saadparwaiz1/cmp_luasnip',
       'hrsh7th/cmp-buffer', --从buffer中智能提示
       'hrsh7th/cmp-nvim-lua', --nvim-cmp source for neovim Lua API.
