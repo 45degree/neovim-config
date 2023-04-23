@@ -25,6 +25,7 @@ pip3 install pynvim
 6. c/c++, rust语法高亮
 7. 格式化代码
 8. 浮动终端
+9. xmake 编译调试
 
 ## 安装
 
@@ -34,35 +35,14 @@ pip3 install pynvim
 
 > 没有安装字体neovim也能正常工作, 但是部分地方会有乱码
 
-部分插件需要用到`nerdfont`字体, 去[nerdfont官网](https://www.nerdfonts.com/)下载, gui中的配置中默认的字体是`SauceCodePro Nerd Font`, 如要更改，可以再`ginit.vim`中修改。
-
-2. 安装 nvim packer插件管理系统
-
-> Unix, Linux Installation
-
-``` bash
-git clone --depth 1 https://github.com/wbthomason/packer.nvim\
- ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-```
-> Windows Powershell Installation
-
-``` bash
-git clone https://github.com/wbthomason/packer.nvim "$env:LOCALAPPDATA\nvim-data\site\pack\packer\start\packer.nvim"
-
-```
+部分插件需要用到`nerdfont`字体, 去[nerdfont官网](https://www.nerdfonts.com/)下载
 
 ### 安装过程
 
-运行以下命令, clone仓库到本地：
+运行以下命令, clone仓库到本地即可：
 
 ```shell
 git clone https://gitee.com/degree45/vim_configuration ~/.config/nvim
-```
-
-进入`neovim`后执行
-
-```vim
-:PackerSync
 ```
 
 ## 已知的问题
