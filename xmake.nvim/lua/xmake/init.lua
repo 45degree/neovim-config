@@ -12,10 +12,11 @@ end
 
 function xmake:Build(targetName, force)
   local env = { PATH = vim.env.PATH, ['COLORTERM'] = 'nocolor' }
+  local xmake_executable = xmake.config.xmake_executable
   if force then
-    util.run('xmake', env, { 'build', '-r', targetName }, xmake.config)
+    util.run(xmake_executable, env, { 'build', '-r', targetName }, xmake.config)
   else
-    util.run('xmake', env, { 'build', targetName }, xmake.config)
+    util.run(xmake_executable, env, { 'build', targetName }, xmake.config)
   end
 end
 
