@@ -8,26 +8,32 @@ if vim.fn.has('UNIX') == 1 then
   xmake_executable = vim.env.HOME .. '/.local/bin/xmake'
 end
 
-local config = {
-  defaults = {
-    xmake_executable = xmake_executable,
-    dap_configuration = {
-      name = 'Launch file',
-      type = dap_type,
-      request = 'launch',
-      stopOnEntry = false,
-      setupCommands = {
-        {
-          description = 'enable pretty printing',
-          text = '-enable-pretty-printing',
-          ignoreFailures = false,
-        },
+local config =  {
+  xmake_executable = xmake_executable,
+  xmake_console_size = 10, -- cmake output window height
+  xmake_console_position = "belowright", -- "belowright", "aboveleft", ...
+  xmake_show_console = "always", -- "always", "only_on_error"
+  dap_configuration = {
+    name = 'Launch file',
+    type = dap_type,
+    request = 'launch',
+    stopOnEntry = false,
+    setupCommands = {
+      {
+        description = 'enable pretty printing',
+        text = '-enable-pretty-printing',
+        ignoreFailures = false,
       },
     },
-    dap_open_command = require('dap').repl.open,
   },
+  dap_open_command = require('dap').repl.open,
 }
 
-setmetatable(config, { __index = config.defaults })
+function config:new(const)
+  local obj = {}
+  setmetatable(obj, self)
+  self.__index = self
+  return self
+end
 
 return config

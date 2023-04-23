@@ -69,6 +69,10 @@ return {
   {
     dir = vim.fn.stdpath('config') .. '/xmake.nvim',
     event = 'CmdlineEnter',
+    dependencies = { 'nvim-lua/plenary.nvim', 'telescope.nvim' },
+    config = function()
+      require('xmake').setup({})
+    end,
   },
 
   -- 项目模板
