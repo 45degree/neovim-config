@@ -322,16 +322,15 @@ return {
 
   -- 提示
   {
-    'rcarriga/nvim-notify',
+    'folke/noice.nvim',
     event = 'VeryLazy',
-    dependencies = { 'nvim-telescope/telescope.nvim' },
+    dependencies = {
+      'MunifTanjim/nui.nvim',
+      'rcarriga/nvim-notify',
+      'nvim-telescope/telescope.nvim',
+    },
     config = function()
-      require('notify').setup({
-        background_colour = '#000000',
-      })
-
-      vim.notify = require('notify')
-      require('telescope').load_extension('notify')
+      require('config.plugins.noice')
     end,
   },
 

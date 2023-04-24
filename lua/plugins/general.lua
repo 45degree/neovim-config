@@ -157,15 +157,6 @@ return {
     end,
   },
 
-  -- 菜单
-  {
-    'gelguy/wilder.nvim',
-    event = 'CmdlineEnter',
-    config = function()
-      require('config.plugins.wilder')
-    end,
-  },
-
   -- 窗口选择
   {
     -- only needed if you want to use the commands with "_with_window_picker" suffix
