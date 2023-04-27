@@ -322,15 +322,21 @@ return {
 
   -- 提示
   {
-    'folke/noice.nvim',
+    'rcarriga/nvim-notify',
     event = 'VeryLazy',
-    dependencies = {
-      'MunifTanjim/nui.nvim',
-      'rcarriga/nvim-notify',
-      'nvim-telescope/telescope.nvim',
-    },
     config = function()
-      require('config.plugins.noice')
+      require('notify').setup({})
+      vim.notify = require('notify')
+    end,
+  },
+
+  -- command line
+  {
+    'gelguy/wilder.nvim',
+    event = 'CmdlineEnter',
+    build = ':UpdateRemotePlugins',
+    config = function()
+      require('config.plugins.wilder')
     end,
   },
 
