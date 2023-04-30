@@ -216,6 +216,20 @@ return {
     end,
   },
 
+  -- init.lua:
+  {
+    'hardhackerlabs/theme-vim',
+    name = 'hardhacker',
+    lazy = false,
+    cond = function()
+      local theme = OptionConfig.getColorTheme()
+      return theme == 'hardhacker'
+    end,
+    config = function()
+      vim.cmd.colorscheme('hardhacker')
+    end,
+  },
+
   -- 图标
   {
     'kyazdani42/nvim-web-devicons',
