@@ -35,7 +35,7 @@ require('config.dap.dap-config').setup()
 
 if vim.fn.exists('g:gonvim_running') == 1 then
   vim.opt.guifont = 'Maple Mono:h10'
-  vim.opt.guifontwide = 'Symbols Nerd Font,Sarasa Fixed SC:h10'
+  vim.opt.guifontwide = 'Symbols Nerd Font:h10,Sarasa Fixed SC:h10'
 elseif vim.fn.exists('g:neovide') == 1 then
   if vim.fn.has('win32') == 1 then
     vim.opt.guifont = 'Maple Mono,Sarasa Fixed SC,Symbols Nerd Font 2048-em:h10'
