@@ -20,16 +20,6 @@ return {
   },
 
   {
-    'ray-x/lsp_signature.nvim',
-    event = 'LspAttach',
-    config = function()
-      require('lsp_signature').setup({
-        hint_prefix = ' ',
-      })
-    end,
-  },
-
-  {
     'williamboman/mason-lspconfig.nvim',
     event = 'VeryLazy',
     dependencies = {
@@ -55,8 +45,8 @@ return {
     dependencies = {
       'rafamadriz/friendly-snippets',
       'L3MON4D3/LuaSnip',
-      'ray-x/lsp_signature.nvim',
       'saadparwaiz1/cmp_luasnip',
+      'hrsh7th/cmp-nvim-lsp-signature-help',
       'hrsh7th/cmp-buffer', --从buffer中智能提示
       'hrsh7th/cmp-nvim-lua', --nvim-cmp source for neovim Lua API.
       'hrsh7th/cmp-path', --自动提示硬盘上的文件
@@ -143,6 +133,25 @@ return {
           virtual_text = true,
           signs = true,
           underline = true,
+        },
+      })
+    end,
+  },
+
+  {
+    'VidocqH/lsp-lens.nvim',
+    config = function()
+      require('lsp-lens').setup({
+        enable = true,
+        include_declaration = false, -- Reference include declaration
+        sections = {
+          -- Enable / Disable specific request
+          definition = false,
+          references = true,
+          implementation = true,
+        },
+        ignore_filetype = {
+          'prisma',
         },
       })
     end,

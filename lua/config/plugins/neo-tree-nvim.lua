@@ -27,6 +27,11 @@ require('neo-tree').setup({
   source_selector = {
     winbar = true,
     statusline = false,
+    sources = {
+      { source = 'filesystem', display_name = ' 󰉓 Files ' },
+      { source = 'buffers', display_name = ' 󰉓 Buffer ' },
+      { source = 'git_status', display_name = ' 󰊢 Git ' },
+    },
   },
   default_component_configs = {
     container = {
@@ -47,12 +52,12 @@ require('neo-tree').setup({
       expander_highlight = 'NeoTreeExpander',
     },
     icon = {
-      folder_closed = '',
-      folder_open = '',
-      folder_empty = '',
+      folder_closed = ' ',
+      folder_open = ' ',
+      folder_empty = ' ',
       -- The next two settings are only a fallback, if you use nvim-web-devicons and configure default icons there
       -- then these will never be used.
-      default = '',
+      default = ' ',
       highlight = 'NeoTreeFileIcon',
     },
     modified = {
