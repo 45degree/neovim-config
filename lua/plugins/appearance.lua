@@ -263,7 +263,7 @@ return {
         dashboard.button('p', '  project', '<cmd>Telescope projects<cr>'),
         dashboard.button('h', '  History', '<cmd>Telescope oldfiles <cr>'),
         dashboard.button('c', '  Color', '<cmd>Telescope colorscheme <cr>'),
-        dashboard.button('m', '  marks', '<cmd>Telescope marks <cr>'),
+        dashboard.button('m', '  marks', '<cmd>Telescope marks <cr>'),
         dashboard.button('w', '  word', '<cmd>Telescope live_grep <cr>'),
       }
       alpha.setup(dashboard.config)
