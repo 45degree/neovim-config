@@ -166,4 +166,15 @@ return {
       require('config.plugins.nvim-window-picker')
     end,
   },
+
+  -- 翻译
+  {
+    'potamides/pantran.nvim',
+    event = 'BufEnter',
+    config = function()
+      require('pantran').setup({
+        default_engine = 'google',
+      })
+    end,
+  },
 }
