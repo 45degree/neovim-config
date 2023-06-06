@@ -37,13 +37,16 @@ saga.setup({
     preview = ' ',
     code_action = '',
     diagnostic = '',
-    incoming = ' ',
-    outgoing = ' ',
+    incoming = '',
+    outgoing = '',
     hover = ' ',
     kind = {},
   },
   diagnostic = {
     on_insert = false,
+  },
+  outline = {
+    auto_preview = false,
   },
 })
 

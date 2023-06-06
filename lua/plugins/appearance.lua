@@ -374,4 +374,13 @@ return {
       return vim.fn.has('nvim-0.9') == 1
     end,
   },
+
+  {
+    'folke/edgy.nvim',
+    event = 'VeryLazy',
+    config = function()
+      require('config.plugins.edgy')
+    end,
+    enable = false,
+  },
 }
