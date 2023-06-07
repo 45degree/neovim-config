@@ -5,12 +5,22 @@ require('edgy').setup({
   top = {}, ---@type (Edgy.View.Opts|string)[]
   bottom = {
     -- toggleterm / lazyterm at the bottom with a height of 40% of the screen
-    { ft = 'toggleterm', size = { height = 10 } },
+    {
+      ft = 'toggleterm',
+      size = { height = 10 },
+      -- exclude floating windows
+      filter = function(buf, win)
+        return vim.api.nvim_win_get_config(win).relative == ''
+      end,
+    },
     { ft = 'Trouble', size = { height = 10 } },
     { ft = 'qf', title = 'QuickFix', size = { height = 10 } },
     { ft = 'help', size = { height = 10 } },
   },
   left = {
+    -- any other neo-tree windows
+    'neo-tree',
+
     -- Neo-tree filesystem always takes half the screen height
     {
       ft = 'lspsagaoutline',
@@ -19,8 +29,6 @@ require('edgy').setup({
       size = { height = 0.3 },
       open = 'Lspsaga outline',
     },
-    -- any other neo-tree windows
-    'neo-tree',
   },
 
   ---@type table<Edgy.Pos, {size:integer, wo?:vim.wo}>
