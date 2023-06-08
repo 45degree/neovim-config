@@ -1,12 +1,12 @@
-require('which-key').setup {}
+require('which-key').setup({})
 
 local chooseWin = function()
-  local picker = require 'window-picker'
+  local picker = require('window-picker')
   local picked_window_id = picker.pick_window() or vim.api.nvim_get_current_win()
   vim.api.nvim_set_current_win(picked_window_id)
 end
 
-local wk = require 'which-key'
+local wk = require('which-key')
 wk.register({
   f = {
     name = '+文件', -- optional group name
@@ -41,7 +41,7 @@ wk.register({
       p = { '<cmd>DiffviewOpen<cr>', '显示Git项目更改' },
       h = { '<cmd>DiffviewFileHistory<cr>', '显示当前文件历史更改' },
     },
-    t = { '<cmd>Lspsaga outline<cr>', '打开代码大纲' },
+    t = { '<cmd>SymbosOutline<cr>', '打开代码大纲' },
     T = { '<cmd>Trouble<cr>', '打开代码诊断' },
     d = {
       name = '+debug',

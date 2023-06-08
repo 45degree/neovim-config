@@ -345,7 +345,13 @@ return {
       vim.o.foldlevelstart = 99
       vim.o.foldenable = true
       vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
-      require('ufo').setup({})
+      require('ufo').setup({
+        provider_selector = function(bufnr, filetype, buftype)
+          if filetype == 'Outline' then
+            return ''
+          end
+        end,
+      })
     end,
     enable = function()
       return vim.fn.has('nvim-0.9') == 1
@@ -360,7 +366,7 @@ return {
       local builtin = require('statuscol.builtin')
       require('statuscol').setup({
         relculright = true,
-        ft_ignore = { 'neo-tree', 'toggleterm' },
+        ft_ignore = { 'neo-tree', 'toggleterm', 'Outline' },
         bt_ignore = { 'nofile', 'prompt' },
         segments = {
           { text = { builtin.foldfunc }, click = 'v:lua.ScFa' },
