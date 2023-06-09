@@ -19,7 +19,11 @@ require('edgy').setup({
   },
   left = {
     -- any other neo-tree windows
-    'neo-tree',
+    {
+      ft = 'neo-tree',
+      pinned = true,
+      open = 'Neotree toggle',
+    },
 
     -- Neo-tree filesystem always takes half the screen height
     {

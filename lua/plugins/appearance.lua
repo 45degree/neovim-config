@@ -385,6 +385,7 @@ return {
     'folke/edgy.nvim',
     event = 'VeryLazy',
     config = function()
+      vim.opt.splitkeep = 'topline'
       require('config.plugins.edgy')
     end,
     enable = false,

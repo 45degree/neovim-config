@@ -41,7 +41,6 @@ wk.register({
       p = { '<cmd>DiffviewOpen<cr>', '显示Git项目更改' },
       h = { '<cmd>DiffviewFileHistory<cr>', '显示当前文件历史更改' },
     },
-    t = { '<cmd>SymbosOutline<cr>', '打开代码大纲' },
     T = { '<cmd>Trouble<cr>', '打开代码诊断' },
     d = {
       name = '+debug',
@@ -50,7 +49,8 @@ wk.register({
     },
     D = { require('neogen').generate, '生成代码文档注释' },
   },
-  t = { '<cmd>Neotree toggle<cr>', '打开文件树' },
+  g = { t = { '<cmd>NeoTreeFocus<cr>', '查看文件树' } },
+  t = { require('edgy').toggle, '打开文件树' },
   w = {
     name = '+窗口',
     c = { chooseWin, '选择窗口' },
