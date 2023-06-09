@@ -50,7 +50,12 @@ wk.register({
     D = { require('neogen').generate, '生成代码文档注释' },
   },
   g = { t = { '<cmd>NeoTreeFocus<cr>', '查看文件树' } },
-  t = { require('edgy').toggle, '打开文件树' },
+  t = {
+    function()
+      require('edgy').toggle('left')
+    end,
+    '打开文件树',
+  },
   w = {
     name = '+窗口',
     c = { chooseWin, '选择窗口' },
