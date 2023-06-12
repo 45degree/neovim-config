@@ -32,6 +32,9 @@ require('edgy').setup({
       pinned = true,
       size = { height = 0.3 },
       open = 'SymbolsOutline',
+      wo = {
+        foldenable = false,
+      },
     },
   },
 
@@ -46,6 +49,7 @@ require('edgy').setup({
   animate = {
     enabled = false,
   },
+  exit_when_last = true,
   -- global window options for sidebar windows
   ---@type vim.wo
   wo = {

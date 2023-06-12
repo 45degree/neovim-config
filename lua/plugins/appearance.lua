@@ -345,13 +345,7 @@ return {
       vim.o.foldlevelstart = 99
       vim.o.foldenable = true
       vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
-      require('ufo').setup({
-        provider_selector = function(bufnr, filetype, buftype)
-          if filetype == 'Outline' then
-            return ''
-          end
-        end,
-      })
+      require('ufo').setup({})
     end,
     enable = function()
       return vim.fn.has('nvim-0.9') == 1
@@ -385,7 +379,6 @@ return {
     'folke/edgy.nvim',
     event = 'VeryLazy',
     config = function()
-      vim.opt.splitkeep = 'topline'
       require('config.plugins.edgy')
     end,
     enable = false,
