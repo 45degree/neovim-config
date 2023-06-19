@@ -85,6 +85,7 @@ cmp.setup({
         luasnip = '[SNIP]',
         utilsnips = '[SNIP]',
         spell = '[SPELL]',
+        cmdline = '[CMD]',
       }
 
       local max_len = 20
@@ -98,4 +99,33 @@ cmp.setup({
       return vim_item
     end,
   },
+})
+
+-- config for command line
+cmp.setup.cmdline('/', {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = {
+    { name = 'buffer' },
+  },
+})
+
+cmp.setup.cmdline('?', {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = {
+    { name = 'buffer' },
+  },
+})
+
+cmp.setup.cmdline(':', {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({
+    { name = 'path' },
+  }, {
+    {
+      name = 'cmdline',
+      option = {
+        ignore_cmds = { 'Man', '!' },
+      },
+    },
+  }),
 })

@@ -315,16 +315,6 @@ return {
     end,
   },
 
-  -- command line
-  {
-    'gelguy/wilder.nvim',
-    event = 'CmdlineEnter',
-    build = ':UpdateRemotePlugins',
-    config = function()
-      require('config.plugins.wilder')
-    end,
-  },
-
   -- 显示颜色
   {
     'NvChad/nvim-colorizer.lua',

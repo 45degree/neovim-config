@@ -52,6 +52,7 @@ return {
       'hrsh7th/cmp-path', --自动提示硬盘上的文件
       'windwp/nvim-autopairs',
       'hrsh7th/cmp-nvim-lsp', --neovim 内置 LSP 客户端的 nvim-cmp 源
+      'hrsh7th/cmp-cmdline',
     },
     config = function()
       require('luasnip.loaders.from_vscode').lazy_load()
