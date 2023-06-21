@@ -52,13 +52,5 @@ require('nvim-treesitter.configs').setup({
       -- `ap`.
       include_surrounding_whitespace = true,
     },
-    lsp_interop = {
-      enable = true,
-      border = 'none',
-      peek_definition_code = {
-        ['<leader>df'] = '@function.outer',
-        ['<leader>dc'] = '@class.outer',
-      },
-    },
   },
 })

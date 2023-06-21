@@ -15,7 +15,7 @@ vim.opt.laststatus = 3 -- 显示状态栏 0不显示, 1多窗口显示, 2显示,
 vim.opt.ruler = true -- 状态栏显示光标当前位置
 vim.opt.termguicolors = true -- 支持24位彩色
 vim.opt.timeoutlen = 500
-vim.cmd [[syntax on]] -- 语法高亮
+vim.cmd([[syntax on]]) -- 语法高亮
 
 -- 缩进设置
 vim.opt.autoindent = true -- 格式保持一致
@@ -48,7 +48,7 @@ vim.opt.wildmode = 'longest:list,full' -- 底部命令tab自动补全
 vim.opt.clipboard = 'unnamedplus' -- 设置vim使用系统剪切板
 vim.opt.signcolumn = 'yes'
 
-if vim.fn.has 'nvim' then
+if vim.fn.has('nvim') then
   vim.env.NVIM_TUI_ENABLE_TRUE_COLOR = 1
 end
 
@@ -56,13 +56,13 @@ end
 vim.opt.backspace = '2'
 
 -- leader设置为空格
-vim.g.mapleader = ','
+vim.g.mapleader = ' '
 
 -- 启动鼠标支持
 vim.opt.mouse = 'a'
 
-require 'config.keymap'
-require 'config.autocmd'
+require('config.keymap')
+require('config.autocmd')
 
-local option_config = require 'option_config'
-option_config.read(vim.api.nvim_eval 'stdpath("config")' .. '/option_config.json')
+local option_config = require('option_config')
+option_config.read(vim.api.nvim_eval('stdpath("config")') .. '/option_config.json')

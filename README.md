@@ -7,7 +7,7 @@
 该配置文件依赖一下几个工具, 需要提前安装好
 
 1. git
-2. rg(ripgrep使用)
+2. rg(ripgrep 使用)
 
 确保`neovim`支持`python3`, 如果不支持, 执行以下命令
 
@@ -21,8 +21,8 @@ pip3 install pynvim
 2. 代码调试
 3. git
 4. 模糊搜索
-5. markdown预览
-6. c/c++, rust语法高亮
+5. markdown 预览
+6. c/c++, rust 语法高亮
 7. 格式化代码
 8. 浮动终端
 9. xmake 编译调试
@@ -33,13 +33,13 @@ pip3 install pynvim
 
 1. 安装字体
 
-> 没有安装字体neovim也能正常工作, 但是部分地方会有乱码
+> 没有安装字体 neovim 也能正常工作, 但是部分地方会有乱码
 
-部分插件需要用到`nerdfont`字体, 去[nerdfont官网](https://www.nerdfonts.com/)下载
+部分插件需要用到`nerdfont`字体, 去[nerdfont 官网](https://www.nerdfonts.com/)下载
 
 ### 安装过程
 
-运行以下命令, clone仓库到本地即可：
+运行以下命令, clone 仓库到本地即可：
 
 ```shell
 git clone https://gitee.com/degree45/vim_configuration ~/.config/nvim

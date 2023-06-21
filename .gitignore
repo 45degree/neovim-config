@@ -22,3 +22,6 @@ option_config.json
 
 ## lazy lock
 lazy-lock.json
+
+## luarc
+.luarc.json

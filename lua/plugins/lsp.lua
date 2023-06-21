@@ -25,8 +25,12 @@ return {
     dependencies = {
       'neovim/nvim-lspconfig',
       'williamboman/mason.nvim',
+      'folke/neodev.nvim',
     },
     config = function()
+      require('neodev').setup({
+        -- add any options here, or leave empty to use the default settings
+      })
       require('mason-lspconfig').setup()
 
       local lspinstaller = require('mason-lspconfig')

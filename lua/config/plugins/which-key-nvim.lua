@@ -28,11 +28,6 @@ wk.register({
   },
   c = {
     name = '+代码',
-    ['2'] = {
-      name = '+markdown',
-      p = { '<Plug>MarkdownPreview', 'markdown预览' },
-      s = { '<Plug>MarkdownPreviewStop', 'markdown停止预览' },
-    },
     g = {
       name = '+git',
       c = { '<cmd>Gitsigns preview_hunk<cr>', '显示Git当前行更改' },
@@ -46,6 +41,12 @@ wk.register({
       name = '+debug',
       c = { require('dap').terminate, '关闭调试' },
       w = { require('dapui').toggle, '切换调试窗口' },
+      ['='] = {
+        function()
+          require('dapui').open({ reset = true })
+        end,
+        '平衡调整窗口',
+      },
     },
     D = { require('neogen').generate, '生成代码文档注释' },
   },

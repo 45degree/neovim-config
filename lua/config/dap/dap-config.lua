@@ -3,16 +3,16 @@
 local M = {}
 
 local function config_dapui()
-  local dap, dapui = require 'dap', require 'dapui'
+  local dap, dapui = require('dap'), require('dapui')
 
   local debug_open = function()
-    require('dapui').open { reset = true }
-    vim.api.nvim_command 'DapVirtualTextEnable'
+    require('dapui').open({ reset = true })
+    vim.api.nvim_command('DapVirtualTextEnable')
   end
   local debug_close = function()
     dap.repl.close()
     dapui.close()
-    vim.api.nvim_command 'DapVirtualTextDisable'
+    vim.api.nvim_command('DapVirtualTextDisable')
   end
 
   dap.listeners.after.event_initialized['dapui_config'] = function()
@@ -30,7 +30,7 @@ local function config_dapui()
 end
 
 local function config_debuggers()
-  local dap = require 'dap'
+  local dap = require('dap')
 
   -- load from json file
   require('dap.ext.vscode').load_launchjs(nil, { cppdbg = { 'cpp' } })
@@ -54,8 +54,6 @@ function M.setup()
   -- set key map
   keymap('n', '<F9>', "<cmd>lua require'dap'.toggle_breakpoint()<cr>", {})
   keymap('n', '<space><F9>', "<cmd>lua require'dap'.set_breakpoint(vim.fn.input '[Condition] > ')<cr>", {})
-  -- keymap("n", "<leader>dr", "lua require'dap'.repl.open()<cr>", opts)
-  -- keymap('n', '<F10>', '<cmd>lua require"user.dap.dap-util".reload_continue()<CR>', {})
   keymap('n', '<F4>', "<cmd>lua require'dap'.terminate()<cr>", {})
   keymap('n', '<F5>', "<cmd>lua require'dap'.continue()<cr>", {})
   keymap('n', '<F6>', "<cmd>lua require'dap'.pause()<cr>", {})
