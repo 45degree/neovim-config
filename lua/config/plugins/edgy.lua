@@ -31,7 +31,7 @@ require('edgy').setup({
       title = 'Outline',
       pinned = true,
       size = { height = 0.3 },
-      open = 'SymbolsOutline',
+      open = 'SymbolsOutlineOpen',
       wo = {
         foldenable = false,
       },
