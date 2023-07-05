@@ -35,14 +35,15 @@ pip3 install pynvim
 
 > 没有安装字体 neovim 也能正常工作, 但是部分地方会有乱码
 
-部分插件需要用到`nerdfont`字体, 去[nerdfont 官网](https://www.nerdfonts.com/)下载
+部分插件需要用到`nerdfont`字体,
+去[nerdfont 官网](https://www.nerdfonts.com/)下载
 
 ### 安装过程
 
 运行以下命令, clone 仓库到本地即可：
 
 ```shell
-git clone https://gitee.com/degree45/vim_configuration ~/.config/nvim
+git clone https://github.com/45degree/neovim-config.git ~/.config/nvim
 ```
 
 ## 已知的问题
