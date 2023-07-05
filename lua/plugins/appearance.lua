@@ -369,6 +369,7 @@ return {
     'folke/edgy.nvim',
     event = 'VeryLazy',
     config = function()
+      vim.opt.splitkeep = 'screen'
       require('config.plugins.edgy')
     end,
     enable = false,

@@ -12,10 +12,13 @@ return {
 
   -- 快速跳转
   {
-    'ggandor/leap.nvim',
+    'folke/flash.nvim',
     event = 'VeryLazy',
     config = function()
-      require('leap').add_default_mappings()
+      require('flash').setup({
+        modes = { char = { enabled = false } },
+      })
+      vim.api.nvim_set_keymap('n', 's', "<cmd>lua require('flash').jump()<cr>", {})
     end,
   },
 
@@ -25,6 +28,9 @@ return {
     event = 'VeryLazy',
     config = function()
       vim.g.suda_smart_edit = 1
+    end,
+    enable = function()
+      return vim.fn.has('WIN32') == 0
     end,
   },
 
