@@ -337,7 +337,7 @@ return {
       vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
       require('ufo').setup({})
     end,
-    enable = function()
+    enabled = function()
       return vim.fn.has('nvim-0.9') == 1
     end,
   },
@@ -360,7 +360,7 @@ return {
         },
       })
     end,
-    enable = function()
+    enabled = function()
       return vim.fn.has('nvim-0.9') == 1
     end,
   },
@@ -372,6 +372,6 @@ return {
       vim.opt.splitkeep = 'screen'
       require('config.plugins.edgy')
     end,
-    enable = false,
+    enabled = true,
   },
 }

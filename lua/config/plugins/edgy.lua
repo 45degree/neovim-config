@@ -50,6 +50,7 @@ require('edgy').setup({
     enabled = false,
   },
   exit_when_last = true,
+  close_when_all_hidden = true,
   -- global window options for sidebar windows
   ---@type vim.wo
   wo = {
