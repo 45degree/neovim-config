@@ -6,12 +6,11 @@ return {
     'sainnhe/gruvbox-material',
     lazy = false,
     priority = 1000,
-    cond = function()
-      return OptionConfig.getColorTheme() == 'gruvbox-material'
-    end,
     config = function()
-      require('config.colorTheme.gruvbox-material')
-      vim.cmd([[colorscheme gruvbox-material]])
+      if OptionConfig.getColorTheme() == 'gruvbox-material' then
+        require('config.colorTheme.gruvbox-material')
+        vim.cmd([[colorscheme gruvbox-material]])
+      end
     end,
   },
 
@@ -19,11 +18,10 @@ return {
     'AlexvZyl/nordic.nvim',
     lazy = false,
     priority = 1000,
-    cond = function()
-      return OptionConfig.getColorTheme() == 'nordic'
-    end,
     config = function()
-      vim.cmd([[colorscheme nordic]])
+      if OptionConfig.getColorTheme() == 'nordic' then
+        vim.cmd([[colorscheme nordic]])
+      end
     end,
   },
 
@@ -32,20 +30,19 @@ return {
     lazy = false,
     priority = 1000,
     dependencies = { 'rktjmp/lush.nvim' },
-    cond = function()
-      return OptionConfig.getColorTheme() == 'bluloco'
-    end,
     config = function()
-      -- your optional config goes here, see below.
-      require('bluloco').setup({
-        style = 'auto', -- "auto" | "dark" | "light"
-        transparent = false,
-        italics = false,
-        terminal = vim.fn.has('gui_running') == 1, -- bluoco colors are enabled in gui terminals per default.
-        guicursor = true,
-      })
+      if OptionConfig.getColorTheme() == 'bluloco' then
+        -- your optional config goes here, see below.
+        require('bluloco').setup({
+          style = 'auto', -- "auto" | "dark" | "light"
+          transparent = false,
+          italics = false,
+          terminal = vim.fn.has('gui_running') == 1, -- bluoco colors are enabled in gui terminals per default.
+          guicursor = true,
+        })
 
-      vim.cmd([[colorscheme bluloco]])
+        vim.cmd([[colorscheme bluloco]])
+      end
     end,
   },
 
@@ -53,23 +50,21 @@ return {
     'JoosepAlviste/palenightfall.nvim',
     lazy = false,
     priority = 1000,
-    cond = function()
-      return OptionConfig.getColorTheme() == 'palenightfall'
-    end,
     config = function()
-      vim.cmd([[colorscheme palenightfall]])
+      if OptionConfig.getColorTheme() == 'palenightfall' then
+        vim.cmd([[colorscheme palenightfall]])
+      end
     end,
   },
 
   {
     'sainnhe/edge',
     lazy = false,
-    cond = function()
-      return OptionConfig.getColorTheme() == 'edge'
-    end,
     priority = 1000,
     config = function()
-      vim.cmd([[colorscheme edge]])
+      if OptionConfig.getColorTheme() == 'edge' then
+        vim.cmd([[colorscheme edge]])
+      end
     end,
   },
 
@@ -77,11 +72,10 @@ return {
     'sainnhe/everforest',
     lazy = false,
     priority = 1000,
-    cond = function()
-      return OptionConfig.getColorTheme() == 'everforest'
-    end,
     config = function()
-      vim.cmd([[colorscheme everforest]])
+      if OptionConfig.getColorTheme() == 'everforest' then
+        vim.cmd([[colorscheme everforest]])
+      end
     end,
   },
 
@@ -89,11 +83,10 @@ return {
     'rmehri01/onenord.nvim',
     lazy = false,
     priority = 1000,
-    cond = function()
-      return OptionConfig.getColorTheme() == 'onenord'
-    end,
     config = function()
-      vim.cmd([[colorscheme onenord]])
+      if OptionConfig.getColorTheme() == 'onenord' then
+        vim.cmd([[colorscheme onenord]])
+      end
     end,
   },
 
@@ -101,11 +94,10 @@ return {
     'sainnhe/sonokai',
     lazy = false,
     priority = 1000,
-    cond = function()
-      return OptionConfig.getColorTheme() == 'sonokai'
-    end,
     config = function()
-      vim.cmd([[colorscheme sonokai]])
+      if OptionConfig.getColorTheme() == 'sonokai' then
+        vim.cmd([[colorscheme sonokai]])
+      end
     end,
   },
 
@@ -113,11 +105,10 @@ return {
     'glepnir/zephyr-nvim',
     lazy = false,
     priority = 1000,
-    cond = function()
-      return OptionConfig.getColorTheme() == 'zephyr'
-    end,
     config = function()
-      vim.cmd([[colorscheme zephyr]])
+      if OptionConfig.getColorTheme() == 'zephyr' then
+        vim.cmd([[colorscheme zephyr]])
+      end
     end,
   },
 
@@ -125,11 +116,10 @@ return {
     'olimorris/onedarkpro.nvim',
     lazy = false,
     priority = 1000,
-    cond = function()
-      return OptionConfig.getColorTheme() == 'onedarkpro'
-    end,
     config = function()
-      vim.cmd([[colorscheme onedark]])
+      if OptionConfig.getColorTheme() == 'onedarkpro' then
+        vim.cmd([[colorscheme onedark]])
+      end
     end,
   },
 
@@ -138,47 +128,38 @@ return {
     lazy = false,
     name = 'catppuccin',
     build = ':CatppuccinCompile',
-    cond = function()
-      local theme = OptionConfig.getColorTheme()
-      return theme == 'catppuccin-latte'
-        or theme == 'catppuccin-frappe'
-        or theme == ' catppuccin-macchiato'
-        or theme == 'catppuccin-mocha'
-        or theme == 'catppuccin'
-    end,
     config = function()
-      require('config.colorTheme.catppuccin')
       local theme = OptionConfig.getColorTheme()
-      vim.cmd('colorscheme ' .. theme)
+      if string.sub(theme, 1, string.len('catppuccin')) == 'catppuccin' then
+        require('config.colorTheme.catppuccin')
+        vim.cmd('colorscheme ' .. theme)
+      end
     end,
   },
 
   {
     'folke/tokyonight.nvim',
     lazy = false,
-    cond = function()
-      return OptionConfig.getColorTheme() == 'tokyonight'
-    end,
     config = function()
-      vim.g.tokyonight_transparent = true
-      vim.g.tokyonight_transparent_sidebar = true
-      vim.g.tokyonight_lualine_bold = true
-      vim.cmd([[colorscheme tokyonight]])
+      if OptionConfig.getColorTheme() == 'tokyonight' then
+        vim.g.tokyonight_transparent = true
+        vim.g.tokyonight_transparent_sidebar = true
+        vim.g.tokyonight_lualine_bold = true
+        vim.cmd([[colorscheme tokyonight]])
+      end
     end,
   },
 
   {
     'rebelot/kanagawa.nvim',
     lazy = false,
-    cond = function()
-      local theme = OptionConfig.getColorTheme()
-      return theme == 'kanagawa' or theme == 'kanagawa-dragon' or theme == 'kanagawa-lotus' or theme == 'kanagawa-wave'
-    end,
     build = ':KanagawaCompile',
     config = function()
-      require('config.colorTheme.kanagawa')
       local theme = OptionConfig.getColorTheme()
-      vim.cmd('colorscheme ' .. theme)
+      if string.sub(theme, 1, string.len('kanagawa')) == 'kanagawa' then
+        require('config.colorTheme.kanagawa')
+        vim.cmd('colorscheme ' .. theme)
+      end
     end,
   },
 
@@ -190,9 +171,11 @@ return {
       return theme == 'monokai-pro'
     end,
     config = function()
-      require('config.colorTheme.monokai-pro')
       local theme = OptionConfig.getColorTheme()
-      vim.cmd('colorscheme ' .. theme)
+      if theme == 'monokai-pro' then
+        require('config.colorTheme.monokai-pro')
+        vim.cmd('colorscheme ' .. theme)
+      end
     end,
   },
 
@@ -210,9 +193,19 @@ return {
         or theme == 'carbonfox'
     end,
     config = function()
-      require('config.colorTheme.nightfox')
       local theme = OptionConfig.getColorTheme()
-      vim.cmd('colorscheme ' .. theme)
+      if
+        theme == 'nightfox'
+        or theme == 'dayfox'
+        or theme == 'dawnfox'
+        or theme == 'duskfox'
+        or theme == 'nordfox'
+        or theme == 'terafox'
+        or theme == 'carbonfox'
+      then
+        require('config.colorTheme.nightfox')
+        vim.cmd('colorscheme ' .. theme)
+      end
     end,
   },
 
@@ -226,7 +219,10 @@ return {
       return theme == 'hardhacker'
     end,
     config = function()
-      vim.cmd.colorscheme('hardhacker')
+      local theme = OptionConfig.getColorTheme()
+      if theme == 'hardhacker' then
+        vim.cmd.colorscheme('hardhacker')
+      end
     end,
   },
 
