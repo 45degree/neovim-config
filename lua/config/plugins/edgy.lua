@@ -27,11 +27,11 @@ require('edgy').setup({
 
     -- Neo-tree filesystem always takes half the screen height
     {
-      ft = 'Outline',
+      ft = 'sagaoutline',
       title = 'Outline',
       pinned = true,
       size = { height = 0.3 },
-      open = 'SymbolsOutlineOpen',
+      open = 'Lspsaga outline',
       wo = {
         foldenable = false,
       },

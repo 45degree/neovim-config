@@ -87,14 +87,6 @@ return {
   },
 
   {
-    'simrat39/symbols-outline.nvim',
-    event = 'BufEnter',
-    config = function()
-      require('config.plugins.symbol-outline')
-    end,
-  },
-
-  {
     'chentoast/marks.nvim',
     event = 'BufEnter',
     config = function()
