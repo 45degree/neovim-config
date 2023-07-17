@@ -303,11 +303,14 @@ return {
 
   -- 提示
   {
-    'rcarriga/nvim-notify',
+    'folke/noice.nvim',
     event = 'VeryLazy',
+    dependencies = {
+      'MunifTanjim/nui.nvim',
+      'rcarriga/nvim-notify',
+    },
     config = function()
-      require('notify').setup({})
-      vim.notify = require('notify')
+      require('config.plugins.noice-nvim')
     end,
   },
 

@@ -50,7 +50,7 @@ return {
       'rafamadriz/friendly-snippets',
       'L3MON4D3/LuaSnip',
       'saadparwaiz1/cmp_luasnip',
-      'hrsh7th/cmp-nvim-lsp-signature-help',
+      -- 'hrsh7th/cmp-nvim-lsp-signature-help',
       'hrsh7th/cmp-buffer', --从buffer中智能提示
       'hrsh7th/cmp-nvim-lua', --nvim-cmp source for neovim Lua API.
       'hrsh7th/cmp-path', --自动提示硬盘上的文件
@@ -99,15 +99,6 @@ return {
     dependencies = { 'telescope.nvim' },
     config = function()
       require('config.plugins.lspsaga')
-    end,
-  },
-
-  {
-    'j-hui/fidget.nvim',
-    event = 'LspAttach',
-    tag = 'legacy',
-    config = function()
-      require('fidget').setup({})
     end,
   },
 
