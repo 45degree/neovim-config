@@ -155,6 +155,9 @@ return {
   {
     'iamcco/markdown-preview.nvim',
     ft = 'markdown',
+    dependencies = {
+      'folke/which-key.nvim',
+    },
     build = function()
       vim.call('mkdp#util#install')
     end,

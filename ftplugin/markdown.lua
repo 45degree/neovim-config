@@ -1,20 +1,2 @@
-local opt = {
-  mode = 'n', -- NORMAL mode
-  -- prefix: use "<leader>f" for example for mapping everything related to finding files
-  -- the prefix is prepended to every mapping part of `mappings`
-  prefix = '<leader>',
-  buffer = 0, -- Global mappings. Specify a buffer number for buffer local mappings
-  silent = true, -- use `silent` when creating keymaps
-  noremap = true, -- use `noremap` when creating keymaps
-  nowait = false, -- use `nowait` when creating keymaps
-  expr = false, -- use `expr` when creating keymaps
-}
-
-local wk = require('which-key')
-wk.register({
-  m = {
-    name = '+markdown',
-    p = { '<Plug>MarkdownPreview', 'markdown预览' },
-    s = { '<Plug>MarkdownPreviewStop', 'markdown停止预览' },
-  },
-}, opt)
+vim.api.nvim_buf_set_keymap(0, 'n', '<leader>mp', '<cmd>MarkdownPreview<cr>', { desc = 'markdown预览' })
+vim.api.nvim_buf_set_keymap(0, 'n', '<leader>ms', '<cmd>MarkdownPreviewStop<cr>', { desc = 'markdown停止预览' })
