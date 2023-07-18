@@ -54,16 +54,16 @@ return {
   },
 
   -- 高亮搜索
-  {
-    'asiryk/auto-hlsearch.nvim',
-    event = 'VeryLazy',
-    config = function()
-      require('auto-hlsearch').setup({
-        remap_keys = { '/', '?', '*', '#', 'n', 'N' },
-        create_commands = true,
-      })
-    end,
-  },
+  -- {
+  --   'asiryk/auto-hlsearch.nvim',
+  --   event = 'VeryLazy',
+  --   config = function()
+  --     require('auto-hlsearch').setup({
+  --       remap_keys = { '/', '?', '*', '#', 'n', 'N' },
+  --       create_commands = true,
+  --     })
+  --   end,
+  -- },
 
   -- xmake
   {

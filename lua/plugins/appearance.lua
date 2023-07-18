@@ -185,23 +185,23 @@ return {
     cond = function()
       local theme = OptionConfig.getColorTheme()
       return theme == 'nightfox'
-        or theme == 'dayfox'
-        or theme == 'dawnfox'
-        or theme == 'duskfox'
-        or theme == 'nordfox'
-        or theme == 'terafox'
-        or theme == 'carbonfox'
+          or theme == 'dayfox'
+          or theme == 'dawnfox'
+          or theme == 'duskfox'
+          or theme == 'nordfox'
+          or theme == 'terafox'
+          or theme == 'carbonfox'
     end,
     config = function()
       local theme = OptionConfig.getColorTheme()
       if
-        theme == 'nightfox'
-        or theme == 'dayfox'
-        or theme == 'dawnfox'
-        or theme == 'duskfox'
-        or theme == 'nordfox'
-        or theme == 'terafox'
-        or theme == 'carbonfox'
+          theme == 'nightfox'
+          or theme == 'dayfox'
+          or theme == 'dawnfox'
+          or theme == 'duskfox'
+          or theme == 'nordfox'
+          or theme == 'terafox'
+          or theme == 'carbonfox'
       then
         require('config.colorTheme.nightfox')
         vim.cmd('colorscheme ' .. theme)
@@ -312,6 +312,7 @@ return {
     config = function()
       require('config.plugins.noice-nvim')
     end,
+    -- enabled = false,
   },
 
   -- 显示颜色
@@ -330,7 +331,7 @@ return {
     event = 'BufEnter',
     config = function()
       vim.o.foldcolumn = '1' -- '0' is not bad
-      vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+      vim.o.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
       vim.o.foldlevelstart = 99
       vim.o.foldenable = true
       vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
@@ -352,9 +353,9 @@ return {
         ft_ignore = { 'neo-tree', 'toggleterm', 'Outline' },
         bt_ignore = { 'nofile', 'prompt' },
         segments = {
-          { text = { builtin.foldfunc }, click = 'v:lua.ScFa' },
-          { sign = { name = { '.*' }, maxwidth = 1 }, click = 'v:lua.ScSa' },
-          { text = { builtin.lnumfunc }, click = 'v:lua.ScLa' },
+          { text = { builtin.foldfunc },                                  click = 'v:lua.ScFa' },
+          { sign = { name = { '.*' }, maxwidth = 1 },                     click = 'v:lua.ScSa' },
+          { text = { builtin.lnumfunc },                                  click = 'v:lua.ScLa' },
           { sign = { name = { 'GitSigns' }, maxwidth = 2, colwidth = 1 }, click = 'v:lua.ScSa' },
         },
       })
