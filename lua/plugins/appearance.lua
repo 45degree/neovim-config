@@ -185,23 +185,23 @@ return {
     cond = function()
       local theme = OptionConfig.getColorTheme()
       return theme == 'nightfox'
-          or theme == 'dayfox'
-          or theme == 'dawnfox'
-          or theme == 'duskfox'
-          or theme == 'nordfox'
-          or theme == 'terafox'
-          or theme == 'carbonfox'
+        or theme == 'dayfox'
+        or theme == 'dawnfox'
+        or theme == 'duskfox'
+        or theme == 'nordfox'
+        or theme == 'terafox'
+        or theme == 'carbonfox'
     end,
     config = function()
       local theme = OptionConfig.getColorTheme()
       if
-          theme == 'nightfox'
-          or theme == 'dayfox'
-          or theme == 'dawnfox'
-          or theme == 'duskfox'
-          or theme == 'nordfox'
-          or theme == 'terafox'
-          or theme == 'carbonfox'
+        theme == 'nightfox'
+        or theme == 'dayfox'
+        or theme == 'dawnfox'
+        or theme == 'duskfox'
+        or theme == 'nordfox'
+        or theme == 'terafox'
+        or theme == 'carbonfox'
       then
         require('config.colorTheme.nightfox')
         vim.cmd('colorscheme ' .. theme)
@@ -243,6 +243,17 @@ return {
   {
     'goolord/alpha-nvim',
     config = function()
+      -- close Lazy and re-open when the dashboard is ready
+      if vim.o.filetype == 'lazy' then
+        vim.cmd.close()
+        vim.api.nvim_create_autocmd('User', {
+          pattern = 'AlphaReady',
+          callback = function()
+            require('lazy').show()
+          end,
+        })
+      end
+
       -- require'alpha'.setup(require'alpha.themes.dashboard'.config)
       local alpha = require('alpha')
       local dashboard = require('alpha.themes.dashboard')
@@ -261,8 +272,18 @@ return {
         dashboard.button('c', '  Color', '<cmd>Telescope colorscheme <cr>'),
         dashboard.button('m', '  marks', '<cmd>Telescope marks <cr>'),
         dashboard.button('w', '  word', '<cmd>Telescope live_grep <cr>'),
+        dashboard.button('s', '  Restore Session', [[:lua require("persistence").load() <cr>]]),
       }
       alpha.setup(dashboard.config)
+      vim.api.nvim_create_autocmd('User', {
+        pattern = 'LazyVimStarted',
+        callback = function()
+          local stats = require('lazy').stats()
+          local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+          dashboard.section.footer.val = '⚡ Neovim loaded ' .. stats.count .. ' plugins in ' .. ms .. 'ms'
+          pcall(vim.cmd.AlphaRedraw)
+        end,
+      })
     end,
   },
 
@@ -309,6 +330,40 @@ return {
       'MunifTanjim/nui.nvim',
       'rcarriga/nvim-notify',
     },
+    keys = {
+      {
+        '<c-f>',
+        function()
+          if not require('noice.lsp').scroll(4) then
+            return '<c-f>'
+          end
+        end,
+        silent = true,
+        expr = true,
+        desc = 'Scroll forward',
+        mode = {
+          'i',
+          'n',
+          's',
+        },
+      },
+      {
+        '<c-b>',
+        function()
+          if not require('noice.lsp').scroll(-4) then
+            return '<c-b>'
+          end
+        end,
+        silent = true,
+        expr = true,
+        desc = 'Scroll backward',
+        mode = {
+          'i',
+          'n',
+          's',
+        },
+      },
+    },
     config = function()
       require('config.plugins.noice-nvim')
     end,
@@ -331,7 +386,7 @@ return {
     event = 'BufEnter',
     config = function()
       vim.o.foldcolumn = '1' -- '0' is not bad
-      vim.o.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
+      vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
       vim.o.foldlevelstart = 99
       vim.o.foldenable = true
       vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
@@ -353,9 +408,9 @@ return {
         ft_ignore = { 'neo-tree', 'toggleterm', 'Outline' },
         bt_ignore = { 'nofile', 'prompt' },
         segments = {
-          { text = { builtin.foldfunc },                                  click = 'v:lua.ScFa' },
-          { sign = { name = { '.*' }, maxwidth = 1 },                     click = 'v:lua.ScSa' },
-          { text = { builtin.lnumfunc },                                  click = 'v:lua.ScLa' },
+          { text = { builtin.foldfunc }, click = 'v:lua.ScFa' },
+          { sign = { name = { '.*' }, maxwidth = 1 }, click = 'v:lua.ScSa' },
+          { text = { builtin.lnumfunc }, click = 'v:lua.ScLa' },
           { sign = { name = { 'GitSigns' }, maxwidth = 2, colwidth = 1 }, click = 'v:lua.ScSa' },
         },
       })

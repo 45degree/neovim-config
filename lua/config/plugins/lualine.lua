@@ -6,7 +6,7 @@ local config = {
     always_divide_middle = true,
     globalstatus = true,
     -- Disable sections and component separators
-    component_separators = { left = '', right = '' },
+    component_separators = '|',
     section_separators = { left = '', right = '' },
     refresh = {
       statusline = 1000,
@@ -18,7 +18,11 @@ local config = {
     lualine_a = { 'mode' },
     lualine_b = { 'branch', 'diff', 'diagnostics' },
     lualine_c = {
-      'filename',
+      {
+        'filename',
+        path = 1,
+        symbols = { modified = '  ', readonly = '', unnamed = '' },
+      },
       {
         -- Lsp server name .
         function()
@@ -28,20 +32,35 @@ local config = {
           if next(clients) == nil then
             return msg
           end
+
+          msg = ''
           for _, client in ipairs(clients) do
             local filetypes = client.config.filetypes
             if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-              return client.name
+              msg = msg .. client.name .. ','
             end
           end
-          return msg
+          return string.sub(msg, 1, #msg - 1)
         end,
         icon = ' LSP:',
       },
+      -- stylua: ignore
+      {
+        function() return "  " .. require("dap").status() end,
+        cond = function() return package.loaded["dap"] and require("dap").status() ~= "" end,
+      },
+      { require('lazy.status').updates, cond = require('lazy.status').has_updates },
     },
     lualine_x = { 'encoding', 'fileformat', 'filetype' },
-    lualine_y = { 'progress' },
-    lualine_z = { 'location' },
+    lualine_y = {
+      { 'progress', separator = ' ', padding = { left = 1, right = 0 } },
+      { 'location', padding = { left = 0, right = 1 } },
+    },
+    lualine_z = {
+      function()
+        return ' ' .. os.date('%R')
+      end,
+    },
   },
   inactive_sections = {
     lualine_a = {},
