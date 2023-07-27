@@ -25,15 +25,8 @@ cmp.setup({
     documentation = cmp.config.window.bordered(),
   },
   mapping = {
-    ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
-    ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
     ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
     -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-    ['<C-y>'] = cmp.config.disable,
-    ['<C-e>'] = cmp.mapping({
-      i = cmp.mapping.abort(),
-      c = cmp.mapping.close(),
-    }),
     ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
@@ -69,6 +62,29 @@ cmp.setup({
     { name = 'path' },
     { name = 'nvim_lua' },
   }),
+  matching = {
+    disallow_fuzzy_matching = true,
+    disallow_fullfuzzy_matching = true,
+    disallow_partial_fuzzy_matching = false,
+    disallow_partial_matching = false,
+    disallow_prefix_unmatching = true,
+  },
+  sorting = {
+    priority_weight = 1.0,
+    comparators = {
+      -- compare.score_offset, -- not good at all
+      cmp.config.compare.locality,
+      cmp.config.compare.recently_used,
+      cmp.config.compare.score, -- based on :  score = score + ((#sources - (source_index - 1)) * sorting.priority_weight)
+      cmp.config.compare.offset,
+      cmp.config.compare.order,
+      -- compare.scopes, -- what?
+      -- compare.sort_text,
+      -- compare.exact,
+      -- compare.kind,
+      -- compare.length, -- useless
+    },
+  },
   formatting = {
     fields = { 'kind', 'abbr', 'menu' },
     format = function(entry, vim_item)

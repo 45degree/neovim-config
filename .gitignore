@@ -25,3 +25,5 @@ lazy-lock.json
 
 ## luarc
 .luarc.json
+
+*.log

@@ -27,7 +27,7 @@ wk.register({
     r = { "<cmd>lua require('spectre').open()<cr>", '查找并替换' },
   },
   c = {
-    name = '+代码',
+    name = '+code',
     g = {
       name = '+git',
       c = { '<cmd>Gitsigns preview_hunk<cr>', '显示Git当前行更改' },
@@ -54,7 +54,10 @@ wk.register({
     },
     D = { require('neogen').generate, '生成代码文档注释' },
   },
-  g = { t = { '<cmd>NeoTreeFocus<cr>', '查看文件树' } },
+  g = {
+    name = '+goto',
+    t = { '<cmd>Neotree focus<cr>', '查看文件树' },
+  },
   t = {
     function()
       require('edgy').toggle('left')
@@ -99,5 +102,10 @@ wk.register({
     ['6'] = { '<cmd>BufferGoto 6<cr>', '移动到buffer6' },
     ['7'] = { '<cmd>BufferGoto 7<cr>', '移动到buffer7' },
     ['8'] = { '<cmd>BufferGoto 8<cr>', '移动到buffer8' },
+  },
+  e = {
+    name = '+Extension',
+    ['pb'] = { '<cmd>lua require("plenary.profile").start("profile.log", {flame = true})<cr>', 'begin profile' },
+    ['pe'] = { '<cmd>lua require("plenary.profile").stop()<cr>', 'end profile' },
   },
 }, { prefix = '<space>' })
