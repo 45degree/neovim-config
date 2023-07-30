@@ -45,17 +45,15 @@ return {
 
   {
     'hrsh7th/nvim-cmp',
-    event = 'LspAttach',
+    event = 'VeryLazy',
     dependencies = {
       'rafamadriz/friendly-snippets',
       'L3MON4D3/LuaSnip',
       'saadparwaiz1/cmp_luasnip',
-      -- 'hrsh7th/cmp-nvim-lsp-signature-help',
       'hrsh7th/cmp-buffer', --从buffer中智能提示
       'hrsh7th/cmp-nvim-lua', --nvim-cmp source for neovim Lua API.
       'hrsh7th/cmp-path', --自动提示硬盘上的文件
       'windwp/nvim-autopairs',
-      'hrsh7th/cmp-nvim-lsp', --neovim 内置 LSP 客户端的 nvim-cmp 源
       'hrsh7th/cmp-cmdline',
     },
     config = function()
@@ -64,6 +62,11 @@ return {
       require('luasnip.loaders.from_snipmate').lazy_load({ paths = { vim.fn.stdpath('config') .. '/snippets' } })
       require('config.plugins.nvim-cmp')
     end,
+  },
+
+  {
+    'hrsh7th/cmp-nvim-lsp', --neovim 内置 LSP 客户端的 nvim-cmp 源
+    event = 'LspAttach',
   },
 
   {
