@@ -6,9 +6,6 @@ return function(server)
 
   local opts = {
     capabilities = capabilities,
-    on_attach = function(client, bufnr)
-      client.server_capabilities.semanticTokensProvider = nil
-    end,
   }
 
   local status, config = pcall(require, 'config.lsp.' .. server)
