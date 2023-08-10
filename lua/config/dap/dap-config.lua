@@ -2,51 +2,16 @@
 
 local M = {}
 
-local function config_dapui()
-  local dap, dapui = require('dap'), require('dapui')
-
-  local debug_open = function()
-    require('dapui').open({ reset = true })
-    vim.api.nvim_command('DapVirtualTextEnable')
-  end
-  local debug_close = function()
-    dap.repl.close()
-    dapui.close()
-    vim.api.nvim_command('DapVirtualTextDisable')
-  end
-
-  dap.listeners.after.event_initialized['dapui_config'] = function()
-    debug_open()
-  end
-  dap.listeners.before.event_terminated['dapui_config'] = function()
-    debug_close()
-  end
-  dap.listeners.before.event_exited['dapui_config'] = function()
-    debug_close()
-  end
-  dap.listeners.before.disconnect['dapui_config'] = function()
-    debug_close()
-  end
-end
-
 local function config_debuggers()
   local dap = require('dap')
 
   -- load from json file
   require('dap.ext.vscode').load_launchjs(nil, { cppdbg = { 'cpp' } })
-
-  dap.adapters.python = require('config.dap.di-python').adapters
-  dap.configurations.python = require('config.dap.di-python').configurations
-
-  dap.adapters.cpptool = require('config.dap.di-cpp').adapters
-  dap.configurations.cpptool = require('config.dap.di-cpp').configurations
-
-  dap.adapters.codelldb = require('config.dap.di-codelldb').adapters
-  dap.configurations.codelldb = require('config.dap.di-codelldb').configurations
+  require('config.dap.di-cpp')
+  require('config.dap.di-python')
 end
 
 function M.setup()
-  config_dapui()
   config_debuggers() -- Debugger
 
   -- Shorten function name

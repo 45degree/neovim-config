@@ -5,58 +5,28 @@ end
 
 -- local subcommands = require('xmake.subcommands')
 local xmake = require('xmake')
-
-local pickers = require('telescope.pickers')
-local finders = require('telescope.finders')
-local conf = require('telescope.config').values
 local project = require('xmake.util.project')
-local actions = require('telescope.actions')
-local action_state = require('telescope.actions.state')
 
 local debugTargetSelect = function(opts)
   opts = opts or {}
-  pickers
-    .new(opts, {
-      prompt_title = 'targetSelect',
-      finder = finders.new_table({
-        results = project.GetProjectBinaryTarget(xmake.config),
-      }),
-      sorter = conf.generic_sorter(opts),
-      attach_mappings = function(prompt_bufnr, map)
-        actions.select_default:replace(function()
-          actions.close(prompt_bufnr)
-          local target = action_state.get_selected_entry()[1]
-
-          -- input
-          local args = vim.fn.input('Args: ')
-          xmake:Debug(target, args)
-        end)
-        return true
-      end,
-    })
-    :find()
+  vim.ui.select(project.GetProjectBinaryTarget(xmake.config), {}, function(item)
+    if item == nil or item == '' then
+      return
+    end
+    local args = vim.fn.input('Args: ')
+    xmake:Debug(item, args)
+  end)
 end
 
 local buildTargetSelect = function(opts, force)
   opts = opts or {}
-  pickers
-    .new(opts, {
-      prompt_title = 'targetSelect',
-      finder = finders.new_table({
-        results = project.GetProjectTarget(xmake.config),
-      }),
-      sorter = conf.generic_sorter(opts),
-      attach_mappings = function(prompt_bufnr, map)
-        actions.select_default:replace(function()
-          actions.close(prompt_bufnr)
-          local target = action_state.get_selected_entry()[1]
-
-          xmake:Build(target, force)
-        end)
-        return true
-      end,
-    })
-    :find()
+  vim.ui.select(project.GetProjectTarget(xmake.config), {}, function(item)
+    if item == nil or item == '' then
+      return
+    end
+    print(item)
+    xmake:Build(item, force)
+  end)
 end
 
 local command = function(commandArgs)

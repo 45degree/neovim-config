@@ -1,22 +1,48 @@
-local dbg_path = require('mason.settings').current.install_root_dir .. '/packages/cpptools/'
+local dap = require('dap')
 
-local M = {}
+local inputProgram = function()
+  local programFile = ''
+  vim.ui.input({
+    prompt = 'Path to executable: ',
+    default = vim.fn.getcwd(),
+    completion = 'file',
+  }, function(input)
+    programFile = input
+  end)
 
-M.adapters = {
-  id = 'cppdbg',
-  type = 'executable',
-  command = dbg_path .. 'extension/debugAdapters/bin/OpenDebugAD7',
+  return programFile
+end
+
+dap.adapters.codelldb = {
+  type = 'server',
+  port = '${port}',
+  executable = {
+    command = vim.fn.exepath('codelldb'),
+    args = { '--port', '${port}' },
+  },
 }
 
-M.configurations = {
+dap.adapters.cpptool = {
+  id = 'cppdbg',
+  type = 'executable',
+  command = vim.fn.exepath('OpenDebugAD7'),
+}
+
+dap.configurations.cpp = {
   {
-    name = 'Launch file',
+    name = 'Launch file(debug with codelldb)',
+    type = 'codelldb',
+    request = 'launch',
+    program = inputProgram,
+    cwd = '${workspaceFolder}',
+    stopOnEntry = false,
+  },
+  {
+    name = 'Launch file(debug with cpptool)',
     type = 'cppdbg',
     request = 'launch',
     miDebuggerPath = '/usr/bin/gdb',
-    program = function()
-      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-    end,
+    program = inputProgram,
     cwd = '${workspaceFolder}',
     stopOnEntry = true,
     setupCommands = {
@@ -28,13 +54,11 @@ M.configurations = {
     },
   },
   {
-    name = 'Attach process',
+    name = 'Attach process(debug with cpptool)',
     type = 'cppdbg',
     request = 'attach',
     processId = require('dap.utils').pick_process,
-    program = function()
-      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-    end,
+    program = inputProgram,
     cwd = '${workspaceFolder}',
     setupCommands = {
       {
@@ -45,16 +69,14 @@ M.configurations = {
     },
   },
   {
-    name = 'Attach to gdbserver :1234',
+    name = 'Attach to gdbserver :1234(debug with cpptool)',
     type = 'cppdbg',
     request = 'launch',
     MIMode = 'gdb',
     miDebuggerServerAddress = 'localhost:1234',
     miDebuggerPath = '/usr/bin/gdb',
     cwd = '${workspaceFolder}',
-    program = function()
-      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-    end,
+    program = inputProgram,
     setupCommands = {
       {
         description = 'enable pretty printing',
@@ -64,5 +86,3 @@ M.configurations = {
     },
   },
 }
-
-return M

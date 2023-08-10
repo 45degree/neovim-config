@@ -21,17 +21,13 @@ function xmake:Build(targetName, force)
 end
 
 function xmake:Debug(targetName, args)
-  args = util.split_args(args)
-  local dap_config = {
-    name = targetName,
+  local params = {
     program = project.GetTargetExecPath(targetName, xmake.config),
-    args = args,
+    args = util.split_args(args),
     cwd = project.GetTargetRunDir(targetName, xmake.config),
     env = project.GetTargetEnvs(targetName, xmake.config),
-    externalConsole = false,
   }
-
-  dap.run(vim.tbl_extend('force', dap_config, xmake.config.dap_configuration))
+  dap.run(self.config.dap_configuration(params))
 end
 
 return xmake

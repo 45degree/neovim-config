@@ -1,81 +1,36 @@
 return {
   {
     'mfussenegger/nvim-dap',
-    event = 'BufEnter',
     dependencies = {
-      'rcarriga/nvim-dap-ui',
+      'williamboman/mason.nvim',
     },
+    event = 'VeryLazy',
     config = function()
       vim.fn.sign_define('DapBreakpoint', { text = ' ', texthl = '', linehl = '', numhl = '' })
       vim.fn.sign_define('DapBreakpointCondition', { text = ' ', texthl = '', linehl = '', numhl = '' })
       vim.fn.sign_define('DapStopped', { text = ' ', texthl = '', linehl = '', numhl = '' })
       vim.fn.sign_define('DapBreakpointRejected', { text = '⭐️', texthl = '', linehl = '', numhl = '' })
+      require('config.dap.dap-config').setup()
     end,
   },
 
   {
     'rcarriga/nvim-dap-ui',
-    event = 'BufEnter',
+    event = 'VeryLazy',
+    dependencies = {
+      'mfussenegger/nvim-dap',
+    },
     config = function()
-      local status_ok, dapui = pcall(require, 'dapui')
-      if not status_ok then
-        vim.notify('dapui not found')
-        return
-      end
-
-      dapui.setup({
-        icons = { expanded = '▾', collapsed = '▸' },
-        mappings = {
-          -- Use a table to apply multiple mappings
-          expand = { '<2-LeftMouse>', '<CR>' },
-          open = 'o',
-          remove = 'd',
-          edit = 'e',
-          repl = 'r',
-          toggle = 't',
-        },
-        layouts = {
-          {
-            -- You can change the order of elements in the sidebar
-            elements = {
-              -- Provide as ID strings or tables with "id" and "size" keys
-              {
-                id = 'scopes',
-                size = 0.35, -- Can be float or integer > 1
-              },
-              { id = 'stacks', size = 0.35 },
-              { id = 'watches', size = 0.15 },
-              { id = 'breakpoints', size = 0.15 },
-            },
-            size = 40,
-            position = 'left', -- Can be "left", "right", "top", "bottom"
-          },
-          {
-            elements = {
-              'repl',
-              'console',
-            },
-            size = 0.25,
-            position = 'bottom', -- Can be "left", "right", "top", "bottom"
-          },
-        },
-        floating = {
-          max_height = nil, -- These can be integers or a float between 0 and 1.
-          max_width = nil, -- Floats will be treated as percentage of your screen.
-          border = 'single', -- Border style. Can be "single", "double" or "rounded"
-          mappings = {
-            close = { 'q', '<Esc>' },
-          },
-        },
-        windows = { indent = 1 },
-      })
+      require('config.plugins.dap-ui-nvim')
     end,
   },
 
   {
     'theHamsta/nvim-dap-virtual-text',
-    event = 'BufEnter',
-    dependencies = { 'nvim-dap' },
+    event = 'VeryLazy',
+    dependencies = {
+      'mfussenegger/nvim-dap',
+    },
     config = function()
       require('nvim-dap-virtual-text').setup({
         enabled = true, -- enable this plugin (the default)
@@ -99,6 +54,7 @@ return {
     event = 'VeryLazy',
     dependencies = {
       'telescope.nvim',
+      'mfussenegger/nvim-dap',
     },
     config = function()
       require('telescope').load_extension('dap')
@@ -107,7 +63,10 @@ return {
 
   {
     'rcarriga/cmp-dap',
-    dependencies = 'nvim-cmp',
+    dependencies = {
+      'nvim-cmp',
+      'mfussenegger/nvim-dap',
+    },
     event = 'LspAttach',
     config = function()
       require('cmp').setup.filetype({ 'dap-repl', 'dapui_watches', 'dapui_hover' }, {

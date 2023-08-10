@@ -375,7 +375,7 @@ return {
     'NvChad/nvim-colorizer.lua',
     event = 'BufEnter',
     config = function()
-      require('colorizer').setup()
+      require('colorizer').setup({})
     end,
   },
 
@@ -391,6 +391,15 @@ return {
       vim.o.foldenable = true
       vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
       require('ufo').setup({})
+
+      -- disable fold in this file
+      vim.api.nvim_create_autocmd('FileType', {
+        pattern = { '\\[dap-repl\\]', 'DAP *', 'dapui_*' },
+        callback = function()
+          require('ufo').detach()
+          vim.opt_local.foldenable = false
+        end,
+      })
     end,
     enabled = function()
       return vim.fn.has('nvim-0.9') == 1
@@ -428,5 +437,21 @@ return {
       require('config.plugins.edgy')
     end,
     enabled = true,
+  },
+
+  {
+    'stevearc/dressing.nvim',
+    config = function()
+      require('dressing').setup({
+        input = { enabled = false },
+        select = {
+          -- Set to false to disable the vim.ui.select implementation
+          enabled = true,
+
+          -- Priority list of preferred vim.select implementations
+          backend = { 'telescope', 'builtin', 'nui' },
+        },
+      })
+    end,
   },
 }

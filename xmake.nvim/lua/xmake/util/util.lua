@@ -4,7 +4,7 @@ local config = require('xmake.config')
 local scandir = require('plenary.scandir')
 local utils = {}
 
-local function append_to_xmake_console(error, data)
+local function append_to_quickfix(error, data)
   local line = error and error or data
   vim.fn.setqflist({}, 'a', { lines = { line } })
   -- scroll the quickfix buffer to bottom
@@ -51,12 +51,12 @@ function utils.join_args(args)
   return table.concat(args, ' ')
 end
 
-function utils.show_xmake_console(xmake_console_position, xmake_console_size)
-  vim.api.nvim_command(xmake_console_position .. ' copen ' .. xmake_console_size)
+function utils.show_quickfix(quickfix_position, quickfix_size)
+  vim.api.nvim_command(quickfix_position .. ' copen ' .. quickfix_size)
   vim.api.nvim_command('wincmd j')
 end
 
-function utils.close_xmake_console()
+function utils.close_quickfix()
   vim.api.nvim_command('cclose')
 end
 
@@ -64,9 +64,9 @@ function utils.run(cmd, env, args, opts)
   vim.cmd('wall')
   vim.fn.setqflist({}, ' ', { title = cmd .. ' ' .. table.concat(args, ' ') })
 
-  local show_console = opts.xmake_show_console == 'always'
-  if show_console then
-    utils.show_xmake_console(opts.xmake_console_position, opts.xmake_console_size)
+  local show_quickfix = opts.show_quickfix == 'always'
+  if show_quickfix then
+    utils.show_quickfix(opts.quickfix_position, opts.quickfix_size)
   end
 
   utils.job = Job:new({
@@ -74,16 +74,16 @@ function utils.run(cmd, env, args, opts)
     args = args,
     cwd = vim.loop.cwd(),
     env = env,
-    on_stdout = vim.schedule_wrap(append_to_xmake_console),
-    on_stderr = vim.schedule_wrap(append_to_xmake_console),
+    on_stdout = vim.schedule_wrap(append_to_quickfix),
+    on_stderr = vim.schedule_wrap(append_to_quickfix),
     on_exit = vim.schedule_wrap(function(_, code, signal)
-      append_to_xmake_console('Exited with code ' .. (signal == 0 and code or 128 + signal))
+      append_to_quickfix('Exited with code ' .. (signal == 0 and code or 128 + signal))
       if code == 0 and signal == 0 then
         if opts.on_success then
           opts.on_success()
         end
-      elseif opts.xmake_show_console == 'only_on_error' then
-        utils.show_xmake_console(opts.xmake_console_position, opts.xmake_console_size)
+      elseif opts.show_quickfix == 'only_on_error' then
+        utils.show_quickfix(opts.quickfix_position, opts.quickfix_size)
         vim.api.nvim_command('cbottom')
       end
     end),

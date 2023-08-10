@@ -53,24 +53,19 @@ return {
     event = 'BufEnter',
   },
 
-  -- 高亮搜索
-  -- {
-  --   'asiryk/auto-hlsearch.nvim',
-  --   event = 'VeryLazy',
-  --   config = function()
-  --     require('auto-hlsearch').setup({
-  --       remap_keys = { '/', '?', '*', '#', 'n', 'N' },
-  --       create_commands = true,
-  --     })
-  --   end,
-  -- },
-
   -- xmake
   {
     dir = vim.fn.stdpath('config') .. '/xmake.nvim',
     event = 'CmdlineEnter',
     dependencies = { 'nvim-lua/plenary.nvim', 'telescope.nvim' },
     config = function()
+      -- MSBuild:
+      vim.opt.errorformat:append([[\ %#%f(%l\,%c):\ %m]])
+      -- cl.exe:
+      vim.opt.errorformat:append([[\ %#%f(%l)\ :\ %#%t%[A-z]%#\ %m]])
+      -- clang / gcc
+      vim.opt.errorformat:append([[%E%f:%l:%c:\ %trror:\ %m,%-Z%p^,%+C%.%#]])
+
       require('xmake').setup({})
     end,
   },

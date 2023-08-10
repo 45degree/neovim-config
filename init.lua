@@ -31,7 +31,6 @@ require('lazy').setup(plugins.plugins, plugins.opts)
 if vim.fn.has('win32') ~= 1 then
   require('config.fcitx-config')
 end
-require('config.dap.dap-config').setup()
 
 if vim.fn.exists('g:gonvim_running') == 1 then
   vim.opt.guifont = 'Maple Mono:h10'
