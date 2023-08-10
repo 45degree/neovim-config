@@ -52,7 +52,7 @@ wk.register({
         '平衡调整窗口',
       },
     },
-    D = { require('neogen').generate, '生成代码文档注释' },
+    -- D = { require('neogen').generate, '生成代码文档注释' },
   },
   g = {
     name = '+goto',

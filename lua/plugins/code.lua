@@ -16,6 +16,7 @@ return {
     config = function()
       require('neogen').setup({})
     end,
+    enabled = false,
   },
 
   -- todo comments
@@ -39,6 +40,7 @@ return {
     config = function()
       require('config.plugins.nvim-treesitter')
     end,
+    enabled = false,
   },
 
   -- 搜粟替换

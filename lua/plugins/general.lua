@@ -29,7 +29,7 @@ return {
     config = function()
       vim.g.suda_smart_edit = 1
     end,
-    enable = function()
+    enabled = function()
       return vim.fn.has('WIN32') == 0
     end,
   },

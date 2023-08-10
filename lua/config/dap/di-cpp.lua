@@ -1,15 +1,11 @@
 local dap = require('dap')
 
 local inputProgram = function()
-  local programFile = ''
-  vim.ui.input({
+  local programFile = vim.fn.input({
     prompt = 'Path to executable: ',
     default = vim.fn.getcwd(),
     completion = 'file',
-  }, function(input)
-    programFile = input
-  end)
-
+  })
   return programFile
 end
 
