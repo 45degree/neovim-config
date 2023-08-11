@@ -20,12 +20,9 @@ saga.setup({
   implement = {
     enable = false,
   },
-  rename = {
-    quit = 'q',
-    exec = '<CR>',
-    mark = 'x',
-    confirm = '<CR>',
-    in_select = false,
+  lightbulb = {
+    sign= false,
+    virtual_text = false,
   },
   ui = {
     -- Currently, only the round theme exists
