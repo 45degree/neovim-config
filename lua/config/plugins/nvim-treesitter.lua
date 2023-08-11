@@ -20,11 +20,12 @@ require('nvim-treesitter.configs').setup({
 
       -- if the buf has an attached lsp expected null-ls, disable highlight
       local clients = vim.lsp.get_active_clients({ bufnr = buf })
-      if #clients == 0 then
-        return true
-      elseif #clients == 1 and clients[1].name == 'null-ls' then
-        return true
+      for _, client in ipairs(clients) do
+        if client.server_capabilities['semanticTokensProvider'] then
+          return true
+        end
       end
+      return false
     end,
     -- disable = { 'c', 'cpp', 'rust' }, -- list of language that will be disabled
     -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
@@ -32,14 +33,5 @@ require('nvim-treesitter.configs').setup({
     -- Using this option may slow down your editor, and you may see some duplicate highlights.
     -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = false,
-  },
-  rainbow = {
-    enable = true,
-    -- list of languages you want to disable the plugin for
-    -- disable = { 'jsx', 'cpp' },
-    -- Which query to use for finding delimiters
-    query = 'rainbow-parens',
-    -- Highlight the entire buffer all at once
-    strategy = require('ts-rainbow').strategy.global,
   },
 })

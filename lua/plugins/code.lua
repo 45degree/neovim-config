@@ -32,14 +32,10 @@ return {
   -- 代码高亮
   {
     'nvim-treesitter/nvim-treesitter',
-    event = 'BufEnter',
-    dependencies = {
-      'HiPhish/nvim-ts-rainbow2',
-    },
+    event = 'VeryLazy',
     config = function()
       require('config.plugins.nvim-treesitter')
     end,
-    enabled = false,
   },
 
   {
