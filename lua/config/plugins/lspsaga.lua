@@ -21,8 +21,7 @@ saga.setup({
     enable = false,
   },
   lightbulb = {
-    sign= false,
-    virtual_text = false,
+    sign = false,
   },
   ui = {
     -- Currently, only the round theme exists
