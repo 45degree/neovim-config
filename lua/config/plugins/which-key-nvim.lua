@@ -58,12 +58,7 @@ wk.register({
     name = '+goto',
     t = { '<cmd>Neotree focus<cr>', '查看文件树' },
   },
-  t = {
-    function()
-      require('edgy').toggle('left')
-    end,
-    '打开文件树',
-  },
+  t = { '<cmd>Neotree toggle<cr>', '打开文件树' },
   w = {
     name = '+窗口',
     c = { chooseWin, '选择窗口' },

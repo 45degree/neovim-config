@@ -314,8 +314,42 @@ return {
     event = 'VeryLazy',
     config = function()
       require('indent_blankline').setup({
+        char = '│',
         buftype_exclude = { 'terminal', 'nofile', 'prompt' },
-        filetype_exclude = { 'dashboard', 'coc-explorer', 'NvimTree', 'neo-tree' },
+        filetype_exclude = { 'dashboard', 'coc-explorer', 'NvimTree', 'neo-tree', 'alpha', 'help', 'lazy', 'mason' },
+      })
+    end,
+  },
+
+  {
+    'echasnovski/mini.indentscope',
+    version = '*',
+    event = 'VeryLazy',
+    init = function()
+      vim.api.nvim_create_autocmd('FileType', {
+        pattern = {
+          'help',
+          'alpha',
+          'dashboard',
+          'neo-tree',
+          'Trouble',
+          'lazy',
+          'mason',
+          'notify',
+          'toggleterm',
+        },
+        callback = function()
+          vim.b.miniindentscope_disable = true
+        end,
+      })
+    end,
+    config = function()
+      require('mini.indentscope').setup({
+        symbol = '│',
+        options = { try_as_border = true },
+        draw = {
+          animation = require('mini.indentscope').gen_animation.none(),
+        },
       })
     end,
   },
@@ -339,11 +373,7 @@ return {
         silent = true,
         expr = true,
         desc = 'Scroll forward',
-        mode = {
-          'i',
-          'n',
-          's',
-        },
+        mode = { 'i', 'n', 's' },
       },
       {
         '<c-b>',
@@ -425,16 +455,6 @@ return {
     enabled = function()
       return vim.fn.has('nvim-0.9') == 1
     end,
-  },
-
-  {
-    'folke/edgy.nvim',
-    event = 'VeryLazy',
-    config = function()
-      vim.opt.splitkeep = 'screen'
-      require('config.plugins.edgy')
-    end,
-    enabled = true,
   },
 
   {

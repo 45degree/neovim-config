@@ -34,13 +34,20 @@ return {
     'nvim-treesitter/nvim-treesitter',
     event = 'BufEnter',
     dependencies = {
-      'nvim-treesitter/nvim-treesitter-textobjects',
       'HiPhish/nvim-ts-rainbow2',
     },
     config = function()
       require('config.plugins.nvim-treesitter')
     end,
     enabled = false,
+  },
+
+  {
+    'echasnovski/mini.ai',
+    version = '*',
+    config = function()
+      require('mini.ai').setup()
+    end,
   },
 
   -- 搜粟替换

@@ -42,31 +42,4 @@ require('nvim-treesitter.configs').setup({
     -- Highlight the entire buffer all at once
     strategy = require('ts-rainbow').strategy.global,
   },
-  textobjects = {
-    select = {
-      enable = true,
-      -- Automatically jump forward to textobj, similar to targets.vim
-      lookahead = true,
-      keymaps = {
-        -- You can use the capture groups defined in textobjects.scm
-        ['af'] = '@function.outer',
-        ['if'] = '@function.inner',
-        ['ac'] = '@class.outer',
-        ['ic'] = { query = '@class.inner', desc = 'Select inner part of a class region' },
-        ['ia'] = { query = '@parameter.inner', desc = 'Select inner part of a parameter region' },
-        ['aa'] = '@parameter.outer',
-      },
-      -- You can choose the select mode (default is charwise 'v')
-      selection_modes = {
-        ['@parameter.outer'] = 'v', -- charwise
-        ['@function.outer'] = 'V', -- linewise
-        ['@class.outer'] = '<c-v>', -- blockwise
-      },
-      -- If you set this to `true` (default is `false`) then any textobject is
-      -- extended to include preceding xor succeeding whitespace. Succeeding
-      -- whitespace has priority in order to act similarly to eg the built-in
-      -- `ap`.
-      include_surrounding_whitespace = true,
-    },
-  },
 })
