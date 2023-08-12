@@ -48,13 +48,30 @@ return {
 
   {
     'nvim-neo-tree/neo-tree.nvim',
-    event = 'BufEnter',
+    cmd = 'Neotree',
     branch = 'v3.x',
     dependencies = {
       'nvim-lua/plenary.nvim',
       'kyazdani42/nvim-web-devicons', -- not strictly required, but recommended
       'MunifTanjim/nui.nvim',
     },
+    deactivate = function()
+      vim.cmd([[Neotree close]])
+    end,
+    init = function()
+      if vim.fn.argc() == 1 then
+        local stat = vim.loop.fs_stat(vim.fn.argv(0))
+        if stat and stat.type == 'directory' then
+          require('neo-tree')
+        end
+      end
+
+      -- If you want icons for diagnostic errors, you'll need to define them somewhere:
+      vim.fn.sign_define('DiagnosticSignError', { text = ' ', texthl = 'DiagnosticSignError' })
+      vim.fn.sign_define('DiagnosticSignWarn', { text = ' ', texthl = 'DiagnosticSignWarn' })
+      vim.fn.sign_define('DiagnosticSignInfo', { text = ' ', texthl = 'DiagnosticSignInfo' })
+      vim.fn.sign_define('DiagnosticSignHint', { text = ' ', texthl = 'DiagnosticSignHint' })
+    end,
     config = function()
       require('config.plugins.neo-tree-nvim')
     end,
@@ -63,7 +80,7 @@ return {
   -- Lua
   {
     'ahmedkhalf/project.nvim',
-    event = 'UIEnter',
+    event = 'VeryLazy',
     config = function()
       require('project_nvim').setup({
         detection_methods = { 'pattern', 'lsp' },
@@ -75,7 +92,7 @@ return {
   -- 下划线
   {
     'yamatsum/nvim-cursorline',
-    event = 'BufEnter',
+    event = 'VeryLazy',
     config = function()
       require('nvim-cursorline').setup({
         cursorline = {
@@ -94,7 +111,7 @@ return {
 
   {
     'hrsh7th/vim-eft',
-    event = 'BufEnter',
+    event = 'VeryLazy',
     config = function()
       vim.api.nvim_set_keymap('n', ';', '<Plug>(eft-repeat)', {})
       vim.api.nvim_set_keymap('x', ';', '<Plug>(eft-repeat)', {})
@@ -130,7 +147,7 @@ return {
   -- 模糊搜索
   {
     'nvim-telescope/telescope.nvim',
-    event = 'VeryLazy',
+    cmd = 'Telescope',
     config = function()
       require('config.plugins.telescope')
     end,
@@ -139,13 +156,13 @@ return {
   -- 成对编辑
   {
     'tpope/vim-surround',
-    event = 'BufEnter',
+    event = 'VeryLazy',
   },
 
   -- 终端
   {
     'akinsho/toggleterm.nvim',
-    event = 'BufEnter',
+    event = 'VeryLazy',
     config = function()
       require('config.plugins.toggleterm')
     end,
@@ -171,7 +188,7 @@ return {
     -- only needed if you want to use the commands with "_with_window_picker" suffix
     's1n7ax/nvim-window-picker',
     tag = 'v1.5',
-    event = 'UIEnter',
+    event = 'VeryLazy',
     config = function()
       require('config.plugins.nvim-window-picker')
     end,
@@ -183,7 +200,7 @@ return {
     event = 'BufReadPre', -- this will only start session saving when an actual file was opened
     config = function()
       require('persistence').setup({
-        dir = vim.fn.expand(vim.fn.stdpath('state') .. '/sessions/'), -- directory where session files are saved
+        dir = vim.fn.expand(vim.fn.stdpath('state') .. '/sessions/'),        -- directory where session files are saved
         options = { 'buffers', 'curdir', 'tabpages', 'winsize', 'globals' }, -- sessionoptions used for saving
         pre_save = function()
           vim.api.nvim_exec_autocmds('User', { pattern = 'SessionSavePre' })
@@ -195,7 +212,7 @@ return {
   -- 翻译
   {
     'potamides/pantran.nvim',
-    event = 'BufEnter',
+    cmd = 'Pantran',
     config = function()
       require('pantran').setup({
         default_engine = 'google',

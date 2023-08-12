@@ -35,3 +35,13 @@ require('nvim-treesitter.configs').setup({
     additional_vim_regex_highlighting = false,
   },
 })
+
+vim.api.nvim_create_autocmd({ 'LspAttach' }, {
+  callback = function(opt)
+    local buf = opt.buf
+    local client = vim.lsp.get_client_by_id(opt.data.client_id)
+    if client.server_capabilities['semanticTokensProvider'] then
+      vim.treesitter.stop(buf)
+    end
+  end,
+})

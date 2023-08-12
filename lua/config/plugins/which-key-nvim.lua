@@ -24,7 +24,7 @@ wk.register({
     p = { '<cmd>Telescope projects<cr>', '打开项目' },
     m = { '<cmd>Telescope marks<cr>', 'Mark 查找' },
     b = { '<cmd>Telescope buffers<cr>', '查找所有buffer' },
-    r = { "<cmd>lua require('spectre').open()<cr>", '查找并替换' },
+    r = { '<cmd>Spectre<cr>', '查找并替换' },
   },
   c = {
     name = '+code',

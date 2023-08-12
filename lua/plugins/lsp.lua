@@ -2,7 +2,7 @@ return {
   -- 代码补全
   {
     'williamboman/mason.nvim',
-    event = 'VeryLazy',
+    cmd = 'Mason',
     config = function()
       require('mason').setup({
         ui = {
@@ -21,7 +21,8 @@ return {
 
   {
     'williamboman/mason-lspconfig.nvim',
-    event = 'VeryLazy',
+    -- event = 'VeryLazy',
+    event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
       'neovim/nvim-lspconfig',
       'williamboman/mason.nvim',
@@ -45,14 +46,14 @@ return {
 
   {
     'hrsh7th/nvim-cmp',
-    event = 'VeryLazy',
+    event = 'InsertEnter',
     dependencies = {
       'rafamadriz/friendly-snippets',
       'L3MON4D3/LuaSnip',
       'saadparwaiz1/cmp_luasnip',
-      'hrsh7th/cmp-buffer', --从buffer中智能提示
+      'hrsh7th/cmp-buffer',   --从buffer中智能提示
       'hrsh7th/cmp-nvim-lua', --nvim-cmp source for neovim Lua API.
-      'hrsh7th/cmp-path', --自动提示硬盘上的文件
+      'hrsh7th/cmp-path',     --自动提示硬盘上的文件
       'windwp/nvim-autopairs',
       'hrsh7th/cmp-cmdline',
     },
@@ -71,7 +72,7 @@ return {
 
   {
     'folke/trouble.nvim',
-    event = 'LspAttach',
+    cmd = { 'TroubleToggle', 'Trouble' },
     dependencies = {
       'nvim-cmp',
       'kyazdani42/nvim-web-devicons',

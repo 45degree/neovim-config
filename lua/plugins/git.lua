@@ -1,7 +1,7 @@
 return {
   {
     'lewis6991/gitsigns.nvim',
-    event = 'VeryLazy',
+    event = { 'BufReadPre', 'BufNewFile' },
     config = function()
       require('config.plugins.gitsigns')
     end,
@@ -18,6 +18,7 @@ return {
   -- 内置git命令
   {
     'tpope/vim-fugitive',
-    event = 'VeryLazy',
+    -- event = 'VeryLazy',
+    cmd = 'Git',
   },
 }

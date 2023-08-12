@@ -2,7 +2,7 @@
 local config = {
   options = {
     icons_enabled = true,
-    disabled_filetypes = { 'alpha', 'edgy' },
+    disabled_filetypes = { statusline = { 'alpha', 'dashboard' }, 'edgy' },
     always_divide_middle = true,
     globalstatus = true,
     -- Disable sections and component separators

@@ -1,12 +1,3 @@
--- Unless you are still migrating, remove the deprecated commands from v1.x
-vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
-
--- If you want icons for diagnostic errors, you'll need to define them somewhere:
-vim.fn.sign_define('DiagnosticSignError', { text = ' ', texthl = 'DiagnosticSignError' })
-vim.fn.sign_define('DiagnosticSignWarn', { text = ' ', texthl = 'DiagnosticSignWarn' })
-vim.fn.sign_define('DiagnosticSignInfo', { text = ' ', texthl = 'DiagnosticSignInfo' })
-vim.fn.sign_define('DiagnosticSignHint', { text = ' ', texthl = 'DiagnosticSignHint' })
-
 require('neo-tree').setup({
   event_handlers = {
     {
@@ -24,7 +15,7 @@ require('neo-tree').setup({
   enable_diagnostics = true,
   enable_normal_mode_for_inputs = true,
   sort_case_insensitive = false, -- used when sorting files and directories in the tree
-  sort_function = nil, -- use a custom function for sorting files and directories in the tree
+  sort_function = nil,           -- use a custom function for sorting files and directories in the tree
   source_selector = {
     winbar = true,
     statusline = false,
@@ -124,7 +115,7 @@ require('neo-tree').setup({
   },
   nesting_rules = {},
   filesystem = {
-    bind_to_cwd = true, -- true creates a 2-way binding between vim's cwd and neo-tree's root
+    bind_to_cwd = true,   -- true creates a 2-way binding between vim's cwd and neo-tree's root
     cwd_target = {
       sidebar = 'global', -- sidebar is when position = left or right
     },
@@ -155,9 +146,9 @@ require('neo-tree').setup({
     follow_current_file = {
       enabled = false,
       leave_dirs_open = false,
-    }, -- This will find and focus the file in the active buffer every
+    },                                      -- This will find and focus the file in the active buffer every
     -- time the current file is changed while the tree is open.
-    group_empty_dirs = false, -- when true, empty folders will be grouped together
+    group_empty_dirs = false,               -- when true, empty folders will be grouped together
     hijack_netrw_behavior = 'open_default', -- netrw disabled, opening a directory opens neo-tree
     -- in whatever position is specified in window.position
     -- "open_current",  -- netrw disabled, opening a directory opens within the
@@ -182,7 +173,7 @@ require('neo-tree').setup({
     follow_current_file = {
       enabled = true,
       leave_dirs_open = false,
-    }, -- This will find and focus the file in the active buffer every
+    },                       -- This will find and focus the file in the active buffer every
     -- time the current file is changed while the tree is open.
     group_empty_dirs = true, -- when true, empty folders will be grouped together
     show_unloaded = true,
