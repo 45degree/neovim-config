@@ -38,9 +38,11 @@ return {
       local lspconfig = require('lspconfig')
 
       for _, server in ipairs(lspinstaller.get_installed_servers()) do
-        local config = require('config.lsp')(server)
+        local config = require('config.lsp.server-config')(server)
         lspconfig[server].setup(config)
       end
+
+      require('config.lsp.config')
     end,
   },
 
@@ -51,10 +53,11 @@ return {
       'rafamadriz/friendly-snippets',
       'L3MON4D3/LuaSnip',
       'saadparwaiz1/cmp_luasnip',
-      'hrsh7th/cmp-buffer',   --从buffer中智能提示
+      'hrsh7th/cmp-buffer', --从buffer中智能提示
       'hrsh7th/cmp-nvim-lua', --nvim-cmp source for neovim Lua API.
-      'hrsh7th/cmp-path',     --自动提示硬盘上的文件
+      'hrsh7th/cmp-path', --自动提示硬盘上的文件
       'windwp/nvim-autopairs',
+      'hrsh7th/cmp-nvim-lsp-signature-help',
       'hrsh7th/cmp-cmdline',
     },
     config = function()
@@ -98,11 +101,16 @@ return {
   },
 
   {
-    'nvimdev/lspsaga.nvim',
+    'kosayoda/nvim-lightbulb',
     event = 'LspAttach',
-    dependencies = { 'telescope.nvim' },
     config = function()
-      require('config.plugins.lspsaga')
+      require('nvim-lightbulb').setup({
+        autocmd = { enabled = true },
+        virtual_text = {
+          enabled = true,
+          text = '',
+        },
+      })
     end,
   },
 

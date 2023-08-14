@@ -30,4 +30,10 @@ function xmake:Debug(targetName, args)
   dap.run(self.config.dap_configuration(params))
 end
 
+function xmake:Run(targetName, args)
+  local env = { PATH = vim.env.PATH }
+  local xmake_executable = xmake.config.xmake_executable
+  util.run(xmake_executable, env, { 'run', targetName, args }, xmake.config)
+end
+
 return xmake

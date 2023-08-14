@@ -5,6 +5,8 @@ require('noice').setup({
       ['vim.lsp.util.stylize_markdown'] = false,
       ['cmp.entry.get_documentation'] = false,
     },
+    hover = { enabled = false },
+    signature = { enabled = false },
   },
   messages = {
     enabled = true, -- enables the Noice messages UI

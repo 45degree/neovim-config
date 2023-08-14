@@ -29,6 +29,16 @@ local buildTargetSelect = function(opts, force)
   end)
 end
 
+local runTargetSelect = function(opts)
+  vim.ui.select(project.GetProjectBinaryTarget(xmake.config), {}, function(item)
+    if item == nil or item == '' then
+      return
+    end
+    local args = vim.fn.input('Args: ')
+    xmake:Run(item, args)
+  end)
+end
+
 local command = function(commandArgs)
   if commandArgs.fargs[1] == 'Debug' then
     debugTargetSelect({})
@@ -36,11 +46,13 @@ local command = function(commandArgs)
     buildTargetSelect({}, false)
   elseif commandArgs.fargs[1] == 'ReBuild' then
     buildTargetSelect({}, true)
+  elseif commandArgs.fargs[1] == 'Run' then
+    runTargetSelect({})
   end
 end
 
 local function complete(arg, cmd_line)
-  local matches = { 'Build', 'Debug', 'ReBuild' }
+  local matches = { 'Build', 'Debug', 'ReBuild', 'Run' }
   return matches
 end
 

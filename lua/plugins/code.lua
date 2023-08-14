@@ -58,7 +58,7 @@ return {
   {
     dir = vim.fn.stdpath('config') .. '/xmake.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
-    cmd = 'Xmake',
+    event = 'VeryLazy',
     config = function()
       -- MSBuild:
       vim.opt.errorformat:append([[\ %#%f(%l\,%c):\ %m]])

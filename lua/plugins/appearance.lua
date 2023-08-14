@@ -1,4 +1,4 @@
----@diagnostic disable: undefined-global
+---@diagnostic disable: undefined-global, missing-fields
 
 return {
   -- 颜色主题
@@ -154,7 +154,7 @@ return {
         callback = function()
           local stats = require('lazy').stats()
           local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-          dashboard.section.footer.val = '⚡ Neovim loaded ' .. stats.count .. ' plugins in ' .. ms .. 'ms'
+          dashboard.section.footer.val = '󱐋 Neovim loaded ' .. stats.count .. ' plugins in ' .. ms .. 'ms'
           pcall(vim.cmd.AlphaRedraw)
         end,
       })
@@ -201,17 +201,7 @@ return {
     event = { 'BufReadPre', 'BufNewFile' },
     init = function()
       vim.api.nvim_create_autocmd('FileType', {
-        pattern = {
-          'help',
-          'alpha',
-          'dashboard',
-          'neo-tree',
-          'Trouble',
-          'lazy',
-          'mason',
-          'notify',
-          'toggleterm',
-        },
+        pattern = { 'help', 'alpha', 'dashboard', 'neo-tree', 'Trouble', 'lazy', 'mason', 'notify', 'toggleterm' },
         callback = function()
           vim.b.miniindentscope_disable = true
         end,
@@ -236,40 +226,9 @@ return {
       'MunifTanjim/nui.nvim',
       'rcarriga/nvim-notify',
     },
-    keys = {
-      {
-        '<c-f>',
-        function()
-          if not require('noice.lsp').scroll(4) then
-            return '<c-f>'
-          end
-        end,
-        silent = true,
-        expr = true,
-        desc = 'Scroll forward',
-        mode = { 'i', 'n', 's' },
-      },
-      {
-        '<c-b>',
-        function()
-          if not require('noice.lsp').scroll(-4) then
-            return '<c-b>'
-          end
-        end,
-        silent = true,
-        expr = true,
-        desc = 'Scroll backward',
-        mode = {
-          'i',
-          'n',
-          's',
-        },
-      },
-    },
     config = function()
       require('config.plugins.noice-nvim')
     end,
-    -- enabled = false,
   },
 
   -- 显示颜色

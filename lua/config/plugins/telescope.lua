@@ -38,6 +38,7 @@ require('telescope').setup({
     mappings = {
       n = { ['q'] = require('telescope.actions').close },
     },
+    preview = { treesitter = false },
   },
 })
 require('telescope').load_extension('projects')

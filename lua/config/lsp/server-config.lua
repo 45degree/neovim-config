@@ -8,7 +8,7 @@ return function(server)
     capabilities = capabilities,
   }
 
-  local status, config = pcall(require, 'config.lsp.' .. server)
+  local status, config = pcall(require, 'config.lsp.server.' .. server)
   if status then
     return config(opts)
   end
