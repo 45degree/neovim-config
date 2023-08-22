@@ -11,13 +11,10 @@ return {
 
   -- 快速文档
   {
-    'danymat/neogen',
-    event = 'BufEnter',
-    dependencies = { 'nvim-treesitter/nvim-treesitter' },
-    config = function()
-      require('neogen').setup({})
+    'kkoomen/vim-doge',
+    build = function()
+      vim.call('doge#install')
     end,
-    enabled = false,
   },
 
   -- todo comments

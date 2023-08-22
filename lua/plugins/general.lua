@@ -187,7 +187,6 @@ return {
   {
     -- only needed if you want to use the commands with "_with_window_picker" suffix
     's1n7ax/nvim-window-picker',
-    tag = 'v1.5',
     event = 'VeryLazy',
     config = function()
       require('config.plugins.nvim-window-picker')
@@ -200,7 +199,7 @@ return {
     event = 'BufReadPre', -- this will only start session saving when an actual file was opened
     config = function()
       require('persistence').setup({
-        dir = vim.fn.expand(vim.fn.stdpath('state') .. '/sessions/'),        -- directory where session files are saved
+        dir = vim.fn.expand(vim.fn.stdpath('state') .. '/sessions/'), -- directory where session files are saved
         options = { 'buffers', 'curdir', 'tabpages', 'winsize', 'globals' }, -- sessionoptions used for saving
         pre_save = function()
           vim.api.nvim_exec_autocmds('User', { pattern = 'SessionSavePre' })
