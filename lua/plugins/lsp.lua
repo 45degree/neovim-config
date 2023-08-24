@@ -6,6 +6,7 @@ return {
     config = function()
       require('mason').setup({
         ui = {
+          border = 'single',
           icons = {
             -- The list icon to use for installed packages.
             package_installed = ' ',
@@ -31,6 +32,7 @@ return {
     config = function()
       require('neodev').setup({
         -- add any options here, or leave empty to use the default settings
+        library = { plugins = false },
       })
       require('mason-lspconfig').setup()
 
@@ -53,9 +55,9 @@ return {
       'rafamadriz/friendly-snippets',
       'L3MON4D3/LuaSnip',
       'saadparwaiz1/cmp_luasnip',
-      'hrsh7th/cmp-buffer', --从buffer中智能提示
+      'hrsh7th/cmp-buffer',   --从buffer中智能提示
       'hrsh7th/cmp-nvim-lua', --nvim-cmp source for neovim Lua API.
-      'hrsh7th/cmp-path', --自动提示硬盘上的文件
+      'hrsh7th/cmp-path',     --自动提示硬盘上的文件
       'windwp/nvim-autopairs',
       'hrsh7th/cmp-nvim-lsp-signature-help',
       'hrsh7th/cmp-cmdline',
