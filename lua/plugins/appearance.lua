@@ -28,6 +28,7 @@ return {
   {
     'catppuccin/nvim',
     lazy = false,
+    priority = 1000,
     name = 'catppuccin',
     build = ':CatppuccinCompile',
     config = function()
@@ -42,6 +43,7 @@ return {
   {
     'folke/tokyonight.nvim',
     lazy = false,
+    priority = 1000,
     config = function()
       if OptionConfig.getColorTheme() == 'tokyonight' then
         vim.g.tokyonight_transparent = true
@@ -55,46 +57,20 @@ return {
   {
     'EdenEast/nightfox.nvim',
     lazy = false,
-    cond = function()
-      local theme = OptionConfig.getColorTheme()
-      return theme == 'nightfox'
-          or theme == 'dayfox'
-          or theme == 'dawnfox'
-          or theme == 'duskfox'
-          or theme == 'nordfox'
-          or theme == 'terafox'
-          or theme == 'carbonfox'
-    end,
+    build = ':NightfoxCompile',
     config = function()
       local theme = OptionConfig.getColorTheme()
       if
-          theme == 'nightfox'
-          or theme == 'dayfox'
-          or theme == 'dawnfox'
-          or theme == 'duskfox'
-          or theme == 'nordfox'
-          or theme == 'terafox'
-          or theme == 'carbonfox'
+        theme == 'nightfox'
+        or theme == 'dayfox'
+        or theme == 'dawnfox'
+        or theme == 'duskfox'
+        or theme == 'nordfox'
+        or theme == 'terafox'
+        or theme == 'carbonfox'
       then
         require('config.colorTheme.nightfox')
         vim.cmd('colorscheme ' .. theme)
-      end
-    end,
-  },
-
-  -- init.lua:
-  {
-    'hardhackerlabs/theme-vim',
-    name = 'hardhacker',
-    lazy = false,
-    cond = function()
-      local theme = OptionConfig.getColorTheme()
-      return theme == 'hardhacker'
-    end,
-    config = function()
-      local theme = OptionConfig.getColorTheme()
-      if theme == 'hardhacker' then
-        vim.cmd.colorscheme('hardhacker')
       end
     end,
   },
@@ -190,7 +166,7 @@ return {
       require('indent_blankline').setup({
         char = '│',
         buftype_exclude = { 'terminal', 'nofile', 'prompt' },
-        filetype_exclude = { 'dashboard', 'coc-explorer', 'NvimTree', 'neo-tree', 'alpha', 'help', 'lazy', 'mason' },
+        filetype_exclude = { 'neo-tree', 'alpha', 'help', 'lazy', 'mason', 'Neogit*' },
       })
     end,
   },
@@ -201,7 +177,7 @@ return {
     event = { 'BufReadPre', 'BufNewFile' },
     init = function()
       vim.api.nvim_create_autocmd('FileType', {
-        pattern = { 'help', 'alpha', 'dashboard', 'neo-tree', 'Trouble', 'lazy', 'mason', 'notify', 'toggleterm' },
+        pattern = { 'help', 'alpha', 'neo-tree', 'Trouble', 'lazy', 'mason', 'notify', 'toggleterm', 'Neogit*' },
         callback = function()
           vim.b.miniindentscope_disable = true
         end,
@@ -248,7 +224,7 @@ return {
     event = { 'BufReadPre', 'BufNewFile' },
     config = function()
       vim.o.foldcolumn = '1' -- '0' is not bad
-      vim.o.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
+      vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
       vim.o.foldlevelstart = 99
       vim.o.foldenable = true
       vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
@@ -256,10 +232,9 @@ return {
 
       -- disable fold in this file
       vim.api.nvim_create_autocmd('FileType', {
-        pattern = { '\\[dap-repl\\]', 'DAP *', 'dapui_*', 'alpha' },
+        pattern = { '\\[dap-repl\\]', 'DAP *', 'dapui_*', 'alpha', 'Neogit*' },
         callback = function()
           require('ufo').detach()
-          print(1)
           vim.opt_local.foldenable = false
         end,
       })
@@ -280,9 +255,9 @@ return {
         ft_ignore = { 'neo-tree', 'toggleterm', 'Outline', 'alpha' },
         bt_ignore = { 'nofile', 'prompt' },
         segments = {
-          { text = { builtin.foldfunc },                                  click = 'v:lua.ScFa' },
-          { sign = { name = { '.*' }, maxwidth = 1 },                     click = 'v:lua.ScSa' },
-          { text = { builtin.lnumfunc },                                  click = 'v:lua.ScLa' },
+          { text = { builtin.foldfunc }, click = 'v:lua.ScFa' },
+          { sign = { name = { '.*' }, maxwidth = 1 }, click = 'v:lua.ScSa' },
+          { text = { builtin.lnumfunc }, click = 'v:lua.ScLa' },
           { sign = { name = { 'GitSigns' }, maxwidth = 2, colwidth = 1 }, click = 'v:lua.ScSa' },
         },
       })

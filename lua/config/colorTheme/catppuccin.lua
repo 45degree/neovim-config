@@ -50,7 +50,7 @@ require('catppuccin').setup({
     markdown = true,
     mason = true,
     mini = false,
-    neogit = false,
+    neogit = true,
     neotest = false,
     neotree = true,
     noice = true,
