@@ -56,7 +56,7 @@ require('catppuccin').setup({
     noice = true,
     notify = true,
     nvimtree = false,
-    overseer = false,
+    overseer = true,
     pounce = false,
     semantic_tokens = true,
     symbols_outline = false,

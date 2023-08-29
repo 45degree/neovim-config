@@ -1,11 +1,11 @@
 return {
   -- 快速注释
   {
-    'echasnovski/mini.comment',
+    'numToStr/Comment.nvim',
     event = { 'BufReadPost', 'BufNewFile' },
     version = '*',
     config = function()
-      require('mini.comment').setup()
+      require('Comment').setup()
     end,
   },
 
