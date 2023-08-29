@@ -122,7 +122,6 @@ return {
         dashboard.button('c', '  Color', '<cmd>Telescope colorscheme <cr>'),
         dashboard.button('m', '  marks', '<cmd>Telescope marks <cr>'),
         dashboard.button('w', '  word', '<cmd>Telescope live_grep <cr>'),
-        dashboard.button('s', '  Restore Session', [[:lua require("persistence").load() <cr>]]),
       }
       alpha.setup(dashboard.config)
       vim.api.nvim_create_autocmd('User', {
