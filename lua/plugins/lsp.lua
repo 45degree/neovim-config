@@ -59,7 +59,7 @@ return {
       'hrsh7th/cmp-nvim-lua', --nvim-cmp source for neovim Lua API.
       'hrsh7th/cmp-path',     --自动提示硬盘上的文件
       'windwp/nvim-autopairs',
-      'hrsh7th/cmp-nvim-lsp-signature-help',
+      'ray-x/lsp_signature.nvim',
       'hrsh7th/cmp-cmdline',
     },
     config = function()
@@ -67,6 +67,9 @@ return {
       require('luasnip.loaders.from_vscode').lazy_load({ paths = { vim.fn.stdpath('config') .. '/vscode-snippets' } })
       require('luasnip.loaders.from_snipmate').lazy_load({ paths = { vim.fn.stdpath('config') .. '/snippets' } })
       require('config.plugins.nvim-cmp')
+      require('lsp_signature').setup({
+        hint_prefix = '󰷼 ',
+      })
     end,
   },
 

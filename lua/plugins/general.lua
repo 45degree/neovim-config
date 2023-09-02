@@ -18,6 +18,7 @@ return {
       require('flash').setup({
         modes = { char = { enabled = false } },
       })
+      require('flash').toggle(false)
       vim.api.nvim_set_keymap('n', 's', "<cmd>lua require('flash').jump()<cr>", {})
     end,
   },
@@ -85,6 +86,7 @@ return {
       require('project_nvim').setup({
         detection_methods = { 'pattern', 'lsp' },
         patterns = { '.git', '*.sln' },
+        ignore_lsp = {'null-ls', 'efm'},
       })
     end,
   },
