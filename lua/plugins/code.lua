@@ -20,7 +20,7 @@ return {
   -- todo comments
   {
     'folke/todo-comments.nvim',
-    cmd = { 'TodoTrouble', 'TodoTelescope', 'TodoLocList', 'TodoQuickFix' },
+    event = { 'BufReadPost', 'BufNewFile' },
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
       require('todo-comments').setup({})
@@ -77,5 +77,21 @@ return {
         temp_dir = vim.fn.stdpath('config') .. '/template',
       })
     end,
+  },
+
+  {
+    'RRethy/vim-illuminate',
+    event = { 'BufReadPost', 'BufNewFile' },
+    config = function()
+      require('illuminate').configure({
+        providers = { 'lsp', 'regex' },
+        filetypes_denylist = {'neo-tree', 'alpha', 'help', 'lazy', 'mason', 'Neogit*', 'Outline'},
+      })
+    end,
+  },
+
+  {
+    'gpanders/editorconfig.nvim',
+    event = { 'BufReadPost', 'BufNewFile' },
   },
 }

@@ -236,7 +236,7 @@ return {
 
       -- disable fold in this file
       vim.api.nvim_create_autocmd('FileType', {
-        pattern = { '\\[dap-repl\\]', 'DAP *', 'dapui_*', 'alpha', 'Neogit*' },
+        pattern = { '\\[dap-repl\\]', 'DAP *', 'dapui_*', 'alpha', 'Neogit*', 'Outline' },
         callback = function()
           require('ufo').detach()
           vim.opt_local.foldenable = false

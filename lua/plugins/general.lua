@@ -86,7 +86,7 @@ return {
       require('project_nvim').setup({
         detection_methods = { 'pattern', 'lsp' },
         patterns = { '.git', '*.sln' },
-        ignore_lsp = {'null-ls', 'efm'},
+        ignore_lsp = { 'null-ls', 'efm' },
       })
     end,
   },
@@ -150,6 +150,7 @@ return {
   {
     'nvim-telescope/telescope.nvim',
     cmd = 'Telescope',
+    dependencies = { 'ahmedkhalf/project.nvim' },
     config = function()
       require('config.plugins.telescope')
     end,

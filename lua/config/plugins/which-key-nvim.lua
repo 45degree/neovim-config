@@ -38,7 +38,7 @@ wk.register({
       rh = { '<cmd>Gitsigns reset_hunk<cr>', '恢复hunk' },
       d = { '<cmd>Gitsigns diffthis<cr>', '显示当前文件更改' },
       p = { '<cmd>DiffviewOpen<cr>', '显示Git项目更改' },
-      h = { '<cmd>DiffviewFileHistory<cr>', '显示当前文件历史更改' },
+      h = { '<cmd>DiffviewFileHistory %<cr>', '显示当前文件历史更改' },
     },
     T = { '<cmd>Trouble<cr>', '打开代码诊断' },
     f = { vim.lsp.buf.format, '代码格式化' },

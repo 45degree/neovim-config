@@ -151,4 +151,13 @@ return {
       })
     end,
   },
+
+  -- 代码大纲
+  {
+    'simrat39/symbols-outline.nvim',
+    event = 'LspAttach',
+    config = function ()
+      require('config.plugins.symbol-outline')
+    end
+  },
 }
