@@ -171,11 +171,6 @@ return {
   },
 
   {
-    'tpope/vim-sleuth',
-    event = 'VeryLazy',
-  },
-
-  {
     'echasnovski/mini.indentscope',
     version = '*',
     event = { 'BufReadPre', 'BufNewFile' },
@@ -285,6 +280,18 @@ return {
           backend = { 'telescope', 'builtin', 'nui' },
         },
       })
+    end,
+  },
+
+  {
+    'equalsraf/neovim-gui-shim',
+    cond = function()
+      if vim.fn.has('gui_running') ~= 1 then
+        return false
+      elseif vim.fn.exists('g:neovide') == 1 then
+        return false
+      end
+      return true
     end,
   },
 }

@@ -6,7 +6,7 @@ vim.opt.showmode = true       -- 底部显示命令模式还是插入模式
 vim.opt.showcmd = true        -- 命令模式下显示命令
 vim.opt.encoding = 'utf-8'    -- 编码格式为utf-8
 vim.opt.textwidth = 120       -- 每行显示100个字符
-vim.opt.cc = '120'
+vim.opt.cc = "+1"
 vim.opt.wrap = true           -- 折行
 vim.opt.linebreak = true      -- 单词内部不折行
 vim.opt.wrapmargin = 2        -- 折行边缘字符数
@@ -46,7 +46,7 @@ vim.opt.list = true
 vim.opt.wildmenu = true
 vim.opt.wildmode = 'longest:list,full' -- 底部命令tab自动补全
 vim.opt.clipboard = 'unnamedplus'      -- 设置vim使用系统剪切板
-vim.opt.signcolumn = 'yes'
+vim.opt.signcolumn = 'auto'
 
 if vim.fn.has('nvim') then
   vim.env.NVIM_TUI_ENABLE_TRUE_COLOR = 1

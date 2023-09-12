@@ -8,7 +8,7 @@ require('symbols-outline').setup({
   auto_close = false,
   show_numbers = false,
   show_relative_numbers = false,
-  show_symbol_details = true,
+  show_symbol_details = false,
   preview_bg_highlight = 'Pmenu',
   autofold_depth = nil,
   auto_unfold_hover = true,
@@ -29,7 +29,7 @@ require('symbols-outline').setup({
     unfold_all = 'zO',
     fold_reset = 'R',
   },
-  lsp_blacklist = {},
+  lsp_blacklist = {'null-ls'},
   symbol_blacklist = {},
   symbols = {
     File = { icon = '', hl = '@text.uri' },

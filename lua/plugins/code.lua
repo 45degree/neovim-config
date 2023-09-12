@@ -85,13 +85,8 @@ return {
     config = function()
       require('illuminate').configure({
         providers = { 'lsp', 'regex' },
-        filetypes_denylist = {'neo-tree', 'alpha', 'help', 'lazy', 'mason', 'Neogit*', 'Outline'},
+        filetypes_denylist = { 'neo-tree', 'alpha', 'help', 'lazy', 'mason', 'Neogit*', 'Outline' },
       })
     end,
-  },
-
-  {
-    'gpanders/editorconfig.nvim',
-    event = { 'BufReadPost', 'BufNewFile' },
   },
 }

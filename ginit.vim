@@ -1,2 +1,2 @@
-set guifont=Maple\ Mono:h10
-set guifontwide=Symbols\ Nerd\ Font,Sarasa\ Fixed\ SC:h10
+GuiFont! Maple\ Mono:h10
+set gfw=Symbols\ Nerd\ Font\ Mono:h10
