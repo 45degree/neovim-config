@@ -139,10 +139,11 @@ return {
 
   -- 自动匹配括号
   {
-    'windwp/nvim-autopairs',
+    'echasnovski/mini.pairs',
+    version = '*',
     event = 'InsertEnter',
     config = function()
-      require('nvim-autopairs').setup({})
+      require('mini.pairs').setup()
     end,
   },
 

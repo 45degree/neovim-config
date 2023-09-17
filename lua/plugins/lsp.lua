@@ -55,10 +55,9 @@ return {
       'rafamadriz/friendly-snippets',
       'L3MON4D3/LuaSnip',
       'saadparwaiz1/cmp_luasnip',
-      'hrsh7th/cmp-buffer',   --从buffer中智能提示
+      'hrsh7th/cmp-buffer', --从buffer中智能提示
       'hrsh7th/cmp-nvim-lua', --nvim-cmp source for neovim Lua API.
-      'hrsh7th/cmp-path',     --自动提示硬盘上的文件
-      'windwp/nvim-autopairs',
+      'hrsh7th/cmp-path', --自动提示硬盘上的文件
       'ray-x/lsp_signature.nvim',
       'hrsh7th/cmp-cmdline',
     },
@@ -67,9 +66,7 @@ return {
       require('luasnip.loaders.from_vscode').lazy_load({ paths = { vim.fn.stdpath('config') .. '/vscode-snippets' } })
       require('luasnip.loaders.from_snipmate').lazy_load({ paths = { vim.fn.stdpath('config') .. '/snippets' } })
       require('config.plugins.nvim-cmp')
-      require('lsp_signature').setup({
-        hint_prefix = '󰷼 ',
-      })
+      require('lsp_signature').setup({ hint_prefix = '󰷼 ' })
     end,
   },
 
@@ -156,8 +153,8 @@ return {
   {
     'simrat39/symbols-outline.nvim',
     event = 'LspAttach',
-    config = function ()
+    config = function()
       require('config.plugins.symbol-outline')
-    end
+    end,
   },
 }
