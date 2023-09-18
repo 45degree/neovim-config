@@ -25,7 +25,7 @@ return {
             -- Config for conflicted files in diff views during a merge or rebase.
             layout = 'diff3_mixed',
             disable_diagnostics = true, -- Temporarily disable diagnostics for conflict buffers while in the view.
-            winbar_info = true, -- See ':h diffview-config-view.x.winbar_info'
+            winbar_info = true,         -- See ':h diffview-config-view.x.winbar_info'
           },
           file_history = {
             -- Config for changed files in file history views.
@@ -47,9 +47,9 @@ return {
   {
     'NeogitOrg/neogit',
     dependencies = {
-      'nvim-lua/plenary.nvim', -- required
+      'nvim-lua/plenary.nvim',         -- required
       'nvim-telescope/telescope.nvim', -- optional
-      'sindrets/diffview.nvim', -- optional
+      'sindrets/diffview.nvim',        -- optional
     },
     cmd = 'Neogit',
     config = function()
@@ -71,8 +71,12 @@ return {
     version = '*',
     config = function()
       require('git-conflict').setup({
-        default_mappings = true, -- disable buffer local mapping created by this plugin
+        default_mappings = true,     -- disable buffer local mapping created by this plugin
         disable_diagnostics = false, -- This will disable the diagnostics in a buffer whilst it is conflicted
+        highlights = {               -- They must have background color, otherwise the default color will be used
+          incoming = 'DiffAdd',
+          current = 'DiffText',
+        },
       })
     end,
   },

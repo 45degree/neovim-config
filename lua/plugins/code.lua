@@ -11,9 +11,11 @@ return {
 
   -- 快速文档
   {
-    'kkoomen/vim-doge',
-    build = function()
-      vim.call('doge#install')
+    'danymat/neogen',
+    dependencies = 'nvim-treesitter/nvim-treesitter',
+    event = { 'BufReadPost', 'BufNewFile' },
+    config = function()
+      require('neogen').setup({})
     end,
   },
 
@@ -79,14 +81,13 @@ return {
     end,
   },
 
+  -- hight world under cursor
   {
-    'RRethy/vim-illuminate',
+    'echasnovski/mini.cursorword',
+    version = '*',
     event = { 'BufReadPost', 'BufNewFile' },
     config = function()
-      require('illuminate').configure({
-        providers = { 'lsp', 'regex' },
-        filetypes_denylist = { 'neo-tree', 'alpha', 'help', 'lazy', 'mason', 'Neogit*', 'Outline' },
-      })
+      require('mini.cursorword').setup()
     end,
   },
 }
