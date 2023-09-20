@@ -55,9 +55,9 @@ return {
       'rafamadriz/friendly-snippets',
       'L3MON4D3/LuaSnip',
       'saadparwaiz1/cmp_luasnip',
-      'hrsh7th/cmp-buffer', --从buffer中智能提示
+      'hrsh7th/cmp-buffer',   --从buffer中智能提示
       'hrsh7th/cmp-nvim-lua', --nvim-cmp source for neovim Lua API.
-      'hrsh7th/cmp-path', --自动提示硬盘上的文件
+      'hrsh7th/cmp-path',     --自动提示硬盘上的文件
       'ray-x/lsp_signature.nvim',
       'hrsh7th/cmp-cmdline',
     },
@@ -126,6 +126,18 @@ return {
     },
     config = function()
       require('config.plugins.mason-null-ls')
+    end,
+    enabled = false
+  },
+
+  {
+    'dense-analysis/ale',
+    event = { 'BufReadPre', 'BufNewFile' },
+    init = function()
+      vim.g.ale_fixers = {
+        cpp = { 'clangtidy' },
+      }
+      vim.g.ale_echo_cursor = 0
     end,
   },
 
