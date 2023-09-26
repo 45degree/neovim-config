@@ -41,7 +41,7 @@ vim.opt.errorbells = false -- 出错不发出响声
 vim.opt.visualbell = true -- 出错时发出视觉提示
 vim.opt.history = 1000 -- 记住1000次历史操作
 vim.opt.autoread = true -- 打开文件监视
-vim.opt.listchars = 'tab:>-,trail:-' -- 末尾空格、tab用-高亮
+vim.opt.listchars = 'tab:··,trail:·' -- 末尾空格、tab用-高亮
 vim.opt.list = true
 vim.opt.wildmenu = true
 vim.opt.wildmode = 'longest:list,full' -- 底部命令tab自动补全
@@ -67,3 +67,9 @@ require('config.autocmd')
 
 local option_config = require('option_config')
 option_config.read(vim.api.nvim_eval('stdpath("config")') .. '/option_config.json')
+
+local signs = { Error = "󰅚", Warn = "", Hint = "", Info = "" }
+for type, icon in pairs(signs) do
+    local hl = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
