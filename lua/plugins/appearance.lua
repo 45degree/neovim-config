@@ -162,7 +162,7 @@ return {
     'lukas-reineke/indent-blankline.nvim',
     event = { 'BufReadPost', 'BufNewFile' },
     config = function()
-      require('indent_blankline').setup({
+      require('ibl').setup({
         char = '│',
         buftype_exclude = { 'terminal', 'nofile', 'prompt' },
         filetype_exclude = { 'neo-tree', 'alpha', 'help', 'lazy', 'mason', 'Neogit*' },
