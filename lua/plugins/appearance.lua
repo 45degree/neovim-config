@@ -163,31 +163,10 @@ return {
     event = { 'BufReadPost', 'BufNewFile' },
     config = function()
       require('ibl').setup({
-        char = '│',
-        buftype_exclude = { 'terminal', 'nofile', 'prompt' },
-        filetype_exclude = { 'neo-tree', 'alpha', 'help', 'lazy', 'mason', 'Neogit*' },
-      })
-    end,
-  },
-
-  {
-    'echasnovski/mini.indentscope',
-    version = '*',
-    event = { 'BufReadPre', 'BufNewFile' },
-    init = function()
-      vim.api.nvim_create_autocmd('FileType', {
-        pattern = { 'help', 'alpha', 'neo-tree', 'Trouble', 'lazy', 'mason', 'notify', 'toggleterm', 'Neogit*' },
-        callback = function()
-          vim.b.miniindentscope_disable = true
-        end,
-      })
-    end,
-    config = function()
-      require('mini.indentscope').setup({
-        symbol = '│',
-        options = { try_as_border = true },
-        draw = {
-          animation = require('mini.indentscope').gen_animation.none(),
+        indent = { char = '│' },
+        exclude = {
+          filetypes = { 'neo-tree', 'alpha', 'help', 'lazy', 'mason', 'Neogit*' },
+          buftypes = { 'terminal', 'nofile', 'prompt' },
         },
       })
     end,
