@@ -16,6 +16,7 @@ require('neo-tree').setup({
   enable_normal_mode_for_inputs = true,
   sort_case_insensitive = false, -- used when sorting files and directories in the tree
   sort_function = nil,           -- use a custom function for sorting files and directories in the tree
+  sources = { "filesystem", "buffers", "git_status", "document_symbols" },
   source_selector = {
     winbar = true,
     statusline = false,
@@ -23,6 +24,7 @@ require('neo-tree').setup({
       { source = 'filesystem', display_name = ' 󰉓 Files ' },
       { source = 'buffers', display_name = '  Buffer ' },
       { source = 'git_status', display_name = ' 󰊢 Git ' },
+      { source = 'document_symbols', display_name = '  Symbols ' },
     },
   },
   default_component_configs = {

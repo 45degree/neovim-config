@@ -55,6 +55,7 @@ return {
       'nvim-lua/plenary.nvim',
       'kyazdani42/nvim-web-devicons', -- not strictly required, but recommended
       'MunifTanjim/nui.nvim',
+      's1n7ax/nvim-window-picker',
     },
     deactivate = function()
       vim.cmd([[Neotree close]])
