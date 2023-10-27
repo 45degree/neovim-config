@@ -168,6 +168,30 @@ return {
           filetypes = { 'neo-tree', 'alpha', 'help', 'lazy', 'mason', 'Neogit*' },
           buftypes = { 'terminal', 'nofile', 'prompt' },
         },
+        scope = { enabled = false },
+      })
+    end,
+  },
+
+  {
+    'echasnovski/mini.indentscope',
+    version = '*',
+    event = { 'BufReadPre', 'BufNewFile' },
+    init = function()
+      vim.api.nvim_create_autocmd('FileType', {
+        pattern = { 'help', 'alpha', 'neo-tree', 'Trouble', 'lazy', 'mason', 'notify', 'toggleterm', 'Neogit*' },
+        callback = function()
+          vim.b.miniindentscope_disable = true
+        end,
+      })
+    end,
+    config = function()
+      require('mini.indentscope').setup({
+        symbol = '│',
+        options = { try_as_border = true },
+        draw = {
+          animation = require('mini.indentscope').gen_animation.none(),
+        },
       })
     end,
   },
@@ -233,9 +257,9 @@ return {
         ft_ignore = { 'neo-tree', 'toggleterm', 'Outline', 'alpha' },
         bt_ignore = { 'nofile', 'prompt' },
         segments = {
-          { text = { builtin.foldfunc },                                  click = 'v:lua.ScFa' },
-          { sign = { name = { '.*' }, maxwidth = 1 },                     click = 'v:lua.ScSa' },
-          { text = { builtin.lnumfunc },                                  click = 'v:lua.ScLa' },
+          { text = { builtin.foldfunc },                                       click = 'v:lua.ScFa' },
+          { sign = { name = { '.*' }, maxwidth = 1 },                          click = 'v:lua.ScSa' },
+          { text = { builtin.lnumfunc },                                       click = 'v:lua.ScLa' },
           { sign = { namespace = { 'gitsign*' }, maxwidth = 2, colwidth = 1 }, click = 'v:lua.ScSa' },
         },
       })
