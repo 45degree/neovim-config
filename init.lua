@@ -31,10 +31,3 @@ require('lazy').setup(plugins.plugins, plugins.opts)
 if vim.fn.has('win32') ~= 1 then
   require('config.fcitx-config')
 end
-
-if vim.fn.exists('g:gonvim_running') == 1 then
-  vim.opt.guifont = 'Maple Mono:h10'
-  vim.opt.guifontwide = 'Symbols Nerd Font:h10,Sarasa Fixed SC:h10'
-elseif vim.fn.exists('g:neovide') == 1 then
-  vim.opt.guifont = 'Maple Mono,Sarasa Fixed SC,Symbols Nerd Font:h9'
-end

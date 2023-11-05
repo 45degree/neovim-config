@@ -90,16 +90,6 @@ return {
     event = 'InsertEnter',
     config = function()
       require('copilot').setup({ suggestion = { auto_trigger = true } })
-      local cmp = require('cmp')
-      cmp.event:on('menu_opened', function()
-        ---@diagnostic disable-next-line: inject-field
-        vim.b.copilot_suggestion_hidden = true
-      end)
-
-      cmp.event:on('menu_closed', function()
-        ---@diagnostic disable-next-line: inject-field
-        vim.b.copilot_suggestion_hidden = false
-      end)
     end,
   },
 

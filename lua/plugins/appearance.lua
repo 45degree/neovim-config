@@ -295,8 +295,6 @@ return {
     cond = function()
       if vim.fn.has('gui_running') ~= 1 then
         return false
-      elseif vim.fn.exists('g:neovide') == 1 then
-        return false
       end
       return true
     end,
