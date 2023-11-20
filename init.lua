@@ -28,6 +28,4 @@ require('config.config-base')
 local plugins = require('plugins')
 require('lazy').setup(plugins.plugins, plugins.opts)
 
-if vim.fn.has('win32') ~= 1 then
-  require('config.fcitx-config')
-end
+require('config.ime-config')
