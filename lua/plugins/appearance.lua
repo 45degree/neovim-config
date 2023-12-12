@@ -77,7 +77,7 @@ return {
 
   -- 图标
   {
-    'kyazdani42/nvim-web-devicons',
+    'nvim-tree/nvim-web-devicons',
     event = 'VeryLazy',
     config = function()
       local web_devicons_ok, web_devicons = pcall(require, 'nvim-web-devicons')
@@ -140,7 +140,7 @@ return {
   {
     'nvim-lualine/lualine.nvim',
     dependencies = {
-      'kyazdani42/nvim-web-devicons',
+      'nvim-tree/nvim-web-devicons',
     },
     event = 'VeryLazy',
     config = function()

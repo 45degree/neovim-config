@@ -98,7 +98,7 @@ return {
     cmd = { 'TroubleToggle', 'Trouble' },
     dependencies = {
       'nvim-cmp',
-      'kyazdani42/nvim-web-devicons',
+      'nvim-tree/nvim-web-devicons',
     },
     config = function()
       require('trouble').setup({})
@@ -173,6 +173,20 @@ return {
     event = 'LspAttach',
     config = function()
       require('config.plugins.symbol-outline')
+    end,
+  },
+
+  {
+    'utilyre/barbecue.nvim',
+    name = 'barbecue',
+    version = '*',
+    event = 'LspAttach',
+    dependencies = {
+      'SmiteshP/nvim-navic',
+      'nvim-tree/nvim-web-devicons',
+    },
+    config = function()
+      require('config.plugins.barbecue')
     end,
   },
 }
