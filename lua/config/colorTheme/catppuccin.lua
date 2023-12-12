@@ -32,6 +32,12 @@ require('catppuccin').setup({
   integrations = {
     aerial = false,
     barbar = true,
+    barbecue = {
+      dim_dirname = true, -- directory name is dimmed by default
+      bold_basename = true,
+      dim_context = false,
+      alt_background = true,
+    },
     beacon = false,
     cmp = true,
     coc_nvim = false,

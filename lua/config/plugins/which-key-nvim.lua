@@ -61,6 +61,7 @@ wk.register({
     t = { '<cmd>Neotree focus<cr>', '查看文件树' },
   },
   t = { '<cmd>Neotree toggle<cr>', '打开文件树' },
+  T = { '<cmd>SymbolsOutline<cr>', '代码大纲' },
   w = {
     name = '+窗口',
     c = { chooseWin, '选择窗口' },

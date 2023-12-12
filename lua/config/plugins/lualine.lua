@@ -1,3 +1,23 @@
+local icons = require('config.icon')
+
+local function get_active_lsp_name()
+  local msg = 'No Active Lsp'
+  local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
+  local clients = vim.lsp.get_active_clients()
+  if next(clients) == nil then
+    return msg
+  end
+
+  msg = ''
+  for _, client in ipairs(clients) do
+    local filetypes = client.config.filetypes
+    if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+      msg = msg .. client.name .. ','
+    end
+  end
+  return string.sub(msg, 1, #msg - 1)
+end
+
 -- Config
 local config = {
   options = {
@@ -16,34 +36,21 @@ local config = {
   },
   sections = {
     lualine_a = { 'mode' },
-    lualine_b = { 'branch', 'diff', 'diagnostics' },
+    lualine_b = {
+      'branch',
+      {
+        'diff',
+        symbols = { added = icons.gitsigns.added, modified = icons.gitsigns.modified, removed = icons.gitsigns.deleted },
+      },
+      { 'diagnostics', symbols = icons.diagnostic },
+    },
     lualine_c = {
       {
         'filename',
         path = 1,
         symbols = { modified = '  ', readonly = '', unnamed = '' },
       },
-      {
-        -- Lsp server name .
-        function()
-          local msg = 'No Active Lsp'
-          local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
-          local clients = vim.lsp.get_active_clients()
-          if next(clients) == nil then
-            return msg
-          end
-
-          msg = ''
-          for _, client in ipairs(clients) do
-            local filetypes = client.config.filetypes
-            if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-              msg = msg .. client.name .. ','
-            end
-          end
-          return string.sub(msg, 1, #msg - 1)
-        end,
-        icon = ' LSP:',
-      },
+      { get_active_lsp_name, icon = ' LSP:' },
       -- stylua: ignore
       {
         function() return "  " .. require("dap").status() end,

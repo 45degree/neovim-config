@@ -1,3 +1,5 @@
+local icons = require('config.icon')
+
 require('neo-tree').setup({
   event_handlers = {
     {
@@ -16,7 +18,7 @@ require('neo-tree').setup({
   enable_normal_mode_for_inputs = true,
   sort_case_insensitive = false, -- used when sorting files and directories in the tree
   sort_function = nil,           -- use a custom function for sorting files and directories in the tree
-  sources = { "filesystem", "buffers", "git_status", "document_symbols" },
+  sources = { 'filesystem', 'buffers', 'git_status', 'document_symbols' },
   source_selector = {
     winbar = true,
     statusline = false,
@@ -63,21 +65,7 @@ require('neo-tree').setup({
       use_git_status_colors = true,
       highlight = 'NeoTreeFileName',
     },
-    git_status = {
-      symbols = {
-        -- Change type
-        added = '', -- or "✚", but this is redundant info if you use git_status_colors on the name
-        modified = '', -- or "", but this is redundant info if you use git_status_colors on the name
-        deleted = '', -- this can only be used in the git_status source
-        renamed = '', -- this can only be used in the git_status source
-        -- Status type
-        untracked = '',
-        ignored = '',
-        unstaged = '',
-        staged = '',
-        conflict = '',
-      },
-    },
+    git_status = { symbols = icons.gitsigns },
   },
   window = {
     position = 'left',

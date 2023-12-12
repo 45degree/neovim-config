@@ -68,8 +68,10 @@ require('config.autocmd')
 local option_config = require('option_config')
 option_config.read(vim.api.nvim_eval('stdpath("config")') .. '/option_config.json')
 
-local signs = { Error = "󰅚", Warn = "", Hint = "", Info = "" }
-for type, icon in pairs(signs) do
-    local hl = "DiagnosticSign" .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end
+local icons = require('config.icon')
+
+-- If you want icons for diagnostic errors, you'll need to define them somewhere:
+vim.fn.sign_define('DiagnosticSignError', { text = icons.diagnostic.error, texthl = 'DiagnosticSignError' })
+vim.fn.sign_define('DiagnosticSignWarn', { text = icons.diagnostic.warn, texthl = 'DiagnosticSignWarn' })
+vim.fn.sign_define('DiagnosticSignInfo', { text = icons.diagnostic.info, texthl = 'DiagnosticSignInfo' })
+vim.fn.sign_define('DiagnosticSignHint', { text = icons.diagnostic.hint, texthl = 'DiagnosticSignHint' })

@@ -6,29 +6,25 @@ icons.layout = {
   wrap = '↪',
 }
 
-icons.widget = {
-  active = '',
-  branch = '',
-  command = '',
-  config = '',
-  error = '',
-  event = '',
-  filetype = '',
-  import = '',
-  inactive = '',
-  keymap = '',
-  lazy = '',
-  nesting = '',
-  plugin = '',
-  progress = '',
-  ready = '',
-  remote = '',
-  runtime = '',
-  source = '',
-  start = '',
-  task = '',
-  telescope = '',
-  warning = '',
+icons.gitsigns = {
+  -- Change type
+  added = ' ', -- or "✚", but this is redundant info if you use git_status_colors on the name
+  modified = ' ', -- or "", but this is redundant info if you use git_status_colors on the name
+  deleted = ' ', -- this can only be used in the git_status source
+  renamed = ' ', -- this can only be used in the git_status source
+  -- Status type
+  untracked = ' ',
+  ignored = ' ',
+  unstaged = ' ',
+  staged = ' ',
+  conflict = ' ',
+}
+
+icons.diagnostic = {
+  error = ' ',
+  warn = ' ',
+  info = ' ',
+  hint = ' ',
 }
 
 icons.kind = {
