@@ -20,10 +20,31 @@ icons.gitsigns = {
   conflict = ' ',
 }
 
+icons.widgets = {
+  cmd = ' ',
+  config = '',
+  event = '',
+  ft = ' ',
+  init = ' ',
+  import = ' ',
+  keys = ' ',
+  lazy = '󰒲 ',
+  loaded = ' ',
+  not_loaded = ' ',
+  on_load = '󰡖 ',
+  plugin = ' ',
+  runtime = ' ',
+  require = '󰢱 ',
+  source = ' ',
+  start = '',
+  task = '✔ ',
+  list = { ' ', ' ', ' ', ' ' },
+}
+
 icons.diagnostic = {
-  error = ' ',
-  warn = ' ',
-  info = ' ',
+  error = ' ',
+  warn = ' ',
+  info = ' ',
   hint = ' ',
 }
 
