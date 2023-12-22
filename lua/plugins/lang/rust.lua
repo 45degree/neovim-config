@@ -2,6 +2,7 @@ return {
   {
     'rust-lang/rust.vim',
     ft = 'rust',
+    enabled = GLOBAL_CONFIG.lang.rust
   },
 
   {
@@ -11,6 +12,7 @@ return {
       'mason.nvim',
     },
     ft = 'rust',
+    enabled = GLOBAL_CONFIG.lang.rust,
     config = function()
       local adapterFunc = require('config.dap.di-codelldb').adapters
 

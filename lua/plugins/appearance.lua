@@ -7,7 +7,7 @@ return {
     lazy = false,
     priority = 1000,
     config = function()
-      if OptionConfig.getColorTheme() == 'gruvbox-material' then
+      if GLOBAL_CONFIG.colorscheme == 'gruvbox-material' then
         require('config.colorTheme.gruvbox-material')
         vim.cmd([[colorscheme gruvbox-material]])
       end
@@ -19,7 +19,7 @@ return {
     lazy = false,
     priority = 1000,
     config = function()
-      if OptionConfig.getColorTheme() == 'edge' then
+      if GLOBAL_CONFIG.colorscheme == 'edge' then
         vim.cmd([[colorscheme edge]])
       end
     end,
@@ -32,7 +32,7 @@ return {
     name = 'catppuccin',
     build = ':CatppuccinCompile',
     config = function()
-      local theme = OptionConfig.getColorTheme()
+      local theme = GLOBAL_CONFIG.colorscheme
       if string.sub(theme, 1, string.len('catppuccin')) == 'catppuccin' then
         require('config.colorTheme.catppuccin')
         vim.cmd('colorscheme ' .. theme)
@@ -45,7 +45,7 @@ return {
     lazy = false,
     priority = 1000,
     config = function()
-      if OptionConfig.getColorTheme() == 'tokyonight' then
+      if GLOBAL_CONFIG.colorscheme == 'tokyonight' then
         vim.g.tokyonight_transparent = true
         vim.g.tokyonight_transparent_sidebar = true
         vim.g.tokyonight_lualine_bold = true
@@ -59,7 +59,7 @@ return {
     lazy = false,
     build = ':NightfoxCompile',
     config = function()
-      local theme = OptionConfig.getColorTheme()
+      local theme = GLOBAL_CONFIG.colorscheme
       if
           theme == 'nightfox'
           or theme == 'dayfox'

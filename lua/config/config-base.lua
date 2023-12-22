@@ -65,9 +65,6 @@ vim.opt.mouse = 'a'
 require('config.keymap')
 require('config.autocmd')
 
-local option_config = require('option_config')
-option_config.read(vim.api.nvim_eval('stdpath("config")') .. '/option_config.json')
-
 local icons = require('config.icon')
 
 -- If you want icons for diagnostic errors, you'll need to define them somewhere:

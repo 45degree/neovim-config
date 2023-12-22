@@ -209,7 +209,7 @@ return {
     event = 'VeryLazy',
     config = function()
       require('overseer').setup({
-        strategy = 'toggleterm',
+        -- strategy = 'toggleterm',
         task_list = { direction = 'bottom' },
         default_vscode = {
           'default',

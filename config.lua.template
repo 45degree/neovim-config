@@ -1,0 +1,15 @@
+local config = {
+  colorscheme = 'catppuccin',
+  extra_language = {
+    rust = false,
+    vala = false,
+    latex = false,
+    glslx = false,
+    html = false,
+    csharp = false,
+    vue = false,
+    javascript = true
+  }
+}
+
+return config;

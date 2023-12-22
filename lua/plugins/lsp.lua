@@ -64,9 +64,9 @@ return {
       'rafamadriz/friendly-snippets',
       'L3MON4D3/LuaSnip',
       'saadparwaiz1/cmp_luasnip',
-      'hrsh7th/cmp-buffer',   --从buffer中智能提示
+      'hrsh7th/cmp-buffer', --从buffer中智能提示
       'hrsh7th/cmp-nvim-lua', --nvim-cmp source for neovim Lua API.
-      'hrsh7th/cmp-path',     --自动提示硬盘上的文件
+      'hrsh7th/cmp-path', --自动提示硬盘上的文件
       'ray-x/lsp_signature.nvim',
       'hrsh7th/cmp-cmdline',
     },
@@ -148,26 +148,6 @@ return {
     end,
   },
 
-  {
-    'zbirenbaum/neodim',
-    event = { 'LspAttach' },
-    config = function()
-      require('neodim').setup({
-        alpha = 0.75,
-        blend_color = '#000000',
-        update_in_insert = {
-          enable = true,
-          delay = 100,
-        },
-        hide = {
-          virtual_text = true,
-          signs = true,
-          underline = true,
-        },
-      })
-    end,
-  },
-
   -- 代码大纲
   {
     'simrat39/symbols-outline.nvim',
@@ -188,17 +168,6 @@ return {
     },
     config = function()
       require('config.plugins.barbecue')
-    end,
-  },
-
-  {
-    'Wansmer/symbol-usage.nvim',
-    event = 'BufReadPre', -- need run before LspAttach if you use nvim 0.9. On 0.10 use 'LspAttach'
-    config = function()
-      local SymbolKind = vim.lsp.protocol.SymbolKind
-      require('symbol-usage').setup({
-        vt_position = 'end_of_line'
-      })
     end,
   },
 }

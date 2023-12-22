@@ -23,6 +23,8 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+GLOBAL_CONFIG = loadfile(vim.fn.stdpath('config')..'/config.lua')()
+
 require('config.config-base')
 
 local plugins = require('plugins')

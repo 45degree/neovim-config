@@ -15,8 +15,8 @@ icons.gitsigns = {
   -- Status type
   untracked = ' ',
   ignored = ' ',
-  unstaged = ' ',
-  staged = ' ',
+  unstaged = ' ',
+  staged = ' ',
   conflict = ' ',
 }
 
@@ -37,7 +37,7 @@ icons.widgets = {
   require = '󰢱 ',
   source = ' ',
   start = '',
-  task = '✔ ',
+  task = ' ',
   list = { ' ', ' ', ' ', ' ' },
 }
 
@@ -46,6 +46,7 @@ icons.diagnostic = {
   warn = ' ',
   info = ' ',
   hint = ' ',
+  bug = ' ',
 }
 
 icons.kind = {
