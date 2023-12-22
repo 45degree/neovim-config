@@ -8,4 +8,9 @@ return {
       require('typst-preview').update()
     end,
   },
+  {
+    'kaarmu/typst.vim',
+    ft = 'typst',
+    enabled = GLOBAL_CONFIG.lang.typst,
+  },
 }
