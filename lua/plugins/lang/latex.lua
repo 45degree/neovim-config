@@ -2,6 +2,6 @@ return {
   {
     'lervag/vimtex',
     ft = 'tex',
-    enabled = GLOBAL_CONFIG.lang.latex
+    enabled = require('config').lang.latex
   },
 }

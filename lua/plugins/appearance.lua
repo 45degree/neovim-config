@@ -4,74 +4,41 @@ return {
   -- 颜色主题
   {
     'sainnhe/gruvbox-material',
-    lazy = false,
-    priority = 1000,
-    config = function()
-      if GLOBAL_CONFIG.colorscheme == 'gruvbox-material' then
-        require('config.colorTheme.gruvbox-material')
-        vim.cmd([[colorscheme gruvbox-material]])
-      end
-    end,
+    lazy = true,
   },
 
   {
     'sainnhe/edge',
-    lazy = false,
-    priority = 1000,
-    config = function()
-      if GLOBAL_CONFIG.colorscheme == 'edge' then
-        vim.cmd([[colorscheme edge]])
-      end
-    end,
+    lazy = true,
   },
 
   {
     'catppuccin/nvim',
-    lazy = false,
-    priority = 1000,
+    lazy = true,
     name = 'catppuccin',
     build = ':CatppuccinCompile',
     config = function()
-      local theme = GLOBAL_CONFIG.colorscheme
-      if string.sub(theme, 1, string.len('catppuccin')) == 'catppuccin' then
-        require('config.colorTheme.catppuccin')
-        vim.cmd('colorscheme ' .. theme)
-      end
+      require('config.colorTheme.catppuccin')
     end,
   },
 
   {
     'folke/tokyonight.nvim',
-    lazy = false,
+    lazy = true,
     priority = 1000,
     config = function()
-      if GLOBAL_CONFIG.colorscheme == 'tokyonight' then
-        vim.g.tokyonight_transparent = true
-        vim.g.tokyonight_transparent_sidebar = true
-        vim.g.tokyonight_lualine_bold = true
-        vim.cmd([[colorscheme tokyonight]])
-      end
+      vim.g.tokyonight_transparent = true
+      vim.g.tokyonight_transparent_sidebar = true
+      vim.g.tokyonight_lualine_bold = true
     end,
   },
 
   {
     'EdenEast/nightfox.nvim',
-    lazy = false,
+    lazy = true,
     build = ':NightfoxCompile',
     config = function()
-      local theme = GLOBAL_CONFIG.colorscheme
-      if
-        theme == 'nightfox'
-        or theme == 'dayfox'
-        or theme == 'dawnfox'
-        or theme == 'duskfox'
-        or theme == 'nordfox'
-        or theme == 'terafox'
-        or theme == 'carbonfox'
-      then
-        require('config.colorTheme.nightfox')
-        vim.cmd('colorscheme ' .. theme)
-      end
+      require('config.colorTheme.nightfox')
     end,
   },
 
@@ -234,7 +201,7 @@ return {
     event = { 'BufReadPre', 'BufNewFile' },
     config = function()
       vim.o.foldcolumn = '1' -- '0' is not bad
-      vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+      vim.o.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
       vim.o.foldlevelstart = 99
       vim.o.foldenable = true
       vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
@@ -269,9 +236,9 @@ return {
         ft_ignore = { 'neo-tree', 'toggleterm', 'Outline', 'alpha' },
         bt_ignore = { 'nofile', 'prompt' },
         segments = {
-          { text = { builtin.foldfunc }, click = 'v:lua.ScFa' },
-          { sign = { name = { '.*' }, maxwidth = 1 }, click = 'v:lua.ScSa' },
-          { text = { builtin.lnumfunc }, click = 'v:lua.ScLa' },
+          { text = { builtin.foldfunc },                                       click = 'v:lua.ScFa' },
+          { sign = { name = { '.*' }, maxwidth = 1 },                          click = 'v:lua.ScSa' },
+          { text = { builtin.lnumfunc },                                       click = 'v:lua.ScLa' },
           { sign = { namespace = { 'gitsign*' }, maxwidth = 2, colwidth = 1 }, click = 'v:lua.ScSa' },
         },
       })

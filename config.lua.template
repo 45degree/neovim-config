@@ -1,6 +1,6 @@
 local config = {
   colorscheme = 'catppuccin',
-  extra_language = {
+  lang = {
     rust = false,
     vala = false,
     latex = false,
