@@ -3,6 +3,7 @@ local M = {}
 local defaults = {
   colorscheme = 'catppuccin',
   lang = {
+    cpp = true,
     rust = false,
     vala = false,
     latex = false,
