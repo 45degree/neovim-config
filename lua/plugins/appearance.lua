@@ -200,11 +200,6 @@ return {
     -- event = 'VeryLazy',
     event = { 'BufReadPre', 'BufNewFile' },
     config = function()
-      vim.o.foldcolumn = '1' -- '0' is not bad
-      vim.o.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
-      vim.o.foldlevelstart = 99
-      vim.o.foldenable = true
-      vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
       require('ufo').setup({
         provider_selector = function(bufnr, filetype, buftype)
           return { 'treesitter', 'indent' }
@@ -236,10 +231,11 @@ return {
         ft_ignore = { 'neo-tree', 'toggleterm', 'Outline', 'alpha' },
         bt_ignore = { 'nofile', 'prompt' },
         segments = {
-          { text = { builtin.foldfunc },                                       click = 'v:lua.ScFa' },
-          { sign = { name = { '.*' }, maxwidth = 1 },                          click = 'v:lua.ScSa' },
+          { sign = { name = { '.*' } },                                        click = 'v:lua.ScSa' },
           { text = { builtin.lnumfunc },                                       click = 'v:lua.ScLa' },
-          { sign = { namespace = { 'gitsign*' }, maxwidth = 2, colwidth = 1 }, click = 'v:lua.ScSa' },
+          { sign = { namespace = { 'gitsign*' }, maxwidth = 1, colwidth = 1 }, click = 'v:lua.ScSa' },
+          { text = { builtin.foldfunc },                                       click = 'v:lua.ScFa' },
+          { text = { ' ' } },
         },
       })
     end,
