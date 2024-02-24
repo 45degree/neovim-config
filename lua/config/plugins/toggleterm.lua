@@ -19,3 +19,18 @@ require('toggleterm').setup({
   close_on_exit = true, -- close the terminal window when the process exits
   shell = vim.o.shell,  -- change the default shell
 })
+
+if vim.fn.executable('yazi') == 1 then
+  local yazi = require('toggleterm.terminal').Terminal:new({
+    cmd = 'yazi',
+    hidden = true,
+    direction = 'float',
+    float_opts = {
+      border = 'single',
+    },
+  })
+
+  vim.api.nvim_create_user_command('Yazi', function()
+    yazi:toggle()
+  end, { nargs = 0 })
+end
