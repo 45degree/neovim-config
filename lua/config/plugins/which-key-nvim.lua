@@ -1,5 +1,21 @@
 require('which-key').setup({})
 
+--- close all buffer that not visible and not pined
+local function close_all_but_visible_and_pin_buf()
+  local state = require('bufferline.state')
+  local render = require('bufferline.render')
+  local Buffer = require('bufferline.buffer')
+  local bbye = require('bufferline.bbye')
+
+  for _, bufnr in ipairs(state.buffers) do
+    if Buffer.get_activity(bufnr) < 2 and not state.is_pinned(bufnr) then
+      bbye.bdelete(false, bufnr)
+    end
+  end
+
+  render.update()
+end
+
 local chooseWin = function()
   local picker = require('window-picker')
   local picked_window_id = picker.pick_window() or vim.api.nvim_get_current_win()
@@ -86,9 +102,8 @@ wk.register({
       ['r'] = { '<cmd>BufferCloseBuffersLeft<cr>', '删除所有右边Buffer' },
       ['l'] = { '<cmd>BufferCloseBuffersRight<cr>', '删除所有左边Buffer' },
       ['p'] = { '<cmd>BufferCloseAllButPinned<cr>', '删除所有未固定Buffer' },
-      ['cp'] = { '<cmd>BufferCloseAllButCurrentOrPinned<cr>', '删除所有未固定和非当前Buffer' },
-      ['c'] = { '<cmd>BufferCloseAllButCurrent<cr>', '只保留当前buffer' },
-      ['v'] = { '<cmd>BufferCloseAllButVisible<cr>', '只保留可见buffer' },
+      ['c'] = { '<cmd>BufferCloseAllButCurrentOrPinned<cr>', '只保留当前buffer' },
+      ['v'] = { close_all_but_visible_and_pin_buf, '只保留可见buffer' },
     },
     ['p'] = { '<cmd>BufferPin<cr>', '固定Buffer' },
     ['j'] = { '<cmd>BufferPick<cr>', 'Buffer跳转' },
