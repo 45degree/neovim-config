@@ -18,5 +18,6 @@ require('barbar').setup({
       deleted = { enabled = false, icon = default_icons.gitsigns.deleted },
     },
     modified = { button = '' },
+    pinned = {button = '', filename = true},
   },
 })
