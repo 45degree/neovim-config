@@ -10,12 +10,19 @@ require('neo-tree').setup({
         end
       end,
     },
+    {
+      event = 'neo_tree_popup_input_ready',
+      ---@param input NuiInput
+      handler = function(input)
+        -- enter input popup with normal mode by default.
+        vim.cmd('stopinsert')
+      end,
+    },
   },
   close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
   popup_border_style = 'rounded',
   enable_git_status = true,
   enable_diagnostics = true,
-  enable_normal_mode_for_inputs = true,
   sort_case_insensitive = false, -- used when sorting files and directories in the tree
   sort_function = nil,           -- use a custom function for sorting files and directories in the tree
   sources = { 'filesystem', 'buffers', 'git_status', 'document_symbols' },

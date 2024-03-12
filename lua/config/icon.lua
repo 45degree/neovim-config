@@ -84,6 +84,12 @@ icons.kind = {
   Unit = '',
   Value = '',
   Variable = '',
+  Component = '',
+  Fragment = '󰅴',
+  TypeAlias = '',
+  Parameter = ' ',
+  StaticMethod = ' ',
+  Macro = ' ',
 }
 
 return icons

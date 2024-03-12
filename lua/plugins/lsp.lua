@@ -52,9 +52,9 @@ return {
       'rafamadriz/friendly-snippets',
       'L3MON4D3/LuaSnip',
       'saadparwaiz1/cmp_luasnip',
-      'hrsh7th/cmp-buffer', --从buffer中智能提示
+      'hrsh7th/cmp-buffer',   --从buffer中智能提示
       'hrsh7th/cmp-nvim-lua', --nvim-cmp source for neovim Lua API.
-      'hrsh7th/cmp-path', --自动提示硬盘上的文件
+      'hrsh7th/cmp-path',     --自动提示硬盘上的文件
       'ray-x/lsp_signature.nvim',
       'hrsh7th/cmp-cmdline',
     },
@@ -138,10 +138,10 @@ return {
 
   -- 代码大纲
   {
-    'simrat39/symbols-outline.nvim',
+    'hedyhli/outline.nvim',
     event = 'LspAttach',
     config = function()
-      require('config.plugins.symbol-outline')
+      require('config.plugins.outline')
     end,
   },
 
