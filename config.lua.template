@@ -10,6 +10,7 @@ local config = {
     vue = false,
     javascript = true
   }
+  tabnine = true,
 }
 
 return config;

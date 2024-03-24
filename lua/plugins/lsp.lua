@@ -1,3 +1,11 @@
+local function tabnine_build_path()
+  if vim.loop.os_uname().sysname == 'Windows_NT' then
+    return 'powershell.exe -file .\\dl_binaries.ps1'
+  else
+    return './dl_binaries.sh'
+  end
+end
+
 return {
   -- 代码补全
   {
@@ -52,9 +60,9 @@ return {
       'rafamadriz/friendly-snippets',
       'L3MON4D3/LuaSnip',
       'saadparwaiz1/cmp_luasnip',
-      'hrsh7th/cmp-buffer',   --从buffer中智能提示
+      'hrsh7th/cmp-buffer', --从buffer中智能提示
       'hrsh7th/cmp-nvim-lua', --nvim-cmp source for neovim Lua API.
-      'hrsh7th/cmp-path',     --自动提示硬盘上的文件
+      'hrsh7th/cmp-path', --自动提示硬盘上的文件
       'ray-x/lsp_signature.nvim',
       'hrsh7th/cmp-cmdline',
     },
@@ -74,11 +82,31 @@ return {
 
   -- ai 补全
   {
-    'zbirenbaum/copilot.lua',
-    cmd = 'Copilot',
-    event = 'InsertEnter',
+    'codota/tabnine-nvim',
+    event = { 'BufReadPre', 'BufNewFile' },
+    build = tabnine_build_path(),
     config = function()
-      require('copilot').setup({ suggestion = { auto_trigger = true } })
+      local opts = {
+        disable_auto_comment = true,
+        accept_keymap = '<M-l>',
+        dismiss_keymap = '<M-]>',
+        debounce_ms = 800,
+        suggestion_color = { gui = '#808080', cterm = 244 },
+        exclude_filetypes = { 'TelescopePrompt', 'neo-tree' },
+        log_file_path = nil, -- absolute path to Tabnine log file
+      }
+      require('tabnine').setup(opts)
+
+      -- set color group when load tabnine
+      local const = require('tabnine.consts')
+      vim.api.nvim_set_hl(0, const.tabnine_hl_group, {
+        fg = opts.suggestion_color.gui,
+        ctermfg = opts.suggestion_color.cterm,
+      })
+      vim.api.nvim_set_hl(0, const.tabnine_codelens_hl_group, {
+        fg = opts.suggestion_color.gui,
+        ctermfg = opts.suggestion_color.cterm,
+      })
     end,
   },
 

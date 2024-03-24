@@ -14,6 +14,7 @@ local defaults = {
     javascript = false,
     typst = false,
   },
+  tabnine = false,
 }
 
 local options

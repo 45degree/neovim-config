@@ -19,6 +19,7 @@ return {
     event = 'VeryLazy',
     dependencies = {
       'mfussenegger/nvim-dap',
+      "nvim-neotest/nvim-nio",
     },
     config = function()
       require('config.plugins.dap-ui-nvim')

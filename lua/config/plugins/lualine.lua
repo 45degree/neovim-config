@@ -51,6 +51,7 @@ local config = {
         symbols = { modified = '  ', readonly = '', unnamed = '' },
       },
       { get_active_lsp_name, icon = ' LSP:' },
+      { 'tabnine' },
       -- stylua: ignore
       {
         function() return "  " .. require("dap").status() end,
@@ -60,7 +61,7 @@ local config = {
     },
     lualine_x = { 'encoding', 'fileformat', 'filetype' },
     lualine_y = {
-      { 'progress', separator = ' ', padding = { left = 1, right = 0 } },
+      { 'progress', separator = ' ',                  padding = { left = 1, right = 0 } },
       { 'location', padding = { left = 0, right = 1 } },
     },
     lualine_z = {
