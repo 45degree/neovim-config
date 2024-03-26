@@ -49,13 +49,6 @@ vim.opt.clipboard = 'unnamedplus'      -- 设置vim使用系统剪切板
 vim.opt.signcolumn = 'auto'
 vim.opt.exrc = true                    -- project local setting
 
--- code fold
-vim.opt.foldcolumn = '1'               -- '0' is not bad
-vim.opt.foldlevel = 99                 -- Using ufo provider need a large value, feel free to decrease the value
-vim.opt.foldlevelstart = 99
-vim.opt.foldenable = true
-vim.opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
-
 if vim.fn.has('nvim') then
   vim.env.NVIM_TUI_ENABLE_TRUE_COLOR = 1
 end

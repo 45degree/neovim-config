@@ -197,22 +197,43 @@ return {
   {
     'kevinhwang91/nvim-ufo',
     dependencies = { 'kevinhwang91/promise-async' },
-    -- event = 'VeryLazy',
     event = { 'BufReadPre', 'BufNewFile' },
+    init = function()
+      local set_foldcolumn_for_file = vim.api.nvim_create_augroup('set_foldcolumn_for_file', {
+        clear = true,
+      })
+      vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+        group = set_foldcolumn_for_file,
+        callback = function()
+          if vim.bo.buftype == '' then
+            vim.wo.foldcolumn = '1'
+          else
+            vim.wo.foldcolumn = '0'
+          end
+        end,
+      })
+      vim.api.nvim_create_autocmd('OptionSet', {
+        group = set_foldcolumn_for_file,
+        pattern = 'buftype',
+        callback = function()
+          if vim.bo.buftype == '' then
+            vim.wo.foldcolumn = '1'
+          else
+            vim.wo.foldcolumn = '0'
+          end
+        end,
+      })
+      vim.o.foldlevel = 99
+      vim.o.foldlevelstart = 99
+      vim.o.foldenable = true
+      vim.opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+    end,
     config = function()
       require('ufo').setup({
         provider_selector = function(bufnr, filetype, buftype)
           return { 'treesitter', 'indent' }
         end,
-      })
-
-      -- disable fold in this file
-      vim.api.nvim_create_autocmd('FileType', {
-        pattern = { '\\[dap-repl\\]', 'DAP *', 'dapui_*', 'alpha', 'Neogit*', 'Outline' },
-        callback = function()
-          require('ufo').detach()
-          vim.opt_local.foldenable = false
-        end,
+        close_fold_kinds_for_ft = { default = { 'imports' } },
       })
     end,
     enabled = function()
@@ -231,10 +252,10 @@ return {
         ft_ignore = { 'neo-tree', 'toggleterm', 'Outline', 'alpha' },
         bt_ignore = { 'nofile', 'prompt' },
         segments = {
-          { sign = { name = { '.*' } },                                        click = 'v:lua.ScSa' },
-          { text = { builtin.lnumfunc },                                       click = 'v:lua.ScLa' },
+          { sign = { name = { '.*' } }, click = 'v:lua.ScSa' },
+          { text = { builtin.lnumfunc }, click = 'v:lua.ScLa' },
           { sign = { namespace = { 'gitsign*' }, maxwidth = 1, colwidth = 1 }, click = 'v:lua.ScSa' },
-          { text = { builtin.foldfunc },                                       click = 'v:lua.ScFa' },
+          { text = { builtin.foldfunc }, click = 'v:lua.ScFa' },
           { text = { ' ' } },
         },
       })

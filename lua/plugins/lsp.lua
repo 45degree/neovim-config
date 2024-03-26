@@ -108,6 +108,7 @@ return {
         ctermfg = opts.suggestion_color.cterm,
       })
     end,
+    cond = require('config').tabnine
   },
 
   {
