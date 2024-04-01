@@ -17,20 +17,10 @@ local defaults = {
   tabnine = false,
 }
 
-local options
-
-local function init()
-  require('config.config-base')
-  require('config.ime-config')
-
-  local plugins = require('plugins')
-  require('lazy').setup(plugins.plugins, plugins.opts)
-  vim.cmd.colorscheme(M.colorscheme)
-end
+local options = {}
 
 function M.setup(opts)
   options = vim.tbl_deep_extend('force', defaults, opts or {}) or {}
-  init()
 end
 
 setmetatable(M, {

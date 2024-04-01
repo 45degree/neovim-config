@@ -14,7 +14,7 @@ local debugTargetSelect = function(opts)
       return
     end
     local args = vim.fn.input('Args: ')
-    xmake:Debug(item, args)
+    xmake:debug(item, args)
   end)
 end
 
@@ -25,7 +25,7 @@ local buildTargetSelect = function(opts, force)
       return
     end
     print(item)
-    xmake:Build(item, force)
+    xmake:build(item, force)
   end)
 end
 
@@ -35,7 +35,7 @@ local runTargetSelect = function(opts)
       return
     end
     local args = vim.fn.input('Args: ')
-    xmake:Run(item, args)
+    xmake:run(item, args)
   end)
 end
 
