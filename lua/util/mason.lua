@@ -22,7 +22,8 @@ M.lang_to_filetype = {
   ['TypeScript'] = 'typescript',
   ['Vue'] = 'vue',
   ['YAML'] = 'yaml',
-  ['GraphQL'] = 'query'
+  ['GraphQL'] = 'query',
+  ['Typst'] = 'typst',
 }
 
 ---@class MasonPackage

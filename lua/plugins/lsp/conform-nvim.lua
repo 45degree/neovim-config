@@ -11,7 +11,11 @@ local function registry_formatter_by_package(opts, pkg, package_to_conform)
       if opts[filetype] == nil then
         opts[filetype] = {}
       end
-      table.insert(opts[filetype], package_to_conform[pkg.name])
+      local package_name = package_to_conform[pkg.name]
+      if package_name == nil then
+        package_name = pkg.name
+      end
+      table.insert(opts[filetype], package_name)
     end
   end
 end
