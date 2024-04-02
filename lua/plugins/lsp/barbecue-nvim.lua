@@ -1,8 +1,9 @@
+local icons = require('icons')
+
 return {
   'utilyre/barbecue.nvim',
   name = 'barbecue',
-  version = '*',
-  event = 'LspAttach',
+  event = { 'BufRead', 'BufNewFile' },
   dependencies = {
     { 'SmiteshP/nvim-navic', event = 'LspAttach' },
     'nvim-tree/nvim-web-devicons',
@@ -24,7 +25,6 @@ return {
     })
   end,
   config = function()
-    local icons = require('icons')
     require('barbecue').setup({
       create_autocmd = false, -- prevent barbecue from updating itself automatically
       kinds = icons.kind,

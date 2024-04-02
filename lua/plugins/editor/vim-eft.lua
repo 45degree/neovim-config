@@ -1,6 +1,6 @@
 return {
   'hrsh7th/vim-eft',
-  event = 'BufEnter',
+  event = 'BufReadPre',
   config = function()
     vim.api.nvim_set_keymap('n', ';', '<Plug>(eft-repeat)', {})
     vim.api.nvim_set_keymap('x', ';', '<Plug>(eft-repeat)', {})

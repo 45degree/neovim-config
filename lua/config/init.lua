@@ -16,10 +16,7 @@ local defaults = {
   },
   tabnine = false,
   -- https://github.com/mfussenegger/nvim-lint/tree/master?tab=readme-ov-file#available-linters
-  linter = {
-    cpp = { 'clangtidy' },
-    c = { 'clangtidy' },
-  },
+  linter = {},
   formatter = {},
 }
 

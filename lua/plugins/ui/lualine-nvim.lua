@@ -19,15 +19,24 @@ local function get_active_lsp_name()
 end
 
 local function get_linter_info()
-  local ok, linters = pcall(require, 'lint')
+  local ok, lint = pcall(require, 'lint')
   if not ok then
-    return
+    return 'Nvim-lint not installed'
   end
-  local current_linters = linters.get_running()
+
+  local prefix = '󱉶 linter:';
+
+  local buf_ft = vim.bo.filetype
+  local linters = lint.linters_by_ft[buf_ft];
+  if linters == nil then
+    return prefix .. "no linters"
+  end
+
+  local current_linters = lint.get_running()
   if #current_linters == 0 then
-    return '󱉶 linter:'
+    return '󱉶 linter:' .. table.concat(linters, ',')
   end
-  return '󱉶 linter:' .. table.concat(current_linters, ', ')
+  return '󱉶 running linter:' .. table.concat(current_linters, ',')
 end
 
 local function get_formatter_info()
