@@ -18,6 +18,50 @@ local function get_active_lsp_name()
   return string.sub(msg, 1, #msg - 1)
 end
 
+local function get_linter_info()
+  local ok, linters = pcall(require, 'lint')
+  if not ok then
+    return
+  end
+  local current_linters = linters.get_running()
+  if #current_linters == 0 then
+    return '󱉶 linter:'
+  end
+  return '󱉶 linter:' .. table.concat(current_linters, ', ')
+end
+
+local function get_formatter_info()
+  -- Check if 'conform' is available
+  local status, conform = pcall(require, 'conform')
+  if not status then
+    return 'Conform not installed'
+  end
+
+  local lsp_format = require('conform.lsp_format')
+
+  -- Get formatters for the current buffer
+  local formatters = conform.list_formatters_for_buffer()
+  if formatters and #formatters > 0 then
+    local formatterNames = {}
+
+    for _, formatter in ipairs(formatters) do
+      table.insert(formatterNames, formatter)
+    end
+
+    return '󰷈 formatter:' .. table.concat(formatterNames, ' ')
+  end
+
+  -- Check if there's an LSP formatter
+  local bufnr = vim.api.nvim_get_current_buf()
+  local lsp_clients = lsp_format.get_format_clients({ bufnr = bufnr })
+
+  if not vim.tbl_isempty(lsp_clients) then
+    return '󰷈 LSP Formatter'
+  end
+
+  return ''
+end
+
 -- Config
 local opts = {
   options = {
@@ -51,6 +95,8 @@ local opts = {
         symbols = { modified = '  ', readonly = '', unnamed = '' },
       },
       { get_active_lsp_name, icon = ' LSP:' },
+      { get_linter_info },
+      { get_formatter_info },
       { 'tabnine' },
       -- stylua: ignore
       {
@@ -61,7 +107,7 @@ local opts = {
     },
     lualine_x = { 'encoding', 'fileformat', 'filetype' },
     lualine_y = {
-      { 'progress', separator = ' ',                  padding = { left = 1, right = 0 } },
+      { 'progress', separator = ' ', padding = { left = 1, right = 0 } },
       { 'location', padding = { left = 0, right = 1 } },
     },
     lualine_z = {

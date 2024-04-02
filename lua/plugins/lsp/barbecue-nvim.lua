@@ -4,7 +4,7 @@ return {
   version = '*',
   event = 'LspAttach',
   dependencies = {
-    'SmiteshP/nvim-navic',
+    { 'SmiteshP/nvim-navic', event = 'LspAttach' },
     'nvim-tree/nvim-web-devicons',
   },
   init = function()

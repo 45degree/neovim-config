@@ -54,7 +54,12 @@ local register = {
       h = { '<cmd>DiffviewFileHistory %<cr>', '显示当前文件历史更改' },
     },
     T = { '<cmd>Trouble<cr>', '打开代码诊断' },
-    f = { vim.lsp.buf.format, '代码格式化' },
+    f = {
+      function()
+        require('conform').format({ async = true })
+      end,
+      '代码格式化',
+    },
     d = {
       name = '+debug',
       c = { require('dap').terminate, '关闭调试' },

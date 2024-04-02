@@ -8,8 +8,6 @@
 --
 -- =============================================================
 
--- 插件管理器
-
 vim.loader.enable()
 local global_config_file = loadfile(vim.fn.stdpath('config') .. '/config.lua')
 require('config').setup(global_config_file and global_config_file() or {})

@@ -18,7 +18,7 @@ vimspector-gadget/gadgets/windows/*
 plugin/packer_*
 
 ## option file
-config.lua
+/config.lua
 
 ## lazy lock
 lazy-lock.json
