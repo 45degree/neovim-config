@@ -19,17 +19,17 @@ local function get_active_lsp_name()
 end
 
 local function get_linter_info()
-  local ok, lint = pcall(require, 'lint')
-  if not ok then
-    return 'Nvim-lint not installed'
+  if not package.loaded['lint'] then
+    return
   end
 
-  local prefix = '󱉶 linter:';
+  local lint = require('lint')
+  local prefix = '󱉶 linter:'
 
   local buf_ft = vim.bo.filetype
-  local linters = lint.linters_by_ft[buf_ft];
+  local linters = lint.linters_by_ft[buf_ft]
   if linters == nil then
-    return prefix .. "no linters"
+    return prefix .. 'no linters'
   end
 
   local current_linters = lint.get_running()
@@ -40,12 +40,12 @@ local function get_linter_info()
 end
 
 local function get_formatter_info()
-  -- Check if 'conform' is available
-  local status, conform = pcall(require, 'conform')
-  if not status then
-    return 'Conform not installed'
+  if not package.loaded['conform'] then
+    return
   end
 
+  -- Check if 'conform' is available
+  local conform = require('conform')
   local lsp_format = require('conform.lsp_format')
 
   -- Get formatters for the current buffer

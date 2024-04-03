@@ -1,6 +1,6 @@
 return {
   'stevearc/overseer.nvim',
-  event = 'VeryLazy',
+  cmd = { 'OverseerBuild', 'OverseerRun', 'OverseerToggle' },
   config = function()
     require('overseer').setup({
       -- strategy = 'toggleterm',

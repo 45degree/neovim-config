@@ -8,7 +8,12 @@ return {
     { 'SmiteshP/nvim-navic', event = 'LspAttach' },
     'nvim-tree/nvim-web-devicons',
   },
-  init = function()
+  config = function()
+    require('barbecue').setup({
+      create_autocmd = false, -- prevent barbecue from updating itself automatically
+      kinds = icons.kind,
+    })
+
     vim.api.nvim_create_autocmd({
       'WinScrolled', -- or WinResized on NVIM-v0.9 and higher
       'BufWinEnter',
@@ -22,12 +27,6 @@ return {
       callback = function()
         require('barbecue.ui').update()
       end,
-    })
-  end,
-  config = function()
-    require('barbecue').setup({
-      create_autocmd = false, -- prevent barbecue from updating itself automatically
-      kinds = icons.kind,
     })
   end,
 }

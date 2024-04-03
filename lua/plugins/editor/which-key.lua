@@ -62,8 +62,18 @@ local register = {
     },
     d = {
       name = '+debug',
-      c = { require('dap').terminate, '关闭调试' },
-      w = { require('dapui').toggle, '切换调试窗口' },
+      c = {
+        function()
+          require('dap').terminate()
+        end,
+        '关闭调试',
+      },
+      w = {
+        function()
+          require('dapui').toggle()
+        end,
+        '切换调试窗口',
+      },
       ['='] = {
         function()
           require('dapui').open({ reset = true })
