@@ -1,17 +1,20 @@
 return {
   'nvim-telescope/telescope.nvim',
   cmd = 'Telescope',
-  dependencies = { 'ahmedkhalf/project.nvim' },
+  dependencies = {
+    'ahmedkhalf/project.nvim',
+    'nvim-telescope/telescope-fzy-native.nvim',
+    'nvim-telescope/telescope-live-grep-args.nvim',
+    'nvim-telescope/telescope-dap.nvim',
+  },
   config = function()
+    local lga_actions = require('telescope-live-grep-args.actions')
     require('telescope').setup({
       defaults = {
         prompt_prefix = '   ',
         selection_caret = ' ',
         entry_prefix = '  ',
-        initial_mode = 'insert',
-        selection_strategy = 'reset',
         sorting_strategy = 'ascending',
-        layout_strategy = 'horizontal',
         layout_config = {
           horizontal = {
             prompt_position = 'top',
@@ -25,27 +28,27 @@ return {
           height = 0.80,
           preview_cutoff = 120,
         },
-        file_sorter = require('telescope.sorters').get_fuzzy_file,
-        file_ignore_patterns = { 'node_modules' },
-        generic_sorter = require('telescope.sorters').get_generic_fuzzy_sorter,
-        path_display = { 'truncate' },
-        winblend = 0,
-        border = {},
-        borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
-        color_devicons = true,
-        use_less = true,
-        set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
-        file_previewer = require('telescope.previewers').vim_buffer_cat.new,
-        grep_previewer = require('telescope.previewers').vim_buffer_vimgrep.new,
-        qflist_previewer = require('telescope.previewers').vim_buffer_qflist.new,
-        -- Developer configurations: Not meant for general override
-        buffer_previewer_maker = require('telescope.previewers').buffer_previewer_maker,
-        mappings = {
-          n = { ['q'] = require('telescope.actions').close },
-        },
         preview = { treesitter = false },
+      },
+      extensions = {
+        fzy_native = {
+          override_generic_sorter = false,
+          override_file_sorter = true,
+        },
+        live_grep_args = {
+          auto_quoting = true,
+          mappings = {
+            i = {
+              ['<C-k>'] = lga_actions.quote_prompt(),
+              ['<C-i>'] = lga_actions.quote_prompt({ postfix = ' --iglob ' }),
+            },
+          },
+        },
       },
     })
     require('telescope').load_extension('projects')
+    require('telescope').load_extension('fzy_native')
+    require('telescope').load_extension('live_grep_args')
+    require('telescope').load_extension('dap')
   end,
 }
