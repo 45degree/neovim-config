@@ -1,7 +1,8 @@
 return {
   'kevinhwang91/nvim-ufo',
   dependencies = { 'kevinhwang91/promise-async' },
-  event = { 'BufReadPre', 'BufNewFile' },
+  -- https://github.com/kevinhwang91/nvim-ufo/issues/47#issuecomment-1460742987
+  event = 'VeryLazy',
   init = function()
     local set_foldcolumn_for_file = vim.api.nvim_create_augroup('set_foldcolumn_for_file', {
       clear = true,
@@ -34,9 +35,6 @@ return {
   end,
   config = function()
     require('ufo').setup({
-      provider_selector = function(bufnr, filetype, buftype)
-        return { 'treesitter', 'indent' }
-      end,
       close_fold_kinds_for_ft = { default = { 'imports' } },
     })
   end,
