@@ -22,7 +22,7 @@ local opts = {
 
 return {
   'romgrk/barbar.nvim',
-  event = 'VeryLazy',
+  event = { 'BufReadPre', 'BufNewFile' },
   config = function()
     require('barbar').setup(opts)
   end,

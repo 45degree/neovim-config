@@ -1,10 +1,6 @@
 return {
   'theHamsta/nvim-dap-virtual-text',
-  event = { 'BufReadPre', 'BufNewFile' },
-  dependencies = {
-    'mfussenegger/nvim-dap',
-    'rcarriga/nvim-dap-ui',
-  },
+  lazy = true,
   config = function()
     require('nvim-dap-virtual-text').setup({
       enabled = true, -- enable this plugin (the default)

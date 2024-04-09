@@ -15,7 +15,11 @@ local function setup_nvim_cmp()
       end,
     },
     enabled = function()
-      return vim.api.nvim_buf_get_option(0, 'buftype') ~= 'prompt' or require('cmp_dap').is_dap_buffer()
+      local is_not_prompt = vim.api.nvim_buf_get_option(0, 'buftype') ~= 'prompt'
+      if package.loaded['cmp_dap'] ~= nil then
+        return is_not_prompt or require('cmp_dap').is_dap_buffer()
+      end
+      return is_not_prompt
     end,
     window = {
       completion = cmp.config.window.bordered(),
@@ -150,9 +154,9 @@ return {
     'rafamadriz/friendly-snippets',
     'L3MON4D3/LuaSnip',
     'saadparwaiz1/cmp_luasnip',
-    'hrsh7th/cmp-buffer',   --从buffer中智能提示
+    'hrsh7th/cmp-buffer', --从buffer中智能提示
     'hrsh7th/cmp-nvim-lua', --nvim-cmp source for neovim Lua API.
-    'hrsh7th/cmp-path',     --自动提示硬盘上的文件
+    'hrsh7th/cmp-path', --自动提示硬盘上的文件
     'ray-x/lsp_signature.nvim',
     'hrsh7th/cmp-cmdline',
   },

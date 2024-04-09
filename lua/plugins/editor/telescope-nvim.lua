@@ -5,7 +5,6 @@ return {
     'ahmedkhalf/project.nvim',
     'nvim-telescope/telescope-fzy-native.nvim',
     'nvim-telescope/telescope-live-grep-args.nvim',
-    'nvim-telescope/telescope-dap.nvim',
   },
   config = function()
     local lga_actions = require('telescope-live-grep-args.actions')
@@ -49,6 +48,5 @@ return {
     require('telescope').load_extension('projects')
     require('telescope').load_extension('fzy_native')
     require('telescope').load_extension('live_grep_args')
-    require('telescope').load_extension('dap')
   end,
 }

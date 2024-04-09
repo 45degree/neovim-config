@@ -140,7 +140,7 @@ return {
   dependencies = {
     'nvim-tree/nvim-web-devicons',
   },
-  event = 'VeryLazy',
+  event = { 'BufReadPost', 'BufNewFile' },
   config = function()
     require('lualine').setup(opts)
   end,
