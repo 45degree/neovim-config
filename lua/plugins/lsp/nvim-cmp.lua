@@ -72,17 +72,17 @@ local function setup_nvim_cmp()
     sorting = {
       priority_weight = 1.0,
       comparators = {
-        -- compare.score_offset, -- not good at all
-        cmp.config.compare.locality,
-        cmp.config.compare.recently_used,
-        cmp.config.compare.score, -- based on :  score = score + ((#sources - (source_index - 1)) * sorting.priority_weight)
         cmp.config.compare.offset,
+        cmp.config.compare.exact,
+        -- cmp.config.compare.scopes,
+        cmp.config.compare.score,
+        require('cmp-under-comparator').under,
+        cmp.config.compare.recently_used,
+        cmp.config.compare.locality,
+        cmp.config.compare.kind,
+        -- cmp.config.compare.sort_text,
+        cmp.config.compare.length,
         cmp.config.compare.order,
-        -- compare.scopes, -- what?
-        -- compare.sort_text,
-        -- compare.exact,
-        -- compare.kind,
-        -- compare.length, -- useless
       },
     },
     formatting = {
@@ -159,6 +159,7 @@ return {
     'hrsh7th/cmp-path', --自动提示硬盘上的文件
     'ray-x/lsp_signature.nvim',
     'hrsh7th/cmp-cmdline',
+    'lukas-reineke/cmp-under-comparator',
   },
   config = function()
     require('luasnip.loaders.from_vscode').lazy_load()
