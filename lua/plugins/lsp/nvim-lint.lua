@@ -1,3 +1,4 @@
+---@param opts table<string, table<string, string>>
 ---@param pkg MasonPackage
 local function registry_linter_by_package(opts, pkg, package_to_nvimlint)
   local ft_mapping = require('util.mason').lang_to_filetype
@@ -11,7 +12,7 @@ local function registry_linter_by_package(opts, pkg, package_to_nvimlint)
     if package_name == nil then
       package_name = pkg.name
     end
-    table.insert(opts[filetype], package_name)
+    opts[filetype][package_name] = package_name
   end
 
   if #pkg.lang == 0 then
@@ -47,9 +48,26 @@ return {
       package_to_nvimlint[v] = k
     end
 
-    local opts = require('config').linter
+    ---@type table<string, table<string, string>>
+    local opts_kv = {}
+    for filetype, linters in pairs(require('config').linter) do
+      opts_kv[filetype] = {}
+      for _, linter in ipairs(linters) do
+        opts_kv[filetype][linter] = linter
+      end
+    end
+
     for _, pkg in ipairs(pkgs) do
-      registry_linter_by_package(opts, pkg, package_to_nvimlint)
+      registry_linter_by_package(opts_kv, pkg, package_to_nvimlint)
+    end
+
+    ---@type table<string, List<string>>
+    local opts = {}
+    for filetype, linters in pairs(opts_kv) do
+      opts[filetype] = {}
+      for linter, _ in pairs(linters) do
+        table.insert(opts[filetype], linter)
+      end
     end
 
     require('lint').linters_by_ft = opts
