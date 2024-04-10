@@ -49,6 +49,7 @@ return {
       h6 = 'foam',
     },
     highlight_groups = {
+      -- telescope
       TelescopeBorder = { fg = 'overlay', bg = 'overlay' },
       TelescopeNormal = { fg = 'subtle', bg = 'overlay' },
       TelescopeSelection = { fg = 'text', bg = 'highlight_med' },
@@ -61,6 +62,12 @@ return {
 
       TelescopePromptNormal = { fg = 'text', bg = 'surface' },
       TelescopePromptBorder = { fg = 'surface', bg = 'surface' },
+
+      -- neotree
+      -- NeoTreeTabActive = { bg = 'base', fg = 'base' },
+      NeoTreeTabInactive = { link = 'NormalNC' },
+      NeoTreeTabSeparatorActive = { fg = 'surface', bg = 'surface' },
+      NeoTreeTabSeparatorInactive = { link = 'NeoTreeTabInactive' },
     },
   },
 }

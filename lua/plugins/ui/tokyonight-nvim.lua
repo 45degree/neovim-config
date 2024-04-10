@@ -9,6 +9,7 @@ return {
 
     require('tokyonight').setup({
       on_highlights = function(hl, c)
+        -- telescope
         local prompt = '#2d3149'
         hl.TelescopeNormal = {
           bg = c.bg_dark,
@@ -37,6 +38,11 @@ return {
           bg = c.bg_dark,
           fg = c.bg_dark,
         }
+
+        -- neotree
+        hl.NeoTreeTabInactive = { link = 'NormalNC' }
+        hl.NeoTreeTabSeparatorActive = { fg = c.bg_dark, bg = c.bg_dark }
+        hl.NeoTreeTabSeparatorInactive = { link = 'NeoTreeTabInactive' }
       end,
     })
   end,

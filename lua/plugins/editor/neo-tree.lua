@@ -23,8 +23,8 @@ local opts = {
   enable_git_status = true,
   enable_diagnostics = true,
   sort_case_insensitive = false, -- used when sorting files and directories in the tree
-  sort_function = nil,           -- use a custom function for sorting files and directories in the tree
-  sources = { 'filesystem', 'buffers', 'git_status', 'document_symbols' },
+  sort_function = nil, -- use a custom function for sorting files and directories in the tree
+  sources = { 'filesystem', 'buffers', 'git_status' },
   source_selector = {
     winbar = true,
     statusline = false,
@@ -32,7 +32,6 @@ local opts = {
       { source = 'filesystem', display_name = ' 󰉓 Files ' },
       { source = 'buffers', display_name = '  Buffer ' },
       { source = 'git_status', display_name = ' 󰊢 Git ' },
-      { source = 'document_symbols', display_name = '  Symbols ' },
     },
   },
   default_component_configs = {
@@ -111,7 +110,7 @@ local opts = {
   },
   nesting_rules = {},
   filesystem = {
-    bind_to_cwd = true,   -- true creates a 2-way binding between vim's cwd and neo-tree's root
+    bind_to_cwd = true, -- true creates a 2-way binding between vim's cwd and neo-tree's root
     cwd_target = {
       sidebar = 'global', -- sidebar is when position = left or right
     },
@@ -142,9 +141,9 @@ local opts = {
     follow_current_file = {
       enabled = false,
       leave_dirs_open = false,
-    },                                      -- This will find and focus the file in the active buffer every
+    }, -- This will find and focus the file in the active buffer every
     -- time the current file is changed while the tree is open.
-    group_empty_dirs = false,               -- when true, empty folders will be grouped together
+    group_empty_dirs = false, -- when true, empty folders will be grouped together
     hijack_netrw_behavior = 'open_default', -- netrw disabled, opening a directory opens neo-tree
     -- in whatever position is specified in window.position
     -- "open_current",  -- netrw disabled, opening a directory opens within the
@@ -169,7 +168,7 @@ local opts = {
     follow_current_file = {
       enabled = true,
       leave_dirs_open = false,
-    },                       -- This will find and focus the file in the active buffer every
+    }, -- This will find and focus the file in the active buffer every
     -- time the current file is changed while the tree is open.
     group_empty_dirs = true, -- when true, empty folders will be grouped together
     show_unloaded = true,
@@ -207,9 +206,9 @@ return {
     'MunifTanjim/nui.nvim',
     's1n7ax/nvim-window-picker',
   },
-  deactivate = function()
-    vim.cmd([[Neotree close]])
-  end,
+  -- deactivate = function()
+  --   vim.cmd([[Neotree close]])
+  -- end,
   init = function()
     if vim.fn.argc() == 1 then
       local stat = vim.loop.fs_stat(vim.fn.argv(0))
