@@ -44,12 +44,12 @@ end
 
 ---@class MasonFilterOpt
 ---@field lang Array<string>?
----@field categorie Array<string>?
+---@field categories Array<string>?
 
 ---@param pkg Package
 ---@param opts MasonFilterOpt
 ---@return boolean
-local function is_satisfiy(pkg, opts)
+local function is_satisfy(pkg, opts)
   local pkg_lang = pkg.spec.languages
   local is_lang_satisfly = true
   if opts.lang ~= nil then
@@ -62,16 +62,16 @@ local function is_satisfiy(pkg, opts)
   end
 
   local pkg_cat = pkg.spec.categories
-  local is_categorie_satisfly = true
-  if opts.categorie ~= nil then
-    for _, cat in ipairs(opts.categorie) do
+  local is_categories_satisfly = true
+  if opts.categories ~= nil then
+    for _, cat in ipairs(opts.categories) do
       if not is_element_in_array(cat, pkg_cat) then
-        is_categorie_satisfly = false
+        is_categories_satisfly = false
       end
     end
   end
 
-  return is_lang_satisfly and is_categorie_satisfly
+  return is_lang_satisfly and is_categories_satisfly
 end
 
 --- list all installed package from mason
@@ -79,16 +79,16 @@ end
 ---@return Array<MasonPackage>
 function M.list_all_installed_package(opts)
   local pkgs = require('mason-registry').get_installed_packages()
-  local filterd_pkgs = {}
+  local filtered_pkgs = {}
   for _, pkg in ipairs(pkgs) do
-    if is_satisfiy(pkg, opts) then
+    if is_satisfy(pkg, opts) then
       ---@type MasonPackage
       local package = { name = pkg.name, lang = pkg.spec.languages, categories = pkg.spec.categories }
-      table.insert(filterd_pkgs, package)
+      table.insert(filtered_pkgs, package)
     end
   end
 
-  return filterd_pkgs
+  return filtered_pkgs
 end
 
 ---@param name string
