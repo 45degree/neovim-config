@@ -34,7 +34,7 @@ return {
     local mason_wrapper = require('util.mason')
 
     ---@type MasonFilterOpt
-    local formatter_opts = { categorie = { 'Formatter' } }
+    local formatter_opts = { categories = { 'Formatter' } }
     local pkgs = mason_wrapper.list_all_installed_package(formatter_opts)
 
     local formatters_by_ft = require('config').formatter
