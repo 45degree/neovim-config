@@ -67,10 +67,7 @@ local opts = {
     semantic_tokens = true,
     symbols_outline = true,
     telekasten = false,
-    telescope = {
-      enabled = true,
-      style = 'nvchad',
-    },
+    telescope = { enabled = true },
     treesitter = true,
     treesitter_context = false,
     ts_rainbow = false,
