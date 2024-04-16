@@ -1,4 +1,5 @@
-function string.split(self, delimiter)
+---@diagnostic disable: param-type-mismatch
+function string:split(delimiter)
   local input = tostring(self)
   delimiter = tostring(delimiter)
 
@@ -19,6 +20,6 @@ function string.split(self, delimiter)
   return arr
 end
 
-function string.trim(self)
+function string:trim()
   return self:gsub('^%s*(.-)%s*$', '%1')
 end

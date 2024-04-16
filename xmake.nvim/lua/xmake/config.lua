@@ -1,37 +1,37 @@
-local dap_type = 'cpptool'
-if vim.fn.has('WIN32') == 1 then
-  dap_type = 'codelldb'
-end
-
 local xmake_executable = 'xmake'
 if vim.fn.has('UNIX') == 1 then
   xmake_executable = vim.env.HOME .. '/.local/bin/xmake'
 end
 
-local config = {
+local function default_dap_configuration(params)
+  return {
+    name = 'xmake debug',
+    type = 'codelldb',
+    request = 'launch',
+    stopOnEntry = false,
+    program = params.program,
+    args = params.args,
+    cwd = params.cwd,
+    env = params.env,
+    externalConsole = false,
+  }
+end
+
+local M = {}
+M.opts = {
   xmake_executable = xmake_executable,
   quickfix_size = 10, -- cmake output window height
   quickfix_position = 'belowright', -- "belowright", "aboveleft", ...
   show_quickfix = 'always', -- "always", "only_on_error"
-  dap_configuration = function(params)
-    return {
-      name = 'xmake debug',
-      type = 'codelldb',
-      request = 'launch',
-      stopOnEntry = false,
-      program = params.program,
-      args = params.args,
-      cwd = params.cwd,
-      env = params.env,
-      externalConsole = false,
-    }
-  end,
 }
+M.dap_configuration = default_dap_configuration
 
-function config:new(obj)
-  return setmetatable(obj, {
-    __index = self,
-  })
+function M.setup(args)
+  M.opts = vim.tbl_deep_extend('force', M.opts, args or {})
 end
 
-return config
+function M.set_dap_configuration(callback)
+  M.dap_configuration = callback or default_dap_configuration
+end
+
+return M

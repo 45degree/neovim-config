@@ -1,3 +1,5 @@
+---@diagnostic disable: undefined-field, undefined-global
+
 -- imports
 import('core.project.config')
 import('core.project.project')
@@ -37,16 +39,8 @@ function main(targetname)
     end
   end
 
-  local oldenvs = os.getenvs()
   _add_target_pkgenvs(target, {})
-
   local envs = os.getenvs()
   print(envs)
-  -- for k, v in pairs(envs) do
-  --   print(k..'='..v)
-  -- end
-
-  -- print(os.getenvs())
-  -- print end tag to ignore other deprecated/warnings infos
   print('__end__')
 end

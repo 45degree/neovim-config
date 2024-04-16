@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-global, undefined-field
 -- imports
 import('core.project.config')
 import('core.project.project')

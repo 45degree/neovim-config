@@ -20,7 +20,7 @@ function subcommands.complete(arg, cmd_line)
     end
   end
 
-  local target = project.GetProjectTarget()
+  local target = project.get_project_target()
 
   if #matches == 0 then
     for _, v in ipairs(target) do
