@@ -5,6 +5,8 @@ return {
     local ignoreLang = {}
     if vim.fn.has('WIN32') then
       table.insert(ignoreLang, 'rnoweb')
+      table.insert(ignoreLang, 'ocaml')
+      table.insert(ignoreLang, 'ocaml_interface')
     end
 
     require('nvim-treesitter.configs').setup({
