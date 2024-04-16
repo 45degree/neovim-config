@@ -18,6 +18,7 @@ local defaults = {
   -- https://github.com/mfussenegger/nvim-lint/tree/master?tab=readme-ov-file#available-linters
   linter = {},
   formatter = {},
+  lsp = {},
 }
 
 local options = {}
