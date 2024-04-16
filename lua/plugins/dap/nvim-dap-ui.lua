@@ -4,6 +4,7 @@ return {
   dependencies = {
     'mfussenegger/nvim-dap',
     'nvim-neotest/nvim-nio',
+    'theHamsta/nvim-dap-virtual-text',
   },
   config = function()
     local dap, dapui = require('dap'), require('dapui')
@@ -28,8 +29,8 @@ return {
               id = 'scopes',
               size = 0.35, -- Can be float or integer > 1
             },
-            { id = 'stacks',      size = 0.35 },
-            { id = 'watches',     size = 0.15 },
+            { id = 'stacks', size = 0.35 },
+            { id = 'watches', size = 0.15 },
             { id = 'breakpoints', size = 0.15 },
           },
           size = 40,
@@ -45,8 +46,8 @@ return {
         },
       },
       floating = {
-        max_height = nil,  -- These can be integers or a float between 0 and 1.
-        max_width = nil,   -- Floats will be treated as percentage of your screen.
+        max_height = nil, -- These can be integers or a float between 0 and 1.
+        max_width = nil, -- Floats will be treated as percentage of your screen.
         border = 'single', -- Border style. Can be "single", "double" or "rounded"
         mappings = {
           close = { 'q', '<Esc>' },
@@ -57,13 +58,11 @@ return {
 
     local debug_open = function()
       require('dapui').open({ reset = true })
-      vim.api.nvim_command('DapVirtualTextEnable')
     end
 
     local debug_close = function()
       dap.repl.close()
       dapui.close()
-      vim.api.nvim_command('DapVirtualTextDisable')
     end
 
     dap.listeners.after.event_initialized['dapui_config'] = function()
@@ -72,14 +71,17 @@ return {
 
     dap.listeners.before.event_terminated['dapui_config'] = function()
       debug_close()
+      print(1)
     end
 
     dap.listeners.before.event_exited['dapui_config'] = function()
       debug_close()
+      print(2)
     end
 
     dap.listeners.before.disconnect['dapui_config'] = function()
       debug_close()
+      print(2)
     end
   end,
 }
