@@ -27,6 +27,7 @@ M.lang_to_filetype = {
   ['Typst'] = 'typst',
   ['VimScript'] = 'vim',
   ['Vue'] = 'vue',
+  ['XML'] = 'xml',
   ['YAML'] = 'yaml',
   ['Zig'] = 'zig',
 }
