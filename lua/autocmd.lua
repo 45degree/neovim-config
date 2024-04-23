@@ -19,6 +19,18 @@ vim.api.nvim_create_autocmd({ 'LspAttach' }, {
   end,
 })
 
+-- exrc
+vim.api.nvim_create_autocmd('DirChanged', {
+  callback = function()
+    for _, file in ipairs({ '.nvim.lua', '.nvimrc', '.exrc' }) do
+      local stat = vim.loop.fs_stat(file)
+      if stat and stat.type == 'file' then
+        vim.cmd('source ' .. file)
+      end
+    end
+  end,
+})
+
 -- highlight group
 
 local set_telescope_colors = function()
