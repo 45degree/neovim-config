@@ -1,3 +1,12 @@
+local insert_natvis = function(natvis_files, extrafiles)
+  for _, file in ipairs(extrafiles) do
+    local extension = string.match(file, '.+%.(.+)$')
+    if extension == 'natvis' then
+      table.insert(natvis_files, file)
+    end
+  end
+end
+
 local set_xmake_dap_config = function(params)
   local xmake = require('xmake')
 
@@ -5,13 +14,9 @@ local set_xmake_dap_config = function(params)
   local deps = xmake.get_target_attribute(params.target_name, 'get', 'deps')
   for _, dep in ipairs(deps) do
     local files = xmake.get_target_attribute(dep, 'extrafiles')
-    for _, file in ipairs(files) do
-      local extension = string.match(file, '.+%.(.+)$')
-      if extension == 'natvis' then
-        table.insert(natvis_file, file)
-      end
-    end
+    insert_natvis(natvis_file, files)
   end
+  insert_natvis(natvis_file, xmake.get_target_attribute(params.target_name, 'extrafiles'))
 
   vim.print(natvis_file)
 
