@@ -21,11 +21,11 @@ local function registry_formatter_by_package(opts, pkg, package_to_conform)
 end
 
 return {
-  "stevearc/conform.nvim",
-  event = { 'BufReadPost', 'BufNewFile' },
-  dependencies = { "zapling/mason-conform.nvim", 'williamboman/mason.nvim' },
+  'stevearc/conform.nvim',
+  event = 'VeryLazy',
+  dependencies = { 'zapling/mason-conform.nvim', 'williamboman/mason.nvim' },
   config = function()
-    local conform_to_package = require("mason-conform.mapping").conform_to_package
+    local conform_to_package = require('mason-conform.mapping').conform_to_package
     local package_to_conform = {}
     for k, v in pairs(conform_to_package) do
       package_to_conform[v] = k
@@ -45,5 +45,5 @@ return {
     require('conform').setup({
       formatters_by_ft = formatters_by_ft,
     })
-  end
+  end,
 }

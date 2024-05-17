@@ -14,26 +14,16 @@ local function setup_nvim_cmp()
         require('luasnip').lsp_expand(args.body)
       end,
     },
-    enabled = function()
-      local is_not_prompt = vim.api.nvim_buf_get_option(0, 'buftype') ~= 'prompt'
-      if package.loaded['cmp_dap'] ~= nil then
-        return is_not_prompt or require('cmp_dap').is_dap_buffer()
-      end
-      return is_not_prompt
-    end,
     window = {
       completion = cmp.config.window.bordered(),
       documentation = cmp.config.window.bordered(),
     },
     mapping = {
       ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-      -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+      ['<CR>'] = cmp.mapping.confirm({ select = true }),
       ['<Tab>'] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
-          -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-          -- they way you will only jump inside the snippet region
         elseif luasnip.expand_or_jumpable() then
           luasnip.expand_or_jump()
         elseif has_words_before() then
@@ -57,18 +47,12 @@ local function setup_nvim_cmp()
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
       { name = 'luasnip' },
+      { name = 'nvim_lsp_signature_help' },
     }, {
       { name = 'buffer' },
       { name = 'path' },
       { name = 'nvim_lua' },
     }),
-    matching = {
-      disallow_fuzzy_matching = true,
-      disallow_fullfuzzy_matching = true,
-      disallow_partial_fuzzy_matching = false,
-      disallow_partial_matching = false,
-      disallow_prefix_unmatching = true,
-    },
     sorting = {
       priority_weight = 1.0,
       comparators = {
@@ -91,7 +75,6 @@ local function setup_nvim_cmp()
         local lspkind_icons = require('icons').kind
 
         local menus = {
-          -- cmp_tabnine = "[TN]",
           buffer = '[BUF]',
           orgmode = '[ORG]',
           nvim_lsp = '[LSP]',
@@ -118,14 +101,7 @@ local function setup_nvim_cmp()
   })
 
   -- config for command line
-  cmp.setup.cmdline('/', {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = {
-      { name = 'buffer' },
-    },
-  })
-
-  cmp.setup.cmdline('?', {
+  cmp.setup.cmdline({ '/', '?' }, {
     mapping = cmp.mapping.preset.cmdline(),
     sources = {
       { name = 'buffer' },
@@ -136,14 +112,9 @@ local function setup_nvim_cmp()
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
       { name = 'path' },
-    }, {
-      {
-        name = 'cmdline',
-        option = {
-          ignore_cmds = { 'Man', '!' },
-        },
-      },
+      { name = 'cmdline' },
     }),
+    matching = { disallow_symbol_nonprefix_matching = false },
   })
 end
 
@@ -154,10 +125,10 @@ return {
     'rafamadriz/friendly-snippets',
     'L3MON4D3/LuaSnip',
     'saadparwaiz1/cmp_luasnip',
-    'hrsh7th/cmp-buffer', --从buffer中智能提示
-    'hrsh7th/cmp-nvim-lua', --nvim-cmp source for neovim Lua API.
-    'hrsh7th/cmp-path', --自动提示硬盘上的文件
-    'ray-x/lsp_signature.nvim',
+    'hrsh7th/cmp-buffer',
+    'hrsh7th/cmp-nvim-lua',
+    'hrsh7th/cmp-path',
+    'hrsh7th/cmp-nvim-lsp-signature-help',
     'hrsh7th/cmp-cmdline',
     'lukas-reineke/cmp-under-comparator',
   },
@@ -165,8 +136,6 @@ return {
     require('luasnip.loaders.from_vscode').lazy_load()
     require('luasnip.loaders.from_vscode').lazy_load({ paths = { vim.fn.stdpath('config') .. '/vscode-snippets' } })
     require('luasnip.loaders.from_snipmate').lazy_load({ paths = { vim.fn.stdpath('config') .. '/snippets' } })
-    -- require('config.plugins.nvim-cmp')
     setup_nvim_cmp()
-    require('lsp_signature').setup({ hint_prefix = '󰷼 ' })
   end,
 }

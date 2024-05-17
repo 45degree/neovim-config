@@ -1,6 +1,6 @@
 return {
   'lukas-reineke/virt-column.nvim',
-  event = { 'BufReadPre', 'BufNewFile' },
+  event = 'VeryLazy',
   opts = {
     char = '│',
   },

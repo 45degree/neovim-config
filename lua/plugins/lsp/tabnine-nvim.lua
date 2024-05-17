@@ -8,7 +8,7 @@ end
 
 return {
   'codota/tabnine-nvim',
-  event = { 'BufReadPre', 'BufNewFile' },
+  event = 'VeryLazy',
   build = tabnine_build_path(),
   config = function()
     local opts = {

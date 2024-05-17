@@ -1,6 +1,5 @@
 return {
   'goolord/alpha-nvim',
-  event = 'VimEnter',
   config = function()
     -- close Lazy and re-open when the dashboard is ready
     if vim.o.filetype == 'lazy' then

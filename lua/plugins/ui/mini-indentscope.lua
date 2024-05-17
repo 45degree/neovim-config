@@ -1,7 +1,7 @@
 return {
   'echasnovski/mini.indentscope',
   version = '*',
-  event = { 'BufReadPre', 'BufNewFile' },
+  event = 'VeryLazy',
   init = function()
     vim.api.nvim_create_autocmd('FileType', {
       pattern = { 'help', 'alpha', 'neo-tree', 'Trouble', 'lazy', 'mason', 'notify', 'toggleterm', 'Neogit*' },

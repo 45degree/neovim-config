@@ -1,4 +1,4 @@
-local icons = require("icons")
+local icons = require('icons')
 local opts = {
   -- Hide inactive buffers and file extensions. Other options are `alternate`, `current`, and `visible`.
   hide = { extensions = false, inactive = false },
@@ -22,7 +22,7 @@ local opts = {
 
 return {
   'romgrk/barbar.nvim',
-  event = { 'BufReadPre', 'BufNewFile' },
+  event = 'VeryLazy',
   config = function()
     require('barbar').setup(opts)
   end,

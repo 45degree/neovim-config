@@ -3,7 +3,7 @@ local icons = require('icons')
 return {
   'utilyre/barbecue.nvim',
   name = 'barbecue',
-  event = { 'BufRead', 'BufNewFile' },
+  event = 'VeryLazy',
   dependencies = {
     { 'SmiteshP/nvim-navic', event = 'LspAttach' },
     'nvim-tree/nvim-web-devicons',

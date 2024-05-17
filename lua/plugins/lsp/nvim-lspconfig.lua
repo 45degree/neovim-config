@@ -1,14 +1,12 @@
 return {
   'neovim/nvim-lspconfig',
-  event = { 'BufReadPre', 'BufNewFile' },
+  event = 'Filetype',
   dependencies = {
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
   },
   lazy = true,
   config = function()
-    -- require('neoconf').setup()
-
     require('mason-lspconfig').setup()
 
     local lspinstaller = require('mason-lspconfig')

@@ -1,6 +1,6 @@
 return {
   'nvim-treesitter/nvim-treesitter',
-  event = { 'BufReadPost', 'BufNewFile' },
+  event = 'VeryLazy',
   config = function()
     local ignoreLang = {}
     if vim.fn.has('WIN32') then
