@@ -61,6 +61,8 @@ return {
       vim.api.nvim_create_user_command('Lazygit', function()
         lazygit:toggle()
       end, { nargs = 0 })
+
+      vim.api.nvim_set_keymap('n', '<leader>gl', '<cmd>Lazygit<cr>', { desc = 'Open Lazygit' })
     end
   end,
 }

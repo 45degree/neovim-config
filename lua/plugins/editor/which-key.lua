@@ -82,7 +82,6 @@ local register = {
     d = { '<cmd>Gitsigns diffthis<cr>', '显示当前文件更改' },
     p = { '<cmd>DiffviewOpen<cr>', '显示Git项目更改' },
     h = { '<cmd>DiffviewFileHistory %<cr>', '显示当前文件历史更改' },
-    l = { '<cmd>Lazygit<cr>', '打开lazygit' },
   },
   t = { '<cmd>Neotree toggle<cr>', '打开文件树' },
   T = { '<cmd>Outline<cr>', '代码大纲' },
