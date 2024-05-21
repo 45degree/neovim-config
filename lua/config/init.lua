@@ -1,7 +1,15 @@
 local M = {}
 
+local function get_default_border()
+  if vim.fn.exists('g:neovide') == 1 then
+    return 'none'
+  end
+  return 'single'
+end
+
 local defaults = {
   colorscheme = 'catppuccin',
+  border = get_default_border(),
   lang = {
     cpp = true,
     rust = false,

@@ -8,6 +8,7 @@ return {
   },
   config = function()
     local dap, dapui = require('dap'), require('dapui')
+    local config = require('config')
 
     dapui.setup({
       icons = { expanded = '', collapsed = '' },
@@ -48,7 +49,7 @@ return {
       floating = {
         max_height = nil, -- These can be integers or a float between 0 and 1.
         max_width = nil, -- Floats will be treated as percentage of your screen.
-        border = 'single', -- Border style. Can be "single", "double" or "rounded"
+        border = config.border, -- Border style. Can be "single", "double" or "rounded"
         mappings = {
           close = { 'q', '<Esc>' },
         },

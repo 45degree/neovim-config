@@ -6,6 +6,7 @@ local function setup_nvim_cmp()
   end
   local cmp = require('cmp')
   local luasnip = require('luasnip')
+  local config = require('config')
 
   cmp.setup({
     snippet = {
@@ -15,8 +16,8 @@ local function setup_nvim_cmp()
       end,
     },
     window = {
-      completion = cmp.config.window.bordered(),
-      documentation = cmp.config.window.bordered(),
+      completion = cmp.config.window.bordered({ border = config.border }),
+      documentation = cmp.config.window.bordered({ border = config.border }),
     },
     mapping = {
       ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),

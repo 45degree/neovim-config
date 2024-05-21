@@ -12,9 +12,10 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local icons = require('icons')
+local config = require('config')
 local lazy_config = {
   ui = {
-    border = 'single',
+    border = config.border,
     icons = {
       cmd = icons.widgets.cmd,
       config = icons.widgets.config,

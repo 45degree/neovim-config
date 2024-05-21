@@ -7,6 +7,7 @@ return {
   },
   config = function()
     local icons = require('icons')
+    local config = require('config')
 
     require('notify').setup({
       icons = {
@@ -42,6 +43,14 @@ return {
         long_message_to_split = true,
         inc_rename = true,
         lsp_doc_border = true,
+      },
+      views = {
+        cmdline_popup = {
+          border = { style = config.border },
+        },
+        hover = {
+          border = { style = config.border },
+        },
       },
     })
   end,

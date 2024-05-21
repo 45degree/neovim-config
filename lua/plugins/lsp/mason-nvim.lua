@@ -3,9 +3,10 @@ return {
   cmd = 'Mason',
   config = function()
     local icons = require('icons')
+    local config = require('config')
     require('mason').setup({
       ui = {
-        border = 'single',
+        border = config.border,
         icons = {
           -- The list icon to use for installed packages.
           package_installed = icons.widgets.loaded,
