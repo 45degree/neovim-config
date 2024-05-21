@@ -6,7 +6,6 @@ return {
   config = function()
     local builtin = require('statuscol.builtin')
     require('statuscol').setup({
-      relculright = true,
       ft_ignore = { 'neo-tree', 'toggleterm', 'Outline', 'alpha', 'NeogitStatus' },
       bt_ignore = { 'nofile', 'prompt' },
       segments = {

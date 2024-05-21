@@ -1,21 +1,44 @@
 local icons = require('icons')
 
 local function get_active_lsp_name()
-  local msg = 'No Active Lsp'
-  local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
-  local clients = vim.lsp.get_active_clients()
-  if next(clients) == nil then
-    return msg
+  local clients = vim.lsp.get_clients()
+  local buf = vim.api.nvim_get_current_buf()
+  clients = vim
+    .iter(clients)
+    :filter(function(client)
+      return client.attached_buffers[buf]
+    end)
+    :filter(function(client)
+      return client.name ~= 'GitHub Copilot'
+    end)
+    :map(function(client)
+      return client.name
+    end)
+    :totable()
+  local info = table.concat(clients, ' ')
+  if info == '' then
+    return 'No attached LSP server'
+  else
+    return info
   end
+end
 
-  msg = ''
-  for _, client in ipairs(clients) do
-    local filetypes = client.config.filetypes
-    if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-      msg = msg .. client.name .. ','
-    end
+local function get_dap_status()
+  ---@diagnostic disable-next-line: redefined-local
+  local dap = package.loaded['dap']
+  if dap then
+    return dap.status()
   end
-  return string.sub(msg, 1, #msg - 1)
+  return ''
+end
+
+local function show_dap_or_lsp()
+  local dap_status = get_dap_status()
+  if dap_status ~= '' then
+    return '  ' .. dap_status
+  else
+    return ' LSP:' .. get_active_lsp_name()
+  end
 end
 
 local function get_linter_info()
@@ -103,7 +126,7 @@ local opts = {
         path = 1,
         symbols = { modified = '  ', readonly = '', unnamed = '' },
       },
-      { get_active_lsp_name, icon = ' LSP:' },
+      { show_dap_or_lsp },
       { get_linter_info },
       { get_formatter_info },
       { 'tabnine' },

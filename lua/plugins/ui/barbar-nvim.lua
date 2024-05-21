@@ -18,6 +18,8 @@ local opts = {
     modified = { button = '' },
     pinned = { button = '', filename = true },
   },
+  auto_hide = 0,
+  exclude_ft = { 'alpha' },
 }
 
 return {
