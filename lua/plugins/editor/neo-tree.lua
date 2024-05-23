@@ -38,6 +38,7 @@ local opts = {
     container = {
       enable_character_fade = true,
     },
+    diagnostics = { symbols = icons.diagnostic },
     indent = {
       indent_size = 2,
       padding = 1, -- extra padding on left hand side
@@ -199,18 +200,15 @@ local opts = {
 return {
   'nvim-neo-tree/neo-tree.nvim',
   cmd = 'Neotree',
-  branch = 'v3.x',
   dependencies = {
     'nvim-lua/plenary.nvim',
     'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
     'MunifTanjim/nui.nvim',
     's1n7ax/nvim-window-picker',
   },
-  -- deactivate = function()
-  --   vim.cmd([[Neotree close]])
-  -- end,
   init = function()
     if vim.fn.argc() == 1 then
+      ---@diagnostic disable-next-line: param-type-mismatch
       local stat = vim.loop.fs_stat(vim.fn.argv(0))
       if stat and stat.type == 'directory' then
         require('neo-tree')
