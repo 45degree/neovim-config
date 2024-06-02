@@ -4,7 +4,10 @@ return function(opts)
   end
 
   opts.on_new_config = function(...)
-    require('neodev.lsp').on_new_config(...)
+    local ok, result = pcall(require, 'neodev.lsp')
+    if ok then
+      result.on_new_config(...)
+    end
   end
 
   opts.settings = {

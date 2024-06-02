@@ -1,6 +1,7 @@
 return {
   'folke/neodev.nvim',
   lazy = true,
+  enabled = true,
   config = function()
     require('neodev').setup({
       -- add any options here, or leave empty to use the default settings
