@@ -11,7 +11,7 @@ return {
     local config = require('config')
 
     dapui.setup({
-      icons = { expanded = '', collapsed = '', current_frame = '' },
+      icons = { expanded = '', collapsed = '', current_frame = '' },
       layouts = {
         {
           -- You can change the order of elements in the sidebar
