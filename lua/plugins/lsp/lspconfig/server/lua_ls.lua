@@ -1,13 +1,7 @@
 return function(opts)
+  ---@diagnostic disable-next-line: unused-local
   opts.on_attach = function(client, bufnr)
     client.server_capabilities.documentFormattingProvider = false
-  end
-
-  opts.on_new_config = function(...)
-    local ok, result = pcall(require, 'neodev.lsp')
-    if ok then
-      result.on_new_config(...)
-    end
   end
 
   opts.settings = {

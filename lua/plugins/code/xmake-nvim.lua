@@ -18,8 +18,6 @@ local set_xmake_dap_config = function(params)
   end
   insert_natvis(natvis_file, xmake.get_target_attribute(params.target_name, 'extrafiles'))
 
-  vim.print(natvis_file)
-
   local cpptools_env = {}
   for k, v in pairs(params.env) do
     table.insert(cpptools_env, { name = k, value = v })
