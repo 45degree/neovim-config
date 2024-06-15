@@ -16,6 +16,11 @@ return {
       lspconfig[server].setup(config)
     end
 
+    for _, server in ipairs(require('config').lsp) do
+      local config = require('plugins.lsp.lspconfig.server-config')(server)
+      lspconfig[server].setup(config)
+    end
+
     require('plugins.lsp.lspconfig.config')
   end,
 }

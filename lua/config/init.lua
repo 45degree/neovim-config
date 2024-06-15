@@ -19,7 +19,9 @@ local defaults = {
   -- https://github.com/mfussenegger/nvim-lint/tree/master?tab=readme-ov-file#available-linters
   linter = {},
   formatter = {},
-  lsp = {},
+
+  -- lsp in lsp-config that want to use but can't be install by mason, for example: nushell
+  lsp = { 'nushell' },
 }
 
 local options = {}
