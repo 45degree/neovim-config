@@ -6,6 +6,9 @@ return {
       input = {
         enabled = true,
         insert_only = false,
+        win_options = {
+          winhighlight = 'FloatBorder:Normal',
+        },
       },
       select = {
         -- Set to false to disable the vim.ui.select implementation

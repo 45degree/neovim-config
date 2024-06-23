@@ -14,11 +14,17 @@ local clangd_flags = {
 }
 
 return function(opts)
-  opts.capabilities.offsetEncoding = 'utf-8'
+  opts.capabilities.offsetEncoding = 'utf-16'
 
   opts.cmd = {
     'clangd',
     unpack(clangd_flags),
+  }
+
+  opts.init_options = {
+    usePlaceholders = true,
+    completeUnimported = true,
+    clangdFileStatus = true,
   }
 
   return opts

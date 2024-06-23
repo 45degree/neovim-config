@@ -33,11 +33,12 @@ vim.api.nvim_create_autocmd('DirChanged', {
 
 -- highlight group
 
-local set_telescope_colors = function()
+local set_custom_highlight = function()
   local normal = vim.api.nvim_get_hl(0, { name = 'Normal' })
   local normal_float = vim.api.nvim_get_hl(0, { name = 'NormalFloat' })
-  local pmenu_sel = vim.api.nvim_get_hl(0, { name = 'PmenuSel' })
   local title = vim.api.nvim_get_hl(0, { name = 'Title' })
+  local cursor_line = vim.api.nvim_get_hl(0, {name = 'CursorLine'})
+  local telescope_prompt_prefix = vim.api.nvim_get_hl(0, { name = 'TelescopePromptPrefix' })
 
   -- treesitter
   vim.api.nvim_set_hl(0, 'TelescopeNormal', {
@@ -49,18 +50,22 @@ local set_telescope_colors = function()
     bg = normal_float.bg,
   })
   vim.api.nvim_set_hl(0, 'TelescopePromptNormal', {
-    bg = pmenu_sel.bg,
+    bg = cursor_line.bg,
   })
   vim.api.nvim_set_hl(0, 'TelescopePromptBorder', {
-    fg = pmenu_sel.bg,
-    bg = pmenu_sel.bg,
+    fg = cursor_line.bg,
+    bg = cursor_line.bg,
   })
   vim.api.nvim_set_hl(0, 'TelescopePromptTitle', {
     fg = normal.bg,
     bg = normal.fg,
   })
+  vim.api.nvim_set_hl(0, 'TelescopePromptPrefix', {
+    fg = telescope_prompt_prefix.fg,
+    bg = cursor_line.bg,
+  })
   vim.api.nvim_set_hl(0, 'TelescopeSelection', {
-    bg = pmenu_sel.bg,
+    bg = cursor_line.bg,
   })
   vim.api.nvim_set_hl(0, 'TelescopePreviewTitle', {
     bg = title.fg,
@@ -69,22 +74,28 @@ local set_telescope_colors = function()
     bg = title.fg,
   })
 
+  -- nvim-cmp
+  local cmp_abbr = vim.api.nvim_get_hl(0, {name = 'CmpItemAbbr'})
+  vim.api.nvim_set_hl(0, 'CmpItemAbbr', {
+    fg = cmp_abbr.fg,
+    bg = 'NONE'
+  })
+
   -- neotree
   vim.api.nvim_set_hl(0, 'NeoTreeTabInactive', {
-    fg = pmenu_sel.fg,
-    bg = pmenu_sel.bg,
+    bg = cursor_line.bg,
   })
   vim.api.nvim_set_hl(0, 'NeoTreeTabSeparatorInactive', {
-    fg = pmenu_sel.bg,
-    bg = pmenu_sel.bg,
+    fg = cursor_line.bg,
+    bg = cursor_line.bg,
   })
 end
 
 vim.api.nvim_create_autocmd('ColorScheme', {
   pattern = '*',
-  callback = set_telescope_colors,
+  callback = set_custom_highlight,
 })
 vim.api.nvim_create_autocmd('OptionSet', {
   pattern = 'background',
-  callback = set_telescope_colors,
+  callback = set_custom_highlight,
 })
