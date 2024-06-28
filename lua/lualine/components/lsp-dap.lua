@@ -15,12 +15,7 @@ local function get_active_lsp_name()
       return client.name
     end)
     :totable()
-  local info = table.concat(clients, ' ')
-  if info == '' then
-    return 'No attached LSP server'
-  else
-    return info
-  end
+  return table.concat(clients, ' ')
 end
 
 local function get_dap_status()
@@ -40,9 +35,14 @@ function component:update_status()
   local dap_status = get_dap_status()
   if dap_status ~= '' then
     return '  ' .. dap_status
-  else
-    return '  ' .. get_active_lsp_name()
   end
+
+  local lsp_status = get_active_lsp_name()
+  if lsp_status ~= '' then
+    return '  ' .. lsp_status
+  end
+
+  return ''
 end
 
 return component
