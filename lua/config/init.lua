@@ -15,7 +15,7 @@ local defaults = {
     javascript = false,
     typst = false,
   },
-  tabnine = false,
+  ai = 'copilot',
   -- https://github.com/mfussenegger/nvim-lint/tree/master?tab=readme-ov-file#available-linters
   linter = {},
   formatter = {},

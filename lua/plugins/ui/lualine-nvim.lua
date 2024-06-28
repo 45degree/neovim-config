@@ -1,99 +1,5 @@
 local icons = require('icons')
 
-local function get_active_lsp_name()
-  local clients = vim.lsp.get_clients()
-  local buf = vim.api.nvim_get_current_buf()
-  clients = vim
-    .iter(clients)
-    :filter(function(client)
-      return client.attached_buffers[buf]
-    end)
-    :filter(function(client)
-      return client.name ~= 'GitHub Copilot'
-    end)
-    :map(function(client)
-      return client.name
-    end)
-    :totable()
-  local info = table.concat(clients, ' ')
-  if info == '' then
-    return 'No attached LSP server'
-  else
-    return info
-  end
-end
-
-local function get_dap_status()
-  ---@diagnostic disable-next-line: redefined-local
-  local dap = package.loaded['dap']
-  if dap then
-    return dap.status()
-  end
-  return ''
-end
-
-local function show_dap_or_lsp()
-  local dap_status = get_dap_status()
-  if dap_status ~= '' then
-    return '  ' .. dap_status
-  else
-    return ' LSP:' .. get_active_lsp_name()
-  end
-end
-
-local function get_linter_info()
-  if not package.loaded['lint'] then
-    return
-  end
-
-  local lint = require('lint')
-  local prefix = '󱉶 linter:'
-
-  local buf_ft = vim.bo.filetype
-  local linters = lint.linters_by_ft[buf_ft]
-  if linters == nil then
-    return prefix .. 'no linters'
-  end
-
-  local current_linters = lint.get_running()
-  if #current_linters == 0 then
-    return '󱉶 linter:' .. table.concat(linters, ',')
-  end
-  return '󱉶 running linter:' .. table.concat(current_linters, ',')
-end
-
-local function get_formatter_info()
-  if not package.loaded['conform'] then
-    return
-  end
-
-  -- Check if 'conform' is available
-  local conform = require('conform')
-  local lsp_format = require('conform.lsp_format')
-
-  -- Get formatters for the current buffer
-  local formatters = conform.list_formatters_for_buffer()
-  if formatters and #formatters > 0 then
-    local formatterNames = {}
-
-    for _, formatter in ipairs(formatters) do
-      table.insert(formatterNames, formatter)
-    end
-
-    return '󰷈 formatter:' .. table.concat(formatterNames, ' ')
-  end
-
-  -- Check if there's an LSP formatter
-  local bufnr = vim.api.nvim_get_current_buf()
-  local lsp_clients = lsp_format.get_format_clients({ bufnr = bufnr })
-
-  if not vim.tbl_isempty(lsp_clients) then
-    return '󰷈 LSP Formatter'
-  end
-
-  return ''
-end
-
 -- Config
 local opts = {
   options = {
@@ -121,20 +27,12 @@ local opts = {
       { 'diagnostics', symbols = icons.diagnostic },
     },
     lualine_c = {
-      {
-        'filename',
-        path = 1,
-        symbols = { modified = '  ', readonly = '', unnamed = '' },
-      },
-      { show_dap_or_lsp },
-      { get_linter_info },
-      { get_formatter_info },
-      { 'tabnine' },
+      { 'filename', path = 1, symbols = { modified = '  ', readonly = '', unnamed = '' } },
+      'lsp-dap',
+      'linter',
+      'formatter',
+      'ai-status',
       -- stylua: ignore
-      {
-        function() return "  " .. require("dap").status() end,
-        cond = function() return package.loaded["dap"] and require("dap").status() ~= "" end,
-      },
       { require('lazy.status').updates, cond = require('lazy.status').has_updates },
     },
     lualine_x = { 'encoding', 'fileformat', 'filetype' },
