@@ -37,6 +37,23 @@ function component:init(options)
   self.hl.info = highlights.create_component_highlight_group({ fg = info_fg }, 'ai-status-info', options)
   self.hl.error = highlights.create_component_highlight_group({ fg = error_fg }, 'ai-status-error', options)
   self.hl.hint = highlights.create_component_highlight_group({ fg = hint_fg }, 'ai-status-hint', options)
+
+  if require('config').ai == 'copilot' then
+    vim.api.nvim_create_autocmd('LspAttach', {
+      group = vim.api.nvim_create_augroup('copilot-status', {}),
+      desc = 'Update copilot attached status',
+      callback = function(args)
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        if client and client.name == 'copilot' then
+          require('copilot.api').register_status_notification_handler(function()
+            require('lualine').refresh()
+          end)
+          return true
+        end
+        return false
+      end,
+    })
+  end
 end
 
 function component:update_ai_status(ai, name)
