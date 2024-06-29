@@ -83,8 +83,8 @@ local register = {
     p = { '<cmd>DiffviewOpen<cr>', '显示Git项目更改' },
     h = { '<cmd>DiffviewFileHistory %<cr>', '显示当前文件历史更改' },
   },
-  t = { '<cmd>Neotree toggle<cr>', '打开文件树' },
-  T = { '<cmd>Outline<cr>', '代码大纲' },
+  t = { '<cmd>Neotree toggle filesystem<cr>', '打开文件树' },
+  T = { '<cmd>Neotree toggle document_symbols<cr>', '代码大纲' },
   w = {
     name = '+窗口',
     c = { chooseWin, '选择窗口' },

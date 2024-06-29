@@ -26,15 +26,7 @@ local opts = {
       },
       { 'diagnostics', symbols = icons.diagnostic },
     },
-    lualine_c = {
-      { 'filename', path = 1, symbols = { modified = '  ', readonly = '', unnamed = '' } },
-      'lsp-dap',
-      'linter',
-      'formatter',
-      'ai-status',
-      -- stylua: ignore
-      { require('lazy.status').updates, cond = require('lazy.status').has_updates },
-    },
+    lualine_c = { 'filename', 'lsp-dap', 'linter', 'formatter', 'ai-status' },
     lualine_x = { 'encoding', 'fileformat', 'filetype' },
     lualine_y = {
       { 'progress', separator = ' ', padding = { left = 1, right = 0 } },

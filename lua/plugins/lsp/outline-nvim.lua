@@ -56,6 +56,7 @@ local opts = {
 return {
   'hedyhli/outline.nvim',
   event = 'LspAttach',
+  enabled = false,
   config = function()
     require('outline').setup(opts)
   end,
