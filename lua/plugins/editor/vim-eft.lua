@@ -2,24 +2,24 @@ return {
   'hrsh7th/vim-eft',
   event = 'VeryLazy',
   config = function()
-    vim.api.nvim_set_keymap('n', ';', '<Plug>(eft-repeat)', {})
-    vim.api.nvim_set_keymap('x', ';', '<Plug>(eft-repeat)', {})
-    vim.api.nvim_set_keymap('o', ';', '<Plug>(eft-repeat)', {})
+    vim.keymap.set('n', ';', '<Plug>(eft-repeat)', {})
+    vim.keymap.set('x', ';', '<Plug>(eft-repeat)', {})
+    vim.keymap.set('o', ';', '<Plug>(eft-repeat)', {})
 
-    vim.api.nvim_set_keymap('n', 'f', '<Plug>(eft-f)', {})
-    vim.api.nvim_set_keymap('x', 'f', '<Plug>(eft-f)', {})
-    vim.api.nvim_set_keymap('o', 'f', '<Plug>(eft-f)', {})
+    vim.keymap.set('n', 'f', '<Plug>(eft-f)', {})
+    vim.keymap.set('x', 'f', '<Plug>(eft-f)', {})
+    vim.keymap.set('o', 'f', '<Plug>(eft-f)', {})
 
-    vim.api.nvim_set_keymap('n', 'F', '<Plug>(eft-F)', {})
-    vim.api.nvim_set_keymap('x', 'F', '<Plug>(eft-F)', {})
-    vim.api.nvim_set_keymap('o', 'F', '<Plug>(eft-F)', {})
+    vim.keymap.set('n', 'F', '<Plug>(eft-F)', {})
+    vim.keymap.set('x', 'F', '<Plug>(eft-F)', {})
+    vim.keymap.set('o', 'F', '<Plug>(eft-F)', {})
 
-    vim.api.nvim_set_keymap('n', 't', '<Plug>(eft-t)', {})
-    vim.api.nvim_set_keymap('x', 't', '<Plug>(eft-t)', {})
-    vim.api.nvim_set_keymap('o', 't', '<Plug>(eft-t)', {})
+    vim.keymap.set('n', 't', '<Plug>(eft-t)', {})
+    vim.keymap.set('x', 't', '<Plug>(eft-t)', {})
+    vim.keymap.set('o', 't', '<Plug>(eft-t)', {})
 
-    vim.api.nvim_set_keymap('n', 'T', '<Plug>(eft-T)', {})
-    vim.api.nvim_set_keymap('x', 'T', '<Plug>(eft-T)', {})
-    vim.api.nvim_set_keymap('o', 'T', '<Plug>(eft-T)', {})
+    vim.keymap.set('n', 'T', '<Plug>(eft-T)', {})
+    vim.keymap.set('x', 'T', '<Plug>(eft-T)', {})
+    vim.keymap.set('o', 'T', '<Plug>(eft-T)', {})
   end,
 }

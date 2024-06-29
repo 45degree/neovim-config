@@ -62,7 +62,7 @@ return {
         lazygit:toggle()
       end, { nargs = 0 })
 
-      vim.api.nvim_set_keymap('n', '<leader>gl', '<cmd>Lazygit<cr>', { desc = 'Open Lazygit' })
+      vim.keymap.set('n', '<leader>gl', '<cmd>Lazygit<cr>', { desc = 'Open Lazygit' })
     end
   end,
 }
