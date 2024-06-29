@@ -22,7 +22,7 @@ function component:update_status()
       table.insert(formatterNames, formatter)
     end
 
-    return '󰷈 ' .. table.concat(formatterNames, ',')
+    return '󰷈 ' .. table.concat(formatterNames, ' ')
   end
 
   -- Check if there's an LSP formatter

@@ -9,7 +9,9 @@ function component:init(options)
     return '#' .. hex
   end
   local hint_fg = to_hex_color_string(vim.api.nvim_get_hl(0, { name = 'DiagnosticHint' }).fg)
-  self.hl = highlights.create_component_highlight_group({ fg = hint_fg }, 'linting', options)
+  self.hl = {}
+  self.hl.running = highlights.create_component_highlight_group({ fg = hint_fg }, 'linting_running', options)
+  self.hl.finish = highlights.create_component_highlight_group({}, 'linting_finish', options)
 end
 
 function component:update_status()
@@ -31,32 +33,15 @@ function component:update_status()
     running_linters[linter] = {}
   end
 
-  local finished_linters = {}
-  for _, linter in ipairs(linters) do
-    if not running_linters[linter] then
-      finished_linters[linter] = {}
+  local message = ''
+  for idx, linter in ipairs(linters) do
+    if running_linters[linter] then
+      message = message .. highlights.component_format_highlight(self.hl.running) .. linter .. (idx == #linters and '' or ' ')
+    else
+      message = message .. highlights.component_format_highlight(self.hl.finish) .. linter .. (idx == #linters and '' or ' ')
     end
   end
-
-  local finish_linter_list = {}
-  for linter, _ in pairs(finished_linters) do
-    table.insert(finish_linter_list, linter)
-  end
-  local finish_messages = table.concat(finish_linter_list, ',')
-
-  local running_linter_list = {}
-  for linter, _ in pairs(running_linters) do
-    table.insert(running_linter_list, linter)
-  end
-  local running_messages = highlights.component_format_highlight(self.hl) .. table.concat(running_linter_list, ',')
-
-  if #running_linter_list == 0 then
-    return icon .. finish_messages
-  elseif #finish_messages == 0 then
-    return icon .. running_messages
-  else
-    return icon .. finish_messages .. ',' .. running_messages
-  end
+  return icon .. message
 end
 
 return component
