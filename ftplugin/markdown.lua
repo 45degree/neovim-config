@@ -1,4 +1,4 @@
-vim.api.nvim_buf_set_keymap(0, 'n', '<leader>mp', '<cmd>MarkdownPreview<cr>', { desc = 'markdown预览' })
-vim.api.nvim_buf_set_keymap(0, 'n', '<leader>ms', '<cmd>MarkdownPreviewStop<cr>', { desc = 'markdown停止预览' })
+vim.keymap.set('n', '<leader>mp', '<cmd>MarkdownPreview<cr>', { desc = 'markdown预览', buffer = 0 })
+vim.keymap.set('n', '<leader>ms', '<cmd>MarkdownPreviewStop<cr>', { desc = 'markdown停止预览', buffer = 0 })
 
 vim.o.textwidth = 0
