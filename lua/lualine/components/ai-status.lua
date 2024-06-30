@@ -37,6 +37,7 @@ function component:init(options)
   self.hl.info = highlights.create_component_highlight_group({ fg = info_fg }, 'ai-status-info', options)
   self.hl.error = highlights.create_component_highlight_group({ fg = error_fg }, 'ai-status-error', options)
   self.hl.hint = highlights.create_component_highlight_group({ fg = hint_fg }, 'ai-status-hint', options)
+  self.copilot_lsp_attached = false;
 
   if require('config').ai == 'copilot' then
     vim.api.nvim_create_autocmd('LspAttach', {
@@ -45,9 +46,7 @@ function component:init(options)
       callback = function(args)
         local client = vim.lsp.get_client_by_id(args.data.client_id)
         if client and client.name == 'copilot' then
-          require('copilot.api').register_status_notification_handler(function()
-            require('lualine').refresh()
-          end)
+          self.copilot_lsp_attached = true
           return true
         end
         return false
@@ -76,7 +75,7 @@ function component:update_status()
   -- All copilot API calls are blocking before copilot is attached,
   -- To avoid blocking the startup time, we check if copilot is attached
   local copilot_loaded = package.loaded['copilot'] ~= nil
-  if copilot_loaded then
+  if copilot_loaded and self.copilot_lsp_attached then
     return self:update_ai_status(copilot, 'copilot')
   end
 
