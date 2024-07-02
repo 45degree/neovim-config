@@ -7,6 +7,7 @@ local opts = {
     changedelete = { text = '│' },
     untracked = { text = '│' },
   },
+  current_line_blame = true
 }
 
 return {
