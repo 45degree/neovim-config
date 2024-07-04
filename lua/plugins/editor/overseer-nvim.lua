@@ -4,7 +4,6 @@ return {
   config = function()
     local config = require('config')
     require('overseer').setup({
-      strategy = { 'toggleterm', quit_on_exit = 'success', open_on_start = false },
       form = { border = config.border },
       confirm = { border = config.border },
       task_win = { border = config.border },
