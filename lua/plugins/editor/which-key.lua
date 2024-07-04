@@ -69,7 +69,7 @@ local register = {
         '平衡调整窗口',
       },
     },
-    t = { '<cmd>OverseerToggle<cr>', 'tasks' },
+    t = { name = '+task' },
   },
   g = {
     name = '+git',
