@@ -26,11 +26,11 @@ local opts = {
       },
       { 'diagnostics', symbols = icons.diagnostic },
     },
-    lualine_c = { 'filename', 'lsp-dap', 'linter', 'formatter', 'ai-status' },
-    lualine_x = { 'encoding', 'fileformat', 'filetype' },
+    lualine_c = { 'lsp-dap', 'linter', 'formatter', 'ai-status' },
+    lualine_x = { 'encoding', 'fileformat' },
     lualine_y = {
-      { 'progress', separator = ' ', padding = { left = 1, right = 0 } },
-      { 'location', padding = { left = 0, right = 1 } },
+      { 'icon-filename', separator = ' ', padding = { left = 1, right = 0 } },
+      { 'progress', padding = { left = 0, right = 1 } },
     },
     lualine_z = {
       function()
