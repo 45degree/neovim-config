@@ -4,10 +4,7 @@ return {
   'utilyre/barbecue.nvim',
   name = 'barbecue',
   event = 'VeryLazy',
-  dependencies = {
-    { 'SmiteshP/nvim-navic', event = 'LspAttach' },
-    'nvim-tree/nvim-web-devicons',
-  },
+  dependencies = { { 'SmiteshP/nvim-navic', event = 'LspAttach' } },
   config = function()
     require('barbecue').setup({
       create_autocmd = false, -- prevent barbecue from updating itself automatically

@@ -5,16 +5,18 @@ local opts = {
     {
       event = 'neo_tree_window_after_close',
       handler = function()
-        if require('dap').session() then
-          require('dapui').open({ reset = true })
+        if package.loaded['dap'] then
+          if require('dap').session() then
+            require('dapui').open({ reset = true })
+          end
         end
       end,
     },
     {
       event = 'neo_tree_popup_input_ready',
-      handler = function()
+      handler = function(args)
         -- enter input popup with normal mode by default.
-        vim.cmd('stopinsert')
+        vim.keymap.set('i', '<esc>', vim.cmd.stopinsert, { noremap = true, buffer = args.bufnr })
       end,
     },
   },
@@ -30,27 +32,18 @@ local opts = {
     statusline = false,
     sources = {
       { source = 'filesystem', display_name = ' 󰉓 Files ' },
-      { source = 'buffers', display_name = '  Buffer ' },
       { source = 'git_status', display_name = ' 󰊢 Git ' },
-      { source = 'document_symbols', display_name = ' Symbols ' },
+      { source = 'document_symbols', display_name = '  Outline ' },
     },
+    content_layout = 'center',
   },
   default_component_configs = {
-    container = {
-      enable_character_fade = true,
-    },
     diagnostics = { symbols = icons.diagnostic },
     indent = { with_markers = false, with_expanders = true },
     icon = { default = '' },
     git_status = { symbols = icons.gitsigns },
   },
   window = {
-    position = 'left',
-    width = 40,
-    mapping_options = {
-      noremap = true,
-      nowait = true,
-    },
     mappings = {
       ['R'] = 'refresh',
       ['?'] = 'show_help',
@@ -87,22 +80,6 @@ local opts = {
         ['<c-x>'] = 'clear_filter',
         ['[g'] = 'prev_git_modified',
         [']g'] = 'next_git_modified',
-      },
-    },
-  },
-  buffers = {
-    follow_current_file = {
-      enabled = true,
-      leave_dirs_open = false,
-    }, -- This will find and focus the file in the active buffer every
-    -- time the current file is changed while the tree is open.
-    group_empty_dirs = true, -- when true, empty folders will be grouped together
-    show_unloaded = true,
-    window = {
-      mappings = {
-        ['bd'] = 'buffer_delete',
-        ['<bs>'] = 'navigate_up',
-        ['.'] = 'set_root',
       },
     },
   },
@@ -171,12 +148,6 @@ local opts = {
 return {
   'nvim-neo-tree/neo-tree.nvim',
   cmd = 'Neotree',
-  dependencies = {
-    'nvim-lua/plenary.nvim',
-    'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
-    'MunifTanjim/nui.nvim',
-    's1n7ax/nvim-window-picker',
-  },
   init = function()
     if vim.fn.argc() == 1 then
       ---@diagnostic disable-next-line: param-type-mismatch

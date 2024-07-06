@@ -27,7 +27,7 @@ local opts = {
       { 'diagnostics', symbols = icons.diagnostic },
     },
     lualine_c = { 'filename', 'lsp-dap', 'linter', 'formatter', 'ai-status' },
-    lualine_x = { 'overseer', 'encoding', 'fileformat', 'filetype' },
+    lualine_x = { 'encoding', 'fileformat', 'filetype' },
     lualine_y = {
       { 'progress', separator = ' ', padding = { left = 1, right = 0 } },
       { 'location', padding = { left = 0, right = 1 } },
@@ -50,9 +50,6 @@ local opts = {
 
 return {
   'nvim-lualine/lualine.nvim',
-  dependencies = {
-    'nvim-tree/nvim-web-devicons',
-  },
   event = 'VeryLazy',
   config = function()
     require('lualine').setup(opts)

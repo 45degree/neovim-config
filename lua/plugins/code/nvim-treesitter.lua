@@ -1,6 +1,7 @@
 return {
   'nvim-treesitter/nvim-treesitter',
   event = 'VeryLazy',
+  dependencies = { 'nushell/tree-sitter-nu' },
   config = function()
     local ignoreLang = {}
     if vim.fn.has('WIN32') then
@@ -9,6 +10,16 @@ return {
       table.insert(ignoreLang, 'ocaml_interface')
       table.insert(ignoreLang, 'systemverilog')
     end
+
+    ---@diagnostic disable-next-line: inject-field
+    require('nvim-treesitter.parsers').get_parser_configs().nu = {
+      install_info = {
+        url = 'https://github.com/nushell/tree-sitter-nu',
+        files = { 'src/parser.c' },
+        branch = 'main',
+      },
+      filetype = 'nu',
+    }
 
     require('nvim-treesitter.configs').setup({
       ensure_installed = 'all',
