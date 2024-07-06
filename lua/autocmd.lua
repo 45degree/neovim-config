@@ -37,7 +37,7 @@ local set_custom_highlight = function()
   local normal = vim.api.nvim_get_hl(0, { name = 'Normal' })
   local normal_float = vim.api.nvim_get_hl(0, { name = 'NormalFloat' })
   local title = vim.api.nvim_get_hl(0, { name = 'Title' })
-  local cursor_line = vim.api.nvim_get_hl(0, {name = 'CursorLine'})
+  local cursor_line = vim.api.nvim_get_hl(0, { name = 'CursorLine' })
   local telescope_prompt_prefix = vim.api.nvim_get_hl(0, { name = 'TelescopePromptPrefix' })
 
   -- treesitter
@@ -75,10 +75,10 @@ local set_custom_highlight = function()
   })
 
   -- nvim-cmp
-  local cmp_abbr = vim.api.nvim_get_hl(0, {name = 'CmpItemAbbr'})
+  local cmp_abbr = vim.api.nvim_get_hl(0, { name = 'CmpItemAbbr' })
   vim.api.nvim_set_hl(0, 'CmpItemAbbr', {
     fg = cmp_abbr.fg,
-    bg = 'NONE'
+    bg = 'NONE',
   })
 
   -- neotree

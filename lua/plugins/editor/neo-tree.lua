@@ -145,13 +145,32 @@ local opts = {
   },
 }
 
+local function get_highlight_fg(name)
+  local group = vim.api.nvim_get_hl(0, { name = name })
+  while group.link do
+    group = vim.api.nvim_get_hl(0, { name = group.link })
+  end
+  return group.fg
+end
+
+local function clear_neotree_git_highlight_bg()
+  vim.api.nvim_set_hl(0, 'NeoTreeGitAdded', { fg = get_highlight_fg('NeoTreeGitAdded') })
+  vim.api.nvim_set_hl(0, 'NeoTreeGitConflict', { fg = get_highlight_fg('NeoTreeGitConflict') })
+  vim.api.nvim_set_hl(0, 'NeoTreeGitDeleted', { fg = get_highlight_fg('NeoTreeGitDeleted') })
+  vim.api.nvim_set_hl(0, 'NeoTreeGitIgnored', { fg = get_highlight_fg('NeoTreeGitIgnored') })
+  vim.api.nvim_set_hl(0, 'NeoTreeGitModified', { fg = get_highlight_fg('NeoTreeGitModified') })
+  vim.api.nvim_set_hl(0, 'NeoTreeGitUnstaged', { fg = get_highlight_fg('NeoTreeGitUnstaged') })
+  vim.api.nvim_set_hl(0, 'NeoTreeGitUntracked', { fg = get_highlight_fg('NeoTreeGitUntracked') })
+  vim.api.nvim_set_hl(0, 'NeoTreeGitStaged', { fg = get_highlight_fg('NeoTreeGitStaged') })
+end
+
 return {
   'nvim-neo-tree/neo-tree.nvim',
   cmd = 'Neotree',
   init = function()
     if vim.fn.argc() == 1 then
       ---@diagnostic disable-next-line: param-type-mismatch
-      local stat = vim.loop.fs_stat(vim.fn.argv(0))
+      local stat = vim.uv.fs_stat(vim.fn.argv(0))
       if stat and stat.type == 'directory' then
         require('neo-tree')
       end
@@ -159,6 +178,18 @@ return {
   end,
   config = function()
     require('neo-tree').setup(opts)
+
+    -- Neotree's file git state should not have background colors
+    clear_neotree_git_highlight_bg()
+    vim.api.nvim_create_autocmd('ColorScheme', {
+      pattern = '*',
+      callback = clear_neotree_git_highlight_bg,
+    })
+    vim.api.nvim_create_autocmd('OptionSet', {
+      pattern = 'background',
+      callback = clear_neotree_git_highlight_bg,
+    })
+
     vim.cmd([[nnoremap \ :Neotree reveal<cr>]])
   end,
 }
