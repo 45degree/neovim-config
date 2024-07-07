@@ -1,5 +1,5 @@
-require('options')
 require('packages')
+require('options')
 require('ime-config')
 require('autocmd')
 require('keymap')

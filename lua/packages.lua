@@ -1,5 +1,5 @@
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
   vim.fn.system({
     'git',
     'clone',
@@ -14,6 +14,8 @@ vim.opt.rtp:prepend(lazypath)
 local icons = require('icons')
 local config = require('config')
 local lazy_config = {
+  defaults = { lazy = true },
+  spec = { { import = 'plugins' } },
   ui = {
     border = config.border,
     icons = {
@@ -38,4 +40,4 @@ local lazy_config = {
   },
 }
 
-require('lazy').setup("plugins", lazy_config)
+require('lazy').setup(lazy_config)
