@@ -5,7 +5,7 @@ local utils = require('lualine.utils.utils')
 function component:init(options)
   component.super.init(self, options)
   local hint_fg = utils.extract_highlight_colors('DiagnosticHint', 'fg')
-  -- require('util.highlight').to_hex_color_string(vim.api.nvim_get_hl(0, { name = 'DiagnosticHint' }).fg)
+
   self.hl = {}
   self.hl.running = highlights.create_component_highlight_group({ fg = hint_fg }, 'linting_running', options)
   self.hl.finish = highlights.create_component_highlight_group({}, 'linting_finish', options)

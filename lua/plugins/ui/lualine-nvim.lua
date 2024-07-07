@@ -8,7 +8,7 @@ local opts = {
     always_divide_middle = true,
     globalstatus = true,
     -- Disable sections and component separators
-    component_separators = '|',
+    component_separators = '',
     section_separators = { left = '', right = '' },
     refresh = {
       statusline = 1000,
@@ -17,33 +17,24 @@ local opts = {
     },
   },
   sections = {
-    lualine_a = { 'mode' },
+    lualine_a = {},
     lualine_b = {
-      'branch',
-      {
-        'diff',
-        symbols = { added = icons.gitsigns.added, modified = icons.gitsigns.modified, removed = icons.gitsigns.deleted },
-      },
+      'icon-mode',
+      'color-branch',
+      { 'diff', symbols = { added = icons.gitsigns.added, modified = icons.gitsigns.modified, removed = icons.gitsigns.deleted } },
       { 'diagnostics', symbols = icons.diagnostic },
     },
     lualine_c = { 'lsp-dap', 'linter', 'formatter', 'ai-status' },
     lualine_x = { 'encoding', 'fileformat' },
-    lualine_y = {
-      { 'icon-filename', separator = ' ', padding = { left = 1, right = 0 } },
-      { 'progress', padding = { left = 0, right = 1 } },
-    },
-    lualine_z = {
-      function()
-        return ' ' .. os.date('%R')
-      end,
-    },
+    lualine_y = { 'icon-filename', 'ui-progress' },
+    lualine_z = {},
   },
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
-    lualine_c = { 'filename' },
-    lualine_x = { 'location' },
-    lualine_y = {},
+    lualine_c = {},
+    lualine_x = {},
+    lualine_y = { 'icon-filename', 'ui-progress' },
     lualine_z = {},
   },
 }

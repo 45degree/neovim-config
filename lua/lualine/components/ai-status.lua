@@ -2,6 +2,7 @@ local component = require('lualine.component'):extend()
 local copilot = require('util.copilot')
 local codeium = require('util.codeium')
 local highlights = require('lualine.highlight')
+local utils = require('lualine.utils.utils')
 
 ---Return a spinner from the list of spinners
 ---@return string
@@ -22,15 +23,10 @@ function component:init(options)
   self.spinners = require('util.spinners').dots
   self.spinner_count = 1
 
-  local function to_hex_color_string(num)
-    local hex = string.format('%06x', num)
-    return '#' .. hex
-  end
-
-  local warn_fg = to_hex_color_string(vim.api.nvim_get_hl(0, { name = 'DiagnosticWarn' }).fg)
-  local info_fg = to_hex_color_string(vim.api.nvim_get_hl(0, { name = 'DiagnosticInfo' }).fg)
-  local error_fg = to_hex_color_string(vim.api.nvim_get_hl(0, { name = 'DiagnosticError' }).fg)
-  local hint_fg = to_hex_color_string(vim.api.nvim_get_hl(0, { name = 'DiagnosticHint' }).fg)
+  local warn_fg = utils.extract_highlight_colors('DiagnosticWarn', 'fg');
+  local info_fg = utils.extract_highlight_colors('DiagnosticInfo', 'fg');
+  local error_fg = utils.extract_highlight_colors('DiagnosticError', 'fg');
+  local hint_fg = utils.extract_highlight_colors('DiagnosticHint', 'fg');
 
   self.hl = { warn = {}, info = {}, error = {}, hint = {} }
   self.hl.warn = highlights.create_component_highlight_group({ fg = warn_fg }, 'ai-status-warn', options)
