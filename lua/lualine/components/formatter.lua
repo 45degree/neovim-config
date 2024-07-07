@@ -22,7 +22,7 @@ function component:update_status()
       table.insert(formatterNames, formatter)
     end
 
-    return '󰷈 ' .. table.concat(formatterNames, ' ')
+    return '󰉢 ' .. table.concat(formatterNames, ' ')
   end
 
   -- Check if there's an LSP formatter
@@ -30,7 +30,7 @@ function component:update_status()
   local lsp_clients = lsp_format.get_format_clients({ bufnr = bufnr })
 
   if not vim.tbl_isempty(lsp_clients) then
-    return '󰷈 LSP Formatter'
+    return '󰉢 LSP Formatter'
   end
 
   return ''

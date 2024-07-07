@@ -34,12 +34,12 @@ end
 function component:update_status()
   local dap_status = get_dap_status()
   if dap_status ~= '' then
-    return '  ' .. dap_status
+    return ' ' .. dap_status
   end
 
   local lsp_status = get_active_lsp_name()
   if lsp_status ~= '' then
-    return '  ' .. lsp_status
+    return ' ' .. lsp_status
   end
 
   return ''
