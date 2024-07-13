@@ -6,9 +6,7 @@ local function close_all_but_visible_and_pin_buf()
   local bbye = require('bufferline.bbye')
 
   for _, bufnr in ipairs(state.buffers) do
-    if Buffer.get_activity(bufnr) < 2 and not state.is_pinned(bufnr) then
-      bbye.bdelete(false, bufnr)
-    end
+    if Buffer.get_activity(bufnr) < 2 and not state.is_pinned(bufnr) then bbye.bdelete(false, bufnr) end
   end
 
   render.update()
@@ -21,113 +19,86 @@ local chooseWin = function()
 end
 
 local register = {
-  f = {
-    name = '+文件', -- optional group name
-    s = { '<cmd>w<cr>', '保存当前文件' },
-    S = { '<cmd>wa<cr>', '保存所有文件' },
-    c = { '<cmd>e $MYVIMRC<cr>', '打开vim配置文件' },
-  },
-  s = {
-    name = '+Search',
-    f = { '<cmd>Telescope find_files<cr>', '文件夹内查找文件' },
-    a = { require('telescope').extensions.live_grep_args.live_grep_args, '文件夹内查找文件内容' },
-    g = { '<cmd>Telescope git_files<cr>', 'git项目内查找文件' },
-    c = { '<cmd>Telescope colorscheme<cr>', '改变颜色' },
-    h = { '<cmd>Telescope oldfiles<cr>', '查看历史' },
-    p = { '<cmd>Telescope projects<cr>', '打开项目' },
-    m = { '<cmd>Telescope marks<cr>', 'Mark 查找' },
-    b = { '<cmd>Telescope buffers<cr>', '查找所有buffer' },
-    r = { '<cmd>Spectre<cr>', '查找并替换' },
-  },
-  c = {
-    name = '+code',
-    T = { '<cmd>Trouble<cr>', '打开代码诊断' },
-    f = {
-      function()
-        require('conform').format({ async = true })
-      end,
-      '代码格式化',
-    },
-    d = {
-      name = '+debug',
-      c = {
-        function()
-          require('dap').terminate()
-        end,
-        '关闭调试',
-      },
-      w = {
-        function()
-          require('dapui').toggle()
-        end,
-        '切换调试窗口',
-      },
-      ['='] = {
-        function()
-          require('dapui').open({ reset = true })
-        end,
-        '平衡调整窗口',
-      },
-    },
-    t = { name = '+task' },
-  },
-  g = {
-    name = '+git',
-    c = { '<cmd>Gitsigns preview_hunk<cr>', '显示Git当前行更改' },
-    N = { '<cmd>Gitsigns prev_hunk<cr>', '跳转到Git上一个更改处' },
-    n = { '<cmd>Gitsigns next_hunk<cr>', '跳转到Git下一个更改处' },
-    sh = { '<cmd>Gitsigns stage_hunk<cr>', '暂存hunk' },
-    uh = { '<cmd>Gitsigns undo_stage_hunk<cr>', '撤销暂存hunk' },
-    rh = { '<cmd>Gitsigns reset_hunk<cr>', '恢复hunk' },
-    d = { '<cmd>Gitsigns diffthis<cr>', '显示当前文件更改' },
-    p = { '<cmd>DiffviewOpen<cr>', '显示Git项目更改' },
-    h = { '<cmd>DiffviewFileHistory %<cr>', '显示当前文件历史更改' },
-  },
-  t = { '<cmd>Neotree toggle filesystem<cr>', '打开文件树' },
-  T = { '<cmd>Neotree toggle document_symbols<cr>', '代码大纲' },
-  w = {
-    name = '+窗口',
-    c = { chooseWin, '选择窗口' },
-    d = { '<C-W>c', '删除当前窗口' },
-    w = { '<C-W>w', '移动到其他窗口' },
-    h = { '<C-W>h', '移动到左边窗口' },
-    j = { '<C-W>j', '移动到下边窗口' },
-    l = { '<C-W>l', '移动到右边窗口' },
-    k = { '<C-W>k', '移动到上边窗口' },
-    H = { '<C-W>5<', '窗口向左扩展' },
-    J = { '<cmd>resize +5<cr>', '窗口向下扩展' },
-    L = { '<C-W>5>', '窗口向右扩展' },
-    K = { '<cmd>resize -5<cr>', '窗口向上扩展' },
-    ['='] = { '<C-W>=', '平衡调整窗口' },
-    s = { '<C-W>s', '上下分屏' },
-    v = { '<C-W>v', '左右分屏' },
-  },
-  b = {
-    name = '+Buffer',
-    d = {
-      name = '+delete',
-      ['r'] = { '<cmd>BufferCloseBuffersLeft<cr>', '删除所有右边Buffer' },
-      ['l'] = { '<cmd>BufferCloseBuffersRight<cr>', '删除所有左边Buffer' },
-      ['p'] = { '<cmd>BufferCloseAllButPinned<cr>', '删除所有未固定Buffer' },
-      ['c'] = { '<cmd>BufferCloseAllButCurrentOrPinned<cr>', '只保留当前buffer' },
-      ['v'] = { close_all_but_visible_and_pin_buf, '只保留可见buffer' },
-    },
-    ['p'] = { '<cmd>BufferPin<cr>', '固定Buffer' },
-    ['j'] = { '<cmd>BufferPick<cr>', 'Buffer跳转' },
-    ['1'] = { '<cmd>BufferGoto 1<cr>', '移动到buffer1' },
-    ['2'] = { '<cmd>BufferGoto 2<cr>', '移动到buffer2' },
-    ['3'] = { '<cmd>BufferGoto 3<cr>', '移动到buffer3' },
-    ['4'] = { '<cmd>BufferGoto 4<cr>', '移动到buffer4' },
-    ['5'] = { '<cmd>BufferGoto 5<cr>', '移动到buffer5' },
-    ['6'] = { '<cmd>BufferGoto 6<cr>', '移动到buffer6' },
-    ['7'] = { '<cmd>BufferGoto 7<cr>', '移动到buffer7' },
-    ['8'] = { '<cmd>BufferGoto 8<cr>', '移动到buffer8' },
-  },
-  e = {
-    name = '+Extension',
-    ['pb'] = { '<cmd>lua require("plenary.profile").start("profile.log", {flame = true})<cr>', 'begin profile' },
-    ['pe'] = { '<cmd>lua require("plenary.profile").stop()<cr>', 'end profile' },
-  },
+  -- file
+  { '<leader>f', group = 'file' },
+  { '<leader>fs', '<cmd>w<cr>', desc = 'Save current file' },
+  { '<leader>fS', '<cmd>wa<cr>', desc = 'Save all file' },
+  { '<leader>fc', '<cmd>e $MYVIMRC<cr>', desc = 'open neovim config file' },
+
+  -- search
+  { '<leader>s', group = 'search' },
+  { '<leader>sf', '<cmd>Telescope find_files<cr>', desc = 'search file in current directory' },
+  { '<leader>sa', require('telescope').extensions.live_grep_args.live_grep_args, desc = 'search content in current directory' },
+  { '<leader>sg', '<cmd>Telescope git_files<cr>', desc = 'search file in git project' },
+  { '<leader>sc', '<cmd>Telescope colorscheme<cr>', desc = 'search colorscheme' },
+  { '<leader>sh', '<cmd>Telescope oldfiles<cr>', desc = 'search history' },
+  { '<leader>sp', '<cmd>Telescope projects<cr>', desc = 'search projects' },
+  { '<leader>sm', '<cmd>Telescope marks<cr>', desc = 'search marks' },
+  { '<leader>sb', '<cmd>Telescope buffers<cr>', desc = 'search all buffers' },
+  { '<leader>sr', '<cmd>Spectre<cr>', desc = 'search and replace' },
+
+  -- code
+  { '<leader>c', group = 'code' },
+  { '<leader>cf', function() require('conform').format({ async = true }) end, desc = 'format the code' },
+  { '<leader>cT', '<cmd>Trouble<cr>', desc = 'open code diagnosic' },
+
+  -- code debug
+  { '<leader>cd', group = 'debug' },
+  { '<leader>cd=', function() require('dapui').open({ reset = true }) end, desc = 'balance debug window' },
+  { '<leader>cdc', function() require('dap').terminate() end, desc = 'terninate debug' },
+  { '<leader>cdw', function() require('dapui').toggle() end, desc = 'toggle debug windows' },
+
+  -- code task
+  { '<leader>ct', group = 'task' },
+
+  -- git
+  { '<leader>g', group = 'git' },
+  { '<leader>gN', '<cmd>Gitsigns prev_hunk<cr>', desc = 'jump to the previous git hunk' },
+  { '<leader>gc', '<cmd>Gitsigns preview_hunk<cr>', desc = 'show the current line git hunk' },
+  { '<leader>gd', '<cmd>Gitsigns diffthis<cr>', desc = 'show current file changes' },
+  { '<leader>gh', '<cmd>DiffviewFileHistory %<cr>', desc = 'show current file change history' },
+  { '<leader>gn', '<cmd>Gitsigns next_hunk<cr>', desc = 'jump to the next git hunk' },
+  { '<leader>gp', '<cmd>DiffviewOpen<cr>', desc = 'show Git project changes' },
+  { '<leader>grh', '<cmd>Gitsigns reset_hunk<cr>', desc = 'reset git hunk' },
+  { '<leader>gsh', '<cmd>Gitsigns stage_hunk<cr>', desc = 'stage git hunk' },
+  { '<leader>guh', '<cmd>Gitsigns undo_stage_hunk<cr>', desc = 'undo git hunk' },
+
+  -- filesystem and outlines
+  { '<leader>t', '<cmd>Neotree toggle filesystem<cr>', desc = 'toggle filesystem' },
+  { '<leader>T', '<cmd>Neotree toggle document_symbols<cr>', desc = 'toggle outlines' },
+
+  -- windows
+  { '<leader>w', group = 'windows' },
+  { '<leader>w=', '<C-W>=', desc = 'balance windows' },
+  { '<leader>wH', '<C-W>5<', desc = 'extend window left' },
+  { '<leader>wJ', '<cmd>resize +5<cr>', desc = 'expand window down' },
+  { '<leader>wK', '<cmd>resize -5<cr>', desc = 'expand window upwards' },
+  { '<leader>wL', '<C-W>5>', desc = 'extend window right' },
+  { '<leader>wc', chooseWin, desc = 'choose window' },
+  { '<leader>wd', '<C-W>c', desc = 'delete current window' },
+  { '<leader>wh', '<C-W>h', desc = 'move cursor to the left window' },
+  { '<leader>wj', '<C-W>j', desc = 'move cursor to the bottom window' },
+  { '<leader>wk', '<C-W>k', desc = 'move cursor to the upwards window' },
+  { '<leader>wl', '<C-W>l', desc = 'move cursor to the right window' },
+  { '<leader>ws', '<C-W>s', desc = 'split window' },
+  { '<leader>wv', '<C-W>v', desc = 'vertical split window' },
+
+  -- buffer
+  { '<leader>b', group = 'buffer' },
+  { '<leader>bj', '<cmd>BufferPick<cr>', desc = 'jump between buffers' },
+  { '<leader>bp', '<cmd>BufferPin<cr>', desc = 'pin buffer' },
+
+  -- buffer delete
+  { '<leader>bd', group = 'delete buffer' },
+  { '<space>bdc', '<cmd>BufferCloseAllButCurrentOrPinned<cr>', desc = 'only keep the current buffer' },
+  { '<space>bdv', close_all_but_visible_and_pin_buf, desc = 'only keep all visible and pinned buffer' },
+  { '<space>bdp', '<cmd>BufferCloseAllButPinned<cr>', desc = 'delete all unpinned Buffers' },
+
+  -- extensions
+  { '<leader>e', group = 'extension' },
+  { '<leader>ep', group = 'profile' },
+  { '<leader>epb', '<cmd>lua require("plenary.profile").start("profile.log", {flame = true})<cr>', desc = 'begin profile' },
+  { '<leader>epe', '<cmd>lua require("plenary.profile").stop()<cr>', desc = 'end profile' },
 }
 
 return {
@@ -138,9 +109,12 @@ return {
     vim.o.timeoutlen = 300
   end,
   config = function()
-    require('which-key').setup({})
+    require('which-key').setup({ preset = 'modern' })
 
     local wk = require('which-key')
-    wk.register(register, { prefix = '<space>' })
+    wk.add(register)
   end,
+  keys = {
+    { '<leader>?', function() require('which-key').show({ global = false }) end, desc = 'Buffer Local Keymaps (which-key)' },
+  },
 }

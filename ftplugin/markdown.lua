@@ -1,4 +1,6 @@
-vim.keymap.set('n', '<leader>mp', '<cmd>MarkdownPreview<cr>', { desc = 'markdown预览', buffer = 0 })
-vim.keymap.set('n', '<leader>ms', '<cmd>MarkdownPreviewStop<cr>', { desc = 'markdown停止预览', buffer = 0 })
+require('which-key').add({
+  { '<Leader>?p', '<cmd>MarkdownPreview<cr>', desc = 'preview markdown', buffer = 0 },
+  { '<Leader>?s', '<cmd>MarkdownPreviewStop<cr>', desc = 'stop preview markdown', buffer = 0 },
+})
 
 vim.o.textwidth = 0
