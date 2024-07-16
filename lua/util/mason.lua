@@ -49,8 +49,8 @@ local function is_element_in_array(name, elements)
 end
 
 ---@class MasonFilterOpt
----@field lang Array<string>?
----@field categories Array<string>?
+---@field lang string[]?
+---@field categories string[]?
 
 ---@param pkg Package
 ---@param opts MasonFilterOpt
@@ -82,7 +82,7 @@ end
 
 --- list all installed package from mason
 ---@param opts MasonFilterOpt
----@return Array<MasonPackage>
+---@return MasonPackage[]?
 function M.list_all_installed_package(opts)
   local pkgs = require('mason-registry').get_installed_packages()
   local filtered_pkgs = {}

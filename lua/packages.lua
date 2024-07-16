@@ -14,7 +14,6 @@ vim.opt.rtp:prepend(lazypath)
 local icons = require('icons')
 local config = require('config')
 local lazy_config = {
-  defaults = { lazy = true },
   spec = { { import = 'plugins' } },
   ui = {
     border = config.border,
