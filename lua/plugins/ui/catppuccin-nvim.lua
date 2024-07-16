@@ -32,16 +32,12 @@ local opts = {
   integrations = {
     aerial = false,
     barbar = true,
-    barbecue = {
-      dim_dirname = true, -- directory name is dimmed by default
-      bold_basename = true,
-      dim_context = false,
-      alt_background = true,
-    },
     beacon = false,
     cmp = true,
     coc_nvim = false,
     dashboard = false,
+    diffview = true,
+    dropbar = { enabled = true, color_mode = true },
     fern = false,
     fidget = false,
     gitgutter = false,
@@ -56,7 +52,7 @@ local opts = {
     markdown = true,
     mason = true,
     mini = true,
-    neogit = true,
+    neogit = false,
     neotest = false,
     neotree = true,
     noice = true,
@@ -76,10 +72,8 @@ local opts = {
     which_key = true,
     window_picker = true,
     -- Special integrations, see https://github.com/catppuccin/nvim#special-integrations
-    dap = {
-      enabled = true,
-      enable_ui = true,
-    },
+    dap = true,
+    dap_ui = true,
     indent_blankline = {
       enabled = true,
       colored_indent_levels = true,
@@ -99,10 +93,6 @@ local opts = {
         information = { 'underline' },
       },
     },
-    navic = {
-      enabled = true,
-      custom_bg = 'NONE',
-    },
   },
 }
 
@@ -111,7 +101,5 @@ return {
   lazy = true,
   name = 'catppuccin',
   build = ':CatppuccinCompile',
-  config = function()
-    require('catppuccin').setup(opts)
-  end,
+  config = function() require('catppuccin').setup(opts) end,
 }

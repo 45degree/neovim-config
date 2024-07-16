@@ -92,4 +92,10 @@ icons.kind = {
   Macro = ' ',
 }
 
+icons.kind_with_space = {}
+
+for kind, icon in pairs(icons.kind) do
+  icons.kind_with_space[kind] = icon .. ' '
+end
+
 return icons
