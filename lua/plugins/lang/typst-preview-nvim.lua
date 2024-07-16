@@ -22,7 +22,14 @@ return {
 
       -- This function will be called to determine the main file of the typst
       -- project.
-      get_main_file = function(path_of_buffer) return path_of_buffer end,
+      get_main_file = function(path_of_buffer)
+        local root = vim.fs.root(0, '.git')
+        if root then
+          local main_file = vim.fs.find('main.typ', { type = 'file', path = root })
+          if main_file then return main_file[1] end
+        end
+        return path_of_buffer
+      end,
     })
   end,
 }

@@ -9,10 +9,7 @@ end
 
 function filename:update_status()
   local name = vim.fn.expand('%:t')
-  local icon, highlight_group = self:get_icon_and_highlight_group()
-  if vim.bo.modified and self.icon_hl_cache[highlight_group] then
-    name = highlight.component_format_highlight(self.icon_hl_cache[highlight_group]) .. name
-  end
+  local icon, _ = self:get_icon_and_highlight_group()
 
   if not icon then
     return name
