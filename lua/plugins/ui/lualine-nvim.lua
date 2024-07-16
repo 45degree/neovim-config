@@ -42,7 +42,5 @@ local opts = {
 return {
   'nvim-lualine/lualine.nvim',
   event = 'VeryLazy',
-  config = function()
-    require('lualine').setup(opts)
-  end,
+  config = function() require('lualine').setup(opts) end,
 }

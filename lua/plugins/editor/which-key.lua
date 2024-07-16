@@ -48,9 +48,6 @@ local register = {
   { '<leader>cdc', function() require('dap').terminate() end, desc = 'terninate debug' },
   { '<leader>cdw', function() require('dapui').toggle() end, desc = 'toggle debug windows' },
 
-  -- code task
-  { '<leader>ct', group = 'task' },
-
   -- git
   { '<leader>g', group = 'git' },
   { '<leader>gN', '<cmd>Gitsigns prev_hunk<cr>', desc = 'jump to the previous git hunk' },
