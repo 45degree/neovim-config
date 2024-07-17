@@ -40,10 +40,8 @@ return {
     local opts = {}
     for ft, formatters in ipairs(require('config').formatter) do
       for _, formatter in ipairs(formatters) do
-        if vim.fn.executable(formatter) then
-          opts[ft] = { formatter }
-          goto continue
-        end
+        table.insert(opts[ft], formatter)
+        if type(formatter) == 'string' and vim.fn.executable(formatter) ~= 0 then goto continue end
       end
       ::continue::
     end
