@@ -4,14 +4,10 @@ local function registry_linter_by_package(opts, pkg, package_to_nvimlint)
   local ft_mapping = require('util.mason').lang_to_filetype
 
   local function set_linter_for_filetype(filetype)
-    if opts[filetype] == nil then
-      opts[filetype] = {}
-    end
+    if opts[filetype] == nil then opts[filetype] = {} end
 
     local package_name = package_to_nvimlint[pkg.name]
-    if package_name == nil then
-      package_name = pkg.name
-    end
+    if package_name == nil then package_name = pkg.name end
     opts[filetype][package_name] = package_name
   end
 
@@ -61,7 +57,7 @@ return {
       registry_linter_by_package(opts_kv, pkg, package_to_nvimlint)
     end
 
-    ---@type table<string, List<string>>
+    ---@type table<string, string[]>
     local opts = {}
     for filetype, linters in pairs(opts_kv) do
       opts[filetype] = {}
@@ -74,9 +70,7 @@ return {
   end,
   init = function()
     vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
-      callback = function()
-        require('lint').try_lint()
-      end,
+      callback = function() require('lint').try_lint() end,
     })
   end,
 }
