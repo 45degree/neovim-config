@@ -9,6 +9,7 @@ return {
         { path = 'lazy.nvim' },
         { path = 'luvit-meta/library', words = { 'vim%.uv' } },
         { path = 'xmake-luals-addon/library', files = { 'xmake.lua' } },
+        { path = 'overseer.nvim', mods = { 'overseer' } },
       },
     },
   },
