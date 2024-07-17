@@ -82,7 +82,7 @@ end
 
 --- list all installed package from mason
 ---@param opts MasonFilterOpt
----@return MasonPackage[]?
+---@return MasonPackage[]
 function M.list_all_installed_package(opts)
   local pkgs = require('mason-registry').get_installed_packages()
   local filtered_pkgs = {}

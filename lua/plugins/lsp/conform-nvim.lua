@@ -8,16 +8,16 @@ local function registry_formatter_by_package(opts, pkg, package_to_conform)
     if filetype == nil then
       vim.notify(("can't find mapping from %s to filetype"):format(lang), vim.log.levels.WARN)
     else
-      if opts[filetype] == nil then
-        opts[filetype] = {}
-      end
+      if opts[filetype] then goto continue end
+
+      opts[filetype] = {}
       local package_name = package_to_conform[pkg.name]
-      if package_name == nil then
-        package_name = pkg.name
-      end
+      if package_name == nil then package_name = pkg.name end
       table.insert(opts[filetype], package_name)
     end
+    ::continue::
   end
+  return opts
 end
 
 return {
@@ -37,13 +37,21 @@ return {
     local formatter_opts = { categories = { 'Formatter' } }
     local pkgs = mason_wrapper.list_all_installed_package(formatter_opts)
 
-    local formatters_by_ft = require('config').formatter
-    for _, pkg in ipairs(pkgs) do
-      registry_formatter_by_package(formatters_by_ft, pkg, package_to_conform)
+    local opts = {}
+    for ft, formatters in ipairs(require('config').formatter) do
+      for _, formatter in ipairs(formatters) do
+        if vim.fn.executable(formatter) then
+          opts[ft] = { formatter }
+          goto continue
+        end
+      end
+      ::continue::
     end
 
-    require('conform').setup({
-      formatters_by_ft = formatters_by_ft,
-    })
+    for _, pkg in ipairs(pkgs) do
+      registry_formatter_by_package(opts, pkg, package_to_conform)
+    end
+
+    require('conform').setup({ formatters_by_ft = opts })
   end,
 }
