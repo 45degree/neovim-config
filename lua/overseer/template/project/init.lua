@@ -1,1 +1,1 @@
-return { 'project.cppcheck' }
+return { 'project.cppcheck', 'project.clangtidy' }

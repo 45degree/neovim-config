@@ -46,7 +46,6 @@ local provider = {
     local file = get_compile_commands(opts)
     local cwd = vim.fs.dirname(file)
     local ret = { overseer.wrap_template(tmpl, nil, { cwd = cwd }) }
-    vim.print(file)
     cb(ret)
   end,
 }
