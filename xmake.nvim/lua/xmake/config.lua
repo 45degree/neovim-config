@@ -1,7 +1,5 @@
 local xmake_executable = 'xmake'
-if vim.fn.has('UNIX') == 1 then
-  xmake_executable = vim.env.HOME .. '/.local/bin/xmake'
-end
+if vim.fn.has('UNIX') == 1 then xmake_executable = vim.env.HOME .. '/.local/bin/xmake' end
 
 local function default_dap_configuration(params)
   return {
@@ -26,12 +24,8 @@ M.opts = {
 }
 M.dap_configuration = default_dap_configuration
 
-function M.setup(args)
-  M.opts = vim.tbl_deep_extend('force', M.opts, args or {})
-end
+function M.setup(args) M.opts = vim.tbl_deep_extend('force', M.opts, args or {}) end
 
-function M.set_dap_configuration(callback)
-  M.dap_configuration = callback or default_dap_configuration
-end
+function M.set_dap_configuration(callback) M.dap_configuration = callback or default_dap_configuration end
 
 return M

@@ -9,9 +9,7 @@ local utils = require('lualine.utils.utils')
 function component:get_spinner()
   local spinner = self.spinners[self.spinner_count]
   self.spinner_count = self.spinner_count + 1
-  if self.spinner_count > #self.spinners then
-    self.spinner_count = 1
-  end
+  if self.spinner_count > #self.spinners then self.spinner_count = 1 end
   return spinner
 end
 
@@ -23,17 +21,17 @@ function component:init(options)
   self.spinners = require('util.spinners').dots
   self.spinner_count = 1
 
-  local warn_fg = utils.extract_highlight_colors('DiagnosticWarn', 'fg');
-  local info_fg = utils.extract_highlight_colors('DiagnosticInfo', 'fg');
-  local error_fg = utils.extract_highlight_colors('DiagnosticError', 'fg');
-  local hint_fg = utils.extract_highlight_colors('DiagnosticHint', 'fg');
+  local warn_fg = utils.extract_highlight_colors('DiagnosticWarn', 'fg')
+  local info_fg = utils.extract_highlight_colors('DiagnosticInfo', 'fg')
+  local error_fg = utils.extract_highlight_colors('DiagnosticError', 'fg')
+  local hint_fg = utils.extract_highlight_colors('DiagnosticHint', 'fg')
 
   self.hl = { warn = {}, info = {}, error = {}, hint = {} }
   self.hl.warn = highlights.create_component_highlight_group({ fg = warn_fg }, 'ai-status-warn', options)
   self.hl.info = highlights.create_component_highlight_group({ fg = info_fg }, 'ai-status-info', options)
   self.hl.error = highlights.create_component_highlight_group({ fg = error_fg }, 'ai-status-error', options)
   self.hl.hint = highlights.create_component_highlight_group({ fg = hint_fg }, 'ai-status-hint', options)
-  self.copilot_lsp_attached = false;
+  self.copilot_lsp_attached = false
 
   if require('config').ai == 'copilot' then
     vim.api.nvim_create_autocmd('LspAttach', {
@@ -71,14 +69,10 @@ function component:update_status()
   -- All copilot API calls are blocking before copilot is attached,
   -- To avoid blocking the startup time, we check if copilot is attached
   local copilot_loaded = package.loaded['copilot'] ~= nil
-  if copilot_loaded and self.copilot_lsp_attached then
-    return self:update_ai_status(copilot, 'copilot')
-  end
+  if copilot_loaded and self.copilot_lsp_attached then return self:update_ai_status(copilot, 'copilot') end
 
   local codeium_loaded = vim.g.codeium_os ~= nil
-  if codeium_loaded then
-    return self:update_ai_status(codeium, 'codeium')
-  end
+  if codeium_loaded then return self:update_ai_status(codeium, 'codeium') end
 
   return ''
 end

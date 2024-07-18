@@ -2,9 +2,7 @@ return {
   'iamcco/markdown-preview.nvim',
   ft = 'markdown',
   dependencies = { 'folke/which-key.nvim' },
-  build = function()
-    vim.call('mkdp#util#install')
-  end,
+  build = function() vim.call('mkdp#util#install') end,
   config = function()
     -- set to 1, nvim will open the preview window after entering the markdown buffer
     -- default: 0

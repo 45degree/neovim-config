@@ -41,9 +41,7 @@ M.lang_to_filetype = {
 ---@param elements string[]
 local function is_element_in_array(name, elements)
   for _, v in ipairs(elements) do
-    if name == v then
-      return true
-    end
+    if name == v then return true end
   end
   return false
 end
@@ -71,9 +69,7 @@ local function is_satisfy(pkg, opts)
   local is_categories_satisfly = true
   if opts.categories ~= nil then
     for _, cat in ipairs(opts.categories) do
-      if not is_element_in_array(cat, pkg_cat) then
-        is_categories_satisfly = false
-      end
+      if not is_element_in_array(cat, pkg_cat) then is_categories_satisfly = false end
     end
   end
 
@@ -99,9 +95,7 @@ end
 
 ---@param name string
 ---@return boolean
-function M.is_mason_package_installed(name)
-  return require('mason-registry').is_installed(name)
-end
+function M.is_mason_package_installed(name) return require('mason-registry').is_installed(name) end
 
 ---@param name string
 function M.install_mason_package(name)

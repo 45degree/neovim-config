@@ -49,9 +49,7 @@ end
 function component:update_status()
   local mode = vim.fn.mode()
   local mode_color = self.mode_color[mode]
-  if mode_color == nil then
-    mode_color = self.hl.normal
-  end
+  if mode_color == nil then mode_color = self.hl.normal end
 
   return highlights.component_format_highlight(mode_color) .. self.icon
 end

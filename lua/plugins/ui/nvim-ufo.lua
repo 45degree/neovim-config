@@ -36,12 +36,8 @@ return {
   config = function()
     require('ufo').setup({
       close_fold_kinds_for_ft = { default = { 'imports' } },
-      provider_selector = function(bufnr, filetype, buftype)
-        return { 'treesitter', 'indent' }
-      end,
+      provider_selector = function(bufnr, filetype, buftype) return { 'treesitter', 'indent' } end,
     })
   end,
-  enabled = function()
-    return vim.fn.has('nvim-0.9') == 1
-  end,
+  enabled = function() return vim.fn.has('nvim-0.9') == 1 end,
 }

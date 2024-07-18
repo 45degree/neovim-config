@@ -17,7 +17,5 @@ return {
       },
     })
   end,
-  enabled = function()
-    return vim.fn.has('nvim-0.9') == 1
-  end,
+  enabled = function() return vim.fn.has('nvim-0.9') == 1 end,
 }

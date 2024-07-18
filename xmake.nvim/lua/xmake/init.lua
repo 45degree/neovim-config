@@ -2,13 +2,9 @@ local config = require('xmake.config')
 
 local M = {}
 
-function M.setup(args)
-  config.setup(args)
-end
+function M.setup(args) config.setup(args) end
 
-function M.set_dap_config(dap_config_func)
-  config.set_dap_configuration(dap_config_func)
-end
+function M.set_dap_config(dap_config_func) config.set_dap_configuration(dap_config_func) end
 
 function M.build(targetName, force)
   local util = require('xmake.util.util')
@@ -39,9 +35,7 @@ function M.debug(target_name, args)
       table.insert(names, dap_config.name)
     end
     vim.ui.select(names, {}, function(item, idx)
-      if item == nil or idx == nil then
-        return
-      end
+      if item == nil or idx == nil then return end
       dap.run(dap_configurations[idx])
     end)
   elseif #dap_configurations == 1 then

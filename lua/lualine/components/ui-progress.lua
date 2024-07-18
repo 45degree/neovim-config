@@ -59,17 +59,12 @@ function component:update_status()
   else
     local line_no_fraction = vim.fn.floor(current_line) / vim.fn.floor(total_lines)
     index = vim.fn.float2nr(line_no_fraction * #chars)
-    if index == 0 then
-      index = 1
-    end
+    if index == 0 then index = 1 end
   end
-
 
   local mode = vim.fn.mode()
   local mode_color = self.mode_color[mode]
-  if mode_color == nil then
-    mode_color = self.hl.normal
-  end
+  if mode_color == nil then mode_color = self.hl.normal end
   return highlights.component_format_highlight(mode_color) .. chars[index]
 end
 

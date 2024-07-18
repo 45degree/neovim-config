@@ -29,8 +29,6 @@ return {
     branch = 'canary',
     cond = require('config').ai == 'copilot',
     lazy = true,
-    config = function()
-      require('CopilotChat').setup({})
-    end,
+    config = function() require('CopilotChat').setup({}) end,
   },
 }

@@ -5,9 +5,7 @@ return {
   init = function()
     vim.api.nvim_create_autocmd('FileType', {
       pattern = { 'help', 'alpha', 'neo-tree', 'Trouble', 'lazy', 'mason', 'notify', 'toggleterm', 'Neogit*' },
-      callback = function()
-        vim.b.miniindentscope_disable = true
-      end,
+      callback = function() vim.b.miniindentscope_disable = true end,
     })
   end,
   config = function()

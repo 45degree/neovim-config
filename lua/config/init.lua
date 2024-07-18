@@ -26,15 +26,11 @@ local defaults = {
 
 local options = {}
 
-function M.setup(opts)
-  options = vim.tbl_deep_extend('force', defaults, opts or {}) or {}
-end
+function M.setup(opts) options = vim.tbl_deep_extend('force', defaults, opts or {}) or {} end
 
 setmetatable(M, {
   __index = function(_, key)
-    if options == nil then
-      return vim.deepcopy(defaults)[key]
-    end
+    if options == nil then return vim.deepcopy(defaults)[key] end
     return options[key]
   end,
 })

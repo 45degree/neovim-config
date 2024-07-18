@@ -15,9 +15,7 @@ return function(server)
   }
 
   local status, config = pcall(require, 'plugins.lsp.lspconfig.server.' .. server)
-  if status then
-    return config(opts)
-  end
+  if status then return config(opts) end
 
   return opts
 end

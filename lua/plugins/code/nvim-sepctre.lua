@@ -1,4 +1,4 @@
-  return {
-    'nvim-pack/nvim-spectre',
-    cmd = 'Spectre',
-  }
+return {
+  'nvim-pack/nvim-spectre',
+  cmd = 'Spectre',
+}

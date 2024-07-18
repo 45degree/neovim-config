@@ -10,9 +10,7 @@ function main()
   -- print targets
   local names = {}
   for name, target in pairs((project.targets())) do
-    if target:get('kind') == 'binary' then
-      table.insert(names, name)
-    end
+    if target:get('kind') == 'binary' then table.insert(names, name) end
   end
   table.sort(names)
   for _, name in ipairs(names) do

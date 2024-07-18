@@ -25,7 +25,5 @@ local opts = {
 return {
   'romgrk/barbar.nvim',
   event = 'VeryLazy',
-  config = function()
-    require('barbar').setup(opts)
-  end,
+  config = function() require('barbar').setup(opts) end,
 }

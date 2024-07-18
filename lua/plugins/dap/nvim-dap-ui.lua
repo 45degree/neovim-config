@@ -34,18 +34,14 @@ return {
       windows = { indent = 1 },
     })
 
-    local debug_open = function()
-      require('dapui').open({ reset = true })
-    end
+    local debug_open = function() require('dapui').open({ reset = true }) end
 
     local debug_close = function()
       dap.repl.close()
       dapui.close()
     end
 
-    dap.listeners.after.event_initialized['dapui_config'] = function()
-      debug_open()
-    end
+    dap.listeners.after.event_initialized['dapui_config'] = function() debug_open() end
 
     dap.listeners.before.event_terminated['dapui_config'] = function()
       debug_close()

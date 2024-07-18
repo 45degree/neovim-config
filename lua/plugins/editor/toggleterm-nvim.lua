@@ -44,9 +44,7 @@ return {
         on_create = on_create,
       })
 
-      vim.api.nvim_create_user_command('Yazi', function()
-        yazi:toggle()
-      end, { nargs = 0 })
+      vim.api.nvim_create_user_command('Yazi', function() yazi:toggle() end, { nargs = 0 })
     end
 
     if vim.fn.executable('lazygit') == 1 then
@@ -58,9 +56,7 @@ return {
         on_create = on_create,
       })
 
-      vim.api.nvim_create_user_command('Lazygit', function()
-        lazygit:toggle()
-      end, { nargs = 0 })
+      vim.api.nvim_create_user_command('Lazygit', function() lazygit:toggle() end, { nargs = 0 })
 
       vim.keymap.set('n', '<leader>gl', '<cmd>Lazygit<cr>', { desc = 'Open Lazygit' })
     end

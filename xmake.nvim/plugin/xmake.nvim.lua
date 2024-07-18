@@ -10,9 +10,7 @@ local project = require('xmake.util.project')
 local debugTargetSelect = function(opts)
   opts = opts or {}
   vim.ui.select(project.get_project_binary_target(), {}, function(item)
-    if item == nil or item == '' then
-      return
-    end
+    if item == nil or item == '' then return end
     local args = vim.fn.input('Args: ')
     xmake.debug(item, args)
   end)
@@ -21,9 +19,7 @@ end
 local buildTargetSelect = function(opts, force)
   opts = opts or {}
   vim.ui.select(project.get_project_target(), {}, function(item)
-    if item == nil or item == '' then
-      return
-    end
+    if item == nil or item == '' then return end
     print(item)
     xmake.build(item, force)
   end)
@@ -31,9 +27,7 @@ end
 
 local runTargetSelect = function()
   vim.ui.select(project.get_project_binary_target(), {}, function(item)
-    if item == nil or item == '' then
-      return
-    end
+    if item == nil or item == '' then return end
     local args = vim.fn.input('Args: ')
     xmake.run(item, args)
   end)

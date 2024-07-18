@@ -1,9 +1,7 @@
 local insert_natvis = function(natvis_files, extrafiles)
   for _, file in ipairs(extrafiles) do
     local extension = string.match(file, '.+%.(.+)$')
-    if extension == 'natvis' then
-      table.insert(natvis_files, file)
-    end
+    if extension == 'natvis' then table.insert(natvis_files, file) end
   end
 end
 

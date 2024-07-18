@@ -14,9 +14,7 @@ function subcommands.complete(arg, cmd_line)
 
   if #words == 1 then
     for subcommand in pairs(xmake) do
-      if vim.startswith(subcommand, arg) then
-        table.insert(matches, subcommand)
-      end
+      if vim.startswith(subcommand, arg) then table.insert(matches, subcommand) end
     end
   end
 
@@ -24,9 +22,7 @@ function subcommands.complete(arg, cmd_line)
 
   if #matches == 0 then
     for _, v in ipairs(target) do
-      if #v ~= 0 then
-        table.insert(matches, v)
-      end
+      if #v ~= 0 then table.insert(matches, v) end
     end
   end
 

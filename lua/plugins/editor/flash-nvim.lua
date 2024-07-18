@@ -1,8 +1,8 @@
 return {
   'folke/flash.nvim',
   lazy = true,
-  init = function ()
-    vim.keymap.set('n', 's',  function() require('flash').jump() end, {})
+  init = function()
+    vim.keymap.set('n', 's', function() require('flash').jump() end, {})
   end,
   config = function()
     require('flash').setup({

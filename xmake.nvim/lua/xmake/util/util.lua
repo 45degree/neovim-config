@@ -12,14 +12,10 @@ local function append_to_quickfix(error, data)
 end
 
 function utils.split_args(args)
-  if not args then
-    return {}
-  end
+  if not args then return {} end
 
   -- Handle table for compatibility with the previous version
-  if type(args) == 'table' then
-    return args
-  end
+  if type(args) == 'table' then return args end
 
   -- Split on spaces unless "in quotes"
   local splitted_args = vim.fn.split(args, [[\s\%(\%([^'"]*\(['"]\)[^'"]*\1\)*[^'"]*$\)\@=]])
@@ -32,20 +28,14 @@ function utils.split_args(args)
 end
 
 function utils.join_args(args)
-  if not args then
-    return ''
-  end
+  if not args then return '' end
 
   -- Handle strings for compatibility with the previous version
-  if type(args) == 'string' then
-    return args
-  end
+  if type(args) == 'string' then return args end
 
   -- Add quotes if argument contain spaces
   for index, arg in ipairs(args) do
-    if arg:find(' ') then
-      args[index] = '"' .. arg .. '"'
-    end
+    if arg:find(' ') then args[index] = '"' .. arg .. '"' end
   end
 
   return table.concat(args, ' ')
@@ -56,18 +46,14 @@ function utils.show_quickfix(quickfix_position, quickfix_size)
   vim.api.nvim_command('wincmd j')
 end
 
-function utils.close_quickfix()
-  vim.api.nvim_command('cclose')
-end
+function utils.close_quickfix() vim.api.nvim_command('cclose') end
 
 function utils.run(cmd, env, args, opts)
   vim.cmd('wall')
   vim.fn.setqflist({}, ' ', { title = cmd .. ' ' .. table.concat(args, ' ') })
 
   local show_quickfix = opts.show_quickfix == 'always'
-  if show_quickfix then
-    utils.show_quickfix(opts.quickfix_position, opts.quickfix_size)
-  end
+  if show_quickfix then utils.show_quickfix(opts.quickfix_position, opts.quickfix_size) end
 
   utils.job = Job:new({
     command = cmd,
@@ -79,9 +65,7 @@ function utils.run(cmd, env, args, opts)
     on_exit = vim.schedule_wrap(function(_, code, signal)
       append_to_quickfix('Exited with code ' .. (signal == 0 and code or 128 + signal))
       if code == 0 and signal == 0 then
-        if opts.on_success then
-          opts.on_success()
-        end
+        if opts.on_success then opts.on_success() end
       elseif opts.show_quickfix == 'only_on_error' then
         utils.show_quickfix(opts.quickfix_position, opts.quickfix_size)
         vim.api.nvim_command('cbottom')
@@ -94,9 +78,7 @@ function utils.run(cmd, env, args, opts)
 end
 
 function utils.ensure_no_job_active()
-  if not utils.last_job or utils.last_job.is_shutdown then
-    return true
-  end
+  if not utils.last_job or utils.last_job.is_shutdown then return true end
   utils.notify('Another job is currently running: ' .. utils.last_job.command, vim.log.levels.ERROR)
   return false
 end

@@ -25,7 +25,7 @@ local tmpl = {
     cwd = { optional = true },
   },
   desc = 'Run cppcheck on the project',
-  tags = { "LINT" },
+  tags = { 'LINT' },
   condition = {
     filetype = { 'c', 'cpp' },
   },

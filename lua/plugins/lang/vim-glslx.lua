@@ -22,9 +22,7 @@ return {
         '*.rcall',
         '*.glsl',
       },
-      callback = function()
-        vim.cmd('set filetype=glsl')
-      end,
+      callback = function() vim.cmd('set filetype=glsl') end,
     })
   end,
 }

@@ -49,7 +49,5 @@ return {
   'EdenEast/nightfox.nvim',
   lazy = true,
   build = ':NightfoxCompile',
-  config = function()
-    require('nightfox').setup(opts)
-  end,
+  config = function() require('nightfox').setup(opts) end,
 }

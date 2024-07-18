@@ -1,13 +1,9 @@
 local component = require('lualine.component'):extend()
 
-function component:init(options)
-  component.super.init(self, options)
-end
+function component:init(options) component.super.init(self, options) end
 
 function component:update_status()
-  if not package.loaded['conform'] then
-    return
-  end
+  if not package.loaded['conform'] then return end
 
   -- Check if 'conform' is available
   local conform = require('conform')
@@ -29,9 +25,7 @@ function component:update_status()
   local bufnr = vim.api.nvim_get_current_buf()
   local lsp_clients = lsp_format.get_format_clients({ bufnr = bufnr })
 
-  if not vim.tbl_isempty(lsp_clients) then
-    return '󰉢 LSP Formatter'
-  end
+  if not vim.tbl_isempty(lsp_clients) then return '󰉢 LSP Formatter' end
 
   return ''
 end

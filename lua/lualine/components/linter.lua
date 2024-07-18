@@ -12,18 +12,14 @@ function component:init(options)
 end
 
 function component:update_status()
-  if not package.loaded['lint'] then
-    return ''
-  end
+  if not package.loaded['lint'] then return '' end
 
   local lint = require('lint')
   local icon = '󱉶 '
 
   local buf_ft = vim.bo.filetype
   local linters = lint.linters_by_ft[buf_ft]
-  if linters == nil then
-    return ''
-  end
+  if linters == nil then return '' end
 
   local running_linters = {}
   for _, linter in ipairs(lint.get_running()) do

@@ -7,13 +7,11 @@ local opts = {
     changedelete = { text = '│' },
     untracked = { text = '│' },
   },
-  current_line_blame = true
+  current_line_blame = true,
 }
 
 return {
   'lewis6991/gitsigns.nvim',
   event = 'VeryLazy',
-  config = function()
-    require('gitsigns').setup(opts)
-  end,
+  config = function() require('gitsigns').setup(opts) end,
 }

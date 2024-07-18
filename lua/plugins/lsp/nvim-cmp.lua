@@ -11,9 +11,7 @@ local function setup_nvim_cmp()
   cmp.setup({
     snippet = {
       -- REQUIRED - you must specify a snippet engine
-      expand = function(args)
-        require('luasnip').lsp_expand(args.body)
-      end,
+      expand = function(args) require('luasnip').lsp_expand(args.body) end,
     },
     window = {
       completion = cmp.config.window.bordered({ border = config.border }),
@@ -89,9 +87,7 @@ local function setup_nvim_cmp()
         }
 
         local max_len = 20
-        if string.len(vim_item.abbr) > max_len then
-          vim_item.abbr = string.sub(vim_item.abbr, 1, max_len - 2) .. '··'
-        end
+        if string.len(vim_item.abbr) > max_len then vim_item.abbr = string.sub(vim_item.abbr, 1, max_len - 2) .. '··' end
 
         -- load lspkind icons
         vim_item.menu = string.format('%s %s', menus[entry.source.name], vim_item.kind)

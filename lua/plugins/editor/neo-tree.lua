@@ -6,9 +6,7 @@ local opts = {
       event = 'neo_tree_window_after_close',
       handler = function()
         if package.loaded['dap'] then
-          if require('dap').session() then
-            require('dapui').open({ reset = true })
-          end
+          if require('dap').session() then require('dapui').open({ reset = true }) end
         end
       end,
     },
@@ -171,9 +169,7 @@ return {
     if vim.fn.argc() == 1 then
       ---@diagnostic disable-next-line: param-type-mismatch
       local stat = vim.uv.fs_stat(vim.fn.argv(0))
-      if stat and stat.type == 'directory' then
-        require('neo-tree')
-      end
+      if stat and stat.type == 'directory' then require('neo-tree') end
     end
   end,
   config = function()
