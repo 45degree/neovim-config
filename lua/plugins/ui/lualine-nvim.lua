@@ -25,7 +25,7 @@ local opts = {
       { 'diagnostics', symbols = icons.diagnostic },
     },
     lualine_c = { 'lsp-dap', 'linter', 'formatter', 'ai-status' },
-    lualine_x = { 'encoding', 'fileformat' },
+    lualine_x = { 'task', 'encoding', 'fileformat' },
     lualine_y = { 'icon-filename', 'ui-progress' },
     lualine_z = {},
   },
