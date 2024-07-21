@@ -56,6 +56,31 @@ local opts = {
     filtered_items = {
       always_show = { '.gitignore', '.gitmodules', '.gitkeep', '.gitignore', '.vscode', '.clang-format', '.clang-tidy' },
     },
+    components = {
+      icon = function(config, node, _)
+        local icon = config.default or ' '
+        local padding = config.padding or ' '
+        local highlight = config.highlight
+        local mini_icons = require('mini.icons')
+
+        if node.type == 'directory' then
+          local text, hl = mini_icons.get('directory', node.name)
+          highlight = hl
+          if node.loaded and not node:has_children() then
+            icon = not node.empty_expanded and config.folder_empty or config.folder_empty_open
+          else
+            icon = node:is_expanded() and config.folder_open or text
+          end
+        elseif node.type == 'file' then
+          icon, highlight = mini_icons.get('file', node.name)
+        end
+
+        return {
+          text = icon .. padding,
+          highlight = highlight,
+        }
+      end,
+    },
     -- instead of relying on nvim autocmd events.
     window = {
       mappings = {
