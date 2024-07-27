@@ -57,6 +57,7 @@ vim.opt.backspace = '2'
 
 -- leader设置为空格
 vim.g.mapleader = ' '
+vim.g.maplocalleader = '  '
 
 -- 启动鼠标支持
 vim.opt.mouse = 'a'

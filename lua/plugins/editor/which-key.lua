@@ -61,8 +61,8 @@ local register = {
   { '<leader>guh', '<cmd>Gitsigns undo_stage_hunk<cr>', desc = 'undo git hunk' },
 
   -- filesystem and outlines
-  { '<leader>t', '<cmd>Neotree toggle filesystem<cr>', desc = 'toggle filesystem' },
-  { '<leader>T', '<cmd>Neotree toggle document_symbols<cr>', desc = 'toggle outlines' },
+  { '<leader>t', '<cmd>Neotree toggle filesystem<cr>', desc = 'toggle filesystem', icon = '󰙅' },
+  { '<leader>T', '<cmd>Neotree toggle document_symbols<cr>', desc = 'toggle outlines', icon = '󱏒' },
 
   -- windows
   { '<leader>w', group = 'windows' },
@@ -87,15 +87,18 @@ local register = {
 
   -- buffer delete
   { '<leader>bd', group = 'delete buffer' },
-  { '<space>bdc', '<cmd>BufferCloseAllButCurrentOrPinned<cr>', desc = 'only keep the current buffer' },
-  { '<space>bdv', close_all_but_visible_and_pin_buf, desc = 'only keep all visible and pinned buffer' },
-  { '<space>bdp', '<cmd>BufferCloseAllButPinned<cr>', desc = 'delete all unpinned Buffers' },
+  { '<leader>bdc', '<cmd>BufferCloseAllButCurrentOrPinned<cr>', desc = 'only keep the current buffer' },
+  { '<leader>bdv', close_all_but_visible_and_pin_buf, desc = 'only keep all visible and pinned buffer' },
+  { '<leader>bdp', '<cmd>BufferCloseAllButPinned<cr>', desc = 'delete all unpinned Buffers' },
 
   -- extensions
-  { '<leader>e', group = 'extension' },
-  { '<leader>ep', group = 'profile' },
+  { '<leader>e', group = 'extension', icon = '' },
+  { '<leader>ep', group = 'profile', icon = '󰈸' },
   { '<leader>epb', '<cmd>lua require("plenary.profile").start("profile.log", {flame = true})<cr>', desc = 'begin profile' },
   { '<leader>epe', '<cmd>lua require("plenary.profile").stop()<cr>', desc = 'end profile' },
+
+  -- localleader
+  { '<localleader>', group = 'local keymap', icon = '' },
 }
 
 return {
@@ -111,7 +114,4 @@ return {
     local wk = require('which-key')
     wk.add(register)
   end,
-  keys = {
-    { '<leader>?', function() require('which-key').show({ global = false }) end, desc = 'Buffer Local Keymaps (which-key)' },
-  },
 }

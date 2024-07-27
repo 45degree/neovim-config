@@ -1,5 +1,6 @@
 local M = {}
 
+---@class CustomNvimConfig
 local defaults = {
   colorscheme = 'catppuccin',
   border = 'single',
@@ -15,9 +16,13 @@ local defaults = {
     javascript = false,
     typst = false,
   },
+
+  ---@type 'codeium' | 'copilot' | 'fittencode' | 'none'
   ai = 'copilot',
+
   -- https://github.com/mfussenegger/nvim-lint/tree/master?tab=readme-ov-file#available-linters
   linter = {},
+
   formatter = {},
 
   -- lsp in lsp-config that want to use but can't be install by mason, for example: nushell

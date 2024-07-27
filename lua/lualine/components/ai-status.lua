@@ -1,8 +1,14 @@
 local component = require('lualine.component'):extend()
 local copilot = require('util.copilot')
 local codeium = require('util.codeium')
+local fittencode = require('util.fittencode')
 local highlights = require('lualine.highlight')
 local utils = require('lualine.utils.utils')
+
+---@class AiComponent
+---@field get_status fun(): 'error'|'loading'|'finished'|'idle'|nil
+---@field get_name fun(): string
+---@field is_enabled fun(): boolean
 
 ---Return a spinner from the list of spinners
 ---@return string
@@ -49,17 +55,24 @@ function component:init(options)
   end
 end
 
-function component:update_ai_status(ai, name)
+---@param ai AiComponent
+function component:update_ai_status(ai)
   local icon = ' '
+  local name = ai.get_name()
 
-  if ai.is_loading() then
-    return highlights.component_format_highlight(self.hl.hint) .. string.format('%s %s', self:get_spinner(), name)
-  elseif ai.is_error() then
+  if not ai.is_enabled() then
     return highlights.component_format_highlight(self.hl.error) .. string.format('%s %s', icon, name)
-  elseif ai.is_enabled() then
+  end
+
+  local status = ai.get_status()
+  if status == 'loading' then
+    return highlights.component_format_highlight(self.hl.warn) .. string.format('%s %s', self:get_spinner(), name)
+  elseif status == 'error' then
+    return highlights.component_format_highlight(self.hl.error) .. string.format('%s %s', icon, name)
+  elseif status == 'finished' then
     return highlights.component_format_highlight(self.hl.info) .. string.format('%s %s', icon, name)
-  elseif ai.is_sleep() then
-    return highlights.component_format_highlight(self.hl.warn) .. string.format('%s %s', icon, name)
+  elseif status == 'idle' then
+    return highlights.component_format_highlight(self.hl.hint) .. string.format('%s %s', icon, name)
   end
   return ''
 end
@@ -69,10 +82,13 @@ function component:update_status()
   -- All copilot API calls are blocking before copilot is attached,
   -- To avoid blocking the startup time, we check if copilot is attached
   local copilot_loaded = package.loaded['copilot'] ~= nil
-  if copilot_loaded and self.copilot_lsp_attached then return self:update_ai_status(copilot, 'copilot') end
+  if copilot_loaded and self.copilot_lsp_attached then return self:update_ai_status(copilot) end
 
   local codeium_loaded = vim.g.codeium_os ~= nil
-  if codeium_loaded then return self:update_ai_status(codeium, 'codeium') end
+  if codeium_loaded then return self:update_ai_status(codeium) end
+
+  local fittencode_loaded = package.loaded['fittencode'] ~= nil
+  if fittencode_loaded then return self:update_ai_status(fittencode) end
 
   return ''
 end

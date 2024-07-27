@@ -1,3 +1,4 @@
+---@class CopilotComponent : AiComponent
 local component = {}
 
 -- From TJDevries
@@ -15,51 +16,21 @@ local ai_api = lazy_require('copilot.api')
 
 local is_current_buffer_attached = function() return client.buf_is_attached(vim.api.nvim_get_current_buf()) end
 
----Check if copilot is enabled
----@return boolean
-component.is_enabled = function()
-  if client.is_disabled() then return false end
-
-  if not is_current_buffer_attached() then return false end
-
-  return true
-end
-
----Check if copilot is online
----@return boolean
-component.is_error = function()
-  if client.is_disabled() then return false end
-
-  if not is_current_buffer_attached() then return false end
+component.get_status = function()
+  if client.is_disabled() then return end
+  if not is_current_buffer_attached() then return end
 
   local data = ai_api.status.data.status
-  if data == 'Warning' then return true end
+  if data == 'Warning' then return 'error' end
+  if data == 'InProgress' then return 'loading' end
+  if data == 'Normal' then return 'finished' end
 
-  return false
+  if vim.b.copilot_suggestion_auto_trigger == nil and lazy_require('copilot.config').get('suggestion').auto_trigger then return 'idle' end
+  if vim.b.copilot_suggestion_auto_trigger then return 'idle' end
 end
 
----Show copilot running status
----@return boolean
-component.is_loading = function()
-  if client.is_disabled() then return false end
+component.is_enabled = function() return not client.is_disabled() and is_current_buffer_attached() end
 
-  if not is_current_buffer_attached() then return false end
-
-  local data = ai_api.status.data.status
-  if data == 'InProgress' then return true end
-
-  return false
-end
-
----Check auto trigger suggestions
----@return boolean
-component.is_sleep = function()
-  if client.is_disabled() then return false end
-
-  if not is_current_buffer_attached() then return false end
-
-  if vim.b.copilot_suggestion_auto_trigger == nil then return lazy_require('copilot.config').get('suggestion').auto_trigger end
-  return vim.b.copilot_suggestion_auto_trigger
-end
+component.get_name = function() return 'copilot' end
 
 return component
