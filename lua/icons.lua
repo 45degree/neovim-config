@@ -87,9 +87,9 @@ icons.kind = {
   Component = '',
   Fragment = '󰅴',
   TypeAlias = '',
-  Parameter = ' ',
-  StaticMethod = ' ',
-  Macro = ' ',
+  Parameter = '',
+  StaticMethod = '',
+  Macro = '',
 }
 
 icons.kind_with_space = {}
