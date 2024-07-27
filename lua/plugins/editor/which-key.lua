@@ -28,7 +28,7 @@ local register = {
   -- search
   { '<leader>s', group = 'search' },
   { '<leader>sf', '<cmd>Telescope find_files<cr>', desc = 'search file in current directory' },
-  { '<leader>sa', require('telescope').extensions.live_grep_args.live_grep_args, desc = 'search content in current directory' },
+  { '<leader>sa', function() require('telescope').extensions.live_grep_args.live_grep_args() end, desc = 'search content in current directory' },
   { '<leader>sg', '<cmd>Telescope git_files<cr>', desc = 'search file in git project' },
   { '<leader>sc', '<cmd>Telescope colorscheme<cr>', desc = 'search colorscheme' },
   { '<leader>sh', '<cmd>Telescope oldfiles<cr>', desc = 'search history' },
@@ -39,7 +39,7 @@ local register = {
 
   -- code
   { '<leader>c', group = 'code' },
-  { '<leader>cf', function() require('conform').format({ async = true }) end, desc = 'format the code' },
+  { '<leader>cf', function() require('conform').format({ async = true, lsp_format = 'fallback' }) end, desc = 'format the code' },
   { '<leader>cT', '<cmd>Trouble<cr>', desc = 'open code diagnosic' },
 
   -- code debug
