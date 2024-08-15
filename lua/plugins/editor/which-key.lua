@@ -40,7 +40,7 @@ local register = {
   -- code
   { '<leader>c', group = 'code' },
   { '<leader>cf', function() require('conform').format({ async = true, lsp_format = 'fallback' }) end, desc = 'format the code' },
-  { '<leader>cT', '<cmd>Trouble<cr>', desc = 'open code diagnosic' },
+  { '<leader>cT', '<cmd>Trouble diagnostics<cr>', desc = 'open code diagnostics' },
   { '<leader>ch', function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, desc = 'toggle inlay hints' },
 
   -- code debug
