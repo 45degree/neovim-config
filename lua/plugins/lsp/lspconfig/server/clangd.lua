@@ -2,7 +2,7 @@ local clangd_flags = {
   '--all-scopes-completion',
   '--background-index',
   '--pch-storage=disk',
-  '--log=info',
+  '--log=error',
   '--completion-style=detailed',
   '--enable-config', -- clangd 11+ supports reading from .clangd configuration file
   '--clang-tidy',
