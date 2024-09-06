@@ -14,7 +14,7 @@ local clangd_flags = {
 }
 
 return function(opts)
-  opts.capabilities.offsetEncoding = 'utf-16'
+  opts.capabilities.offsetEncoding = 'utf-8'
 
   opts.cmd = {
     'clangd',

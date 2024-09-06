@@ -38,7 +38,23 @@ local opts = {
   default_component_configs = {
     diagnostics = { symbols = icons.diagnostic },
     indent = { with_markers = false, with_expanders = true },
-    icon = { default = '' },
+    icon = {
+      provider = function(icon, node, state)
+        local text, hl
+        local mini_icons = require('mini.icons')
+        if node.type == 'file' then -- if it's a file, set the text/hl
+          text, hl = mini_icons.get('file', node.name)
+        elseif node.type == 'directory' then -- get directory icons
+          text, hl = mini_icons.get('directory', node.name)
+          -- only set the icon text if it is not expanded
+          if node:is_expanded() then text = nil end
+        end
+
+        -- set the icon text/highlight only if it exists
+        if text then icon.text = text end
+        if hl then icon.highlight = hl end
+      end,
+    },
     git_status = { symbols = icons.gitsigns },
   },
   window = {
@@ -55,31 +71,6 @@ local opts = {
     },
     filtered_items = {
       always_show = { '.gitignore', '.gitmodules', '.gitkeep', '.gitignore', '.vscode', '.clang-format', '.clang-tidy' },
-    },
-    components = {
-      icon = function(config, node, _)
-        local icon = config.default or ' '
-        local padding = config.padding or ' '
-        local highlight = config.highlight
-        local mini_icons = require('mini.icons')
-
-        if node.type == 'directory' then
-          local text, hl = mini_icons.get('directory', node.name)
-          highlight = hl
-          if node.loaded and not node:has_children() then
-            icon = not node.empty_expanded and config.folder_empty or config.folder_empty_open
-          else
-            icon = node:is_expanded() and config.folder_open or text
-          end
-        elseif node.type == 'file' then
-          icon, highlight = mini_icons.get('file', node.name)
-        end
-
-        return {
-          text = icon .. padding,
-          highlight = highlight,
-        }
-      end,
     },
     -- instead of relying on nvim autocmd events.
     window = {
