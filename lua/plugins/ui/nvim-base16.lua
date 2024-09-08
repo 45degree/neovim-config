@@ -1,7 +1,7 @@
 return {
   'RRethy/nvim-base16',
   lazy = true,
-  confg = function()
+  config = function()
     require('base16-colorscheme').with_config({
       telescope = true,
       indentblankline = true,
