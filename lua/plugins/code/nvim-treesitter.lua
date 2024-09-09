@@ -35,11 +35,11 @@ return {
           local ok, stats = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(buf))
           if ok and stats and stats.size > max_filesize then return true end
 
-          -- if the buf has an attached lsp expected null-ls, disable highlight
-          local clients = vim.lsp.get_clients({ bufnr = buf })
-          for _, client in ipairs(clients) do
-            if client.server_capabilities['semanticTokensProvider'] then return true end
-          end
+           -- if the buf has an attached lsp expected null-ls, disable highlight
+           local clients = vim.lsp.get_clients({ bufnr = buf })
+           for _, client in ipairs(clients) do
+             if client.server_capabilities['semanticTokensProvider'] then return true end
+           end
           return false
         end,
         additional_vim_regex_highlighting = false,

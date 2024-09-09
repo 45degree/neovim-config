@@ -14,6 +14,14 @@ return function(server)
     capabilities = capabilities,
   }
 
+  ---
+  ---@param client vim.lsp.Client
+  ---@param bufnr integer
+  opts.on_attach = function(client, bufnr)
+    -- disable treesitter if lsp support semantic highlight
+    if client.supports_method(vim.lsp.protocol.Methods.textDocument_semanticTokens_full) then vim.treesitter.stop(bufnr) end
+  end
+
   local status, config = pcall(require, 'plugins.lsp.lspconfig.server.' .. server)
   if status then return config(opts) end
 

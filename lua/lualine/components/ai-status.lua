@@ -60,9 +60,7 @@ function component:update_ai_status(ai)
   local icon = ' '
   local name = ai.get_name()
 
-  if not ai.is_enabled() then
-    return highlights.component_format_highlight(self.hl.error) .. string.format('%s %s', icon, name)
-  end
+  if not ai.is_enabled() then return highlights.component_format_highlight(self.hl.error) .. string.format('%s %s', icon, name) end
 
   local status = ai.get_status()
   if status == 'loading' then
@@ -84,7 +82,7 @@ function component:update_status()
   local copilot_loaded = package.loaded['copilot'] ~= nil
   if copilot_loaded and self.copilot_lsp_attached then return self:update_ai_status(copilot) end
 
-  local codeium_loaded = vim.g.codeium_os ~= nil
+  local codeium_loaded = package.loaded['neocodeium'] ~= nil
   if codeium_loaded then return self:update_ai_status(codeium) end
 
   local fittencode_loaded = package.loaded['fittencode'] ~= nil

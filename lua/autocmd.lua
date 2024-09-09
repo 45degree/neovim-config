@@ -6,15 +6,6 @@ vim.api.nvim_create_autocmd({ 'FocusGained', 'BufEnter', 'CursorHold' }, {
   end,
 })
 
--- disable treesitter if lsp support semantic highlight
-vim.api.nvim_create_autocmd({ 'LspAttach' }, {
-  callback = function(opt)
-    local buf = opt.buf
-    local client = vim.lsp.get_client_by_id(opt.data.client_id)
-    if client and client.server_capabilities['semanticTokensProvider'] then vim.treesitter.stop(buf) end
-  end,
-})
-
 -- exrc
 vim.api.nvim_create_autocmd('DirChanged', {
   callback = function()
