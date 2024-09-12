@@ -4,5 +4,5 @@ return {
   init = function()
     vim.keymap.set('n', 's', function() require('flash').jump() end, {})
   end,
-  config = function() require('flash').setup({ modes = { char = { enabled = true, jump_labels = true } } }) end,
+  opts = { modes = { char = { enabled = true, jump_labels = true } } },
 }

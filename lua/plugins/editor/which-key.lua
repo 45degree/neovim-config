@@ -109,8 +109,9 @@ return {
     vim.o.timeout = true
     vim.o.timeoutlen = 300
   end,
-  config = function()
-    require('which-key').setup({ preset = 'modern' })
+  opts = { preset = 'modern' },
+  config = function(_, opts)
+    require('which-key').setup(opts)
 
     local wk = require('which-key')
     wk.add(register)

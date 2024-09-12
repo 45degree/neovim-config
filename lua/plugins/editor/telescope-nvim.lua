@@ -6,9 +6,9 @@ return {
     'nvim-telescope/telescope-fzy-native.nvim',
     'nvim-telescope/telescope-live-grep-args.nvim',
   },
-  config = function()
+  opts = function()
     local lga_actions = require('telescope-live-grep-args.actions')
-    require('telescope').setup({
+    return {
       defaults = {
         prompt_prefix = '   ',
         selection_caret = ' ',
@@ -44,7 +44,10 @@ return {
           },
         },
       },
-    })
+    }
+  end,
+  config = function(_, opts)
+    require('telescope').setup(opts)
     require('telescope').load_extension('projects')
     require('telescope').load_extension('fzy_native')
     require('telescope').load_extension('live_grep_args')

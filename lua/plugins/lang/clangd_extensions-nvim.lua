@@ -8,7 +8,7 @@ return {
       clear = true,
     })
 
-    vim.api.nvim_create_autocmd('Filetype', {
+    vim.api.nvim_create_autocmd('FileType', {
       group = group,
       desc = 'Setup clangd_extension scores for cmp',
       pattern = 'c,cpp',

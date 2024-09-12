@@ -1,6 +1,6 @@
 return {
   'neovim/nvim-lspconfig',
-  event = 'Filetype',
+  event = 'FileType',
   dependencies = {
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',

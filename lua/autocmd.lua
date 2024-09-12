@@ -2,7 +2,7 @@
 vim.api.nvim_create_autocmd({ 'FocusGained', 'BufEnter', 'CursorHold' }, {
   desc = 'Reload buffer on focus',
   callback = function()
-    if vim.fn.getcmdwintype() == '' then vim.cmd('checktime') end
+    if vim.o.buftype ~= 'nofile' then vim.cmd('checktime') end
   end,
 })
 
@@ -13,6 +13,16 @@ vim.api.nvim_create_autocmd('DirChanged', {
       local stat = vim.uv.fs_stat(file)
       if stat and stat.type == 'file' then vim.cmd('source ' .. file) end
     end
+  end,
+})
+
+-- Auto create dir when saving a file, in case some intermediate directory does not exist
+vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
+  -- group = augroup('auto_create_dir'),
+  callback = function(event)
+    if event.match:match('^%w%w+:[\\/][\\/]') then return end
+    local file = vim.uv.fs_realpath(event.match) or event.match
+    vim.fn.mkdir(vim.fn.fnamemodify(file, ':p:h'), 'p')
   end,
 })
 
