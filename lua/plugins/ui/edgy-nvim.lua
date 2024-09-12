@@ -3,7 +3,7 @@ return {
     'folke/edgy.nvim',
     event = 'VeryLazy',
     opts = function()
-      local opts = {
+      return {
         bottom = {
           {
             ft = 'toggleterm',
@@ -24,9 +24,15 @@ return {
         left = {
           { ft = 'neo-tree', size = { width = 40 } },
         },
+        right = {
+          {
+            title = 'Overseer',
+            ft = 'OverseerList',
+            open = function() require('overseer').open() end,
+          },
+        },
         animate = { enabled = false },
       }
-      return opts
     end,
   },
 
@@ -34,14 +40,14 @@ return {
   {
     'nvim-telescope/telescope.nvim',
     optional = true,
-    opts = {
-      defaults = {
+    opts = function(_, opts)
+      opts.defaults = vim.tbl_deep_extend('force', opts.defaults, {
         get_selection_window = function()
           require('edgy').goto_main()
           return 0
         end,
-      },
-    },
+      })
+    end,
   },
 
   -- prevent neo-tree from opening files in edgy windows

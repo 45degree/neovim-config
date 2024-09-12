@@ -4,11 +4,13 @@ return {
   opts = function()
     local config = require('config')
     return {
+      strategy = 'toggleterm',
       form = { border = config.border, win_opts = { winblend = 0 } },
       confirm = { border = config.border, win_opts = { winblend = 0 } },
       task_win = { border = config.border, win_opts = { winblend = 0 } },
       task_editor = { bindings = { i = { ['<m-2>'] = 'Cancel' }, n = { ['<m-2>'] = 'Cancel' } } },
       templates = { 'builtin', 'project' },
+      task_list = { direction = 'right' },
     }
   end,
   keys = {
