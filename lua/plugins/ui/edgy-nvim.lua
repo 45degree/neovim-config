@@ -29,6 +29,7 @@ return {
             title = 'Overseer',
             ft = 'OverseerList',
             open = function() require('overseer').open() end,
+            pinned = true,
           },
         },
         animate = { enabled = false },

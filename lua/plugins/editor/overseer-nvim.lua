@@ -4,7 +4,8 @@ return {
   opts = function()
     local config = require('config')
     return {
-      strategy = 'toggleterm',
+      dap = false,
+      strategy = { 'toggleterm', direction = 'float' },
       form = { border = config.border, win_opts = { winblend = 0 } },
       confirm = { border = config.border, win_opts = { winblend = 0 } },
       task_win = { border = config.border, win_opts = { winblend = 0 } },
