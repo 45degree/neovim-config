@@ -1,6 +1,5 @@
 return {
   'goolord/alpha-nvim',
-  dependencies = { 'luukvbaal/statuscol.nvim' }, -- should load alpha after load statuscol.nvim to enable the ft_ignore in statuscol.nvim
   lazy = true,
   init = function()
     -- modified from https://github.com/AstroNvim/AstroNvim/blob/main/lua/astronvim/plugins/alpha.lua

@@ -1,8 +1,7 @@
 return {
   'luukvbaal/statuscol.nvim',
-  event = 'VeryLazy',
+  event = 'BufReadPost',
   dependencies = 'kevinhwang91/nvim-ufo',
-  branch = '0.10',
   config = function()
     local builtin = require('statuscol.builtin')
     require('statuscol').setup({
