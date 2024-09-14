@@ -43,19 +43,10 @@ return {
 
     dap.listeners.after.event_initialized['dapui_config'] = function() debug_open() end
 
-    dap.listeners.before.event_terminated['dapui_config'] = function()
-      debug_close()
-      print(1)
-    end
+    dap.listeners.before.event_terminated['dapui_config'] = function() debug_close() end
 
-    dap.listeners.before.event_exited['dapui_config'] = function()
-      debug_close()
-      print(2)
-    end
+    dap.listeners.before.event_exited['dapui_config'] = function() debug_close() end
 
-    dap.listeners.before.disconnect['dapui_config'] = function()
-      debug_close()
-      print(2)
-    end
+    dap.listeners.before.disconnect['dapui_config'] = function() debug_close() end
   end,
 }

@@ -60,7 +60,6 @@ local provider = {
     local run_clang_tidy_path = get_run_clang_tidy_file()
     local cwd = vim.fs.dirname(file)
     local ret = { overseer.wrap_template(tmpl, nil, { cwd = cwd, run_clang_tidy_path = run_clang_tidy_path }) }
-    vim.print(run_clang_tidy_path)
     cb(ret)
   end,
 }

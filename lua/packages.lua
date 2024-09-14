@@ -15,6 +15,7 @@ local icons = require('icons')
 local config = require('config')
 local lazy_config = {
   spec = { { import = 'plugins' } },
+  rocks = { enabled = false },
   ui = {
     border = config.border,
     icons = {

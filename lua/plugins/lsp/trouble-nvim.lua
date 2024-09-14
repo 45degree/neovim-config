@@ -1,5 +1,16 @@
 return {
-  'folke/trouble.nvim',
-  cmd = { 'TroubleToggle', 'Trouble' },
-  config = function() require('trouble').setup({}) end,
+  {
+    'folke/trouble.nvim',
+    cmd = 'Trouble',
+    opts = {},
+  },
+
+  {
+    'folke/edgy.nvim',
+    optional = true,
+    opts = function(_, opts)
+      opts.bottom = opts.bottom or {}
+      table.insert(opts.bottom, { ft = 'trouble', title = 'Trouble' })
+    end,
+  },
 }
