@@ -19,7 +19,51 @@ return function(server)
   ---@param bufnr integer
   opts.on_attach = function(client, bufnr)
     -- disable treesitter if lsp support semantic highlight
-    if client.supports_method(vim.lsp.protocol.Methods.textDocument_semanticTokens_full) then vim.treesitter.stop(bufnr) end
+    -- if client.supports_method(vim.lsp.protocol.Methods.textDocument_semanticTokens_full) then vim.treesitter.stop(bufnr) end
+    if client == nil then
+      vim.notify('client is nil', vim.log.levels.ERROR)
+      return
+    end
+
+    vim.api.nvim_create_autocmd('LspDetach', {
+      group = vim.api.nvim_create_augroup('LspCallbacks', { clear = true }),
+      callback = function() vim.lsp.buf.clear_references() end,
+    })
+
+    local methods = vim.lsp.protocol.Methods
+    if client.supports_method(methods.textDocument_inlayHint) then
+      local inlay_hints_group = vim.api.nvim_create_augroup('toggle_inlay_hints', { clear = false })
+      vim.defer_fn(function()
+        local mode = vim.api.nvim_get_mode().mode
+        vim.lsp.inlay_hint.enable(mode == 'n' or mode == 'v', { bufnr = bufnr })
+      end, 500)
+
+      vim.api.nvim_create_autocmd('InsertEnter', {
+        group = inlay_hints_group,
+        desc = 'Enable inlay hints',
+        buffer = bufnr,
+        callback = function() vim.lsp.inlay_hint.enable(false, { bufnr = bufnr }) end,
+      })
+
+      vim.api.nvim_create_autocmd('InsertLeave', {
+        group = inlay_hints_group,
+        desc = 'Disable inlay hints',
+        buffer = bufnr,
+        callback = function() vim.lsp.inlay_hint.enable(true, { bufnr = bufnr }) end,
+      })
+    end
+
+    if client.supports_method(methods.textDocument_codeLens) then
+      local code_lens_group = vim.api.nvim_create_augroup('toggle_code_lens', { clear = false })
+      vim.defer_fn(function() vim.lsp.codelens.refresh() end, 500)
+
+      vim.api.nvim_create_autocmd({ 'BufEnter', 'CursorHold', 'InsertLeave' }, {
+        buffer = bufnr,
+        callback = vim.lsp.codelens.refresh,
+        desc = 'Refresh Code Lens',
+        group = code_lens_group,
+      })
+    end
   end
 
   local status, config = pcall(require, 'plugins.lsp.lspconfig.server.' .. server)
