@@ -64,8 +64,17 @@ vim.opt.mouse = 'a'
 
 local icons = require('icons')
 
--- If you want icons for diagnostic errors, you'll need to define them somewhere:
-vim.fn.sign_define('DiagnosticSignError', { text = icons.diagnostic.error, texthl = 'DiagnosticSignError' })
-vim.fn.sign_define('DiagnosticSignWarn', { text = icons.diagnostic.warn, texthl = 'DiagnosticSignWarn' })
-vim.fn.sign_define('DiagnosticSignInfo', { text = icons.diagnostic.info, texthl = 'DiagnosticSignInfo' })
-vim.fn.sign_define('DiagnosticSignHint', { text = icons.diagnostic.hint, texthl = 'DiagnosticSignHint' })
+-- Set diagnostic options
+vim.diagnostic.config({
+  virtual_text = { spacing = 4, prefix = '' },
+  float = { severity_sort = true, source = 'if_many' },
+  severity_sort = true,
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = icons.diagnostic.error,
+      [vim.diagnostic.severity.WARN] = icons.diagnostic.warn,
+      [vim.diagnostic.severity.HINT] = icons.diagnostic.hint,
+      [vim.diagnostic.severity.INFO] = icons.diagnostic.info,
+    },
+  },
+})
