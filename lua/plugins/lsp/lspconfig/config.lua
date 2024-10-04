@@ -9,8 +9,8 @@ vim.diagnostic.config({
   update_in_insert = false,
 })
 
-local config = require('config')
-vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = config.border, max_height = 20 })
+-- local config = require('config')
+-- vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = config.border, max_height = 20 })
 
 --- In lsp attach function
 local opts = { noremap = true, silent = true }

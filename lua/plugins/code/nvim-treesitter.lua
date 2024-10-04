@@ -3,14 +3,6 @@ return {
   event = 'VeryLazy',
   dependencies = { 'nushell/tree-sitter-nu' },
   config = function()
-    local ignoreLang = {}
-    if vim.fn.has('WIN32') then
-      table.insert(ignoreLang, 'rnoweb')
-      table.insert(ignoreLang, 'ocaml')
-      table.insert(ignoreLang, 'ocaml_interface')
-      table.insert(ignoreLang, 'systemverilog')
-    end
-
     ---@diagnostic disable-next-line: inject-field
     require('nvim-treesitter.parsers').get_parser_configs().nu = {
       install_info = {
@@ -26,7 +18,6 @@ return {
       sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
       auto_install = false,
       modules = {},
-      ignore_install = ignoreLang, -- List of parsers to ignore installing
       highlight = {
         enable = true, -- false will disable the whole extension
         disable = function(lang, buf)

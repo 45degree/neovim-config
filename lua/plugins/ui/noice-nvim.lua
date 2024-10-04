@@ -21,12 +21,12 @@ return {
     require('noice').setup({
       lsp = {
         override = {
-          ['vim.lsp.util.convert_input_to_markdown_lines'] = false,
-          ['vim.lsp.util.stylize_markdown'] = false,
-          ['cmp.entry.get_documentation'] = false,
+          ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
+          ['vim.lsp.util.stylize_markdown'] = true,
+          ['cmp.entry.get_documentation'] = true,
         },
-        hover = { enabled = false },
-        signature = { enabled = false },
+        hover = { enabled = true },
+        signature = { enabled = true },
       },
       messages = {
         enabled = true, -- enables the Noice messages UI
@@ -45,12 +45,8 @@ return {
         lsp_doc_border = true,
       },
       views = {
-        cmdline_popup = {
-          border = { style = config.border },
-        },
-        hover = {
-          border = { style = config.border },
-        },
+        cmdline_popup = { border = { style = config.border } },
+        hover = { border = { style = config.border } },
       },
     })
   end,
