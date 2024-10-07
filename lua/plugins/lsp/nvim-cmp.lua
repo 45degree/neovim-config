@@ -108,7 +108,8 @@ local function setup_nvim_cmp()
 end
 
 return {
-  'hrsh7th/nvim-cmp',
+  'iguanacucumber/magazine.nvim',
+  name = 'nvim-cmp',
   event = 'InsertEnter',
   dependencies = {
     'rafamadriz/friendly-snippets',
