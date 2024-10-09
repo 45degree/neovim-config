@@ -8,13 +8,13 @@ return {
       callback = function() vim.b.miniindentscope_disable = true end,
     })
   end,
-  config = function()
-    require('mini.indentscope').setup({
-      symbol = '│',
-      options = { try_as_border = true },
-      draw = {
-        animation = require('mini.indentscope').gen_animation.none(),
-      },
-    })
+  opts = {
+    symbol = '│',
+    options = { try_as_border = true },
+  },
+  config = function(_, opts)
+    opts.draw = opts.draw or {}
+    opts.draw.animation = require('mini.indentscope').gen_animation.none()
+    require('mini.indentscope').setup(opts)
   end,
 }

@@ -33,11 +33,9 @@ return {
     vim.o.foldenable = true
     vim.opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
   end,
-  config = function()
-    require('ufo').setup({
-      close_fold_kinds_for_ft = { default = { 'imports' } },
-      provider_selector = function(bufnr, filetype, buftype) return { 'treesitter', 'indent' } end,
-    })
-  end,
+  opts = {
+    close_fold_kinds_for_ft = { default = { 'imports' } },
+    provider_selector = function(bufnr, filetype, buftype) return { 'treesitter', 'indent' } end,
+  },
   enabled = function() return vim.fn.has('nvim-0.9') == 1 end,
 }
