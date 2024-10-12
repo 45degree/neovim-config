@@ -6,10 +6,10 @@ return {
   build = function() require('typst-preview').update() end,
   config = function()
     local dependencies_bin = {
-      ['typst-preview'] = nil,
+      ['tinymist'] = nil,
       ['websocat'] = nil,
     }
-    if require('util.mason').is_mason_package_installed('tinymist') then dependencies_bin['typst-preview'] = vim.fn.exepath('tinymist') end
+    if require('util.mason').is_mason_package_installed('tinymist') then dependencies_bin['tinymist'] = vim.fn.exepath('tinymist') end
 
     require('typst-preview').setup({
       dependencies_bin = dependencies_bin,
