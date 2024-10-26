@@ -7,6 +7,7 @@ local clangd_flags = {
   '--enable-config', -- clangd 11+ supports reading from .clangd configuration file
   '--clang-tidy',
   '--header-insertion-decorators',
+  '-j=1',
   -- "--clang-tidy-checks=-*,llvm-*,clang-analyzer-*,modernize-*,-modernize-use-trailing-return-type",
   -- "--fallback-style=Google",
   -- "--header-insertion=never",
@@ -14,7 +15,7 @@ local clangd_flags = {
 }
 
 return function(opts)
-  opts.capabilities.offsetEncoding = 'utf-8'
+  opts.capabilities = vim.tbl_extend('force', opts.capabilities, { offsetEncoding = { 'utf-16', 'utf-8' } })
 
   opts.cmd = {
     'clangd',
