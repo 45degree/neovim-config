@@ -6,4 +6,5 @@ return {
   { import = 'plugins.lang' },
   { import = 'plugins.lsp' },
   { import = 'plugins.ui' },
+  { import = 'plugins.colorscheme' },
 }

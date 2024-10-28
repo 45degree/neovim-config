@@ -1,6 +1,45 @@
 local M = {}
 
+---@alias colorscheme
+---| 'catppuccin' #[catppuccin]
+---| 'catppuccin-latte'
+---| 'catppuccin-frappe'
+---| 'catppuccin-macchiato'
+---| 'tokyonight' #[tokyonight]
+---| 'tokyonight-day'
+---| 'tokyonight-night'
+---| 'tokyonight-moon'
+---| 'tokyonight-storm'
+---| 'kanagawa' #[kanagawa]
+---| 'kanagawa-dragon'
+---| 'kanagawa-lotus'
+---| 'kanagawa-wave'
+---| 'github_dark' #[github-theme]
+---| 'github_light'
+---| 'github_dark_dimmed'
+---| 'github_dark_default'
+---| 'github_light_default'
+---| 'github_dark_high_contrast'
+---| 'github_light_high_contrast'
+---| 'github_dark_colorblind'
+---| 'github_light_colorblind'
+---| 'github_dark_tritanopia'
+---| 'github_light_tritanopia'
+---| 'rose-pine' #[rose-pine]
+---| 'rose-pine-dawn'
+---| 'rose-pine-main'
+---| 'rose-pine-moon'
+---| 'nightfox' #[nightfox]
+---| 'dayfox'
+---| 'dawnfox'
+---| 'duskfox'
+---| 'nordfox'
+---| 'terafox'
+---| 'carbonfox'
+---| 'onedark' #[onedark]
+
 ---@class CustomNvimConfig
+---@field colorscheme colorscheme
 local defaults = {
   colorscheme = 'catppuccin',
   border = 'single',
