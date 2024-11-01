@@ -41,7 +41,7 @@ local function setup_nvim_cmp()
       { name = 'luasnip' },
       { name = 'lazydev' },
     }, {
-      { name = 'path' },
+      { name = 'async_path' },
       { name = 'nvim_lua' },
     }),
     sorting = {
@@ -100,7 +100,7 @@ local function setup_nvim_cmp()
   cmp.setup.cmdline(':', {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
-      { name = 'path' },
+      { name = 'async_path' },
       { name = 'cmdline' },
     }),
     matching = { disallow_symbol_nonprefix_matching = false },
@@ -115,9 +115,10 @@ return {
     'rafamadriz/friendly-snippets',
     'L3MON4D3/LuaSnip',
     'saadparwaiz1/cmp_luasnip',
-    'hrsh7th/cmp-nvim-lua',
-    'hrsh7th/cmp-path',
-    'hrsh7th/cmp-cmdline',
+    { 'iguanacucumber/mag-nvim-lua', name = 'cmp-nvim-lua' },
+    { 'iguanacucumber/mag-buffer', name = 'cmp-buffer' },
+    { 'iguanacucumber/mag-cmdline', name = 'cmp-cmdline' },
+    { 'https://codeberg.org/FelipeLema/cmp-async-path', name = 'cmp-async-path' },
     'lukas-reineke/cmp-under-comparator',
   },
   config = function()
