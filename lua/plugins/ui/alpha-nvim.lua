@@ -65,7 +65,7 @@ return {
     }
     dashboard.section.buttons.val = {
       dashboard.button('f', '  file', '<cmd>Telescope find_files <cr>'),
-      dashboard.button('p', '  project', '<cmd>Telescope projects<cr>'),
+      dashboard.button('p', '  project', '<cmd>SessionManager load_session<cr>'),
       dashboard.button('h', '  History', '<cmd>Telescope oldfiles <cr>'),
       dashboard.button('c', '  Color', '<cmd>Telescope colorscheme <cr>'),
       dashboard.button('m', '  marks', '<cmd>Telescope marks <cr>'),

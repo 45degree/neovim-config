@@ -6,6 +6,7 @@ return {
     patterns = { '.git', '*.sln' },
     ignore_lsp = { 'null-ls', 'efm' },
   },
+  enable = false,
   config = function(_, opts)
     require('project_nvim').setup(opts)
   end

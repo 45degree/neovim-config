@@ -9,12 +9,6 @@
 1. git
 2. rg(ripgrep 使用)
 
-确保`neovim`支持`python3`, 如果不支持, 执行以下命令
-
-```shell
-pip3 install pynvim
-```
-
 ## 集成的功能
 
 1. 自动补全

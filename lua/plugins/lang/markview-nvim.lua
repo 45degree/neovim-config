@@ -3,5 +3,5 @@ return {
   dependencies = 'nvim-treesitter/nvim-treesitter',
   ft = 'markdown',
   cmd = 'Markview',
-  config = true,
+  opts = { initial_state = false },
 }
