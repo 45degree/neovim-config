@@ -39,8 +39,8 @@ local M = {}
 ---| 'onedark' #[onedark]
 
 ---@class CustomNvimConfig
----@field colorscheme colorscheme
 local defaults = {
+  ---@type colorscheme
   colorscheme = 'catppuccin',
   border = 'single',
   lang = {

@@ -41,7 +41,6 @@ vim.o.autochdir = true -- 自动切换工作目录
 vim.o.errorbells = false -- 出错不发出响声
 vim.o.visualbell = true -- 出错时发出视觉提示
 vim.o.history = 1000 -- 记住1000次历史操作
-vim.o.autoread = true -- 打开文件监视
 vim.o.listchars = 'tab:··,trail:·' -- 末尾空格、tab用-高亮
 vim.o.list = true
 vim.o.wildmenu = true
