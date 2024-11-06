@@ -1,40 +1,27 @@
 return {
   'nvim-treesitter/nvim-treesitter',
   event = 'VeryLazy',
-  dependencies = { 'nushell/tree-sitter-nu' },
-  config = function()
-    ---@diagnostic disable-next-line: inject-field
-    require('nvim-treesitter.parsers').get_parser_configs().nu = {
-      install_info = {
-        url = 'https://github.com/nushell/tree-sitter-nu',
-        files = { 'src/parser.c' },
-        branch = 'main',
-      },
-      filetype = 'nu',
-    }
+  opts = {
+    ensure_installed = 'all',
+    sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
+    auto_install = false,
+    modules = {},
+    highlight = {
+      enable = true, -- false will disable the whole extension
+      disable = function(lang, buf)
+        -- if the file is too large, disable highlight
+        local max_filesize = 100 * 1024 -- 100 KB
+        local ok, stats = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(buf))
+        if ok and stats and stats.size > max_filesize then return true end
 
-    require('nvim-treesitter.configs').setup({
-      ensure_installed = 'all',
-      sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
-      auto_install = false,
-      modules = {},
-      highlight = {
-        enable = true, -- false will disable the whole extension
-        disable = function(lang, buf)
-          -- if the file is too large, disable highlight
-          local max_filesize = 100 * 1024 -- 100 KB
-          local ok, stats = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(buf))
-          if ok and stats and stats.size > max_filesize then return true end
-
-           -- if the buf has an attached lsp expected null-ls, disable highlight
-           -- local clients = vim.lsp.get_clients({ bufnr = buf })
-           -- for _, client in ipairs(clients) do
-           --   if client.server_capabilities['semanticTokensProvider'] then return true end
-           -- end
-          return false
-        end,
-        additional_vim_regex_highlighting = false,
-      },
-    })
-  end,
+        -- if the buf has an attached lsp expected null-ls, disable highlight
+        -- local clients = vim.lsp.get_clients({ bufnr = buf })
+        -- for _, client in ipairs(clients) do
+        --   if client.server_capabilities['semanticTokensProvider'] then return true end
+        -- end
+        return false
+      end,
+      additional_vim_regex_highlighting = false,
+    },
+  },
 }
