@@ -1,5 +1,7 @@
 local icons = require('icons')
 
+local function open_with_system_application(state) require('lazy.util').open(state.tree:get_node().path, { system = true }) end
+
 return {
   'nvim-neo-tree/neo-tree.nvim',
   cmd = 'Neotree',
@@ -88,6 +90,7 @@ return {
         mappings = {
           ['<2-LeftMouse>'] = 'open_with_window_picker',
           ['<cr>'] = 'open_with_window_picker',
+          ['O'] = { open_with_system_application, desc = 'Open with system application' },
           ['a'] = { 'add', config = { show_path = 'none' } },
           ['A'] = 'add_directory',
           ['d'] = 'delete',
@@ -112,6 +115,9 @@ return {
       window = {
         position = 'float',
         mappings = {
+          ['<2-LeftMouse>'] = 'open_with_window_picker',
+          ['<cr>'] = 'open_with_window_picker',
+          ['O'] = { open_with_system_application, desc = 'Open with system application' },
           ['A'] = 'git_add_all',
           ['gu'] = 'git_unstage_file',
           ['ga'] = 'git_add_file',
