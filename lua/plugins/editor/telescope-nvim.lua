@@ -1,11 +1,7 @@
 return {
   'nvim-telescope/telescope.nvim',
   cmd = 'Telescope',
-  dependencies = {
-    'ahmedkhalf/project.nvim',
-    'nvim-telescope/telescope-fzy-native.nvim',
-    'nvim-telescope/telescope-live-grep-args.nvim',
-  },
+  dependencies = { 'nvim-telescope/telescope-live-grep-args.nvim' },
   opts = {
     defaults = {
       prompt_prefix = '   ',
@@ -28,10 +24,6 @@ return {
       preview = { treesitter = false },
     },
     extensions = {
-      fzy_native = {
-        override_generic_sorter = false,
-        override_file_sorter = true,
-      },
       live_grep_args = {
         auto_quoting = true,
         mappings = {
@@ -45,8 +37,6 @@ return {
   },
   config = function(_, opts)
     require('telescope').setup(opts)
-    require('telescope').load_extension('projects')
-    require('telescope').load_extension('fzy_native')
     require('telescope').load_extension('live_grep_args')
   end,
 }
