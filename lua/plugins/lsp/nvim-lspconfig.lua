@@ -9,10 +9,12 @@ return {
   'neovim/nvim-lspconfig',
   event = 'VeryLazy',
   dependencies = {
+    'folke/neoconf.nvim',
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
   },
   config = function()
+    require('neoconf').setup()
     require('mason-lspconfig').setup()
 
     local lspinstaller = require('mason-lspconfig')
@@ -28,7 +30,6 @@ return {
     for _, server in ipairs(require('config').lsp) do
       if server == 'rust_analyzer' and has_plugin('rustaceanvim') then goto continue end
       local config = require('plugins.lsp.lspconfig.server-config')(server)
-      if not require('lspconfig.configs')[server] then require('lspconfig.configs')[server] = { default_config = config } end
       lspconfig[server].setup(config)
       ::continue::
     end

@@ -6,7 +6,7 @@ return {
       local config = require('config')
       return {
         dap = false,
-        strategy = { 'toggleterm', direction = 'float' },
+        strategy = { 'jobstart', use_terminal = true, preserve_output = false },
         form = { border = config.border, win_opts = { winblend = 0 } },
         confirm = { border = config.border, win_opts = { winblend = 0 } },
         task_win = { border = config.border, win_opts = { winblend = 0 } },
