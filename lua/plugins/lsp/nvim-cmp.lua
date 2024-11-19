@@ -111,15 +111,16 @@ return {
   'iguanacucumber/magazine.nvim',
   name = 'nvim-cmp',
   event = 'InsertEnter',
+  enabled = false,
   dependencies = {
     'rafamadriz/friendly-snippets',
-    'L3MON4D3/LuaSnip',
-    'saadparwaiz1/cmp_luasnip',
-    { 'iguanacucumber/mag-nvim-lua', name = 'cmp-nvim-lua' },
-    { 'iguanacucumber/mag-buffer', name = 'cmp-buffer' },
-    { 'iguanacucumber/mag-cmdline', name = 'cmp-cmdline' },
-    { 'https://codeberg.org/FelipeLema/cmp-async-path', name = 'cmp-async-path' },
-    'lukas-reineke/cmp-under-comparator',
+    { 'L3MON4D3/LuaSnip', enabled = false },
+    { 'saadparwaiz1/cmp_luasnip', enabled = false },
+    { 'iguanacucumber/mag-nvim-lua', name = 'cmp-nvim-lua', enabled = false },
+    { 'iguanacucumber/mag-buffer', name = 'cmp-buffer', enabled = false },
+    { 'iguanacucumber/mag-cmdline', name = 'cmp-cmdline', enabled = false },
+    { 'https://codeberg.org/FelipeLema/cmp-async-path', name = 'cmp-async-path', enabled = false },
+    { 'lukas-reineke/cmp-under-comparator', enabled = false },
   },
   config = function()
     require('luasnip.loaders.from_vscode').lazy_load()

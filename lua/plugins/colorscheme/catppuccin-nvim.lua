@@ -38,6 +38,7 @@ return {
       aerial = false,
       barbar = true,
       beacon = false,
+      blink_cmp = true,
       cmp = true,
       coc_nvim = false,
       dashboard = false,
