@@ -9,7 +9,7 @@ local function setup_nvim_cmp()
       expand = function(args) require('luasnip').lsp_expand(args.body) end,
     },
     window = {
-      completion = cmp.config.window.bordered({ border = config.border }),
+      completion = cmp.config.window.bordered({ border = config.border, scrollbar = false }),
       documentation = cmp.config.window.bordered({ border = config.border }),
     },
     mapping = {
@@ -111,16 +111,16 @@ return {
   'iguanacucumber/magazine.nvim',
   name = 'nvim-cmp',
   event = 'InsertEnter',
-  enabled = false,
+  -- enabled = false,
   dependencies = {
     'rafamadriz/friendly-snippets',
-    { 'L3MON4D3/LuaSnip', enabled = false },
-    { 'saadparwaiz1/cmp_luasnip', enabled = false },
-    { 'iguanacucumber/mag-nvim-lua', name = 'cmp-nvim-lua', enabled = false },
-    { 'iguanacucumber/mag-buffer', name = 'cmp-buffer', enabled = false },
-    { 'iguanacucumber/mag-cmdline', name = 'cmp-cmdline', enabled = false },
-    { 'https://codeberg.org/FelipeLema/cmp-async-path', name = 'cmp-async-path', enabled = false },
-    { 'lukas-reineke/cmp-under-comparator', enabled = false },
+    { 'L3MON4D3/LuaSnip', enabled = true },
+    { 'saadparwaiz1/cmp_luasnip', enabled = true },
+    { 'iguanacucumber/mag-nvim-lua', name = 'cmp-nvim-lua', enabled = true },
+    { 'iguanacucumber/mag-buffer', name = 'cmp-buffer', enabled = true },
+    { 'iguanacucumber/mag-cmdline', name = 'cmp-cmdline', enabled = true },
+    { 'https://codeberg.org/FelipeLema/cmp-async-path', name = 'cmp-async-path', enabled = true },
+    { 'lukas-reineke/cmp-under-comparator', enabled = true },
   },
   config = function()
     require('luasnip.loaders.from_vscode').lazy_load()

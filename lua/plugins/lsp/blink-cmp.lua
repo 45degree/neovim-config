@@ -8,6 +8,7 @@ return {
   build = 'cargo build --release',
   event = 'InsertEnter',
   dependencies = { 'rafamadriz/friendly-snippets' },
+  enabled = false,
 
   ---@type blink.cmp.Config
   opts = {
@@ -17,6 +18,7 @@ return {
       ['<CR>'] = { 'select_and_accept', 'fallback' },
       ['<S-Tab>'] = { 'select_prev', 'fallback' },
     },
+    highlight = { use_nvim_cmp_as_default = true },
     sources = {
       completion = {
         enabled_providers = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev' },
