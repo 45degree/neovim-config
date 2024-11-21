@@ -40,4 +40,10 @@ local lazy_config = {
   },
 }
 
+--- custom event for lazy.nvim
+--- @see https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/util/plugin.lua#L75
+local lazy_file_events = { 'BufReadPost', 'BufNewFile', 'BufWritePre' }
+local Event = require('lazy.core.handler.event')
+Event.mappings.LazyFile = { id = 'LazyFile', event = lazy_file_events }
+
 require('lazy').setup(lazy_config)

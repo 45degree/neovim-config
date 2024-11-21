@@ -4,7 +4,7 @@ return {
   opts = {
     indent = { char = '│' },
     exclude = {
-      filetypes = { 'neo-tree', 'alpha', 'help', 'lazy', 'mason', 'Neogit*' },
+      filetypes = { 'neo-tree', 'alpha', 'help', 'lazy', 'mason', 'Neogit*', 'snacks_dashboard' },
       buftypes = { 'terminal', 'nofile', 'prompt' },
     },
     scope = { enabled = false },

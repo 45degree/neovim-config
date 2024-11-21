@@ -1,10 +1,10 @@
 return {
   'echasnovski/mini.indentscope',
   version = '*',
-  event = 'VeryLazy',
+  event = 'LazyFile',
   init = function()
     vim.api.nvim_create_autocmd('FileType', {
-      pattern = { 'help', 'alpha', 'neo-tree', 'Trouble', 'lazy', 'mason', 'notify', 'toggleterm', 'Neogit*' },
+      pattern = { 'help', 'alpha', 'neo-tree', 'Trouble', 'lazy', 'mason', 'notify', 'toggleterm', 'Neogit*', 'snacks_dashboard' },
       callback = function() vim.b.miniindentscope_disable = true end,
     })
   end,

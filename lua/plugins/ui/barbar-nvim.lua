@@ -21,6 +21,6 @@ return {
       pinned = { button = '', filename = true },
     },
     auto_hide = 0,
-    exclude_ft = { 'alpha' },
+    exclude_ft = { 'alpha', 'snacks_dashboard' },
   },
 }
