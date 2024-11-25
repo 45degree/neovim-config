@@ -25,6 +25,7 @@ return {
       TelescopePromptBorder = { fg = 'surface', bg = 'surface' },
       NeoTreeTabSeparatorActive = { fg = 'overlay', bg = 'overlay' },
       NeoTreeTabSeparatorInactive = { fg = 'base', bg = 'base' },
+      LspInlayHint = { fg = 'muted', bg = 'base' },
     },
 
     styles = {
