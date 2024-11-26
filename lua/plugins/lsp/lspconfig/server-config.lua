@@ -19,8 +19,6 @@ return function(server)
   ---@param client vim.lsp.Client
   ---@param bufnr integer
   opts.on_attach = function(client, bufnr)
-    -- disable treesitter if lsp support semantic highlight
-    -- if client.supports_method(vim.lsp.protocol.Methods.textDocument_semanticTokens_full) then vim.treesitter.stop(bufnr) end
     if client == nil then
       vim.notify('client is nil', vim.log.levels.ERROR)
       return
@@ -32,6 +30,12 @@ return function(server)
     })
 
     local methods = vim.lsp.protocol.Methods
+
+    -- enable treesitter if lsp not support semantic highlight
+    if not client.supports_method(methods.textDocument_semanticTokens_full) then
+      vim.treesitter.start(bufnr)
+    end
+
     if client.supports_method(methods.textDocument_inlayHint) then
       local inlay_hints_group = vim.api.nvim_create_augroup('toggle_inlay_hints', { clear = false })
       vim.defer_fn(function()
