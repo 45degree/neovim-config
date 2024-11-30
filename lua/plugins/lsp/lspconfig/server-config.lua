@@ -32,9 +32,7 @@ return function(server)
     local methods = vim.lsp.protocol.Methods
 
     -- enable treesitter if lsp not support semantic highlight
-    if not client.supports_method(methods.textDocument_semanticTokens_full) then
-      vim.treesitter.start(bufnr)
-    end
+    if client.supports_method(methods.textDocument_semanticTokens_full) then vim.treesitter.stop(bufnr) end
 
     if client.supports_method(methods.textDocument_inlayHint) then
       local inlay_hints_group = vim.api.nvim_create_augroup('toggle_inlay_hints', { clear = false })
