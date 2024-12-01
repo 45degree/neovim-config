@@ -95,8 +95,10 @@ local register = {
   -- extensions
   { '<leader>e', group = 'extension', icon = '' },
   { '<leader>ep', group = 'profile', icon = '󰈸' },
-  { '<leader>epb', '<cmd>lua require("plenary.profile").start("profile.log", {flame = true})<cr>', desc = 'begin profile' },
-  { '<leader>epe', '<cmd>lua require("plenary.profile").stop()<cr>', desc = 'end profile' },
+  { '<leader>epb', '<cmd>lua require("snacks.profiler").start()<cr>', desc = 'begin profile', icon = '󰈸' },
+  { '<leader>epe', '<cmd>lua require("snacks.profiler").stop()<cr>', desc = 'end profile', icon = '󰈸' },
+  { '<leader>eph', '<cmd>lua require("snacks.profiler").highlight()<cr>', desc = 'toggle profile highlight', icon = '󰈸' },
+  { '<leader>epp', '<cmd>lua require("snacks.profiler").pick()<cr>', desc = 'group and filter traces and open a picker', icon = '󰈸' },
 
   -- localleader
   { '<localleader>', group = 'local keymap', icon = '' },
