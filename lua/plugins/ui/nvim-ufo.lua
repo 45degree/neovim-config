@@ -2,7 +2,7 @@ return {
   'kevinhwang91/nvim-ufo',
   dependencies = { 'kevinhwang91/promise-async' },
   -- https://github.com/kevinhwang91/nvim-ufo/issues/47#issuecomment-1460742987
-  event = 'VeryLazy',
+  event = 'LazyFile',
   init = function()
     local set_foldcolumn_for_file = vim.api.nvim_create_augroup('set_foldcolumn_for_file', {
       clear = true,

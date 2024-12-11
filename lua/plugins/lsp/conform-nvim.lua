@@ -22,7 +22,7 @@ end
 
 return {
   'stevearc/conform.nvim',
-  event = 'VeryLazy',
+  event = 'LazyFile',
   dependencies = { 'zapling/mason-conform.nvim', 'williamboman/mason.nvim' },
   config = function()
     local conform_to_package = require('mason-conform.mapping').conform_to_package

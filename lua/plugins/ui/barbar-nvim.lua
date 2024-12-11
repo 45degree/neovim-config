@@ -1,6 +1,6 @@
 return {
   'romgrk/barbar.nvim',
-  event = 'VeryLazy',
+  event = 'LazyFile',
   opts = {
     -- Hide inactive buffers and file extensions. Other options are `alternate`, `current`, and `visible`.
     hide = { extensions = false, inactive = false },
