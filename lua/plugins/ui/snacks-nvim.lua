@@ -30,6 +30,9 @@ return {
       })
     end,
     opts = {
+      indent = { enabled = false },
+      input = { enabled = false },
+      scroll = { enabled = false },
       bigfile = { enabled = false },
       notifier = { enabled = true },
       quickfile = { enabled = false },
@@ -51,7 +54,7 @@ return {
         },
         sections = {
           { section = 'header' },
-          { section = 'keys', gap =1, padding = 2 },
+          { section = 'keys', gap = 1, padding = 2 },
           { icon = ' ', title = 'Recent Files', section = 'recent_files', indent = 2, padding = 2 },
           { icon = ' ', title = 'Projects', section = 'projects', indent = 2, padding = 2 },
           { section = 'startup' },
