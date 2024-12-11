@@ -1,7 +1,8 @@
 return {
   'folke/lsp-colors.nvim',
   event = 'LspAttach',
-  dependencies = { 'nvim-cmp' },
+  enabled = false,
+  -- dependencies = { 'nvim-cmp' },
   opts = {
     Error = '#db4b4b',
     Warning = '#e0af68',
