@@ -48,6 +48,7 @@ vim.o.wildmode = 'longest:list,full' -- 底部命令tab自动补全
 vim.o.clipboard = 'unnamedplus' -- 设置vim使用系统剪切板
 vim.o.signcolumn = 'auto'
 vim.o.exrc = true -- project local setting
+vim.o.jumpoptions = 'stack'
 
 if vim.fn.has('nvim') then vim.env.NVIM_TUI_ENABLE_TRUE_COLOR = 1 end
 
