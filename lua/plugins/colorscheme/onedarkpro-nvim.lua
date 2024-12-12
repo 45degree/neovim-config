@@ -35,6 +35,7 @@ return {
       NeoTreeTabSeparatorInactive = { fg = '${telescope_selection}', bg = '${telescope_selection}' },
       BufferCurrentWARN = { fg = '${yellow}', bg = 'NONE' },
       BufferCurrentERROR = { fg = '${red}', bg = 'NONE' },
+      BufferInactiveSign = { fg = '${gray}' },
     },
     styles = {
       types = 'NONE',
