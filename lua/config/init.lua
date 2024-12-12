@@ -37,6 +37,9 @@ local M = {}
 ---| 'terafox'
 ---| 'carbonfox'
 ---| 'onedark' #[onedark]
+---| 'onelight'
+---| 'onedark_dark'
+---| 'onedark_vivid'
 
 ---@class CustomNvimConfig
 local defaults = {
