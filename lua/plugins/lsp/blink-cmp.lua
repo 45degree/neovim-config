@@ -1,43 +1,46 @@
-local icons = require('icons')
-local config = require('config')
-
 ---@type LazyPluginSpec
 return {
-  ---@module 'blink.cmp'
   'Saghen/blink.cmp',
   build = 'cargo build --release',
   event = 'InsertEnter',
   dependencies = { 'rafamadriz/friendly-snippets' },
-  enabled = false,
-
-  ---@type blink.cmp.Config
   opts = {
     keymap = {
       preset = 'default',
-      ['<Tab>'] = { 'select_next', 'snippet_forward', 'show', 'fallback' },
-      ['<CR>'] = { 'select_and_accept', 'fallback' },
-      ['<S-Tab>'] = { 'select_prev', 'fallback' },
+      ['<CR>'] = { 'accept', 'fallback' },
+      ['<Tab>'] = {
+        function(cmp)
+          if cmp.snippet_active() then
+            cmp.hide()
+            return cmp.snippet_forward()
+          else
+            return cmp.select_next()
+          end
+        end,
+        'fallback',
+      },
+      ['<S-Tab>'] = {
+        function(cmp)
+          if cmp.snippet_active() then
+            cmp.hide()
+            return cmp.snippet_backward()
+          else
+            return cmp.select_prev()
+          end
+        end,
+        'fallback',
+      },
     },
-    highlight = { use_nvim_cmp_as_default = true },
     sources = {
-      completion = {
-        enabled_providers = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev' },
-      },
+      default = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev' },
       providers = {
-        lsp = {
-          name = 'LSP',
-          fallback_for = { 'lazydev' },
-        },
-        lazydev = {
-          name = 'Development',
-          module = 'lazydev.integrations.blink',
-        },
+        lazydev = { name = 'Development', module = 'lazydev.integrations.blink' },
       },
     },
-    windows = {
-      autocomplete = {
+    completion = {
+      menu = {
         scrollbar = false,
-        border = config.border,
+        border = require('config').border,
         -- Minimum width should be controlled by components
         min_width = 1,
         draw = {
@@ -51,12 +54,21 @@ return {
         auto_show = true,
         auto_show_delay_ms = 0,
         update_delay_ms = 0,
-        scrollbar = false,
-        border = config.border,
-        winblend = vim.o.pumblend,
+        window = {
+          border = require('config').border,
+          winblend = vim.o.pumblend,
+          scrollbar = false,
+        },
+      },
+      accept = {
+        create_undo_point = false,
       },
     },
-    nerd_font_variant = 'mono',
-    kind_icons = icons.kind,
+
+    appearance = {
+      use_nvim_cmp_as_default = true,
+      nerd_font_variant = 'mono',
+      kind_icons = require('icons').kind,
+    },
   },
 }

@@ -1,7 +1,7 @@
 return {
   'p00f/clangd_extensions.nvim',
   ft = { 'c', 'cpp' },
-  -- enabled = false,
+  enabled = false,
   config = function()
     require('clangd_extensions').setup()
 
