@@ -10,22 +10,22 @@ return {
       ['<CR>'] = { 'accept', 'fallback' },
       ['<Tab>'] = {
         function(cmp)
-          if cmp.snippet_active() then
+          if cmp.is_visible() then
+            return cmp.select_next()
+          elseif cmp.snippet_active() then
             cmp.hide()
             return cmp.snippet_forward()
-          else
-            return cmp.select_next()
           end
         end,
         'fallback',
       },
       ['<S-Tab>'] = {
         function(cmp)
-          if cmp.snippet_active() then
+          if cmp.is_visible() then
+            return cmp.select_prev()
+          elseif cmp.snippet_active() then
             cmp.hide()
             return cmp.snippet_backward()
-          else
-            return cmp.select_prev()
           end
         end,
         'fallback',
@@ -36,6 +36,7 @@ return {
       providers = {
         lazydev = { name = 'Development', module = 'lazydev.integrations.blink' },
       },
+      cmdline = {},
     },
     completion = {
       menu = {
