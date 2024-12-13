@@ -1,6 +1,6 @@
 return {
   'nvim-treesitter/nvim-treesitter',
-  event = 'VeryLazy',
+  event = 'LazyFile',
   opts = {
     ensure_installed = 'all',
     sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)

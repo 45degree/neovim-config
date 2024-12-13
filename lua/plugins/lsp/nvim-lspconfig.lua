@@ -7,7 +7,7 @@ end
 
 return {
   'neovim/nvim-lspconfig',
-  event = 'VeryLazy',
+  event = { 'LazyFile', 'BufReadPre' },
   dependencies = {
     'folke/neoconf.nvim',
     'williamboman/mason.nvim',
