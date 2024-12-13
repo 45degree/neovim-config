@@ -6,7 +6,7 @@ local clangd_flags = {
   '--completion-style=detailed',
   '--enable-config', -- clangd 11+ supports reading from .clangd configuration file
   '--clang-tidy',
-  '--header-insertion-decorators=0',
+  '--header-insertion-decorators',
   -- '-j=1',
   -- "--clang-tidy-checks=-*,llvm-*,clang-analyzer-*,modernize-*,-modernize-use-trailing-return-type",
   -- "--fallback-style=Google",
