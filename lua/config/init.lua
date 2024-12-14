@@ -41,6 +41,8 @@ local M = {}
 ---| 'onedark_dark'
 ---| 'onedark_vivid'
 
+---@alias GuiConfig {fonts: string[], widefonts: string[], font_opts: string?}
+
 ---@class CustomNvimConfig
 local defaults = {
   ---@type colorscheme
@@ -69,6 +71,15 @@ local defaults = {
 
   -- lsp in lsp-config that want to use but can't be install by mason, for example: nushell
   lsp = { 'nushell' },
+
+  ---@type GuiConfig
+  gui = {
+    fonts = { 'Maple Mono' },
+    widefonts = { 'Symbols Nerd Font Mono', 'LXGW WenKai Mono' },
+    font_opts = 'h10',
+
+    goneovim = { widefonts = { 'Symbols Nerd Font Mono', '霞鹜文楷等宽' } },
+  },
 }
 
 local options = {}

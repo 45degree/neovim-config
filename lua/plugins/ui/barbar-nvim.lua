@@ -17,7 +17,7 @@ return {
         changed = { enabled = false, icon = require('icons').gitsigns.modified },
         deleted = { enabled = false, icon = require('icons').gitsigns.deleted },
       },
-      modified = { button = '' },
+      modified = { button = '' },
       pinned = { button = '', filename = true },
     },
     auto_hide = 0,

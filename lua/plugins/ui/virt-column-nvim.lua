@@ -1,6 +1,6 @@
 return {
   'lukas-reineke/virt-column.nvim',
-  event = 'VeryLazy',
+  event = 'LazyFile',
   opts = {
     char = '│',
   },
