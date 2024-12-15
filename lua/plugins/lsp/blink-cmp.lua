@@ -39,6 +39,8 @@ return {
       cmdline = {},
     },
     completion = {
+      list = { selection = 'manual' },
+      ghost_text = { enabled = true },
       menu = {
         scrollbar = false,
         border = require('config').border,
@@ -60,9 +62,6 @@ return {
           winblend = vim.o.pumblend,
           scrollbar = false,
         },
-      },
-      accept = {
-        create_undo_point = false,
       },
     },
 
