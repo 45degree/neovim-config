@@ -1,6 +1,7 @@
 return {
   'nvim-treesitter/nvim-treesitter',
   event = 'LazyFile',
+  cmd = { 'TSUpdate', 'TSInstall', 'TSBufEnable', 'TSBufDisable', 'TSModuleInfo' },
   opts = {
     ensure_installed = 'all',
     sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
