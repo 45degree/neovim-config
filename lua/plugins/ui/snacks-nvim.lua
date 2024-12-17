@@ -2,7 +2,6 @@ return {
   {
     'folke/snacks.nvim',
     lazy = true,
-    dependencies = { 'folke/noice.nvim' },
     init = function()
       -- modified from https://github.com/AstroNvim/AstroNvim/blob/main/lua/astronvim/plugins/alpha.lua
       vim.api.nvim_create_autocmd('VimEnter', {
