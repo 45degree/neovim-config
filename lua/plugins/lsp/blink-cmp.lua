@@ -8,28 +8,8 @@ return {
     keymap = {
       preset = 'default',
       ['<CR>'] = { 'accept', 'fallback' },
-      ['<Tab>'] = {
-        function(cmp)
-          if cmp.is_visible() then
-            return cmp.select_next()
-          elseif cmp.snippet_active() then
-            cmp.hide()
-            return cmp.snippet_forward()
-          end
-        end,
-        'fallback',
-      },
-      ['<S-Tab>'] = {
-        function(cmp)
-          if cmp.is_visible() then
-            return cmp.select_prev()
-          elseif cmp.snippet_active() then
-            cmp.hide()
-            return cmp.snippet_backward()
-          end
-        end,
-        'fallback',
-      },
+      ['<Tab>'] = { 'select_next', 'fallback' },
+      ['<S-Tab>'] = { 'select_prev', 'fallback' },
     },
     sources = {
       default = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev' },
@@ -40,7 +20,8 @@ return {
     },
     completion = {
       list = { selection = 'manual' },
-      ghost_text = { enabled = true },
+      ghost_text = { enabled = false },
+      accept = { create_undo_point = false },
       menu = {
         scrollbar = false,
         border = require('config').border,
