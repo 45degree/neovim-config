@@ -2,6 +2,7 @@ return {
   {
     'folke/snacks.nvim',
     lazy = true,
+    event = 'LazyFile',
     init = function()
       -- modified from https://github.com/AstroNvim/AstroNvim/blob/main/lua/astronvim/plugins/alpha.lua
       vim.api.nvim_create_autocmd('VimEnter', {
@@ -29,7 +30,23 @@ return {
       })
     end,
     opts = {
-      indent = { enabled = false },
+      indent = {
+        enabled = true,
+        filter = function(buf)
+          local disabled_filetype = { 'neo-tree', 'alpha', 'help', 'lazy', 'mason', 'Neogit*', 'snacks_dashboard' }
+          local disabled_buftypes = { 'terminal', 'nofile', 'prompt' }
+
+          for _, ft in ipairs(disabled_filetype) do
+            if string.match(vim.bo[buf].filetype, ft) then return false end
+          end
+
+          for _, bt in ipairs(disabled_buftypes) do
+            if string.match(vim.bo[buf].buftype, bt) then return false end
+          end
+
+          return vim.g.snacks_indent ~= false and vim.b[buf].snacks_indent ~= false
+        end,
+      },
       input = { enabled = false },
       scroll = { enabled = false },
       bigfile = { enabled = false },
