@@ -114,7 +114,7 @@ return {
   enabled = false,
   dependencies = {
     'rafamadriz/friendly-snippets',
-    { 'L3MON4D3/LuaSnip', enabled = false },
+    { 'L3MON4D3/LuaSnip', enabled = true },
     { 'saadparwaiz1/cmp_luasnip', enabled = false },
     { 'iguanacucumber/mag-nvim-lua', name = 'cmp-nvim-lua', enabled = false },
     { 'iguanacucumber/mag-buffer', name = 'cmp-buffer', enabled = false },

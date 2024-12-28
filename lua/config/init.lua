@@ -75,10 +75,10 @@ local defaults = {
   ---@type GuiConfig
   gui = {
     fonts = { 'Maple Mono' },
-    widefonts = { 'Symbols Nerd Font Mono', 'LXGW WenKai Mono' },
+    widefonts = { 'Symbols Nerd Font', 'LXGW WenKai Mono' },
     font_opts = 'h10',
 
-    goneovim = { widefonts = { 'Symbols Nerd Font Mono', '霞鹜文楷等宽' } },
+    goneovim = { widefonts = { 'Symbols Nerd Font', '霞鹜文楷等宽' } },
   },
 }
 
