@@ -2,7 +2,7 @@
 return {
   'Saghen/blink.cmp',
   build = 'cargo build --release',
-  event = 'InsertEnter',
+  event = { 'InsertEnter', 'CmdlineEnter' },
   dependencies = { 'rafamadriz/friendly-snippets', { 'L3MON4D3/LuaSnip', version = 'v2.*' } },
   opts = {
     keymap = {
@@ -21,10 +21,7 @@ return {
     },
     sources = {
       default = { 'lsp', 'path', 'luasnip', 'buffer', 'lazydev' },
-      providers = {
-        lazydev = { name = 'Development', module = 'lazydev.integrations.blink' },
-      },
-      cmdline = {},
+      providers = { lazydev = { name = 'Development', module = 'lazydev.integrations.blink' } },
     },
     completion = {
       list = { selection = 'manual' },
