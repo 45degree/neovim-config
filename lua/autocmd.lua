@@ -41,3 +41,9 @@ vim.api.nvim_create_autocmd({ 'VimResized' }, {
     vim.cmd('tabnext ' .. current_tab)
   end,
 })
+
+-- set filetype for slang
+vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
+  pattern = '*.slang',
+  callback = function() vim.cmd('set filetype=slang') end,
+})

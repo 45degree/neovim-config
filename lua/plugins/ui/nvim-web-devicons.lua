@@ -8,6 +8,9 @@ return {
       h = { glyph = '󰠩', hl = 'MiniIconsPurple' },
       hpp = { glyph = '󰜖', hl = 'MiniIconsPurple' },
       nu = { glyph = '>', hl = 'MiniIconsGreen' },
+      slang = { glyph = '󰸱', hl = 'MiniIconsAzure' },
+      hlsl = { glyph = '󰸱', hl = 'MiniIconsBlue' },
+      glsl = { glyph = '󰸱', hl = 'MiniIconsGreen' },
     },
   },
   init = function()
