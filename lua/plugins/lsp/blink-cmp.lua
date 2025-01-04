@@ -1,7 +1,7 @@
 ---@type LazyPluginSpec
 return {
   'Saghen/blink.cmp',
-  build = 'cargo build --release',
+  version = '*',
   event = { 'InsertEnter', 'CmdlineEnter' },
   dependencies = { 'rafamadriz/friendly-snippets', { 'L3MON4D3/LuaSnip', version = 'v2.*' } },
   opts = {
