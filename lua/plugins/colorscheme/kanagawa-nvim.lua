@@ -29,6 +29,8 @@ return {
         TelescopePromptTitle = { fg = theme.ui.bg_p1, bg = theme.ui.special },
         TelescopePreviewTitle = { fg = theme.ui.bg_p1, bg = theme.ui.special },
         TelescopeResultsTitle = { fg = theme.ui.special, bg = theme.ui.bg_m3 },
+        BlinkCmpMenu = { fg = theme.ui.fg_dim },
+        BlinkCmpMenuBorder = { fg = theme.ui.fg_dim, bg = 'NONE' },
       }
     end,
   },
