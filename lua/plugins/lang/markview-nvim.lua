@@ -1,7 +1,8 @@
 return {
   'OXY2DEV/markview.nvim',
   dependencies = 'nvim-treesitter/nvim-treesitter',
+  branch = 'dev',
   ft = 'markdown',
   cmd = 'Markview',
-  opts = { initial_state = false },
+  opts = { preview = { enable = false } },
 }
