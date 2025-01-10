@@ -3,7 +3,7 @@ return {
   'Saghen/blink.cmp',
   version = '*',
   event = { 'InsertEnter', 'CmdlineEnter' },
-  dependencies = { 'rafamadriz/friendly-snippets', { 'L3MON4D3/LuaSnip', version = 'v2.*' } },
+  dependencies = { 'rafamadriz/friendly-snippets', { 'L3MON4D3/LuaSnip', version = 'v2.*' }, { 'Saghen/blink.compat', version = '*', lazy = true } },
   opts = {
     keymap = {
       preset = 'default',
@@ -13,8 +13,13 @@ return {
     },
     snippets = { preset = 'luasnip' },
     sources = {
-      default = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev' },
-      providers = { lazydev = { name = 'Development', module = 'lazydev.integrations.blink' } },
+      default = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev', 'avante_commands', 'avante_mentions', 'avante_files' },
+      providers = {
+        lazydev = { name = 'Development', module = 'lazydev.integrations.blink' },
+        avante_commands = { name = 'avante_commands', module = 'blink.compat.source', score_offset = 90, opts = {} },
+        avante_files = { name = 'avante_commands', module = 'blink.compat.source', score_offset = 100, opts = {} },
+        avante_mentions = { name = 'avante_mentions', module = 'blink.compat.source', score_offset = 1000, opts = {} },
+      },
     },
     completion = {
       list = { selection = { preselect = false, auto_insert = false } },

@@ -80,11 +80,18 @@ local defaults = {
 
     goneovim = { widefonts = { 'Symbols Nerd Font', '霞鹜文楷等宽' } },
   },
+
+  env = {},
 }
 
 local options = {}
 
-function M.setup(opts) options = vim.tbl_deep_extend('force', defaults, opts or {}) or {} end
+function M.setup(opts)
+  options = vim.tbl_deep_extend('force', defaults, opts or {}) or {}
+  for k, v in pairs(options.env) do
+    vim.env[k] = v
+  end
+end
 
 setmetatable(M, {
   __index = function(_, key)
