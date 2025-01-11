@@ -14,6 +14,33 @@ return {
   },
   build = ':AvanteBuild',
   version = '*',
+  keys = function(_, keys)
+    ---@type avante.Config
+    local opts = require('lazy.core.plugin').values(require('lazy.core.config').spec.plugins['avante.nvim'], 'opts', false)
+
+    local mappings = {
+      {
+        opts.mappings.ask,
+        function() require('avante.api').ask() end,
+        desc = 'avante: ask',
+        mode = { 'n', 'v' },
+      },
+      {
+        opts.mappings.refresh,
+        function() require('avante.api').refresh() end,
+        desc = 'avante: refresh',
+        mode = 'v',
+      },
+      {
+        opts.mappings.edit,
+        function() require('avante.api').edit() end,
+        desc = 'avante: edit',
+        mode = { 'n', 'v' },
+      },
+    }
+    mappings = vim.tbl_filter(function(m) return m[1] and #m[1] > 0 end, mappings)
+    return vim.list_extend(mappings, keys)
+  end,
   opts = {
     -- add any opts here
     provider = 'kimi', -- You can then change this provider here
@@ -24,6 +51,11 @@ return {
         endpoint = 'https://api.moonshot.cn/v1',
         model = 'moonshot-v1-8k',
       },
+    },
+    mappings = {
+      ask = '<leader>aa',
+      edit = '<leader>ae',
+      refresh = '<leader>ar',
     },
   },
 }
