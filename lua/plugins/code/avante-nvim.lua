@@ -1,6 +1,7 @@
 return {
   'yetone/avante.nvim',
   lazy = true,
+  event = 'LazyFile',
   cmd = {
     'AvanteAsk',
     'AvanteBuild',
@@ -43,13 +44,19 @@ return {
   end,
   opts = {
     -- add any opts here
-    provider = 'kimi', -- You can then change this provider here
+    provider = 'deepseek', -- You can then change this provider here
     vendors = {
       kimi = {
         __inherited_from = 'openai',
         api_key_name = 'KIMI_API_KEY',
         endpoint = 'https://api.moonshot.cn/v1',
         model = 'moonshot-v1-8k',
+      },
+      deepseek = {
+        __inherited_from = 'openai',
+        api_key_name = 'DEEPSEEK_API_KEY',
+        endpoint = 'https://api.deepseek.com',
+        model = 'deepseek-coder',
       },
     },
     mappings = {
