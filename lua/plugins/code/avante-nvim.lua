@@ -45,6 +45,7 @@ return {
   opts = {
     -- add any opts here
     provider = 'deepseek', -- You can then change this provider here
+    gemini = { api_key_name = 'GEMINI_API_KEY' },
     vendors = {
       kimi = {
         __inherited_from = 'openai',

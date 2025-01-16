@@ -49,7 +49,7 @@ return {
       },
       input = { enabled = false },
       scroll = { enabled = false },
-      bigfile = { enabled = false },
+      bigfile = { enabled = true },
       notifier = { enabled = true },
       quickfile = { enabled = false },
       statuscolumn = { enabled = false },
