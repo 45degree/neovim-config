@@ -54,6 +54,7 @@ return {
       quickfile = { enabled = false },
       statuscolumn = { enabled = false },
       words = { enabled = false },
+      picker = { enabled = false },
       dashboard = {
         preset = {
           ---@type snacks.dashboard.Item[]
