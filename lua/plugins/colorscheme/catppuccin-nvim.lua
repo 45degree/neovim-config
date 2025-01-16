@@ -33,7 +33,14 @@ return {
       operators = {},
     },
     color_overrides = {},
-    custom_highlights = {},
+    custom_highlights = function(color)
+      return {
+        BufferCurrentWARN = { fg = color.yellow, bg = color.surface1 },
+        BufferCurrentERROR = { fg = color.red, bg = color.surface1 },
+        BufferCurrentINFO = { fg = color.sky, bg = color.surface1 },
+        BufferCurrentHINT = { fg = color.teal, bg = color.surface1 },
+      }
+    end,
     integrations = {
       aerial = false,
       barbar = true,
@@ -80,10 +87,7 @@ return {
       -- Special integrations, see https://github.com/catppuccin/nvim#special-integrations
       dap = true,
       dap_ui = true,
-      indent_blankline = {
-        enabled = true,
-        colored_indent_levels = true,
-      },
+      indent_blankline = { enabled = false },
       native_lsp = {
         enabled = true,
         inlay_hints = { background = false },
