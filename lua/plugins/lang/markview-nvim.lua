@@ -5,5 +5,5 @@ return {
   submodules = false,
   ft = { 'markdown', 'Avante', 'typst' },
   cmd = 'Markview',
-  opts = { preview = { enable = true, filetypes = { 'markdown', 'typst', 'Avante' } } },
+  opts = { preview = { enable = true, filetypes = { 'markdown', 'typst', 'Avante' }, ignore_buftypes = {} } },
 }
