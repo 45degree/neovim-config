@@ -63,7 +63,7 @@ local register = {
 
   -- filesystem and outlines
   { '<leader>t', '<cmd>Neotree toggle filesystem<cr>', desc = 'toggle filesystem', icon = '󰙅' },
-  { '<leader>T', '<cmd>Neotree toggle document_symbols<cr>', desc = 'toggle outlines', icon = '󱏒' },
+  { '<leader>T', '<cmd>Outline<cr>', desc = 'toggle outlines', icon = '󱏒' },
 
   -- windows
   { '<leader>w', group = 'windows' },

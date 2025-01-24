@@ -44,7 +44,7 @@ return {
       sources = {
         { source = 'filesystem', display_name = ' 󰉓 Files ' },
         { source = 'git_status', display_name = ' 󰊢 Git ' },
-        { source = 'document_symbols', display_name = '  Outline ' },
+        -- { source = 'document_symbols', display_name = '  Outline ' },
       },
       content_layout = 'center',
     },
