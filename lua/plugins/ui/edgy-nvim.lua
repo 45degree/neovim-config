@@ -19,7 +19,7 @@ return {
     },
     left = {
       { title = 'Neo-Tree', ft = 'neo-tree', open = 'Neotree', pinned = true, size = { width = 40 } },
-      { title = 'Outline', ft = 'Outline', open = function() require('outline').open() end, pinned = true, size = { width = 40 } },
+      { title = 'Outline', ft = 'Outline', open = function() require('outline').open() end, pinned = true, size = { width = 40, height = 0.2 } },
     },
     animate = { enabled = false },
   },

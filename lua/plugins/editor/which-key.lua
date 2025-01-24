@@ -62,7 +62,7 @@ local register = {
   { '<leader>guh', '<cmd>Gitsigns undo_stage_hunk<cr>', desc = 'undo git hunk' },
 
   -- filesystem and outlines
-  { '<leader>t', '<cmd>Neotree toggle filesystem<cr>', desc = 'toggle filesystem', icon = '󰙅' },
+  { '<leader>t', function() require('edgy').toggle('left') end, desc = 'toggle filesystem', icon = '󰙅' },
   { '<leader>T', '<cmd>Outline<cr>', desc = 'toggle outlines', icon = '󱏒' },
 
   -- windows
