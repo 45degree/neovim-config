@@ -8,6 +8,7 @@ return {
       position = 'right',
       width = 25,
       relative_width = true,
+      focus_on_open = false,
     },
 
     providers = {
