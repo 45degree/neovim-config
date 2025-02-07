@@ -21,3 +21,9 @@ gui_config.font_opts = config.gui.font_opts
 
 if config.gui.neovide then gui_config = vim.tbl_deep_extend('force', gui_config, config.gui.neovide or {}) end
 set_neovide(gui_config)
+
+if vim.fn.has('win32') == 1 then
+  vim.g.neovide_title_background_color = string.format('%x', vim.api.nvim_get_hl(0, { id = vim.api.nvim_get_hl_id_by_name('Normal') }).bg)
+  vim.g.neovide_title_text_color = 'white'
+  vim.g.neovide_cursor_trail_size = 0
+end

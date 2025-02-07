@@ -44,7 +44,7 @@ return {
   end,
   opts = {
     -- add any opts here
-    provider = 'copilot', -- You can then change this provider here
+    provider = 'kimi', -- You can then change this provider here
     gemini = { api_key_name = 'GEMINI_API_KEY' },
     vendors = {
       kimi = {
@@ -65,5 +65,6 @@ return {
       edit = '<leader>ae',
       refresh = '<leader>ar',
     },
+    windows = { sidebar_header = { rounded = false } },
   },
 }
