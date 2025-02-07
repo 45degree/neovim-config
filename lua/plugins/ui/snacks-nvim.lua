@@ -49,6 +49,7 @@ return {
       },
       input = { enabled = false },
       scroll = { enabled = false },
+      scratch = { enabled = false },
       bigfile = { enabled = true },
       notifier = { enabled = true },
       quickfile = { enabled = false },
