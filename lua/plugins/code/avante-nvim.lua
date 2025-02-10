@@ -52,6 +52,7 @@ return {
         api_key_name = 'KIMI_API_KEY',
         endpoint = 'https://api.moonshot.cn/v1',
         model = 'moonshot-v1-8k',
+        temperature = 0.3,
       },
       deepseek = {
         __inherited_from = 'openai',
