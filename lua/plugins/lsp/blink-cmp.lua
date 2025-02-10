@@ -63,8 +63,6 @@ return {
       },
       documentation = {
         auto_show = true,
-        auto_show_delay_ms = 0,
-        update_delay_ms = 0,
         window = {
           border = require('config').border,
           winblend = vim.o.pumblend,
@@ -78,5 +76,7 @@ return {
       nerd_font_variant = 'mono',
       kind_icons = require('icons').kind,
     },
+
+    signature = { enabled = false },
   },
 }
