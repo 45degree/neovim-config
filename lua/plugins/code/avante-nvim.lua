@@ -44,7 +44,7 @@ return {
   end,
   opts = {
     -- add any opts here
-    provider = 'kimi', -- You can then change this provider here
+    provider = 'siliconflow-deepseek-r1-distill-llama-70B', -- You can then change this provider here
     gemini = { api_key_name = 'GEMINI_API_KEY' },
     vendors = {
       kimi = {
@@ -59,6 +59,26 @@ return {
         api_key_name = 'DEEPSEEK_API_KEY',
         endpoint = 'https://api.deepseek.com/v1',
         model = 'deepseek-chat',
+      },
+      siliconflow = {
+        __inherited_from = 'openai',
+        api_key_name = 'SILICONFLOW_API_KEY',
+        endpoint = 'https://api.siliconflow.cn/v1/',
+        model = 'Pro/deepseek-ai/DeepSeek-R1',
+        disable_tools = true,
+      },
+      ['siliconflow-deepseek-v3'] = {
+        __inherited_from = 'openai',
+        api_key_name = 'SILICONFLOW_API_KEY',
+        endpoint = 'https://api.siliconflow.cn/v1/',
+        model = 'deepseek-ai/DeepSeek-V3',
+      },
+      ['siliconflow-deepseek-r1-distill-llama-70B'] = {
+        __inherited_from = 'openai',
+        api_key_name = 'SILICONFLOW_API_KEY',
+        endpoint = 'https://api.siliconflow.cn/v1/',
+        model = 'deepseek-ai/DeepSeek-R1-Distill-Llama-70B',
+        disable_tools = true,
       },
     },
     mappings = {
