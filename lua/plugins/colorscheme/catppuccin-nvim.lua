@@ -48,7 +48,7 @@ return {
       blink_cmp = true,
       cmp = true,
       coc_nvim = false,
-      dashboard = false,
+      dashboard = true,
       diffview = true,
       dropbar = { enabled = true, color_mode = true },
       fern = false,

@@ -20,6 +20,11 @@ return {
     local lspinstaller = require('mason-lspconfig')
     local lspconfig = require('lspconfig')
 
+    -- Set global defaults for all servers
+    lspconfig.util.default_config = vim.tbl_extend('force', lspconfig.util.default_config, {
+      capabilities = vim.tbl_deep_extend('force', vim.lsp.protocol.make_client_capabilities(), require('lsp-file-operations').default_capabilities()),
+    })
+
     for _, server in ipairs(lspinstaller.get_installed_servers()) do
       if server == 'rust_analyzer' and has_plugin('rustaceanvim') then goto continue end
       local config = require('plugins.lsp.lspconfig.server-config')(server)

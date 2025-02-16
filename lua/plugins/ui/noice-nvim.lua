@@ -1,7 +1,7 @@
 return {
   'folke/noice.nvim',
   event = 'VeryLazy',
-  dependencies = { 'MunifTanjim/nui.nvim', 'folke/snacks.nvim' },
+  dependencies = { 'MunifTanjim/nui.nvim', 'rcarriga/nvim-notify' },
   opts = {
     lsp = {
       override = {
@@ -33,4 +33,18 @@ return {
       hover = { border = { style = require('config').border } },
     },
   },
+  config = function(_, opts)
+    local icons = require('icons')
+    require('notify').setup({
+      icons = {
+        DEBUG = icons.diagnostic.bug,
+        ERROR = icons.diagnostic.error,
+        INFO = icons.diagnostic.info,
+        TRACE = icons.diagnostic.hint,
+        WARN = icons.diagnostic.warn,
+      },
+    })
+
+    require('noice').setup(opts)
+  end,
 }

@@ -11,10 +11,11 @@ vim.o.wrap = true -- 折行
 vim.o.linebreak = true -- 单词内部不折行
 vim.o.wrapmargin = 2 -- 折行边缘字符数
 vim.o.scrolloff = 5 -- 垂直翻滚时保留的行数
-vim.o.laststatus = 0 -- 显示状态栏 0不显示, 1多窗口显示, 2显示, 3 全局唯一
+vim.o.laststatus = 3 -- 显示状态栏 0不显示, 1多窗口显示, 2显示, 3 全局唯一
 vim.o.ruler = true -- 状态栏显示光标当前位置
 vim.o.termguicolors = true -- 支持24位彩色
 vim.o.timeoutlen = 500
+vim.o.showtabline = 2
 vim.cmd([[syntax on]]) -- 语法高亮
 
 -- 缩进设置
