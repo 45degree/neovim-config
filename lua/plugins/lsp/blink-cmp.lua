@@ -21,6 +21,7 @@ return {
         avante_mentions = { name = 'avante_mentions', module = 'blink.compat.source', score_offset = 1000, opts = {} },
       },
     },
+    cmdline = { completion = { menu = { draw = { columns = { { 'kind_icon' }, { 'label', 'label_description', gap = 1 } } } } } },
     completion = {
       list = { selection = { preselect = false, auto_insert = false } },
       ghost_text = { enabled = false },
