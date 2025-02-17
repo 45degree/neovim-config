@@ -3,7 +3,7 @@ return {
   'Saghen/blink.cmp',
   version = '*',
   event = { 'InsertEnter', 'CmdlineEnter' },
-  dependencies = { 'rafamadriz/friendly-snippets', { 'L3MON4D3/LuaSnip', version = 'v2.*' }, { 'Saghen/blink.compat', version = '*', lazy = true } },
+  dependencies = { 'rafamadriz/friendly-snippets', { 'Saghen/blink.compat', version = '*', lazy = true } },
   opts = {
     keymap = {
       preset = 'default',
@@ -11,7 +11,7 @@ return {
       ['<Tab>'] = { 'select_next', 'snippet_forward', 'fallback' },
       ['<S-Tab>'] = { 'select_prev', 'snippet_backward', 'fallback' },
     },
-    snippets = { preset = 'luasnip' },
+    snippets = { preset = 'default' },
     sources = {
       default = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev', 'avante_commands', 'avante_mentions', 'avante_files' },
       providers = {
