@@ -82,6 +82,8 @@ local defaults = {
   },
 
   env = {},
+
+  shell = nil
 }
 
 local options = {}
@@ -90,6 +92,10 @@ function M.setup(opts)
   options = vim.tbl_deep_extend('force', defaults, opts or {}) or {}
   for k, v in pairs(options.env) do
     vim.env[k] = v
+  end
+
+  if options.shell ~= nil then
+    vim.opt.shell = options.shell
   end
 end
 
