@@ -93,10 +93,6 @@ function M.setup(opts)
   for k, v in pairs(options.env) do
     vim.env[k] = v
   end
-
-  if options.shell ~= nil then
-    vim.opt.shell = options.shell
-  end
 end
 
 setmetatable(M, {

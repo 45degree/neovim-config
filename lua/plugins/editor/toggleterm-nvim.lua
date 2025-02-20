@@ -21,7 +21,11 @@ return {
     persist_size = true,
     direction = 'horizontal',
     close_on_exit = true, -- close the terminal window when the process exits
-    shell = vim.o.shell, -- change the default shell
+    shell = function()
+      local shell = require('config').shell
+      if shell == nil then return vim.o.shell end
+      return shell
+    end,
   },
   config = function(_, opts)
     require('toggleterm').setup(opts)
