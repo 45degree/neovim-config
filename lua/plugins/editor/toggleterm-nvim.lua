@@ -23,8 +23,8 @@ return {
     close_on_exit = true, -- close the terminal window when the process exits
     shell = function()
       local shell = require('config').shell
-      if shell == nil then return vim.o.shell end
-      return shell
+      if shell == nil or not vim.islist(shell) then return vim.o.shell end
+      return shell[1]
     end,
   },
   config = function(_, opts)
@@ -64,5 +64,24 @@ return {
 
       vim.keymap.set('n', '<leader>gl', '<cmd>Lazygit<cr>', { desc = 'Open Lazygit' })
     end
+
+    vim.api.nvim_create_user_command('TermSelect', function()
+      local shell = require('config').shell
+      if type(shell) == 'string' then
+        local terminal = require('toggleterm.terminal').Terminal:new({ cmd = shell })
+        terminal:toggle()
+        return
+      end
+
+      if not vim.islist(shell) then
+        vim.notify('config of shell must be string or list', vim.log.levels.ERROR, {})
+        return
+      end
+
+      vim.ui.select(shell, { prompt = 'Select shell' }, function(choice)
+        local terminal = require('toggleterm.terminal').Terminal:new({ cmd = choice })
+        terminal:toggle()
+      end)
+    end, { nargs = 0 })
   end,
 }
