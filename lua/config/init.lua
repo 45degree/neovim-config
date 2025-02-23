@@ -63,6 +63,7 @@ local defaults = {
 
   ---@type 'codeium' | 'copilot' | 'fittencode' | 'none'
   ai = 'copilot',
+  avante_default_provider = 'copilot',
 
   -- https://github.com/mfussenegger/nvim-lint/tree/master?tab=readme-ov-file#available-linters
   linter = {},

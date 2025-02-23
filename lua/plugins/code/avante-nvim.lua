@@ -44,7 +44,7 @@ return {
   end,
   opts = {
     -- add any opts here
-    provider = 'siliconflow-deepseek-r1-distill-qwen-32B', -- You can then change this provider here
+    provider = require('config').avante_default_provider or 'copilot',
     gemini = { api_key_name = 'GEMINI_API_KEY' },
     vendors = {
       kimi = {
