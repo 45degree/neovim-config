@@ -26,6 +26,7 @@ return {
   dependencies = { 'zapling/mason-conform.nvim', 'williamboman/mason.nvim' },
   config = function()
     local conform_to_package = require('mason-conform.mapping').conform_to_package
+    conform_to_package['ruff_fix'] = nil
     local package_to_conform = {}
     for k, v in pairs(conform_to_package) do
       package_to_conform[v] = k
