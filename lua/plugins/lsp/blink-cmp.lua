@@ -3,7 +3,11 @@ return {
   'Saghen/blink.cmp',
   version = '*',
   event = { 'InsertEnter', 'CmdlineEnter' },
-  dependencies = { 'rafamadriz/friendly-snippets', { 'Saghen/blink.compat', version = '*', lazy = true } },
+  dependencies = {
+    'rafamadriz/friendly-snippets',
+    { 'Saghen/blink.compat', version = '*', lazy = true },
+    { 'Kaiser-Yang/blink-cmp-avante', lazy = true },
+  },
   opts = {
     keymap = {
       preset = 'default',
@@ -13,12 +17,10 @@ return {
     },
     snippets = { preset = 'default' },
     sources = {
-      default = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev', 'avante_commands', 'avante_mentions', 'avante_files' },
+      default = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev', 'avante' },
       providers = {
         lazydev = { name = 'Development', module = 'lazydev.integrations.blink' },
-        avante_commands = { name = 'avante_commands', module = 'blink.compat.source', score_offset = 90, opts = {} },
-        avante_files = { name = 'avante_commands', module = 'blink.compat.source', score_offset = 100, opts = {} },
-        avante_mentions = { name = 'avante_mentions', module = 'blink.compat.source', score_offset = 1000, opts = {} },
+        avante = { module = 'blink-cmp-avante', name = 'Avante', opts = {} },
       },
     },
     cmdline = { completion = { menu = { draw = { columns = { { 'kind_icon' }, { 'label', 'label_description', gap = 1 } } } } } },
