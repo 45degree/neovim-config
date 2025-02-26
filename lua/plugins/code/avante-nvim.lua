@@ -67,11 +67,18 @@ return {
         model = 'Pro/deepseek-ai/DeepSeek-R1',
         disable_tools = true,
       },
+      ['siliconflow-deepseek-v2.5'] = {
+        __inherited_from = 'openai',
+        api_key_name = 'SILICONFLOW_API_KEY',
+        endpoint = 'https://api.siliconflow.cn/v1/',
+        model = 'deepseek-ai/DeepSeek-V2.5',
+      },
       ['siliconflow-deepseek-v3'] = {
         __inherited_from = 'openai',
         api_key_name = 'SILICONFLOW_API_KEY',
         endpoint = 'https://api.siliconflow.cn/v1/',
         model = 'deepseek-ai/DeepSeek-V3',
+        disable_tools = true,
       },
       ['siliconflow-deepseek-r1-distill-llama-70B'] = {
         __inherited_from = 'openai',
