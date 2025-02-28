@@ -11,6 +11,7 @@ return {
       slang = { glyph = '󰸱', hl = 'MiniIconsAzure' },
       hlsl = { glyph = '󰸱', hl = 'MiniIconsBlue' },
       glsl = { glyph = '󰸱', hl = 'MiniIconsGreen' },
+      hx = { glyph = '', hl = 'MiniIconsOrange' },
     },
   },
   init = function()

@@ -25,5 +25,15 @@ return {
       additional_vim_regex_highlighting = false,
     },
   },
-  config = function(_, opts) require('nvim-treesitter.configs').setup(opts) end,
+  config = function(_, opts)
+    require('nvim-treesitter.parsers').get_parser_configs().haxe = {
+      install_info = {
+        url = 'https://github.com/vantreeseba/tree-sitter-haxe',
+        files = { 'src/parser.c', 'src/scanner.c' },
+        branch = 'main',
+      },
+      filetype = 'haxe',
+    }
+    require('nvim-treesitter.configs').setup(opts)
+  end,
 }

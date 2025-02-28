@@ -43,7 +43,4 @@ vim.api.nvim_create_autocmd({ 'VimResized' }, {
 })
 
 -- set filetype for slang
-vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
-  pattern = '*.slang',
-  callback = function() vim.cmd('set filetype=slang') end,
-})
+vim.filetype.add({ extension = { hx = 'haxe', slang = 'slang' } })
