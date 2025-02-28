@@ -29,7 +29,12 @@ return {
         avante = { module = 'blink-cmp-avante', name = 'Avante', opts = {} },
       },
     },
-    cmdline = { completion = { menu = { draw = { columns = { { 'kind_icon' }, { 'label', 'label_description', gap = 1 } } } } } },
+    cmdline = {
+      completion = {
+        menu = { auto_show = true, draw = { columns = { { 'kind_icon' }, { 'label', 'label_description', gap = 1 } } } },
+        list = { selection = { preselect = false } },
+      },
+    },
     completion = {
       list = { selection = { preselect = false, auto_insert = false } },
       ghost_text = { enabled = false },
