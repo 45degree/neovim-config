@@ -7,6 +7,7 @@ return {
     'rafamadriz/friendly-snippets',
     { 'Saghen/blink.compat', version = '*', lazy = true },
     { 'Kaiser-Yang/blink-cmp-avante', lazy = true },
+    { 'disrupted/blink-cmp-conventional-commits', lazy = true },
   },
   opts = {
     keymap = {
@@ -17,8 +18,13 @@ return {
     },
     snippets = { preset = 'default' },
     sources = {
-      default = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev', 'avante' },
+      default = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev', 'avante', 'conventional_commits' },
       providers = {
+        conventional_commits = {
+          name = 'Conventional Commits',
+          module = 'blink-cmp-conventional-commits',
+          enabled = function() return vim.bo.filetype == 'gitcommit' end,
+        },
         lazydev = { name = 'Development', module = 'lazydev.integrations.blink' },
         avante = { module = 'blink-cmp-avante', name = 'Avante', opts = {} },
       },
