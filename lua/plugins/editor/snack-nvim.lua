@@ -3,6 +3,10 @@ return {
   event = 'VeryLazy',
   opts = {
     bigfile = { enabled = true },
+    input = { enabled = true },
+    styles = {
+      input = { relative = 'cursor', row = -3, col = 0 },
+    },
   },
   config = function(_, opts)
     require('snacks').setup(opts)

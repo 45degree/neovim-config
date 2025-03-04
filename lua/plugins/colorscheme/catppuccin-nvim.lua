@@ -55,6 +55,7 @@ return {
       fidget = false,
       gitgutter = false,
       gitsigns = true,
+      grug_far = true,
       harpoon = false,
       hop = false,
       illuminate = true,

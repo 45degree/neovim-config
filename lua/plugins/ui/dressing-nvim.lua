@@ -3,7 +3,7 @@ return {
   event = 'VeryLazy',
   opts = {
     input = {
-      enabled = true,
+      enabled = false,
       insert_only = false,
       win_options = {
         winhighlight = 'FloatBorder:Normal',
