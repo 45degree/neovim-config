@@ -14,7 +14,6 @@ return {
     'AvanteToggle',
   },
   build = ':AvanteBuild',
-  version = '*',
   keys = function(_, keys)
     ---@type avante.Config
     local opts = require('lazy.core.plugin').values(require('lazy.core.config').spec.plugins['avante.nvim'], 'opts', false)
