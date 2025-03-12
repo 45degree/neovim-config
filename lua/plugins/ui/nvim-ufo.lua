@@ -35,7 +35,13 @@ return {
   end,
   opts = {
     close_fold_kinds_for_ft = { default = { 'imports' } },
-    provider_selector = function(bufnr, filetype, buftype) return { 'treesitter', 'indent' } end,
+    provider_selector = function(bufnr, filetype, buftype)
+      local ft_ignore = { 'neo-tree', 'toggleterm', 'Outline', 'alpha', 'NeogitStatus', 'snacks_dashboard', 'dashboard' }
+      local bt_ignore = { 'nofile', 'prompt' }
+      if vim.tbl_contains(ft_ignore, filetype) then return '' end
+      if vim.tbl_contains(bt_ignore, buftype) then return '' end
+      return { 'lsp', 'indent' }
+    end,
   },
   enabled = function() return vim.fn.has('nvim-0.9') == 1 end,
 }

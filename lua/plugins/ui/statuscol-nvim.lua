@@ -5,7 +5,7 @@ return {
   config = function()
     local builtin = require('statuscol.builtin')
     require('statuscol').setup({
-      ft_ignore = { 'neo-tree', 'toggleterm', 'Outline', 'alpha', 'NeogitStatus', 'snacks_dashboard' },
+      ft_ignore = { 'neo-tree', 'toggleterm', 'Outline', 'alpha', 'NeogitStatus', 'snacks_dashboard', 'dashboard' },
       bt_ignore = { 'nofile', 'prompt' },
       segments = {
         { sign = { name = { '.*' } }, click = 'v:lua.ScSa' },
