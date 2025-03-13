@@ -9,12 +9,18 @@ local set_xmake_dap_config = function(params)
   local xmake = require('xmake')
 
   local natvis_file = {}
-  local deps = xmake.get_target_attribute(params.target_name, 'get', 'deps')
-  for _, dep in ipairs(deps) do
-    local files = xmake.get_target_attribute(dep, 'extrafiles')
-    insert_natvis(natvis_file, files)
+  local deps = xmake.target.deps(params.target_name)
+  if deps then
+    deps = type(deps) ~= 'table' and { deps } or deps
+    for _, dep in ipairs(deps) do
+      local files = xmake.target.extrafiles(dep)
+      files = type(files) ~= 'table' and { files } or files
+      insert_natvis(natvis_file, files)
+    end
   end
-  insert_natvis(natvis_file, xmake.get_target_attribute(params.target_name, 'extrafiles'))
+  local extrafiles = xmake.target.extrafiles(params.target_name)
+  extrafiles = type(extrafiles) ~= 'table' and { extrafiles } or extrafiles
+  insert_natvis(natvis_file, extrafiles)
 
   local cpptools_env = {}
   for k, v in pairs(params.env) do
