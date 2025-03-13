@@ -7,9 +7,7 @@ import('core.base.json')
 
 -- recursively target add env
 local function _add_target_pkgenvs(target, targets_added)
-  if targets_added[target:name()] then
-    return
-  end
+  if targets_added[target:name()] then return end
   targets_added[target:name()] = true
   os.addenvs(target:pkgenvs())
   for _, dep in ipairs(target:orderdeps()) do
@@ -20,15 +18,11 @@ end
 function main(targetname)
   -- load config
   config.load()
-  if not os.isfile(os.projectfile()) then
-    return
-  end
+  if not os.isfile(os.projectfile()) then return end
 
   -- get target
   local target = nil
-  if targetname then
-    target = project.target(targetname)
-  end
+  if targetname then target = project.target(targetname) end
   if not target then
     for _, t in pairs(project.targets()) do
       local default = t:get('default')
@@ -41,6 +35,5 @@ function main(targetname)
 
   _add_target_pkgenvs(target, {})
   local envs = os.getenvs()
-  print(envs)
-  print('__end__')
+  print(json.encode(envs))
 end

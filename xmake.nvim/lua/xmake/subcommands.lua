@@ -18,7 +18,7 @@ function subcommands.complete(arg, cmd_line)
     end
   end
 
-  local target = project.get_project_target()
+  local target = project.targets()
 
   if #matches == 0 then
     for _, v in ipairs(target) do

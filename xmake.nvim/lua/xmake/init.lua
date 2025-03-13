@@ -1,6 +1,10 @@
 local config = require('xmake.config')
+local path = require('plenary.path')
 
-local M = {}
+local M = {
+  project = require('xmake.util.project'),
+  target = require('xmake.util.target'),
+}
 
 function M.setup(args) config.setup(args) end
 
@@ -20,13 +24,17 @@ end
 function M.debug(target_name, args)
   local util = require('xmake.util.util')
   local project = require('xmake.util.project')
+  local target = require('xmake.util.target')
   local dap = require('dap')
+  local rootdir = path:new(project.projectdir())
+  local target_file = path:new(target.targetfile(target_name))
+  local target_rundir = path:new(target.rundir(target_name))
   local params = {
     target_name = target_name,
-    program = project.get_target_attribute(target_name, 'targetfile')[1],
+    program = rootdir:joinpath(target_file):absolute(),
     args = util.split_args(args),
-    cwd = project.get_target_attribute(target_name, 'rundir')[1],
-    env = project.get_target_envs(target_name),
+    cwd = rootdir:joinpath(target_rundir):absolute(),
+    env = target.envs(target_name),
   }
   local dap_configurations = config.dap_configuration(params)
   if #dap_configurations > 1 then
@@ -50,11 +58,6 @@ function M.run(targetName, args)
   local env = { PATH = vim.env.PATH }
   local xmake_executable = config.opts.xmake_executable
   util.run(xmake_executable, env, { 'run', targetName, args }, config.opts)
-end
-
-function M.get_target_attribute(target_name, attribute, ...)
-  local project = require('xmake.util.project')
-  return project.get_target_attribute(target_name, attribute, ...)
 end
 
 return M
