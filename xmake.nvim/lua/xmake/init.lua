@@ -21,6 +21,19 @@ function M.build(targetName, force)
   end
 end
 
+---@class xmake-nvim.debugger
+---@field gdb string
+---@field codelldb string
+---@field lldb_mi string
+
+---@class xmake-nvim.debug-params
+---@field target_name string
+---@field program string
+---@field args string[]
+---@field cwd string
+---@field env table<string, string>
+---@field debugger xmake-nvim.debugger
+
 function M.debug(target_name, args)
   local util = require('xmake.util.util')
   local project = require('xmake.util.project')
@@ -29,12 +42,19 @@ function M.debug(target_name, args)
   local rootdir = path:new(project.projectdir())
   local target_file = path:new(target.targetfile(target_name))
   local target_rundir = path:new(target.rundir(target_name))
+
+  ---@type xmake-nvim.debug-params
   local params = {
     target_name = target_name,
     program = rootdir:joinpath(target_file):absolute(),
     args = util.split_args(args),
     cwd = rootdir:joinpath(target_rundir):absolute(),
     env = target.envs(target_name),
+    debugger = {
+      gdb = config.opts.debugger.gdb,
+      codelldb = config.opts.debugger.codelldb,
+      lldb_mi = config.opts.debugger.lldb_mi,
+    },
   }
   local dap_configurations = config.dap_configuration(params)
   if #dap_configurations > 1 then
