@@ -95,6 +95,7 @@ M.opts = {
   quickfix_size = 10, -- cmake output window height
   quickfix_position = 'belowright', -- "belowright", "aboveleft", ...
   show_quickfix = 'always', -- "always", "only_on_error"
+  neoconf = true,
   debugger = {
     gdb = 'gdb',
     codelldb = 'codelldb',
