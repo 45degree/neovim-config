@@ -1,18 +1,4 @@
---- close all buffer that not visible and not pined
-local function close_all_but_visible_and_pin_buf()
-  local state = require('bufferline.state')
-  local render = require('bufferline.render')
-  local Buffer = require('bufferline.buffer')
-  local bbye = require('bufferline.bbye')
-
-  for _, bufnr in ipairs(state.buffers) do
-    if Buffer.get_activity(bufnr) < 2 and not state.is_pinned(bufnr) then bbye.bdelete(false, bufnr) end
-  end
-
-  render.update()
-end
-
-local chooseWin = function()
+local choose_win = function()
   local picker = require('window-picker')
   local picked_window_id = picker.pick_window() or vim.api.nvim_get_current_win()
   vim.api.nvim_set_current_win(picked_window_id)
@@ -72,7 +58,7 @@ local register = {
   { '<leader>wJ', '<cmd>resize +5<cr>', desc = 'expand window down' },
   { '<leader>wK', '<cmd>resize -5<cr>', desc = 'expand window upwards' },
   { '<leader>wL', '<C-W>5>', desc = 'extend window right' },
-  { '<leader>wc', chooseWin, desc = 'choose window' },
+  { '<leader>wc', choose_win, desc = 'choose window' },
   { '<leader>wd', '<C-W>c', desc = 'delete current window' },
   { '<leader>wh', '<C-W>h', desc = 'move cursor to the left window' },
   { '<leader>wj', '<C-W>j', desc = 'move cursor to the bottom window' },
@@ -83,14 +69,7 @@ local register = {
 
   -- buffer
   { '<leader>b', group = 'buffer' },
-  { '<leader>bj', '<cmd>BufferPick<cr>', desc = 'jump between buffers' },
-  { '<leader>bp', '<cmd>BufferPin<cr>', desc = 'pin buffer' },
-
-  -- buffer delete
   { '<leader>bd', group = 'delete buffer' },
-  { '<leader>bdc', '<cmd>BufferCloseAllButCurrentOrPinned<cr>', desc = 'only keep the current buffer' },
-  { '<leader>bdv', close_all_but_visible_and_pin_buf, desc = 'only keep all visible and pinned buffer' },
-  { '<leader>bdp', '<cmd>BufferCloseAllButPinned<cr>', desc = 'delete all unpinned Buffers' },
 
   -- extensions
   { '<leader>e', group = 'extension', icon = '' },
