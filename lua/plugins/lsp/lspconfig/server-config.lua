@@ -32,9 +32,9 @@ return function(server)
     local methods = vim.lsp.protocol.Methods
 
     -- enable treesitter if lsp not support semantic highlight
-    if client.supports_method(methods.textDocument_semanticTokens_full) then vim.treesitter.stop(bufnr) end
+    if client:supports_method(methods.textDocument_semanticTokens_full) then vim.treesitter.stop(bufnr) end
 
-    if client.supports_method(methods.textDocument_inlayHint) then
+    if client:supports_method(methods.textDocument_inlayHint) then
       local inlay_hints_group = vim.api.nvim_create_augroup('toggle_inlay_hints', { clear = false })
       vim.defer_fn(function()
         local mode = vim.api.nvim_get_mode().mode
@@ -56,7 +56,7 @@ return function(server)
       })
     end
 
-    if client.supports_method(methods.textDocument_codeLens) then
+    if client:supports_method(methods.textDocument_codeLens) then
       local code_lens_group = vim.api.nvim_create_augroup('toggle_code_lens', { clear = false })
       vim.defer_fn(function() vim.lsp.codelens.refresh() end, 500)
 
