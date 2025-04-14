@@ -25,19 +25,24 @@ return {
       capabilities = vim.tbl_deep_extend('force', vim.lsp.protocol.make_client_capabilities(), require('lsp-file-operations').default_capabilities()),
     })
 
+    local enabled_server = {}
     for _, server in ipairs(lspinstaller.get_installed_servers()) do
       if server == 'rust_analyzer' and has_plugin('rustaceanvim') then goto continue end
       local config = require('plugins.lsp.lspconfig.server-config')(server)
-      lspconfig[server].setup(config)
+      vim.lsp.config(server, config)
+      table.insert(enabled_server, server)
       ::continue::
     end
 
     for _, server in ipairs(require('config').lsp) do
       if server == 'rust_analyzer' and has_plugin('rustaceanvim') then goto continue end
+      table.insert(enabled_server, server)
       local config = require('plugins.lsp.lspconfig.server-config')(server)
-      lspconfig[server].setup(config)
+      vim.lsp.config(server, config)
       ::continue::
     end
+
+    vim.lsp.enable(enabled_server)
 
     require('plugins.lsp.lspconfig.config')
   end,
