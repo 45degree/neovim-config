@@ -20,11 +20,6 @@ return {
     local lspinstaller = require('mason-lspconfig')
     local lspconfig = require('lspconfig')
 
-    -- Set global defaults for all servers
-    lspconfig.util.default_config = vim.tbl_extend('force', lspconfig.util.default_config, {
-      capabilities = vim.tbl_deep_extend('force', vim.lsp.protocol.make_client_capabilities(), require('lsp-file-operations').default_capabilities()),
-    })
-
     local enabled_server = {}
     for _, server in ipairs(lspinstaller.get_installed_servers()) do
       if server == 'rust_analyzer' and has_plugin('rustaceanvim') then goto continue end
@@ -44,6 +39,11 @@ return {
 
     vim.lsp.enable(enabled_server)
 
-    require('plugins.lsp.lspconfig.config')
+    vim.keymap.set('n', 'gd', '<cmd>Telescope lsp_definitions theme=dropdown<cr>', { noremap = true, silent = true })
+    vim.keymap.set('n', 'gi', '<cmd>Telescope lsp_implementations theme=dropdown<cr>', { noremap = true, silent = true })
+    vim.keymap.set('n', 'gr', '<cmd>Telescope lsp_references theme=dropdown<cr>', { noremap = true, silent = true })
+    vim.keymap.set('n', 'K', function(...) vim.lsp.buf.hover(...) end, { noremap = true, silent = true })
+    vim.keymap.set('n', 'rn', function(...) vim.lsp.buf.rename(...) end, { noremap = true, silent = true })
+    vim.keymap.set('n', 'ca', function(...) vim.lsp.buf.code_action(...) end, { noremap = true, silent = true })
   end,
 }
