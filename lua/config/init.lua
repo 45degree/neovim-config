@@ -5,6 +5,7 @@ local M = {}
 ---| 'catppuccin-latte'
 ---| 'catppuccin-frappe'
 ---| 'catppuccin-macchiato'
+---| 'catppuccin-mocha'
 ---| 'tokyonight' #[tokyonight]
 ---| 'tokyonight-day'
 ---| 'tokyonight-night'
