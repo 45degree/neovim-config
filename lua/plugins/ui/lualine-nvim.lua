@@ -1,3 +1,5 @@
+local ai_component = require('config').ai == 'none' and '' or require('config').ai
+
 return {
   'nvim-lualine/lualine.nvim',
   event = 'LazyFile',
@@ -31,7 +33,7 @@ return {
         },
         { 'diagnostics', symbols = require('icons').diagnostic },
       },
-      lualine_c = { 'lsp-dap', 'linter', 'formatter', 'ai-status' },
+      lualine_c = { 'lsp-dap', 'linter', 'formatter', ai_component },
       lualine_x = { 'location', 'task', 'encoding', 'fileformat' },
       lualine_y = { 'icon-filename', 'ui-progress' },
       lualine_z = {},

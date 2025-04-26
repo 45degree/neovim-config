@@ -1,5 +1,3 @@
-local M = {}
-
 ---@alias colorscheme
 ---| 'catppuccin' #[catppuccin]
 ---| 'catppuccin-latte'
@@ -42,11 +40,17 @@ local M = {}
 ---| 'onedark_dark'
 ---| 'onedark_vivid'
 
+---@alias AiCodeProvider 'codeium'|'copilot'|'fittencode'|'none'
+
 ---@alias GuiConfig {fonts: string[], widefonts: string[], font_opts: string?}
 
 ---@class CustomNvimConfig
+---@field colorscheme colorscheme
+---@field ai AiCodeProvider
+---@field gui GuiConfig
+
+---@type CustomNvimConfig
 local defaults = {
-  ---@type colorscheme
   colorscheme = 'catppuccin',
   border = 'single',
   lang = {
@@ -62,7 +66,6 @@ local defaults = {
     typst = false,
   },
 
-  ---@type 'codeium' | 'copilot' | 'fittencode' | 'none'
   ai = 'copilot',
   avante_default_provider = 'copilot',
 
@@ -89,6 +92,9 @@ local defaults = {
 }
 
 local options = {}
+
+---@type CustomNvimConfig
+local M = {}
 
 function M.setup(opts)
   options = vim.tbl_deep_extend('force', defaults, opts or {}) or {}
