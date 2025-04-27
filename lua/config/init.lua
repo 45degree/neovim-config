@@ -40,7 +40,7 @@
 ---| 'onedark_dark'
 ---| 'onedark_vivid'
 
----@alias AiCodeProvider 'codeium'|'copilot'|'fittencode'|'none'
+---@alias AiCodeProvider 'codeium'|'copilot'|'fittencode'|'supermaven'|'none'
 
 ---@alias GuiConfig {fonts: string[], widefonts: string[], font_opts: string?}
 
