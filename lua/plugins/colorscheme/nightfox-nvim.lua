@@ -7,9 +7,9 @@ return {
       all = {
         TelescopeBorder = { fg = 'palette.bg2', bg = 'palette.bg2' },
         TelescopePromptBorder = { fg = 'palette.bg3', bg = 'palette.bg3' },
-        TelescopePromptNormal = { fg = 'palette.fg3', bg = 'palette.bg3' },
+        TelescopePromptNormal = { fg = 'palette.fg2', bg = 'palette.bg3' },
         TelescopePromptPrefix = { fg = 'palette.red', bg = 'palette.bg3' },
-        TelescopeNormal = { bg = 'palette.bg2' },
+        TelescopeNormal = { fg = 'palette.fg2', bg = 'palette.bg2' },
         TelescopePreviewTitle = { fg = 'palette.sel0', bg = 'palette.orange' },
         TelescopePromptTitle = { fg = 'palette.sel0', bg = 'palette.green' },
         TelescopeResultsTitle = { fg = 'palette.sel0', bg = 'palette.cyan' },
