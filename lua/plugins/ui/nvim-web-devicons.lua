@@ -3,7 +3,7 @@ return {
   lazy = true,
   opts = {
     default = { file = { glyph = '' } },
-    file = { ['.clang-format'] = { glyph = '' }, ['.clang-tidy'] = { glyph = '' } },
+    file = { ['.clang-format'] = { glyph = '' }, ['.clang-tidy'] = { glyph = '' } },
     extension = {
       h = { glyph = '󰠩', hl = 'MiniIconsPurple' },
       hpp = { glyph = '󰜖', hl = 'MiniIconsPurple' },
