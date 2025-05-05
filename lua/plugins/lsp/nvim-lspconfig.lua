@@ -18,28 +18,27 @@ return {
     require('mason-lspconfig').setup()
 
     local lspinstaller = require('mason-lspconfig')
-    local lspconfig = require('lspconfig')
 
-    -- local enabled_server = {}
+    local enabled_server = {}
     for _, server in ipairs(lspinstaller.get_installed_servers()) do
       if server == 'rust_analyzer' and has_plugin('rustaceanvim') then goto continue end
       local config = require('plugins.lsp.lspconfig.server-config')(server)
-      lspconfig[server].setup(config)
-      -- vim.lsp.config(server, config)
-      -- table.insert(enabled_server, server)
+
+      vim.lsp.config(server, config)
+      table.insert(enabled_server, server)
       ::continue::
     end
 
     for _, server in ipairs(require('config').lsp) do
       if server == 'rust_analyzer' and has_plugin('rustaceanvim') then goto continue end
       local config = require('plugins.lsp.lspconfig.server-config')(server)
-      lspconfig[server].setup(config)
-      -- vim.lsp.config(server, config)
-      -- table.insert(enabled_server, server)
+
+      vim.lsp.config(server, config)
+      table.insert(enabled_server, server)
       ::continue::
     end
 
-    -- vim.lsp.enable(enabled_server)
+    vim.lsp.enable(enabled_server)
 
     vim.keymap.set('n', 'gd', '<cmd>Telescope lsp_definitions theme=dropdown<cr>', { noremap = true, silent = true })
     vim.keymap.set('n', 'gi', '<cmd>Telescope lsp_implementations theme=dropdown<cr>', { noremap = true, silent = true })
