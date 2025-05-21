@@ -1,7 +1,3 @@
-local Job = require('plenary.job')
-local Path = require('plenary.path')
-local config = require('xmake.config')
-local scandir = require('plenary.scandir')
 local utils = {}
 
 local function append_to_quickfix(error, data)
@@ -18,13 +14,13 @@ function utils.split_args(args)
   if type(args) == 'table' then return args end
 
   -- Split on spaces unless "in quotes"
-  local splitted_args = vim.fn.split(args, [[\s\%(\%([^'"]*\(['"]\)[^'"]*\1\)*[^'"]*$\)\@=]])
+  local split_args = vim.fn.split(args, [[\s\%(\%([^'"]*\(['"]\)[^'"]*\1\)*[^'"]*$\)\@=]])
 
   -- Remove quotes
-  for i, arg in ipairs(splitted_args) do
-    splitted_args[i] = arg:gsub('"', ''):gsub("'", '')
+  for i, arg in ipairs(split_args) do
+    split_args[i] = arg:gsub('"', ''):gsub("'", '')
   end
-  return splitted_args
+  return split_args
 end
 
 function utils.join_args(args)
@@ -48,6 +44,9 @@ end
 
 function utils.close_quickfix() vim.api.nvim_command('cclose') end
 
+---@param cmd string
+---@param env table<string, string>
+---@param args string[]
 function utils.run(cmd, env, args, opts)
   vim.cmd('wall')
   vim.fn.setqflist({}, ' ', { title = cmd .. ' ' .. table.concat(args, ' ') })
@@ -55,32 +54,25 @@ function utils.run(cmd, env, args, opts)
   local show_quickfix = opts.show_quickfix == 'always'
   if show_quickfix then utils.show_quickfix(opts.quickfix_position, opts.quickfix_size) end
 
-  utils.job = Job:new({
-    command = cmd,
-    args = args,
-    cwd = vim.loop.cwd(),
-    env = env,
-    on_stdout = vim.schedule_wrap(append_to_quickfix),
-    on_stderr = vim.schedule_wrap(append_to_quickfix),
-    on_exit = vim.schedule_wrap(function(_, code, signal)
-      append_to_quickfix('Exited with code ' .. (signal == 0 and code or 128 + signal))
-      if code == 0 and signal == 0 then
-        if opts.on_success then opts.on_success() end
-      elseif opts.show_quickfix == 'only_on_error' then
-        utils.show_quickfix(opts.quickfix_position, opts.quickfix_size)
-        vim.api.nvim_command('cbottom')
-      end
-    end),
-  })
+  ---@type vim.SystemOpts
+  local cmd_opts = {}
+  cmd_opts.env = env
+  cmd_opts.stdout = vim.schedule_wrap(append_to_quickfix)
+  cmd_opts.stderr = vim.schedule_wrap(append_to_quickfix)
+  cmd_opts.cwd = vim.uv.cwd()
 
-  utils.job:start()
-  return utils.job
-end
+  ---@param obj vim.SystemCompleted
+  local on_exit = function(obj)
+    local signal = obj.signal
+    local code = obj.code
+    append_to_quickfix('Exited with code ' .. (signal == 0 and code or 128 + signal))
+    if signal ~= 0 or signal ~= 0 and opts.show_quickfix == 'only_on_error' then
+      utils.show_quickfix(opts.quickfix_position, opts.quickfix_size)
+      vim.api.nvim_command('cbottom')
+    end
+  end
 
-function utils.ensure_no_job_active()
-  if not utils.last_job or utils.last_job.is_shutdown then return true end
-  utils.notify('Another job is currently running: ' .. utils.last_job.command, vim.log.levels.ERROR)
-  return false
+  vim.system(vim.list_extend({ cmd }, args), cmd_opts, vim.schedule_wrap(on_exit))
 end
 
 return utils

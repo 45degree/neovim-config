@@ -5,7 +5,7 @@ local M = {}
 
 ---@return string[]
 function M.targets()
-  local res = xmake_utils.run_xmake_script('./xmakeScript/project_target.lua')
+  local res = xmake_utils.run_xmake_script('./xmakeScript/target.lua')
   assert(type(res) == 'table')
   return res
 end

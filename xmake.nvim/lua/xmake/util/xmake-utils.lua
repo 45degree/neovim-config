@@ -17,7 +17,8 @@ function M.run_xmake_script(script_path, ...)
     vim.notify(error_msg, vim.log.levels.ERROR)
     return {}
   end
-  return vim.json.decode(output.stdout)
+  local res = vim.json.decode(output.stdout)
+  return res ~= vim.NIL and res or {}
 end
 
 function M.get_target_attribute(target_name, attribute, ...) return M.run_xmake_script('./xmakeScript/target_get.lua', target_name, attribute, ...) end
