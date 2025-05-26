@@ -2,6 +2,7 @@ return {
   'nvim-treesitter/nvim-treesitter',
   event = 'LazyFile',
   cmd = { 'TSUpdate', 'TSInstall', 'TSBufEnable', 'TSBufDisable', 'TSModuleInfo' },
+  branch = 'main',
   opts = {
     ensure_installed = 'all',
     sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
@@ -26,7 +27,7 @@ return {
     },
   },
   config = function(_, opts)
-    require('nvim-treesitter.parsers').get_parser_configs().haxe = {
+    require('nvim-treesitter.parsers').haxe = {
       install_info = {
         url = 'https://github.com/vantreeseba/tree-sitter-haxe',
         files = { 'src/parser.c', 'src/scanner.c' },
@@ -34,6 +35,6 @@ return {
       },
       filetype = 'haxe',
     }
-    require('nvim-treesitter.configs').setup(opts)
+    require('nvim-treesitter').setup(opts)
   end,
 }
