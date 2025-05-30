@@ -1,3 +1,20 @@
+local can_build_from_source = vim.fn.executable('cargo') == 1
+
+local build_str = nil
+if vim.fn.has('WIN32') == 1 then
+  if can_build_from_source then
+    build_str = 'powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource true'
+  else
+    build_str = 'powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false'
+  end
+else
+  if can_build_from_source then
+    build_str = 'make BUILD_FROM_SOURCE=true'
+  else
+    build_str = 'make'
+  end
+end
+
 return {
   'yetone/avante.nvim',
   lazy = true,
@@ -13,7 +30,7 @@ return {
     'AvanteShowRepoMap',
     'AvanteToggle',
   },
-  build = ':AvanteBuild',
+  build = build_str,
   keys = function(_, keys)
     ---@type avante.Config
     local opts = require('lazy.core.plugin').values(require('lazy.core.config').spec.plugins['avante.nvim'], 'opts', false)
