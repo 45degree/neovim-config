@@ -1,20 +1,3 @@
-local can_build_from_source = vim.fn.executable('cargo') == 1
-
-local build_str = nil
-if vim.fn.has('WIN32') == 1 then
-  if can_build_from_source then
-    build_str = 'powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource true'
-  else
-    build_str = 'powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false'
-  end
-else
-  if can_build_from_source then
-    build_str = 'make BUILD_FROM_SOURCE=true'
-  else
-    build_str = 'make'
-  end
-end
-
 return {
   'yetone/avante.nvim',
   lazy = true,
@@ -30,7 +13,7 @@ return {
     'AvanteShowRepoMap',
     'AvanteToggle',
   },
-  build = build_str,
+  build = vim.fn.has('win32') == 1 and 'powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false' or 'make',
   keys = function(_, keys)
     ---@type avante.Config
     local opts = require('lazy.core.plugin').values(require('lazy.core.config').spec.plugins['avante.nvim'], 'opts', false)
@@ -61,50 +44,27 @@ return {
   opts = {
     -- add any opts here
     provider = require('config').avante_default_provider or 'copilot',
-    gemini = { api_key_name = 'GEMINI_API_KEY' },
-    vendors = {
-      kimi = {
-        __inherited_from = 'openai',
-        api_key_name = 'KIMI_API_KEY',
-        endpoint = 'https://api.moonshot.cn/v1',
-        model = 'moonshot-v1-8k',
-        temperature = 0.3,
-      },
-      deepseek = {
-        __inherited_from = 'openai',
-        api_key_name = 'DEEPSEEK_API_KEY',
-        endpoint = 'https://api.deepseek.com/v1',
-        model = 'deepseek-chat',
-      },
-      siliconflow = {
-        __inherited_from = 'openai',
-        api_key_name = 'SILICONFLOW_API_KEY',
-        endpoint = 'https://api.siliconflow.cn/v1/',
-        model = 'Pro/deepseek-ai/DeepSeek-R1',
-      },
-      ['siliconflow-deepseek-v2.5'] = {
-        __inherited_from = 'openai',
-        api_key_name = 'SILICONFLOW_API_KEY',
-        endpoint = 'https://api.siliconflow.cn/v1/',
-        model = 'deepseek-ai/DeepSeek-V2.5',
-      },
+    providers = {
       ['siliconflow-deepseek-v3'] = {
         __inherited_from = 'openai',
         api_key_name = 'SILICONFLOW_API_KEY',
         endpoint = 'https://api.siliconflow.cn/v1/',
         model = 'deepseek-ai/DeepSeek-V3',
+        disable_tools = true,
       },
       ['siliconflow-deepseek-r1-distill-llama-70B'] = {
         __inherited_from = 'openai',
         api_key_name = 'SILICONFLOW_API_KEY',
         endpoint = 'https://api.siliconflow.cn/v1/',
         model = 'deepseek-ai/DeepSeek-R1-Distill-Llama-70B',
+        disable_tools = true,
       },
       ['siliconflow-deepseek-r1-distill-qwen-32B'] = {
         __inherited_from = 'openai',
         api_key_name = 'SILICONFLOW_API_KEY',
         endpoint = 'https://api.siliconflow.cn/v1/',
         model = 'deepseek-ai/DeepSeek-R1-Distill-Qwen-32B',
+        disable_tools = true,
       },
     },
     mappings = {
