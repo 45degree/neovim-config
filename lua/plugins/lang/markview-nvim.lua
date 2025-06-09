@@ -2,7 +2,7 @@ return {
   'OXY2DEV/markview.nvim',
   dependencies = 'nvim-treesitter/nvim-treesitter',
   submodules = false,
-  ft = { 'markdown', 'Avante', 'typst' },
+  ft = { 'markdown', 'typst', 'codecompanion' },
   cmd = 'Markview',
-  opts = { preview = { enable = true, filetypes = { 'markdown', 'typst', 'Avante' }, ignore_buftypes = {} } },
+  opts = { preview = { enable = true, filetypes = { 'markdown', 'typst', 'codecompanion' }, ignore_buftypes = {} } },
 }

@@ -6,7 +6,6 @@ return {
   dependencies = {
     'rafamadriz/friendly-snippets',
     { 'Saghen/blink.compat', version = '*', lazy = true },
-    { 'Kaiser-Yang/blink-cmp-avante', lazy = true },
     { 'disrupted/blink-cmp-conventional-commits', lazy = true },
   },
   opts = {
@@ -18,7 +17,7 @@ return {
     },
     snippets = { preset = 'default' },
     sources = {
-      default = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev', 'avante', 'conventional_commits' },
+      default = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev', 'conventional_commits' },
       providers = {
         conventional_commits = {
           name = 'Conventional Commits',
@@ -26,7 +25,6 @@ return {
           enabled = function() return vim.bo.filetype == 'gitcommit' end,
         },
         lazydev = { name = 'Development', module = 'lazydev.integrations.blink' },
-        avante = { module = 'blink-cmp-avante', name = 'Avante', opts = {} },
       },
     },
     cmdline = {
