@@ -39,16 +39,16 @@ return {
     local pkgs = mason_wrapper.list_all_installed_package(formatter_opts)
 
     local opts = {}
+    for _, pkg in ipairs(pkgs) do
+      registry_formatter_by_package(opts, pkg, package_to_conform)
+    end
+
     for ft, formatters in ipairs(require('config').formatter) do
       for _, formatter in ipairs(formatters) do
         table.insert(opts[ft], formatter)
         if type(formatter) == 'string' and vim.fn.executable(formatter) ~= 0 then goto continue end
       end
       ::continue::
-    end
-
-    for _, pkg in ipairs(pkgs) do
-      registry_formatter_by_package(opts, pkg, package_to_conform)
     end
 
     require('conform').setup({ formatters_by_ft = opts })

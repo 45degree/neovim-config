@@ -46,15 +46,15 @@ return {
 
     ---@type table<string, table<string, string>>
     local opts_kv = {}
+    for _, pkg in ipairs(pkgs) do
+      registry_linter_by_package(opts_kv, pkg, package_to_nvimlint)
+    end
+
     for filetype, linters in pairs(require('config').linter) do
       opts_kv[filetype] = {}
       for _, linter in ipairs(linters) do
         opts_kv[filetype][linter] = linter
       end
-    end
-
-    for _, pkg in ipairs(pkgs) do
-      registry_linter_by_package(opts_kv, pkg, package_to_nvimlint)
     end
 
     ---@type table<string, string[]>
