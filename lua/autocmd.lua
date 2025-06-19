@@ -44,3 +44,4 @@ vim.api.nvim_create_autocmd({ 'VimResized' }, {
 
 -- set filetype for slang
 vim.filetype.add({ extension = { hx = 'haxe', slang = 'slang' } })
+vim.filetype.add({ filename = { ['LICENSE'] = 'license' } })
