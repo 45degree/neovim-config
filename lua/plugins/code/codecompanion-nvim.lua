@@ -32,8 +32,7 @@ return {
       chat = { adapter = 'siliconflow' },
       inline = { adapter = 'siliconflow' },
     },
-    opts = {
-      language = 'Chinese',
-    },
+    opts = { language = 'Chinese' },
+    display = { chat = { window = { position = 'right', width = 0.3, opts = { number = false, relativenumber = false, winfixwidth = true } } } },
   },
 }
