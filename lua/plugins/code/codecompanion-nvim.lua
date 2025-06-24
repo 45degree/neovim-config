@@ -1,22 +1,19 @@
 local siliconflow_adapter = function()
-  return require('codecompanion.adapters').extend('deepseek', {
+  local adapter = require('codecompanion.adapters').extend('deepseek', {
     name = 'siliconflow',
     url = 'https://api.siliconflow.cn/v1/chat/completions',
     env = {
       api_key = function() return os.getenv('SILICONFLOW_API_KEY') end,
     },
-    schema = {
-      model = {
-        default = 'deepseek-ai/DeepSeek-R1-Distill-Qwen-32B',
-        choices = {
-          ['deepseek-ai/DeepSeek-R1'] = { opts = { can_reason = true } },
-          ['deepseek-ai/DeepSeek-V3'] = {},
-          ['deepseek-ai/DeepSeek-R1-Distill-Qwen-32B'] = {},
-          ['deepseek-ai/DeepSeek-R1-Distill-Llama-70B'] = {},
-        },
-      },
-    },
   })
+  adapter.schema.model.default = 'deepseek-ai/DeepSeek-R1-Distill-Qwen-32B'
+  adapter.schema.model.choices = {
+    ['deepseek-ai/DeepSeek-R1'] = { opts = { can_reason = true } },
+    ['deepseek-ai/DeepSeek-V3'] = {},
+    ['deepseek-ai/DeepSeek-R1-Distill-Qwen-32B'] = {},
+    ['deepseek-ai/DeepSeek-R1-Distill-Llama-70B'] = {},
+  }
+  return adapter
 end
 
 return {
