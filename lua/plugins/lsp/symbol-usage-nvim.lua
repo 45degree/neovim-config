@@ -1,7 +1,6 @@
 return {
   'Wansmer/symbol-usage.nvim',
   event = 'LspAttach',
-  enabled = false,
   opts = {
     text_format = function(symbol)
       local fragments = {}
