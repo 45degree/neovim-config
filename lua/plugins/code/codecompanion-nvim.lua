@@ -1,19 +1,40 @@
 local siliconflow_adapter = function()
-  local adapter = require('codecompanion.adapters').extend('deepseek', {
-    name = 'siliconflow',
-    url = 'https://api.siliconflow.cn/v1/chat/completions',
+  return require('codecompanion.adapters').extend('openai_compatible', {
     env = {
-      api_key = function() return os.getenv('SILICONFLOW_API_KEY') end,
+      url = 'https://api.siliconflow.cn/',
+      api_key = 'SILICONFLOW_API_KEY',
+      chat_url = '/v1/chat/completions',
+    },
+    schema = {
+      model = { default = 'deepseek-ai/DeepSeek-R1-Distill-Qwen-32B' },
     },
   })
-  adapter.schema.model.default = 'deepseek-ai/DeepSeek-R1-Distill-Qwen-32B'
-  adapter.schema.model.choices = {
-    ['deepseek-ai/DeepSeek-R1'] = { opts = { can_reason = true } },
-    ['deepseek-ai/DeepSeek-V3'] = {},
-    ['deepseek-ai/DeepSeek-R1-Distill-Qwen-32B'] = {},
-    ['deepseek-ai/DeepSeek-R1-Distill-Llama-70B'] = {},
-  }
-  return adapter
+end
+
+local openrouter_adapter = function()
+  return require('codecompanion.adapters').extend('openai_compatible', {
+    env = {
+      url = 'https://openrouter.ai/api',
+      api_key = 'OPENROUTER_API_KEY',
+      chat_url = '/v1/chat/completions',
+    },
+    schema = {
+      model = { default = 'deepseek/deepseek-r1-0528:free' },
+    },
+  })
+end
+
+local moonshot_adapter = function()
+  return require('codecompanion.adapters').extend('openai_compatible', {
+    env = {
+      url = 'https://api.moonshot.cn',
+      api_key = 'KIMI_API_KEY',
+      chat_url = '/v1/chat/completions',
+    },
+    schema = {
+      model = { default = 'moonshot-v1-8k' },
+    },
+  })
 end
 
 return {
@@ -22,14 +43,22 @@ return {
   dependencies = {
     'nvim-lua/plenary.nvim',
     'nvim-treesitter/nvim-treesitter',
+    'ravitemer/codecompanion-history.nvim',
   },
   opts = {
-    adapters = { siliconflow = siliconflow_adapter },
+    adapters = {
+      siliconflow = siliconflow_adapter,
+      openrouter = openrouter_adapter,
+      moonshot = moonshot_adapter,
+    },
     strategies = {
       chat = { adapter = 'siliconflow' },
       inline = { adapter = 'siliconflow' },
     },
     opts = { language = 'Chinese' },
     display = { chat = { window = { position = 'right', width = 0.3, opts = { number = false, relativenumber = false, winfixwidth = true } } } },
+    extensions = {
+      history = { enabled = true },
+    },
   },
 }
