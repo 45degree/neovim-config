@@ -1,5 +1,6 @@
 local siliconflow_adapter = function()
   return require('codecompanion.adapters').extend('openai_compatible', {
+    formatted_name = 'SiliconFlow',
     env = {
       url = 'https://api.siliconflow.cn/',
       api_key = 'SILICONFLOW_API_KEY',
@@ -13,6 +14,7 @@ end
 
 local openrouter_adapter = function()
   return require('codecompanion.adapters').extend('openai_compatible', {
+    formatted_name = 'openrouter',
     env = {
       url = 'https://openrouter.ai/api',
       api_key = 'OPENROUTER_API_KEY',
@@ -26,6 +28,7 @@ end
 
 local moonshot_adapter = function()
   return require('codecompanion.adapters').extend('openai_compatible', {
+    formatted_name = 'moonshot',
     env = {
       url = 'https://api.moonshot.cn',
       api_key = 'KIMI_API_KEY',
