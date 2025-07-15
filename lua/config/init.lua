@@ -42,12 +42,24 @@
 
 ---@alias AiCodeProvider 'codeium'|'copilot'|'fittencode'|'supermaven'|'none'
 
+---@class CodeCompanionAdapter
+---@field chat string
+---@field inline string
+---@field cmd string
+
 ---@alias GuiConfig {fonts: string[], widefonts: string[], font_opts: string?}
 
 ---@class CustomNvimConfig
 ---@field colorscheme colorscheme
 ---@field ai AiCodeProvider
 ---@field gui GuiConfig
+---@field codecompanion_adapter? CodeCompanionAdapter
+---@field lang? table<string, boolean>
+---@field lsp? string[]
+---@field formatter? table<string, string[]>
+---@field linter? table<string, string[]>
+---@field shell? string[]
+---@field setup? fun(opts: CustomNvimConfig)
 
 ---@type CustomNvimConfig
 local defaults = {
@@ -67,7 +79,11 @@ local defaults = {
   },
 
   ai = 'copilot',
-  avante_default_provider = 'copilot',
+  codecompanion_adapter = {
+    chat = 'anthropic',
+    inline = 'copilot',
+    cmd = 'deepseek',
+  },
 
   -- https://github.com/mfussenegger/nvim-lint/tree/master?tab=readme-ov-file#available-linters
   linter = {},
@@ -88,25 +104,25 @@ local defaults = {
 
   env = {},
 
-  shell = nil
+  shell = nil,
 }
 
-local options = {}
-
----@type CustomNvimConfig
+---@class ConfigModule
+---@field config CustomNvimConfig
 local M = {}
 
 function M.setup(opts)
-  options = vim.tbl_deep_extend('force', defaults, opts or {}) or {}
+  local options = vim.tbl_deep_extend('force', defaults, opts or {}) or {}
   for k, v in pairs(options.env) do
     vim.env[k] = v
   end
+  M.config = options
 end
 
 setmetatable(M, {
   __index = function(_, key)
-    if options == nil then return vim.deepcopy(defaults)[key] end
-    return options[key]
+    if M.config == nil then return defaults[key] end
+    return M.config[key]
   end,
 })
 

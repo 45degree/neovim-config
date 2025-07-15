@@ -1,3 +1,5 @@
+local config = require('config')
+
 local siliconflow_adapter = function()
   return require('codecompanion.adapters').extend('openai_compatible', {
     formatted_name = 'SiliconFlow',
@@ -55,8 +57,13 @@ return {
       moonshot = moonshot_adapter,
     },
     strategies = {
-      chat = { adapter = 'siliconflow' },
-      inline = { adapter = 'siliconflow' },
+      chat = {
+        adapter = config.codecompanion_adapter.chat,
+        ---@param adapter CodeCompanion.Adapter
+        roles = { llm = function(adapter) return string.format('(%s) %s', adapter.formatted_name, adapter.model.name) end },
+      },
+      inline = { adapter = config.codecompanion_adapter.inline },
+      cmd = { adapter = config.codecompanion_adapter.cmd },
     },
     opts = { language = 'Chinese' },
     display = { chat = { window = { position = 'right', width = 0.3, opts = { number = false, relativenumber = false, winfixwidth = true } } } },
