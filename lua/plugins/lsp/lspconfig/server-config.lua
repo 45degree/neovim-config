@@ -66,6 +66,11 @@ return function(server)
         desc = 'Refresh Code Lens',
         group = code_lens_group,
       })
+
+      if client:supports_method(methods.textDocument_foldingRange) then
+        local win = vim.api.nvim_get_current_win()
+        vim.wi[win][0].foldexpr = 'v:lua.vim.lsp.foldexpr()'
+      end
     end
   end
 

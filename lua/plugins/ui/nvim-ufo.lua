@@ -68,5 +68,6 @@ return {
       return newVirtText
     end,
   },
-  enabled = function() return vim.fn.has('nvim-0.9') == 1 end,
+  enabled = false,
+  -- enabled = function() return vim.fn.has('nvim-0.9') == 1 end,
 }

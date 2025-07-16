@@ -1,5 +1,6 @@
 return {
   'folke/edgy.nvim',
+  enabled = false,
   event = 'VeryLazy',
   opts_extend = { 'bottom', 'left', 'right', 'top' },
   opts = {
