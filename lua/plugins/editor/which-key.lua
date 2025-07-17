@@ -4,6 +4,21 @@ local choose_win = function()
   vim.api.nvim_set_current_win(picked_window_id)
 end
 
+local function toggle_profile()
+  local prof = require('profile')
+  if prof.is_recording() then
+    prof.stop()
+    vim.ui.input({ prompt = 'Save profile to:', completion = 'file', default = 'profile.json' }, function(filename)
+      if filename then
+        prof.export(filename)
+        vim.notify(string.format('Wrote %s', filename))
+      end
+    end)
+  else
+    prof.start('*')
+  end
+end
+
 local register = {
   -- file
   { '<leader>f', group = 'file' },
@@ -76,6 +91,7 @@ local register = {
   { '<leader>ep', group = 'profile', icon = '󰈸' },
   { '<leader>epb', '<cmd>lua require("plenary.profile").start("profile.log", {flame = true})<cr>', desc = 'begin profile', icon = '󰈸' },
   { '<leader>epe', '<cmd>lua require("plenary.profile").stop()<cr>', desc = 'end profile', icon = '󰈸' },
+  { '<leader>ept', toggle_profile, desc = 'toggle profile', icon = '󰈸' },
 
   -- localleader
   { '<localleader>', group = 'local keymap', icon = '' },
