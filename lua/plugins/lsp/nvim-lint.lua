@@ -30,7 +30,7 @@ end
 return {
   'mfussenegger/nvim-lint',
   event = 'LazyFile',
-  dependencies = { 'rshkarin/mason-nvim-lint', 'williamboman/mason.nvim' },
+  dependencies = { 'rshkarin/mason-nvim-lint', 'mason-org/mason.nvim' },
   config = function()
     local mason_wrapper = require('util.mason')
 

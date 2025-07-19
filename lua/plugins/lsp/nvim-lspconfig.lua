@@ -10,8 +10,8 @@ return {
   event = { 'LazyFile', 'BufReadPre' },
   dependencies = {
     'folke/neoconf.nvim',
-    'williamboman/mason.nvim',
-    'williamboman/mason-lspconfig.nvim',
+    'mason-org/mason.nvim',
+    'mason-org/mason-lspconfig.nvim',
   },
   config = function()
     require('neoconf').setup()
