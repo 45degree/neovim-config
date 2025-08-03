@@ -37,7 +37,7 @@ local moonshot_adapter = function()
       chat_url = '/v1/chat/completions',
     },
     schema = {
-      model = { default = 'moonshot-v1-8k' },
+      model = { default = 'kimi-k2-0711-preview' },
     },
   })
 end
