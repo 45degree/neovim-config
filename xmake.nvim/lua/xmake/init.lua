@@ -81,7 +81,7 @@ function M.debug(target_name, args)
     target_name = target_name,
     program = rootdir:joinpath(target_file):absolute(),
     args = util.split_args(args),
-    cwd = rootdir:joinpath(target_rundir):absolute(),
+    cwd = target_rundir:absolute(),
     env = target.envs(target_name),
     debugger = {
       gdb = config.opts.debugger.gdb,
