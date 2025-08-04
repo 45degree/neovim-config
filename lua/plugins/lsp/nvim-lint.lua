@@ -7,7 +7,7 @@ local function registry_linter_by_package(opts, pkg, package_to_nvimlint)
     if opts[filetype] == nil then opts[filetype] = {} end
 
     local package_name = package_to_nvimlint[pkg.name]
-    if package_name == nil then package_name = pkg.name end
+    if package_name == nil then return end
     opts[filetype][package_name] = package_name
   end
 
@@ -39,6 +39,7 @@ return {
     local pkgs = mason_wrapper.list_all_installed_package(filter_opts)
 
     local nvimlint_to_package = require('mason-nvim-lint.mapping').nvimlint_to_package
+    nvimlint_to_package['typos'] = 'typos'
     local package_to_nvimlint = {}
     for k, v in pairs(nvimlint_to_package) do
       package_to_nvimlint[v] = k
