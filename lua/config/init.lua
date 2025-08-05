@@ -50,9 +50,9 @@
 ---@alias GuiConfig {fonts: string[], widefonts: string[], font_opts: string?}
 
 ---@class CustomNvimConfig
----@field colorscheme colorscheme
----@field ai AiCodeProvider
----@field gui GuiConfig
+---@field colorscheme? colorscheme
+---@field ai? AiCodeProvider
+---@field gui? GuiConfig
 ---@field codecompanion_adapter? CodeCompanionAdapter
 ---@field lang? table<string, boolean>
 ---@field lsp? string[]
