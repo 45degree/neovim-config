@@ -1,4 +1,4 @@
----@param opts table<string, table<string, string>>
+---@param opts table<string, string[]>
 ---@param pkg MasonPackage
 local function registry_linter_by_package(opts, pkg, package_to_nvimlint)
   local ft_mapping = require('util.mason').lang_to_filetype
@@ -8,7 +8,7 @@ local function registry_linter_by_package(opts, pkg, package_to_nvimlint)
 
     local package_name = package_to_nvimlint[pkg.name]
     if package_name == nil then return end
-    opts[filetype][package_name] = package_name
+    table.insert(opts[filetype], package_name)
   end
 
   if #pkg.lang == 0 then
@@ -45,29 +45,30 @@ return {
       package_to_nvimlint[v] = k
     end
 
-    ---@type table<string, table<string, string>>
+    ---@type table<string, string[]>
     local opts_kv = {}
     for _, pkg in ipairs(pkgs) do
       registry_linter_by_package(opts_kv, pkg, package_to_nvimlint)
     end
 
     for filetype, linters in pairs(require('config').linter) do
-      opts_kv[filetype] = {}
-      for _, linter in ipairs(linters) do
-        opts_kv[filetype][linter] = linter
+      if filetype == 'all' then
+        local ft_mapping = require('util.mason').lang_to_filetype
+        for _, ft in pairs(ft_mapping) do
+          opts_kv[ft] = opts_kv[ft] or {}
+          for _, linter in ipairs(linters) do
+            table.insert(opts_kv[ft], linter)
+          end
+        end
+      else
+        opts_kv[filetype] = {}
+        for _, linter in ipairs(linters) do
+          table.insert(opts_kv[filetype], linter)
+        end
       end
     end
 
-    ---@type table<string, string[]>
-    local opts = {}
-    for filetype, linters in pairs(opts_kv) do
-      opts[filetype] = {}
-      for linter, _ in pairs(linters) do
-        table.insert(opts[filetype], linter)
-      end
-    end
-
-    require('lint').linters_by_ft = opts
+    require('lint').linters_by_ft = opts_kv
   end,
   init = function()
     vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
