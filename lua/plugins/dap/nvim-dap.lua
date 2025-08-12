@@ -24,10 +24,10 @@ return {
     vim.keymap.set('n', 'DK', function() require('dapui').eval() end)
   end,
   config = function()
-    vim.fn.sign_define('DapBreakpoint', { text = ' ', texthl = '', linehl = '', numhl = '' })
-    vim.fn.sign_define('DapBreakpointCondition', { text = ' ', texthl = '', linehl = '', numhl = '' })
-    vim.fn.sign_define('DapStopped', { text = ' ', texthl = '', linehl = '', numhl = '' })
-    vim.fn.sign_define('DapBreakpointRejected', { text = '⭐️', texthl = '', linehl = '', numhl = '' })
+    vim.fn.sign_define('DapBreakpoint', { text = ' ', texthl = 'DiagnosticError', linehl = '', numhl = '' })
+    vim.fn.sign_define('DapBreakpointCondition', { text = ' ', texthl = 'DiagnosticError', linehl = '', numhl = '' })
+    vim.fn.sign_define('DapStopped', { text = ' ', texthl = 'DiagnosticOk', linehl = '', numhl = '' })
+    vim.fn.sign_define('DapBreakpointRejected', { text = ' ', texthl = 'Comment', linehl = '', numhl = '' })
     require('plugins.dap.dapconfig.dap-config').setup()
     require('telescope').load_extension('dap')
   end,
