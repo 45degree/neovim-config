@@ -1,5 +1,5 @@
 return {
-  'echasnovski/mini.cursorword',
+  'nvim-mini/mini.cursorword',
   version = '*',
   event = 'VeryLazy',
   config = function() require('mini.cursorword').setup() end,
