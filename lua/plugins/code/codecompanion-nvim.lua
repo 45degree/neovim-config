@@ -52,9 +52,11 @@ return {
   },
   opts = {
     adapters = {
-      siliconflow = siliconflow_adapter,
-      openrouter = openrouter_adapter,
-      moonshot = moonshot_adapter,
+      http = {
+        siliconflow = siliconflow_adapter,
+        openrouter = openrouter_adapter,
+        moonshot = moonshot_adapter,
+      },
     },
     strategies = {
       chat = {
