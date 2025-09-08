@@ -43,6 +43,7 @@ return {
 
     local opts = require('config').formatter
     for _, pkg in ipairs(pkgs) do
+      if pkg.name == 'clang-format' then pkg.lang = { 'C', 'C++', 'C#' } end
       registry_formatter_by_package(opts, pkg, package_to_conform)
     end
     require('conform').setup({ formatters_by_ft = opts })
