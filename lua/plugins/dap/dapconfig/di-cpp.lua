@@ -18,6 +18,18 @@ dap.adapters.codelldb = {
   },
 }
 
+if not dap.adapters['lldb'] then
+  dap.adapters['lldb'] = function(cb, config)
+    if config.type == 'lldb' then config.type = 'codelldb' end
+    local native_adapter = dap.adapters['codelldb']
+    if type(native_adapter) == 'function' then
+      native_adapter(cb, config)
+    else
+      cb(native_adapter)
+    end
+  end
+end
+
 dap.adapters.cppdbg = {
   id = 'cppdbg',
   type = 'executable',
