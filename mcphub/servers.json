@@ -2,17 +2,29 @@
   "mcpServers": {
     "github": {
       "url": "https://api.githubcopilot.com/mcp/",
-      "disabled": false,
       "headers": {
         "Authorization": "Bearer ${GITHUB_PERSONAL_ACCESS_TOKEN}"
       }
     },
+    "sequentialthinking": {
+      "command": "bunx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ]
+    },
     "context7": {
+      "command": "bunx",
       "args": [
         "-y",
         "@upstash/context7-mcp"
-      ],
-      "command": "bunx"
+      ]
+    },
+    "fetch": {
+      "command": "uvx",
+      "args": [
+        "mcp-server-fetch"
+      ]
     }
   }
 }
