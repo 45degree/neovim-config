@@ -1,0 +1,13 @@
+local config = require('config')
+
+return {
+  'ravitemer/mcphub.nvim',
+  lazy = true,
+  cmd = 'MCPHub',
+  dependencies = { 'nvim-lua/plenary.nvim' },
+  build = 'bun install -g mcp-hub@latest', -- Installs `mcp-hub` node binary globally
+  opts = {
+    config = vim.fn.stdpath('config') .. '/mcphub/servers.json',
+    global_env = config.env
+  },
+}
