@@ -1,11 +1,24 @@
+local icons = require('icons')
+
 return {
   {
     'folke/snacks.nvim',
-    event = 'VeryLazy',
+    priority = 1000,
+    lazy = false,
     opts = {
       bigfile = { enabled = true },
       input = { enabled = true },
       styles = { input = { relative = 'cursor', row = -3, col = 0, width = 40 } },
+      notifier = {
+        enabled = true,
+        icons = {
+          error = icons.diagnostic.error,
+          warn = icons.diagnostic.warn,
+          info = icons.diagnostic.info,
+          debug = icons.diagnostic.bug,
+          trace = icons.diagnostic.hint,
+        },
+      },
     },
     config = function(_, opts)
       require('snacks').setup(opts)

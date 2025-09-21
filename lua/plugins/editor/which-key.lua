@@ -89,9 +89,9 @@ local register = {
   -- extensions
   { '<leader>e', group = 'extension', icon = '' },
   { '<leader>ep', group = 'profile', icon = '󰈸' },
-  { '<leader>epb', '<cmd>lua require("plenary.profile").start("profile.log", {flame = true})<cr>', desc = 'begin profile', icon = '󰈸' },
-  { '<leader>epe', '<cmd>lua require("plenary.profile").stop()<cr>', desc = 'end profile', icon = '󰈸' },
-  { '<leader>ept', toggle_profile, desc = 'toggle profile', icon = '󰈸' },
+  { '<leader>epb', '<cmd>lua Snacks.profiler.start()<cr>', desc = 'begin profile', icon = '󰈸' },
+  { '<leader>epe', '<cmd>lua Snacks.profiler.stop()<cr>', desc = 'end profile', icon = '󰈸' },
+  { '<leader>ept', '<cmd>lua Snacks.profiler.toggle()<cr>', desc = 'toggle profile', icon = '󰈸' },
 
   -- localleader
   { '<localleader>', group = 'local keymap', icon = '' },
