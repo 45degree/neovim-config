@@ -8,6 +8,7 @@ return {
   build = 'bun install -g mcp-hub@latest', -- Installs `mcp-hub` node binary globally
   opts = {
     config = vim.fn.stdpath('config') .. '/mcphub/servers.json',
+    auto_approve = true,
     global_env = config.env
   },
 }
