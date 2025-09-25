@@ -40,9 +40,9 @@ return {
 
     vim.lsp.enable(enabled_server)
 
-    vim.keymap.set('n', 'gd', '<cmd>Telescope lsp_definitions theme=dropdown<cr>', { noremap = true, silent = true })
-    vim.keymap.set('n', 'gi', '<cmd>Telescope lsp_implementations theme=dropdown<cr>', { noremap = true, silent = true })
-    vim.keymap.set('n', 'gr', '<cmd>Telescope lsp_references theme=dropdown<cr>', { noremap = true, silent = true })
+    vim.keymap.set('n', 'gd', function() require('snacks.picker').lsp_definitions({ layout = 'ivy' }) end, { noremap = true, silent = true })
+    vim.keymap.set('n', 'gi', function() require('snacks.picker').lsp_implementations({ layout = 'ivy' }) end, { noremap = true, silent = true })
+    vim.keymap.set('n', 'gr', function() require('snacks.picker').lsp_references({ layout = 'ivy' }) end, { noremap = true, silent = true })
     vim.keymap.set('n', 'K', function(...) vim.lsp.buf.hover(...) end, { noremap = true, silent = true })
     vim.keymap.set('n', 'rn', function(...) vim.lsp.buf.rename(...) end, { noremap = true, silent = true })
     vim.keymap.set('n', 'ca', function(...) vim.lsp.buf.code_action(...) end, { noremap = true, silent = true })

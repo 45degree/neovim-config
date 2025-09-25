@@ -28,14 +28,14 @@ local register = {
 
   -- search
   { '<leader>s', group = 'search' },
-  { '<leader>sf', '<cmd>Telescope find_files<cr>', desc = 'search file in current directory' },
-  { '<leader>sa', function() require('telescope').extensions.live_grep_args.live_grep_args() end, desc = 'search content in current directory' },
-  { '<leader>sg', '<cmd>Telescope git_files<cr>', desc = 'search file in git project' },
-  { '<leader>sc', '<cmd>Telescope colorscheme<cr>', desc = 'search colorscheme' },
-  { '<leader>sh', '<cmd>Telescope oldfiles<cr>', desc = 'search history' },
+  { '<leader>sf', function() require('snacks.picker').files() end, desc = 'search file in current directory' },
+  { '<leader>sa', function() require('snacks.picker').grep() end, desc = 'search content in current directory' },
+  { '<leader>sg', function() require('snacks.picker').git_files() end, desc = 'search file in git project' },
+  { '<leader>sc', function() require('snacks.picker').colorschemes() end, desc = 'search colorscheme' },
+  { '<leader>sh', function() require('snacks.picker').recent() end, desc = 'search history' },
   { '<leader>sp', '<cmd>SessionManager load_session<cr>', desc = 'load session' },
-  { '<leader>sm', '<cmd>Telescope marks<cr>', desc = 'search marks' },
-  { '<leader>sb', '<cmd>Telescope buffers<cr>', desc = 'search all buffers' },
+  { '<leader>sm', function() require('snacks.picker').marks() end, desc = 'search marks' },
+  { '<leader>sb', function() require('snacks.picker').buffers() end, desc = 'search all buffers' },
   { '<leader>sr', '<cmd>Spectre<cr>', desc = 'search and replace' },
 
   -- code

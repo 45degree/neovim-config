@@ -27,15 +27,6 @@ return {
     },
     groups = {
       all = {
-        TelescopeBorder = { fg = 'bg2', bg = 'bg2' },
-        TelescopePromptBorder = { fg = 'bg3', bg = 'bg3' },
-        TelescopePromptNormal = { bg = 'bg3' },
-        TelescopePromptPrefix = { fg = 'palette.red', bg = 'bg3' },
-        TelescopeNormal = { bg = 'bg2' },
-        TelescopePreviewTitle = { fg = 'sel0', bg = 'palette.orange' },
-        TelescopePromptTitle = { fg = 'sel0', bg = 'palette.green' },
-        TelescopeResultsTitle = { fg = 'sel0', bg = 'palette.cyan' },
-        TelescopeMatching = { fg = 'diag.error' },
         NeoTreeTabActive = { fg = 'fg1' },
         NeoTreeTabInactive = { fg = 'fg3', bg = 'bg0' },
         NeoTreeTabSeparatorInactive = { fg = 'bg0', bg = 'bg0' },

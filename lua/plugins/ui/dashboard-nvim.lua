@@ -1,14 +1,14 @@
 local doom_config = {
   vertical_center = true,
   center = {
-    { icon = ' ', key = 'f', desc = 'Find File', action = function() require('telescope.builtin').find_files() end },
-    { icon = ' ', key = 'g', desc = 'Find Text', action = function() require('telescope.builtin').live_grep() end },
-    { icon = ' ', key = 'r', desc = 'Recent Files', action = function() require('telescope.builtin').oldfiles() end },
+    { icon = ' ', key = 'f', desc = 'Find File', action = function() require('snacks.picker').files() end },
+    { icon = ' ', key = 'g', desc = 'Find Text', action = function() require('snacks.picker').grep() end },
+    { icon = ' ', key = 'r', desc = 'Recent Files', action = function() require('snacks.picker').recent() end },
     {
       icon = ' ',
       key = 'c',
       desc = 'Config',
-      action = function() require('telescope.builtin').find_files({ cwd = vim.fn.stdpath('config') }) end,
+      action = function() require('snacks.picker').files({ cwd = vim.fn.stdpath('config') }) end,
     },
     { icon = ' ', key = 's', desc = 'Restore Session', action = function() require('session_manager').load_session(false) end },
     { icon = '󰒲 ', key = 'L', desc = 'Lazy', action = ':Lazy', enabled = package.loaded.lazy ~= nil },

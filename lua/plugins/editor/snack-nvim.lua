@@ -8,6 +8,7 @@ return {
     opts = {
       bigfile = { enabled = true },
       input = { enabled = true },
+      picker = { enabled = true, ui_select = true },
       styles = { input = { relative = 'cursor', row = -3, col = 0, width = 40 } },
       notifier = {
         enabled = true,

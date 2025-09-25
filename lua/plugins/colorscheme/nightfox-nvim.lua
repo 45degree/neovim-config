@@ -5,15 +5,6 @@ return {
   opts = {
     groups = {
       all = {
-        TelescopeBorder = { fg = 'palette.bg2', bg = 'palette.bg2' },
-        TelescopePromptBorder = { fg = 'palette.bg3', bg = 'palette.bg3' },
-        TelescopePromptNormal = { fg = 'palette.fg2', bg = 'palette.bg3' },
-        TelescopePromptPrefix = { fg = 'palette.red', bg = 'palette.bg3' },
-        TelescopeNormal = { fg = 'palette.fg2', bg = 'palette.bg2' },
-        TelescopePreviewTitle = { fg = 'palette.sel0', bg = 'palette.orange' },
-        TelescopePromptTitle = { fg = 'palette.sel0', bg = 'palette.green' },
-        TelescopeResultsTitle = { fg = 'palette.sel0', bg = 'palette.cyan' },
-        TelescopeMatching = { fg = 'diag.error' },
         NeoTreeTabActive = { fg = 'palette.fg3' },
         NeoTreeTabInactive = { fg = 'palette.fg1', bg = 'palette.bg0' },
         NeoTreeTabSeparatorInactive = { fg = 'palette.bg0', bg = 'palette.bg0' },

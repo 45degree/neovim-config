@@ -4,7 +4,6 @@ return {
     'mason-org/mason.nvim',
     'theHamsta/nvim-dap-virtual-text',
     'rcarriga/nvim-dap-ui',
-    'nvim-telescope/telescope-dap.nvim',
   },
   lazy = true,
   init = function()
@@ -29,6 +28,5 @@ return {
     vim.fn.sign_define('DapStopped', { text = ' ', texthl = 'DiagnosticOk', linehl = '', numhl = '' })
     vim.fn.sign_define('DapBreakpointRejected', { text = ' ', texthl = 'Comment', linehl = '', numhl = '' })
     require('plugins.dap.dapconfig.dap-config').setup()
-    require('telescope').load_extension('dap')
   end,
 }
