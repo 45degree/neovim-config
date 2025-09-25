@@ -77,6 +77,9 @@ return {
         ['<'] = 'prev_source',
         ['>'] = 'next_source',
       },
+      fuzzy_finder_mappings = {
+        ['<esc>'] = 'noop', -- use normal mode
+      },
     },
     filesystem = {
       cwd_target = {
