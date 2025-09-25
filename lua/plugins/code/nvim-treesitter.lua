@@ -1,3 +1,14 @@
+---@param langs string[]
+local function ensure_install(langs)
+  local installed = require('nvim-treesitter').get_installed()
+  local uninstalled_lang = {}
+  for _, lang in ipairs(langs) do
+    if not vim.tbl_contains(installed, lang) then table.insert(uninstalled_lang, lang) end
+  end
+
+  if #uninstalled_lang ~= 0 then require('nvim-treesitter').install(uninstalled_lang) end
+end
+
 return {
   'nvim-treesitter/nvim-treesitter',
   event = 'LazyFile',
@@ -14,6 +25,28 @@ return {
       filetype = 'haxe',
     }
     require('nvim-treesitter').setup(opts)
+
+    ensure_install({
+      'jsonc',
+      'cpp',
+      'c',
+      'json',
+      'vim',
+      'markdown',
+      'lua',
+      'bash',
+      'regex',
+      'markdown_inline',
+      'css',
+      'html',
+      'javascript',
+      'latex',
+      'scss',
+      'svelte',
+      'tsx',
+      'typst',
+      'vue',
+    })
 
     vim.api.nvim_create_autocmd('BufEnter', {
       callback = function()

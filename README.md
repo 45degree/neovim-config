@@ -7,7 +7,16 @@
 该配置文件依赖一下几个工具, 需要提前安装好
 
 1. git
-2. rg(ripgrep 使用)
+2. rg
+3. fd
+
+### option dependencies
+
+1. bun
+2. uv
+3. wget
+4. imagemagick
+5. mermaid-cli
 
 ## 集成的功能
 
