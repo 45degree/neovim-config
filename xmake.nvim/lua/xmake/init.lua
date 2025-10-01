@@ -1,74 +1,34 @@
 local config = require('xmake.config')
 local path = require('plenary.path')
 
-local M = {
-  project = require('xmake.util.project'),
-  target = require('xmake.util.target'),
-  __has_set_neoconf = false,
-}
+---@class xmake-nvim
+local M = {}
 
-function M.setup(args)
-  config.setup(args)
+--- setup the plugin
+--- @param args xmake-nvim.config
+function M.setup(args) config:setup(args) end
 
-  local ok, neoconf_plugins = pcall(require, 'neoconf.plugins')
-  if ok and not M.__has_set_neoconf and config.neoconf then
-    neoconf_plugins.register({
-      name = 'xmake',
-      on_schema = function(schema)
-        schema:import('xmake', {
-          debugger = {
-            gdb = 'gdb',
-            codelldb = 'codelldb',
-            lldb_mi = 'lldb-mi',
-          },
-          executable = 'xmake',
-        })
-      end,
-      on_update = function()
-        local new_config = require('neoconf').get('xmake')
-        if new_config == nil then return end
-        config.setup({
-          xmake_executable = new_config.executable,
-          debugger = {
-            gdb = new_config.debugger.gdb,
-            codelldb = new_config.debugger.codelldb,
-            lldb_mi = new_config.debugger.lldb_mi,
-          },
-        })
-      end,
-    })
-    M.__has_set_neoconf = true
-  end
-end
+--- set the dap configuration
+--- @param dap_configuration fun(params: xmake-nvim.debug-params): dap.Configuration[]
+function M.set_dap_configuration(dap_configuration) config.dap_configuration = dap_configuration end
 
-function M.set_dap_config(dap_config_func) config.set_dap_configuration(dap_config_func) end
-
-function M.build(targetName, force)
+--- build the target
+---@param targetName string target name
+---@param opts string[] xmake build options
+function M.build(targetName, opts)
   local util = require('xmake.util.util')
   local env = { PATH = vim.env.PATH, ['COLORTERM'] = 'nocolor' }
-  local xmake_executable = config.opts.xmake_executable
-  if force then
-    util.run(xmake_executable, env, { 'build', '-r', targetName }, config.opts)
-  else
-    util.run(xmake_executable, env, { 'build', targetName }, config.opts)
-  end
+  local xmake_executable = config.xmake_executable
+  local cmd_line = { 'build' }
+  cmd_line = vim.list_extend(cmd_line, opts)
+  cmd_line = vim.list_extend(cmd_line, { targetName })
+  util.run(xmake_executable, env, cmd_line, config)
 end
 
----@class xmake-nvim.debugger
----@field gdb string
----@field codelldb string
----@field lldb_mi string
-
----@class xmake-nvim.debug-params
----@field target_name string
----@field program string
----@field args string[]
----@field cwd string
----@field env table<string, string>
----@field debugger xmake-nvim.debugger
-
+--- debug the target
+--- @param target_name string target name
+--- @param args string[] arguments when run the target
 function M.debug(target_name, args)
-  local util = require('xmake.util.util')
   local project = require('xmake.util.project')
   local target = require('xmake.util.target')
   local dap = require('dap')
@@ -80,14 +40,9 @@ function M.debug(target_name, args)
   local params = {
     target_name = target_name,
     program = rootdir:joinpath(target_file):absolute(),
-    args = util.split_args(args),
+    args = args,
     cwd = target_rundir:absolute(),
     env = target.envs(target_name),
-    debugger = {
-      gdb = config.opts.debugger.gdb,
-      codelldb = config.opts.debugger.codelldb,
-      lldb_mi = config.opts.debugger.lldb_mi,
-    },
   }
   local dap_configurations = config.dap_configuration(params)
   if #dap_configurations > 1 then
@@ -106,11 +61,13 @@ function M.debug(target_name, args)
   end
 end
 
-function M.run(targetName, args)
+--- debug the target
+--- @param target_name string target name
+--- @param args string[] arguments when run the target
+function M.run(target_name, args)
   local util = require('xmake.util.util')
   local env = { PATH = vim.env.PATH }
-  local xmake_executable = config.opts.xmake_executable
-  util.run(xmake_executable, env, { 'run', targetName, args }, config.opts)
+  util.run(config.xmake_executable, env, { 'run', target_name, util.join_args(args) }, config)
 end
 
 return M

@@ -9,6 +9,7 @@ local insert_natvis = function(natvis_files, extrafiles)
 end
 
 ---@param params xmake-nvim.debug-params
+---@return dap.Configuration[]
 local function default_dap_configuration(params)
   local xmake = require('xmake')
 
@@ -31,9 +32,10 @@ local function default_dap_configuration(params)
     table.insert(cpptools_env, { name = k, value = v })
   end
 
+  ---@type dap.Configuration[]
   local dap_config = {}
 
-  if vim.fn.executable(params.debugger.codelldb) ~= 0 then
+  if vim.fn.executable('codelldb') ~= 0 then
     table.insert(dap_config, {
       name = 'xmake debug with codelldb',
       type = 'codelldb',
@@ -47,14 +49,14 @@ local function default_dap_configuration(params)
     })
   end
 
-  if vim.fn.executable(params.debugger.gdb) ~= 0 then
+  if vim.fn.executable('gdb') ~= 0 then
     table.insert(dap_config, {
       name = 'xmake debug with cpptools(gdb)',
       type = 'cppdbg',
       request = 'launch',
       stopOnEntry = true,
       MIMode = 'gdb',
-      miDebuggerPath = params.debugger.gdb,
+      miDebuggerPath = vim.fn.exepath('gdb'),
       program = params.program,
       args = params.args,
       cwd = params.cwd,
@@ -77,7 +79,7 @@ local function default_dap_configuration(params)
       request = 'launch',
       stopOnEntry = true,
       MIMode = 'lldb',
-      miDebuggerPath = params.debugger.lldb_mi,
+      miDebuggerPath = vim.fn.exepath('lldb-mi'),
       program = params.program,
       args = params.args,
       cwd = params.cwd,
@@ -89,25 +91,29 @@ local function default_dap_configuration(params)
   return dap_config
 end
 
-local M = {}
-M.opts = {
+---@class xmake-nvim.debug-params
+---@field target_name string current debug target name
+---@field program string the absolute executable path of the target
+---@field args string[] the arguments when run the target from debugger
+---@field cwd string the working directory when run the target
+---@field env table<string, string> the environment when run the target
+
+---@class xmake-nvim.config
+---@field xmake_executable string path to xmake executable, default is vim.fn.exepath('xmake')
+---@field quickfix_size number output window height, default is 10
+---@field quickfix_position 'belowright' | 'aboveleft'
+---@field show_quickfix string 'always' | 'only_on_error'
+---@field dap_configuration fun(params: xmake-nvim.debug-params): dap.Configuration[]
+local M = {
   xmake_executable = xmake_executable,
   quickfix_size = 10, -- cmake output window height
   quickfix_position = 'belowright', -- "belowright", "aboveleft", ...
   show_quickfix = 'always', -- "always", "only_on_error"
-  neoconf = true,
-  debugger = {
-    gdb = 'gdb',
-    codelldb = 'codelldb',
-    lldb_mi = 'lldb-mi',
-  },
+  dap_configuration = default_dap_configuration,
 }
-M.dap_configuration = default_dap_configuration
 
-function M.setup(args) M.opts = vim.tbl_deep_extend('force', M.opts, args or {}) end
-
---- set debug configuration for dap
----@param callback fun(params: xmake-nvim.debug-params): table
-function M.set_dap_configuration(callback) M.dap_configuration = callback or default_dap_configuration end
+--- setup xmake-nvim
+---@param opts xmake-nvim.config
+function M:setup(opts) self = vim.tbl_deep_extend('force', self, opts or {}) end
 
 return M

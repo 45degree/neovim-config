@@ -9,7 +9,7 @@ local M = {}
 ---@return xmake-nvim.json
 function M.run_xmake_script(script_path, ...)
   local opts = { env = { PATH = vim.env.PATH, ['COLORTERM'] = 'nocolor' } }
-  local cmd = { config.opts.xmake_executable, 'lua', tostring(path:new(__dirname, script_path)), ... }
+  local cmd = { config.xmake_executable, 'lua', tostring(path:new(__dirname, script_path)), ... }
   local output = vim.system(cmd, opts):wait()
   if output.code ~= 0 or not output.stdout or #output.stdout == 0 then
     local error_msg = #output.stdout == 0 and 'Command executed successfully but returned no output'
