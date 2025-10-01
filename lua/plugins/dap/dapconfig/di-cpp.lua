@@ -14,7 +14,7 @@ dap.adapters.codelldb = {
   port = '${port}',
   executable = {
     command = vim.fn.exepath('codelldb'),
-    args = { '--port', '${port}' },
+    args = { '--port', '${port}', '--settings', vim.json.encode({ showDisassembly = 'never' }) },
   },
 }
 
