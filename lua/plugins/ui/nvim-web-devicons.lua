@@ -12,6 +12,8 @@ return {
       hlsl = { glyph = '󰸱', hl = 'MiniIconsBlue' },
       glsl = { glyph = '󰸱', hl = 'MiniIconsGreen' },
       hx = { glyph = '', hl = 'MiniIconsOrange' },
+      mm = { glyph = '', hl = 'MiniIconsBlue' },
+      m = { glyph = '', hl = 'MiniIconsBlue' },
     },
   },
   init = function()
