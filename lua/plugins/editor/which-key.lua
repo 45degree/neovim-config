@@ -36,7 +36,7 @@ local register = {
   { '<leader>sp', '<cmd>SessionManager load_session<cr>', desc = 'load session' },
   { '<leader>sm', function() require('snacks.picker').marks() end, desc = 'search marks' },
   { '<leader>sb', function() require('snacks.picker').buffers() end, desc = 'search all buffers' },
-  { '<leader>sr', '<cmd>Spectre<cr>', desc = 'search and replace' },
+  { '<leader>sr', '<cmd>GrugFar<cr>', desc = 'search and replace' },
 
   -- code
   { '<leader>c', group = 'code' },
@@ -48,6 +48,7 @@ local register = {
   { '<leader>cd', group = 'debug' },
   { '<leader>cd=', function() require('dapui').open({ reset = true }) end, desc = 'balance debug window' },
   { '<leader>cdc', function() require('dap').terminate() end, desc = 'terninate debug' },
+  { '<leader>cdr', function() require('dap').run_last() end, desc = 'run last debug' },
   { '<leader>cdw', function() require('dapui').toggle() end, desc = 'toggle debug windows' },
 
   -- git
