@@ -77,6 +77,7 @@ return {
     display = { chat = { window = { position = 'right', width = 0.3, opts = { number = false, relativenumber = false, winfixwidth = true } } } },
     extensions = {
       history = { enabled = true },
+      spinner = {},
       mcphub = {
         callback = 'mcphub.extensions.codecompanion',
         opts = {
