@@ -42,6 +42,37 @@ local moonshot_adapter = function()
   })
 end
 
+local bigmodel_adapter = function()
+  return require('codecompanion.adapters').extend('openai_compatible', {
+    name = 'bigmodel',
+    formatted_name = 'bigmodel',
+    env = {
+      url = 'https://open.bigmodel.cn/api/paas',
+      api_key = 'BIGMODEL_API_KEY',
+      chat_url = '/v4/chat/completions',
+    },
+    schema = {
+      model = {
+        default = 'glm-4.6',
+        choices = {
+          ['glm-4.6'] = {
+            formatted_name = 'GLM-4.6',
+            opts = { can_reason = true, has_vision = false },
+          },
+          ['glm-4.5'] = {
+            formatted_name = 'GLM-4.5',
+            opts = { can_reason = true, has_vision = false },
+          },
+          ['glm-4.5-Air'] = {
+            formatted_name = 'GLM-4.5-Air',
+            opts = { can_reason = true, has_vision = false },
+          },
+        },
+      },
+    },
+  })
+end
+
 return {
   'olimorris/codecompanion.nvim',
   cmd = { 'CodeCompanion', 'CodeCompanionChat', 'CodeCompanionCmd', 'CodeCompanionActions', 'CodeCompanionHistory', 'CodeCompanionSummaries' },
@@ -62,6 +93,7 @@ return {
         siliconflow = siliconflow_adapter,
         openrouter = openrouter_adapter,
         moonshot = moonshot_adapter,
+        bigmodel = bigmodel_adapter,
       },
     },
     strategies = {
@@ -73,7 +105,7 @@ return {
       inline = { adapter = config.codecompanion_adapter.inline },
       cmd = { adapter = config.codecompanion_adapter.cmd },
     },
-    opts = { language = 'Chinese' },
+    opts = { language = 'Chinese', log_level = 'TRACE' },
     display = { chat = { window = { position = 'right', width = 0.3, opts = { number = false, relativenumber = false, winfixwidth = true } } } },
     extensions = {
       history = { enabled = true },
