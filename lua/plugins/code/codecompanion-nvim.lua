@@ -99,7 +99,7 @@ return {
     strategies = {
       chat = {
         adapter = config.codecompanion_adapter.chat,
-        ---@param adapter CodeCompanion.Adapter
+        ---@param adapter CodeCompanion.HTTPAdapter|CodeCompanion.ACPAdapter
         roles = { llm = function(adapter) return string.format('(%s) %s', adapter.formatted_name, adapter.model.name) end },
       },
       inline = { adapter = config.codecompanion_adapter.inline },
