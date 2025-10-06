@@ -20,6 +20,9 @@ local function toggle_profile()
 end
 
 local register = {
+  --- ai
+  { '<leader>a', group = 'ai' },
+
   -- file
   { '<leader>f', group = 'file' },
   { '<leader>fs', '<cmd>w<cr>', desc = 'Save current file' },
