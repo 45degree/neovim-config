@@ -16,14 +16,6 @@ return {
   branch = 'main',
   opts = { install_dir = vim.fn.stdpath('data') .. '/site' },
   config = function(_, opts)
-    require('nvim-treesitter.parsers').haxe = {
-      install_info = {
-        url = 'https://github.com/vantreeseba/tree-sitter-haxe',
-        files = { 'src/parser.c', 'src/scanner.c' },
-        branch = 'main',
-      },
-      filetype = 'haxe',
-    }
     require('nvim-treesitter').setup(opts)
 
     ensure_install({
@@ -46,6 +38,8 @@ return {
       'tsx',
       'typst',
       'vue',
+      'yaml',
+      'toml',
     })
 
     vim.api.nvim_create_autocmd('BufEnter', {

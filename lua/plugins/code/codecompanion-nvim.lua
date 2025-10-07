@@ -1,43 +1,34 @@
 local config = require('config')
 
-local siliconflow_adapter = function()
-  return require('codecompanion.adapters').extend('openai_compatible', {
-    formatted_name = 'SiliconFlow',
-    env = {
-      url = 'https://api.siliconflow.cn/',
-      api_key = 'SILICONFLOW_API_KEY',
-      chat_url = '/v1/chat/completions',
-    },
-    schema = {
-      model = { default = 'deepseek-ai/DeepSeek-R1-Distill-Qwen-32B' },
-    },
-  })
-end
-
-local openrouter_adapter = function()
-  return require('codecompanion.adapters').extend('openai_compatible', {
-    formatted_name = 'openrouter',
-    env = {
-      url = 'https://openrouter.ai/api',
-      api_key = 'OPENROUTER_API_KEY',
-      chat_url = '/v1/chat/completions',
-    },
-    schema = {
-      model = { default = 'deepseek/deepseek-r1-0528:free' },
-    },
-  })
-end
-
 local moonshot_adapter = function()
   return require('codecompanion.adapters').extend('openai_compatible', {
     formatted_name = 'moonshot',
     env = {
       url = 'https://api.moonshot.cn',
-      api_key = 'KIMI_API_KEY',
-      chat_url = '/v1/chat/completions',
+      api_key = 'KIMI_API_KEY', chat_url = '/v1/chat/completions',
     },
     schema = {
       model = { default = 'kimi-k2-0711-preview' },
+      ---@type CodeCompanion.Schema
+      temperature = {
+        order = 2,
+        mapping = 'parameters',
+        type = 'number',
+        optional = true,
+        default = 0.3,
+        desc = 'What sampling temperature to use, between 0 and 1.',
+        validate = function(n) return n >= 0 and n <= 1, 'Must be between 0 and 1' end,
+      },
+      ---@type CodeCompanion.Schema
+      top_p = {
+        order = 3,
+        mapping = 'parameters',
+        type = 'number',
+        optional = true,
+        default = 0.95,
+        desc = 'Another sampling method, i.e. the model considers the result of a tag with a probability mass of top_p',
+        validate = function(n) return n >= 0 and n <= 1, 'Must be between 0 and 1' end,
+      },
     },
   })
 end
@@ -69,6 +60,26 @@ local bigmodel_adapter = function()
           },
         },
       },
+      ---@type CodeCompanion.Schema
+      temperature = {
+        order = 2,
+        mapping = 'parameters',
+        type = 'number',
+        optional = true,
+        default = 0.3,
+        desc = 'What sampling temperature to use, between 0 and 1.',
+        validate = function(n) return n >= 0 and n <= 1, 'Must be between 0 and 1' end,
+      },
+      ---@type CodeCompanion.Schema
+      top_p = {
+        order = 3,
+        mapping = 'parameters',
+        type = 'number',
+        optional = true,
+        default = 0.95,
+        desc = 'Another sampling method, i.e. the model considers the result of a tag with a probability mass of top_p',
+        validate = function(n) return n >= 0 and n <= 1, 'Must be between 0 and 1' end,
+      },
     },
   })
 end
@@ -90,8 +101,6 @@ return {
   opts = {
     adapters = {
       http = {
-        siliconflow = siliconflow_adapter,
-        openrouter = openrouter_adapter,
         moonshot = moonshot_adapter,
         bigmodel = bigmodel_adapter,
       },
