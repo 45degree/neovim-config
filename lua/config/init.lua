@@ -55,10 +55,11 @@
 ---@field gui? GuiConfig
 ---@field codecompanion_adapter? CodeCompanionAdapter
 ---@field lang? table<string, boolean>
----@field lsp? string[]
+---@field lsp? {enabled?: string[], disabled?: string[]}
 ---@field formatter? table<string, string[]>
 ---@field linter? table<string, string[]>
 ---@field shell? string[]
+---@field env? table<string, string>
 ---@field setup? fun(opts: CustomNvimConfig)
 
 ---@type CustomNvimConfig
@@ -91,7 +92,7 @@ local defaults = {
   formatter = {},
 
   -- lsp in lsp-config that want to use but can't be install by mason, for example: nushell
-  lsp = { 'nushell' },
+  lsp = { enabled = {}, disabled = { 'stylua' } },
 
   ---@type GuiConfig
   gui = {
@@ -107,23 +108,15 @@ local defaults = {
   shell = nil,
 }
 
----@class ConfigModule : CustomNvimConfig
----@field private config CustomNvimConfig
+---@type CustomNvimConfig
 local M = {}
+setmetatable(M, { __index = function(_, key) return defaults[key] end })
 
 function M.setup(opts)
-  local options = vim.tbl_deep_extend('force', defaults, opts or {}) or {}
-  for k, v in pairs(options.env) do
+  defaults = vim.tbl_deep_extend('force', defaults, opts or {}) or {}
+  for k, v in pairs(M.env) do
     vim.env[k] = v
   end
-  M.config = options
 end
-
-setmetatable(M, {
-  __index = function(_, key)
-    if M.config == nil then return defaults[key] end
-    return M.config[key]
-  end,
-})
 
 return M

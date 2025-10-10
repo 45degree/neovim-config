@@ -4,14 +4,24 @@ return {
   dependencies = {
     'folke/neoconf.nvim',
     'mason-org/mason.nvim',
+    'mason-org/mason-lspconfig.nvim',
   },
   config = function()
     require('neoconf').setup()
 
+    local disabled_server = require('config').lsp.disabled
+
+    local enabled_server = vim.list_extend({}, require('config').lsp.enabled)
+    for _, server in ipairs(require('mason-lspconfig').get_installed_servers()) do
+      if disabled_server ~= nil and vim.list_contains(disabled_server, server) then goto continue end
+      table.insert(enabled_server, server)
+      ::continue::
+    end
+
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
     vim.lsp.config('*', { capabilities = capabilities })
-    vim.lsp.enable(require('config').lsp)
+    vim.lsp.enable(enabled_server)
 
     vim.api.nvim_create_autocmd('LspAttach', {
       callback = function(args)
