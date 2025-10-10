@@ -92,6 +92,7 @@ return {
     'nvim-lua/plenary.nvim',
     'nvim-treesitter/nvim-treesitter',
     'ravitemer/codecompanion-history.nvim',
+    { dir = vim.fn.stdpath('config') .. '/codecompanion-progress.nvim' },
   },
   keys = {
     { '<leader>aa', '<cmd>CodeCompanionChat Toggle<cr>', desc = 'Toggle CodeCompanion Chat', mode = { 'n', 'v' } },
@@ -120,7 +121,13 @@ return {
     display = { chat = { window = { position = 'right', width = 0.3, opts = { number = false, relativenumber = false, winfixwidth = true } } } },
     extensions = {
       history = { enabled = true },
-      spinner = {},
+      progress = {
+        opts = {
+          spinner = { enabled = false, symbols = require('util.spinners').zip },
+          notify = { symbols = require('util.spinners').bouncing_bar },
+        },
+      },
+
       mcphub = {
         callback = 'mcphub.extensions.codecompanion',
         opts = {
