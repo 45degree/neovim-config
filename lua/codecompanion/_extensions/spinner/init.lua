@@ -23,7 +23,7 @@ local M = {
 function M:update_spinner(buf)
   self.spinner_index = (self.spinner_index % #self.spinner_symbols) + 1
 
-  if not buf or not vim.api.nvim_buf_is_valid(buf) then return end
+  if not vim.api.nvim_buf_is_valid(buf) then return end
 
   vim.api.nvim_buf_clear_namespace(buf, self.namespace_id, 0, -1)
 
@@ -58,7 +58,7 @@ function M:stop_spinner(buf)
     self.timer = nil
   end
 
-  if buf and vim.api.nvim_buf_is_valid(buf) then vim.api.nvim_buf_clear_namespace(buf, self.namespace_id, 0, -1) end
+  if vim.api.nvim_buf_is_valid(buf) then vim.api.nvim_buf_clear_namespace(buf, self.namespace_id, 0, -1) end
 end
 
 function M:init()
