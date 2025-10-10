@@ -30,8 +30,6 @@ return {
 
         local methods = vim.lsp.protocol.Methods
 
-        -- enable treesitter if lsp not support semantic highlight
-        if client:supports_method(methods.textDocument_semanticTokens_full) then vim.treesitter.stop(bufnr) end
         if client:supports_method(methods.textDocument_codeLens) then
           local code_lens_group = vim.api.nvim_create_augroup('toggle_code_lens', { clear = false })
           vim.defer_fn(function() vim.lsp.codelens.refresh() end, 500)
@@ -42,11 +40,11 @@ return {
             desc = 'Refresh Code Lens',
             group = code_lens_group,
           })
+        end
 
-          if client:supports_method(methods.textDocument_foldingRange) then
-            local win = vim.api.nvim_get_current_win()
-            vim.wo[win][0].foldexpr = 'v:lua.vim.lsp.foldexpr()'
-          end
+        if client:supports_method(methods.textDocument_foldingRange) then
+          local win = vim.api.nvim_get_current_win()
+          vim.wo[win][0].foldexpr = 'v:lua.vim.lsp.foldexpr()'
         end
       end,
     })
