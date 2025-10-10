@@ -5,7 +5,8 @@ local moonshot_adapter = function()
     formatted_name = 'moonshot',
     env = {
       url = 'https://api.moonshot.cn',
-      api_key = 'KIMI_API_KEY', chat_url = '/v1/chat/completions',
+      api_key = 'KIMI_API_KEY',
+      chat_url = '/v1/chat/completions',
     },
     schema = {
       model = { default = 'kimi-k2-0711-preview' },
@@ -114,7 +115,7 @@ return {
       inline = { adapter = config.codecompanion_adapter.inline },
       cmd = { adapter = config.codecompanion_adapter.cmd },
     },
-    opts = { language = 'Chinese', log_level = 'TRACE' },
+    opts = { language = 'Chinese' },
     display = { chat = { window = { position = 'right', width = 0.3, opts = { number = false, relativenumber = false, winfixwidth = true } } } },
     extensions = {
       history = { enabled = true },

@@ -45,6 +45,7 @@ return {
     vim.api.nvim_create_autocmd('BufEnter', {
       callback = function()
         local buf = vim.api.nvim_get_current_buf()
+        local methods = vim.lsp.protocol.Methods
         local parser = vim.treesitter.get_parser(buf, nil, { error = false })
         if parser == nil then return end
 
@@ -57,7 +58,7 @@ return {
 
         local clients = vim.lsp.get_clients({ bufnr = buf })
         for _, client in ipairs(clients) do
-          if client.server_capabilities['semanticTokensProvider'] then
+          if client:supports_method(methods.textDocument_semanticTokens_full) then
             vim.treesitter.stop(buf)
             return
           end
