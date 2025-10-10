@@ -20,7 +20,7 @@ if vim.g.neovide then
     pattern = '[/\\?]',
     callback = set_ime,
   })
-elseif vim.fn.has('win32') ~= 1 and not vim.g.neovide then
+elseif vim.fn.has('win32') ~= 1 and not vim.g.neovide and vim.fn.executable('fcitx5-remote') then
   vim.g.fcitx_version = vim.fn.system('command -v fcitx5')
   if vim.fn.empty(vim.g.fcitx_version) == 0 then
     vim.g.fcitx_version = 'fcitx5-remote'
