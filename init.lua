@@ -13,3 +13,7 @@ vim.loader.enable()
 local global_config_file = loadfile(vim.fn.stdpath('config') .. '/config.lua')
 require('config').setup(global_config_file and global_config_file() or {})
 require('init')
+
+-- default enabled lsp
+local lsp = { 'clangd', 'nushell', 'lua_ls', 'jsonls', 'ruff', 'pyright', 'wgsl_analyzer', 'rust_analyzer', 'ts_ls', 'slang' }
+vim.lsp.enable(lsp)

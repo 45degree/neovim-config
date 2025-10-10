@@ -1,44 +1,55 @@
-local function has_plugin(name)
-  for _, plugin in ipairs(require('lazy').plugins()) do
-    if plugin.name == name then return true end
-  end
-  return false
-end
-
 return {
   'neovim/nvim-lspconfig',
   event = { 'LazyFile', 'BufReadPre' },
   dependencies = {
     'folke/neoconf.nvim',
     'mason-org/mason.nvim',
-    'mason-org/mason-lspconfig.nvim',
   },
   config = function()
     require('neoconf').setup()
-    require('mason-lspconfig').setup()
 
-    local lspinstaller = require('mason-lspconfig')
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
+    vim.lsp.config('*', { capabilities = capabilities })
+    vim.lsp.enable(require('config').lsp)
 
-    local enabled_server = {}
-    for _, server in ipairs(lspinstaller.get_installed_servers()) do
-      if server == 'rust_analyzer' and has_plugin('rustaceanvim') then goto continue end
-      local config = require('plugins.lsp.lspconfig.server-config')(server)
+    vim.api.nvim_create_autocmd('LspAttach', {
+      callback = function(args)
+        local bufnr = args.buf
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
 
-      vim.lsp.config(server, config)
-      table.insert(enabled_server, server)
-      ::continue::
-    end
+        if client == nil then
+          vim.notify('client is nil', vim.log.levels.ERROR)
+          return
+        end
 
-    for _, server in ipairs(require('config').lsp) do
-      if server == 'rust_analyzer' and has_plugin('rustaceanvim') then goto continue end
-      local config = require('plugins.lsp.lspconfig.server-config')(server)
+        vim.api.nvim_create_autocmd('LspDetach', {
+          group = vim.api.nvim_create_augroup('LspCallbacks', { clear = true }),
+          callback = function() vim.lsp.buf.clear_references() end,
+        })
 
-      vim.lsp.config(server, config)
-      table.insert(enabled_server, server)
-      ::continue::
-    end
+        local methods = vim.lsp.protocol.Methods
 
-    vim.lsp.enable(enabled_server)
+        -- enable treesitter if lsp not support semantic highlight
+        if client:supports_method(methods.textDocument_semanticTokens_full) then vim.treesitter.stop(bufnr) end
+        if client:supports_method(methods.textDocument_codeLens) then
+          local code_lens_group = vim.api.nvim_create_augroup('toggle_code_lens', { clear = false })
+          vim.defer_fn(function() vim.lsp.codelens.refresh() end, 500)
+
+          vim.api.nvim_create_autocmd({ 'BufEnter', 'CursorHold', 'InsertLeave' }, {
+            buffer = bufnr,
+            callback = vim.lsp.codelens.refresh,
+            desc = 'Refresh Code Lens',
+            group = code_lens_group,
+          })
+
+          if client:supports_method(methods.textDocument_foldingRange) then
+            local win = vim.api.nvim_get_current_win()
+            vim.wo[win][0].foldexpr = 'v:lua.vim.lsp.foldexpr()'
+          end
+        end
+      end,
+    })
 
     vim.keymap.set('n', 'gd', function() require('snacks.picker').lsp_definitions({ layout = 'ivy' }) end, { noremap = true, silent = true })
     vim.keymap.set('n', 'gi', function() require('snacks.picker').lsp_implementations({ layout = 'ivy' }) end, { noremap = true, silent = true })

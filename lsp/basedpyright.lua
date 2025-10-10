@@ -1,5 +1,5 @@
-return function(opts)
-  opts.settings = {
+return {
+  settings = {
     basedpyright = {
       analysis = {
         typeCheckingMode = 'basic',
@@ -15,6 +15,5 @@ return function(opts)
         },
       },
     },
-  }
-  return opts
-end
+  },
+}

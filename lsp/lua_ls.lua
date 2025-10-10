@@ -1,8 +1,8 @@
-return function(opts)
+return {
   ---@diagnostic disable-next-line: unused-local
-  opts.on_attach = function(client, bufnr) client.server_capabilities.documentFormattingProvider = false end
+  on_attach = function(client, bufnr) client.server_capabilities.documentFormattingProvider = false end,
 
-  opts.settings = {
+  settings = {
     Lua = {
       runtime = {
         version = 'LuaJIT',
@@ -21,6 +21,5 @@ return function(opts)
         workspaceWord = false,
       },
     },
-  }
-  return opts
-end
+  },
+}

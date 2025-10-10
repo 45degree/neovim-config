@@ -107,8 +107,8 @@ local defaults = {
   shell = nil,
 }
 
----@class ConfigModule
----@field config CustomNvimConfig
+---@class ConfigModule : CustomNvimConfig
+---@field private config CustomNvimConfig
 local M = {}
 
 function M.setup(opts)
