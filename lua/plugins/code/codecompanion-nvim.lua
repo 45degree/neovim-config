@@ -99,6 +99,7 @@ return {
     { '<leader>ac', '<cmd>CodeCompanionActions<cr>', desc = 'CodeCompanion Chat Actions', mode = { 'n', 'v' } },
     { '<leader>ai', '<cmd>CodeCompanion<cr>', desc = 'CodeCompanion Inline', mode = { 'n', 'v' } },
   },
+  init = function() vim.cmd([[cab cc CodeCompanion]]) end,
   opts = {
     adapters = {
       http = {
