@@ -121,6 +121,7 @@ return {
     display = { chat = { window = { position = 'right', width = 0.3, opts = { number = false, relativenumber = false, winfixwidth = true } } } },
     extensions = {
       history = { enabled = true },
+      vectorcode = { enabled = true },
       progress = {
         opts = {
           spinner = { enabled = false, symbols = require('util.spinners').zip },
