@@ -101,35 +101,38 @@ return {
     { '<leader>ai', '<cmd>CodeCompanion<cr>', desc = 'CodeCompanion Inline', mode = { 'n', 'v' } },
   },
   init = function() vim.cmd([[cab cc CodeCompanion]]) end,
-  opts = {
-    adapters = {
-      http = {
-        moonshot = moonshot_adapter,
-        bigmodel = bigmodel_adapter,
-      },
-    },
-    strategies = {
-      chat = {
-        adapter = config.codecompanion_adapter.chat,
-        ---@param adapter CodeCompanion.HTTPAdapter|CodeCompanion.ACPAdapter
-        roles = { llm = function(adapter) return string.format('(%s) %s', adapter.formatted_name, adapter.model.name) end },
-      },
-      inline = { adapter = config.codecompanion_adapter.inline },
-      cmd = { adapter = config.codecompanion_adapter.cmd },
-    },
-    opts = { language = 'Chinese' },
-    display = { chat = { window = { position = 'right', width = 0.3, opts = { number = false, relativenumber = false, winfixwidth = true } } } },
-    extensions = {
-      history = { enabled = true },
-      vectorcode = { enabled = true },
-      progress = {
-        opts = {
-          spinner = { enabled = false, symbols = require('util.spinners').zip },
-          notify = { symbols = require('util.spinners').bouncing_bar },
+  opts = function(_, opts)
+    local default = {
+      adapters = {
+        http = {
+          moonshot = moonshot_adapter,
+          bigmodel = bigmodel_adapter,
         },
       },
+      strategies = {
+        chat = {
+          adapter = config.codecompanion_adapter.chat,
+          ---@param adapter CodeCompanion.HTTPAdapter|CodeCompanion.ACPAdapter
+          roles = { llm = function(adapter) return string.format('(%s) %s', adapter.formatted_name, adapter.model.name) end },
+        },
+        inline = { adapter = config.codecompanion_adapter.inline },
+        cmd = { adapter = config.codecompanion_adapter.cmd },
+      },
+      opts = { language = 'Chinese' },
+      display = { chat = { window = { position = 'right', width = 0.3, opts = { number = false, relativenumber = false, winfixwidth = true } } } },
+      extensions = {
+        history = { enabled = true },
+        progress = {
+          opts = {
+            spinner = { enabled = false, symbols = require('util.spinners').zip },
+            notify = { symbols = require('util.spinners').bouncing_bar },
+          },
+        },
+      },
+    }
 
-      mcphub = {
+    if vim.fn.executable('mcp-hub') == 1 then
+      default.extensions.mcphub = {
         callback = 'mcphub.extensions.codecompanion',
         opts = {
           -- MCP Tools
@@ -143,7 +146,12 @@ return {
           -- MCP Prompts
           make_slash_commands = true, -- Add MCP prompts as /slash commands
         },
-      },
-    },
-  },
+      }
+    end
+
+    if vim.fn.executable('vectorcode') == 1 then default.extensions.vectorcode = { enabled = true } end
+
+    opts = vim.tbl_deep_extend('force', default, opts)
+    return opts
+  end,
 }
