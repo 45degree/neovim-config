@@ -8,7 +8,7 @@
 local M = {
   enabled = true,
   only_inline = false,
-  spinner_index = 0,
+  spinner_index = 1,
   timer = nil,
   symbols = { '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' },
   started = false,
