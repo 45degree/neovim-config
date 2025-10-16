@@ -44,7 +44,7 @@ function M:start_notify(data)
   self.timer:start(0, 100, vim.schedule_wrap(function() self:update_notify(message) end))
 end
 
-function M:stop_nofity()
+function M:stop_notify()
   if not self.timer then return end
 
   self.timer:stop()
@@ -71,7 +71,7 @@ function M:init()
     --       self:start_notify(request.data)
     --       self.started = false
     --     elseif vim.list_contains(stop_event, request.match) then
-    --       self:stop_nofity()
+    --       self:stop_notify()
     --     end
     --   end,
     -- })
@@ -83,7 +83,7 @@ function M:init()
         if request.match == 'CodeCompanionRequestStarted' or request.match == 'CodeCompanionRequestStreaming' then
           self:start_notify(request.data)
         elseif request.match == 'CodeCompanionRequestFinished' then
-          self:stop_nofity()
+          self:stop_notify()
         end
       end,
     })
