@@ -30,7 +30,7 @@ function M:start_notify(data)
   local adapter = data.adapter
   local adapter_name = adapter.formatted_name or adapter.name
   local adapter_model = adapter.model
-  local message = string.format('response from %s:%s', adapter_name, adapter_model)
+  local message = string.format('response from %s%s', adapter_name, adapter_model and ':' .. adapter_model or '')
 
   self.spinner_index = 0
 

@@ -85,17 +85,27 @@ local bigmodel_adapter = function()
   })
 end
 
+local claude_code_adapter = function()
+  return require('codecompanion.adapters').extend('claude_code', {
+    commands = { default = { 'bunx', '--silent', '--yes', '@zed-industries/claude-code-acp' } },
+    env = {
+      CLAUDE_CODE_OAUTH_TOKEN = 'CLAUDE_CODE_API_KEY',
+      ANTHROPIC_BASE_URL = 'CLAUDE_CODE_BASE_URL',
+    },
+  })
+end
+
 return {
   'olimorris/codecompanion.nvim',
   cmd = { 'CodeCompanion', 'CodeCompanionChat', 'CodeCompanionCmd', 'CodeCompanionActions', 'CodeCompanionHistory', 'CodeCompanionSummaries' },
   dependencies = {
     'nvim-lua/plenary.nvim',
     'nvim-treesitter/nvim-treesitter',
-    'ravitemer/codecompanion-history.nvim',
     { dir = vim.fn.stdpath('config') .. '/codecompanion-progress.nvim' },
   },
   keys = {
-    { '<leader>aa', '<cmd>CodeCompanionChat Toggle<cr>', desc = 'Toggle CodeCompanion Chat', mode = { 'n', 'v' } },
+    { '<leader>aa', '<cmd>CodeCompanionChat<cr>', desc = 'Add CodeCompanion Chat', mode = { 'n', 'v' } },
+    { '<leader>at', '<cmd>CodeCompanionChat Toggle<cr>', desc = 'Toggle CodeCompanion Chat', mode = { 'n', 'v' } },
     { '<leader>ah', '<cmd>CodeCompanionHistory<cr>', desc = 'CodeCompanion Chat History' },
     { '<leader>ac', '<cmd>CodeCompanionActions<cr>', desc = 'CodeCompanion Chat Actions', mode = { 'n', 'v' } },
     { '<leader>ai', '<cmd>CodeCompanion<cr>', desc = 'CodeCompanion Inline', mode = { 'n', 'v' } },
@@ -112,8 +122,13 @@ return {
       strategies = {
         chat = {
           adapter = config.codecompanion_adapter.chat,
-          ---@param adapter CodeCompanion.HTTPAdapter|CodeCompanion.ACPAdapter
-          roles = { llm = function(adapter) return string.format('(%s) %s', adapter.formatted_name, adapter.model.name) end },
+          roles = {
+            ---@param adapter CodeCompanion.HTTPAdapter|CodeCompanion.ACPAdapter
+            llm = function(adapter)
+              if adapter.model == nil then return string.format('%s', adapter.formatted_name) end
+              return string.format('(%s) %s', adapter.formatted_name, adapter.model.name)
+            end,
+          },
         },
         inline = { adapter = config.codecompanion_adapter.inline },
         cmd = { adapter = config.codecompanion_adapter.cmd },
@@ -121,7 +136,6 @@ return {
       opts = { language = 'Chinese' },
       display = { chat = { window = { position = 'right', width = 0.3, opts = { number = false, relativenumber = false, winfixwidth = true } } } },
       extensions = {
-        history = { enabled = true },
         progress = {
           opts = {
             spinner = { enabled = false, symbols = require('util.spinners').zip },
@@ -130,6 +144,11 @@ return {
         },
       },
     }
+
+    if vim.fn.executable('claude') == 1 and vim.fn.executable('claude-code-acp') == 1 then
+      default.adapters.acp = default.adapters.acp or {}
+      default.adapters.acp.claude_code = claude_code_adapter
+    end
 
     if vim.fn.executable('mcp-hub') == 1 then
       default.extensions.mcphub = {
