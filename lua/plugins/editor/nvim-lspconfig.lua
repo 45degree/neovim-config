@@ -40,6 +40,8 @@ return {
 
         local methods = vim.lsp.protocol.Methods
 
+        if client:supports_method(methods.textDocument_semanticTokens_full) then vim.treesitter.stop(bufnr) end
+
         if client:supports_method(methods.textDocument_codeLens) then
           local code_lens_group = vim.api.nvim_create_augroup('toggle_code_lens', { clear = false })
           vim.defer_fn(function() vim.lsp.codelens.refresh() end, 500)
