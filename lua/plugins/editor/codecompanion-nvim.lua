@@ -88,10 +88,6 @@ end
 local claude_code_adapter = function()
   return require('codecompanion.adapters').extend('claude_code', {
     commands = { default = { 'bunx', '--silent', '--yes', '@zed-industries/claude-code-acp' } },
-    env = {
-      CLAUDE_CODE_OAUTH_TOKEN = 'CLAUDE_CODE_API_KEY',
-      ANTHROPIC_BASE_URL = 'CLAUDE_CODE_BASE_URL',
-    },
   })
 end
 
