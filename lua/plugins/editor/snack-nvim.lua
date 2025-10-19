@@ -11,6 +11,7 @@ return {
       picker = { enabled = true, ui_select = true },
       styles = { input = { relative = 'cursor', row = -3, col = 0, width = 40 } },
       image = { enabled = true },
+      indent = { indent = { enabled = true }, scope = { enabled = true } },
       notifier = {
         enabled = true,
         icons = {
