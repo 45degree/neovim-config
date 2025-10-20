@@ -86,8 +86,35 @@ local bigmodel_adapter = function()
 end
 
 local claude_code_adapter = function()
+  local mcpServers = {}
+
+  if vim.fn.executable('bunx') == 1 then
+    table.insert(mcpServers, { name = 'context7', command = 'bunx', args = { '-y', '@upstash/context7-mcp' }, env = {} })
+
+    if vim.env.TAVILY_API_KEY ~= vim.NIL then
+      table.insert(mcpServers, {
+        name = 'tavily-remote-mcp',
+        command = 'bunx',
+        args = { '-y', 'mcp-remote', 'https://mcp.tavily.com/mcp/?tavilyApiKey=${TAVILY_API_KEY}' },
+        env = { { name = 'TAVILY_API_KEY', value = vim.env.TAVILY_API_KEY } },
+      })
+    end
+
+    if vim.env.GITHUB_PERSONAL_ACCESS_TOKEN ~= vim.NIL then
+      table.insert(mcpServers, {
+        name = 'github',
+        command = 'bunx',
+        args = { '-y', '@modelcontextprotocol/server-github' },
+        env = { { name = 'GITHUB_PERSONAL_ACCESS_TOKEN', value = vim.env.GITHUB_PERSONAL_ACCESS_TOKEN } },
+      })
+    end
+  end
+
   return require('codecompanion.adapters').extend('claude_code', {
     commands = { default = { 'bunx', '--silent', '--yes', '@zed-industries/claude-code-acp' } },
+    defaults = {
+      mcpServers = mcpServers,
+    },
   })
 end
 
