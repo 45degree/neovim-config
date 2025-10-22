@@ -12,6 +12,7 @@ return {
       styles = { input = { relative = 'cursor', row = -3, col = 0, width = 40 } },
       image = { enabled = true },
       indent = { indent = { enabled = true }, scope = { enabled = true } },
+      quickfile = { enabled = true },
       notifier = {
         enabled = true,
         icons = {
