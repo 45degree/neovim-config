@@ -5,7 +5,7 @@ local moonshot_adapter = function()
     formatted_name = 'moonshot',
     env = {
       url = 'https://api.moonshot.cn',
-      api_key = 'KIMI_API_KEY',
+      api_key = 'MOONSHOT_API_KEY',
       chat_url = '/v1/chat/completions',
     },
     schema = {
@@ -85,7 +85,7 @@ local bigmodel_adapter = function()
   })
 end
 
-local claude_code_adapter = function()
+local get_mcp_servers_for_acp = function()
   local mcpServers = {}
 
   if vim.fn.executable('bunx') == 1 then
@@ -110,12 +110,26 @@ local claude_code_adapter = function()
     end
   end
 
+  return mcpServers
+end
+
+local claude_code_adapter = function()
   return require('codecompanion.adapters').extend('claude_code', {
     commands = { default = { 'bunx', '--silent', '--yes', '@zed-industries/claude-code-acp' } },
-    defaults = {
-      mcpServers = mcpServers,
-    },
+    defaults = { mcpServers = get_mcp_servers_for_acp() },
   })
+end
+
+local kimi_cli_adapter = function()
+  local adapter = require('codecompanion.adapters').extend('gemini_cli', {
+    name = 'kimi_cli',
+    formatted_name = 'Kimi CLI',
+    commands = { default = { 'kimi', '--acp' } },
+    defaults = { mcpServers = get_mcp_servers_for_acp() },
+    env = { KIMI_API_KEY = vim.env.KIMI_CLI_API_KEY },
+  })
+
+  return adapter
 end
 
 return {
@@ -171,6 +185,11 @@ return {
     if vim.fn.executable('claude') == 1 and vim.fn.executable('claude-code-acp') == 1 then
       default.adapters.acp = default.adapters.acp or {}
       default.adapters.acp.claude_code = claude_code_adapter
+    end
+
+    if vim.fn.executable('kimi') == 1 and vim.env.KIMI_CLI_API_KEY ~= vim.NIL then
+      default.adapters.acp = default.adapters.acp or {}
+      default.adapters.acp.kimi_cli = kimi_cli_adapter
     end
 
     if vim.fn.executable('mcp-hub') == 1 then
