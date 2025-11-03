@@ -9,6 +9,8 @@ return {
       hpp = { glyph = '󰜖', hl = 'MiniIconsPurple' },
       nu = { glyph = '>', hl = 'MiniIconsGreen' },
       slang = { glyph = '󰸱', hl = 'MiniIconsAzure' },
+      wgsl = { glyph = '󰸱', hl = 'MiniIconsPurple' },
+      wesl = { glyph = '󰸱', hl = 'MiniIconsPurple' },
       hlsl = { glyph = '󰸱', hl = 'MiniIconsBlue' },
       glsl = { glyph = '󰸱', hl = 'MiniIconsGreen' },
       hx = { glyph = '', hl = 'MiniIconsOrange' },
