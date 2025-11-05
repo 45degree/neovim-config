@@ -61,6 +61,7 @@
 ---@field shell? string[]
 ---@field env? table<string, string>
 ---@field setup? fun(opts: CustomNvimConfig)
+---@field transparent_backgroup? boolean
 
 ---@type CustomNvimConfig
 local defaults = {
@@ -85,6 +86,8 @@ local defaults = {
     inline = 'copilot',
     cmd = 'deepseek',
   },
+
+  transparent_backgroup = false,
 
   -- https://github.com/mfussenegger/nvim-lint/tree/master?tab=readme-ov-file#available-linters
   linter = {},

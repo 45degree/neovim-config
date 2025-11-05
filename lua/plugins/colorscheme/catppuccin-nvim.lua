@@ -1,3 +1,5 @@
+local config = require('config')
+
 return {
   'catppuccin/nvim',
   lazy = true,
@@ -10,22 +12,22 @@ return {
       light = 'latte',
       dark = 'frappe',
     },
+    transparent_background = config.transparent_backgroup,
     compile_path = vim.fn.stdpath('cache') .. '/catppuccin',
     term_colors = true,
-    dim_inactive = { enabled = true },
     float = { solid = true, transparent = true },
     styles = {
       comments = { 'italic' },
       conditionals = { 'italic' },
       loops = { 'italic' },
-      functions = { 'bold' },
+      functions = { 'italic', 'bold' },
       keywords = { 'italic', 'bold' },
       strings = {},
       variables = {},
       numbers = {},
       booleans = {},
       properties = {},
-      types = {},
+      types = { 'italic', 'bold' },
       operators = {},
     },
     custom_highlights = function(color)
