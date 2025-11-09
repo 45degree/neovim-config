@@ -9,7 +9,7 @@ local moonshot_adapter = function()
       chat_url = '/v1/chat/completions',
     },
     schema = {
-      model = { default = 'kimi-k2-0711-preview' },
+      model = { default = 'kimi-k2-thinking' },
       ---@type CodeCompanion.Schema
       temperature = {
         order = 2,
