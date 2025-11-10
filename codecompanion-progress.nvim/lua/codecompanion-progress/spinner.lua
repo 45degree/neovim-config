@@ -31,7 +31,7 @@ function M:update_spinner(buf)
 end
 
 function M:start_spinner(buf)
-  self.spinner_index = 0
+  self.spinner_index = 1
 
   if not vim.api.nvim_buf_is_valid(buf) then return end
 

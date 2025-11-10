@@ -121,7 +121,7 @@ local claude_code_adapter = function()
 end
 
 local kimi_cli_adapter = function()
-  local adapter = require('codecompanion.adapters').extend('gemini_cli', {
+  local adapter = require('codecompanion.adapters').extend('claude_code', {
     name = 'kimi_cli',
     formatted_name = 'Kimi CLI',
     commands = { default = { 'kimi', '--acp' } },
@@ -176,7 +176,7 @@ return {
         progress = {
           opts = {
             spinner = { enabled = false, symbols = require('util.spinners').zip },
-            notify = { symbols = require('util.spinners').bouncing_bar },
+            notify = { symbols = require('util.spinners').dots },
           },
         },
       },

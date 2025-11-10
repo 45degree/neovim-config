@@ -32,7 +32,7 @@ function M:start_notify(data)
   local adapter_model = adapter.model
   local message = string.format('response from %s%s', adapter_name, adapter_model and ':' .. adapter_model or '')
 
-  self.spinner_index = 0
+  self.spinner_index = 1
 
   -- Clean up previous timer
   if self.timer then
