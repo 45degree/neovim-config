@@ -14,9 +14,7 @@ return {
       ---@param file_path string
       is_test_file = function(file_path)
         local sep = '/'
-        if vim.fn.has('win32') == 1 then
-          sep = '\\'
-        end
+        if vim.fn.has('win32') == 1 then sep = '\\' end
 
         local elems = vim.split(file_path, sep, { plain = true })
         local filename = elems[#elems]:lower()
@@ -27,7 +25,6 @@ return {
         local extension = extsplit[#extsplit]
         if not c_cxx_file_extensions[extension] then return false end
         local stem = extsplit[#extsplit - 1]
-        vim.print(filename)
         return vim.startswith(filename, 'test') or vim.endswith(stem, 'test')
       end,
     },

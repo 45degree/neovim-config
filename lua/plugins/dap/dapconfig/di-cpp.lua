@@ -17,6 +17,7 @@ dap.adapters.codelldb = {
     args = { '--port', '${port}', '--settings', vim.json.encode({ showDisassembly = 'never' }) },
   },
 }
+dap.defaults.codelldb.exception_breakpoints = {}
 
 if not dap.adapters['lldb'] then
   dap.adapters['lldb'] = function(cb, config)

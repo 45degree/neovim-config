@@ -1,4 +1,4 @@
-if vim.g.neovide then
+if vim.g.neovide ~= nil then
   local function set_ime(args)
     if args.event:match('Enter$') then
       vim.g.neovide_input_ime = true
@@ -20,7 +20,11 @@ if vim.g.neovide then
     pattern = '[/\\?]',
     callback = set_ime,
   })
-elseif vim.fn.has('win32') ~= 1 and not vim.g.neovide and vim.fn.executable('fcitx5-remote') then
+
+  return
+end
+
+if vim.fn.has('win32') ~= 1 and vim.fn.executable('fcitx5-remote') == 1 then
   vim.g.fcitx_version = vim.fn.system('command -v fcitx5')
   if vim.fn.empty(vim.g.fcitx_version) == 0 then
     vim.g.fcitx_version = 'fcitx5-remote'
@@ -50,6 +54,25 @@ elseif vim.fn.has('win32') ~= 1 and not vim.g.neovide and vim.fn.executable('fci
           let b:inputtoggle = 0
       endtry
     ]])
+    end,
+  })
+  return
+end
+
+if vim.fn.executable('macism') == 1 and vim.fn.has('macunix') == 1 then
+  local default_ime_select = 'com.apple.keylayout.ABC'
+
+  vim.api.nvim_create_autocmd({ 'InsertLeave' }, {
+    callback = function()
+      local ime_previous_states = vim.fn.system({ 'macism' }):match('^%s*(.-)%s*$')
+      vim.api.nvim_set_var('ime_saved_states', ime_previous_states)
+      vim.fn.system({ 'macism', default_ime_select })
+    end,
+  })
+
+  vim.api.nvim_create_autocmd({ 'InsertEnter' }, {
+    callback = function()
+      if vim.g['ime_saved_states'] ~= nil then vim.fn.system({ 'macism', vim.g['ime_saved_states'] }) end
     end,
   })
 end
