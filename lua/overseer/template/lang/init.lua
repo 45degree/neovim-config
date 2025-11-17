@@ -1,1 +1,0 @@
-return { 'lang.clang-tidy' }
