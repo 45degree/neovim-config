@@ -39,7 +39,7 @@ local bigmodel_adapter = function()
     name = 'bigmodel',
     formatted_name = 'bigmodel',
     env = {
-      url = 'https://open.bigmodel.cn/api/paas',
+      url = 'https://open.bigmodel.cn/api/coding/paas',
       api_key = 'BIGMODEL_API_KEY',
       chat_url = '/v4/chat/completions',
     },
@@ -121,12 +121,8 @@ local claude_code_adapter = function()
 end
 
 local kimi_cli_adapter = function()
-  local adapter = require('codecompanion.adapters').extend('claude_code', {
-    name = 'kimi_cli',
-    formatted_name = 'Kimi CLI',
-    commands = { default = { 'kimi', '--acp' } },
+  local adapter = require('codecompanion.adapters').extend('kimi_cli', {
     defaults = { mcpServers = get_mcp_servers_for_acp() },
-    env = { KIMI_API_KEY = vim.env.KIMI_CLI_API_KEY },
   })
 
   return adapter
