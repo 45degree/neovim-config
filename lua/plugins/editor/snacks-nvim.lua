@@ -24,6 +24,9 @@ return {
         },
       },
     },
+    keys = {
+      { '<M-=>', function() require('snacks.terminal').toggle() end, desc = 'Snacks', mode = { 'n', 't' } },
+    },
     config = function(_, opts)
       require('snacks').setup(opts)
 
