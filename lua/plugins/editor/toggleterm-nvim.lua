@@ -1,7 +1,7 @@
 return {
   'akinsho/toggleterm.nvim',
   event = 'VeryLazy',
-  disabled = true,
+  enabled = false,
   opts = {
     -- size can be a number or function which is passed the current terminal
     size = function(term)

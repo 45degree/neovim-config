@@ -1,5 +1,14 @@
 local icons = require('icons')
 
+local terminal_style = {
+  bo = { filetype = 'snacks_terminal' },
+  wo = {},
+  stack = true,
+  keys = {
+    term_normal = { '<esc>', function() vim.cmd('stopinsert') end, mode = 't', expr = true },
+  },
+}
+
 return {
   {
     'folke/snacks.nvim',
@@ -13,6 +22,7 @@ return {
       image = { enabled = true },
       indent = { indent = { enabled = true }, scope = { enabled = true } },
       quickfile = { enabled = true },
+      terminal = { enabled = true, win = { style = terminal_style } },
       notifier = {
         enabled = true,
         icons = {
@@ -25,7 +35,7 @@ return {
       },
     },
     keys = {
-      { '<M-=>', function() require('snacks.terminal').toggle() end, desc = 'Snacks', mode = { 'n', 't' } },
+      { '<M-=>', function() require('snacks.terminal').toggle(nil, { win = { height = 10, position = 'bottom' } }) end, mode = { 'n', 't' } },
     },
     config = function(_, opts)
       require('snacks').setup(opts)

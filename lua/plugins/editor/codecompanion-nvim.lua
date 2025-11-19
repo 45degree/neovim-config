@@ -143,6 +143,7 @@ return {
     { '<leader>ac', '<cmd>CodeCompanionActions<cr>', desc = 'CodeCompanion Chat Actions', mode = { 'n', 'v' } },
     { '<leader>ai', '<cmd>CodeCompanion<cr>', desc = 'CodeCompanion Inline', mode = { 'n', 'v' } },
   },
+  cond = vim.fn.executable('opencode') ~= 1 or vim.fn.executable('lsof') ~= 1 or vim.fn.executable('bunx') ~= 1,
   init = function() vim.cmd([[cab cc CodeCompanion]]) end,
   opts = function(_, opts)
     local default = {
