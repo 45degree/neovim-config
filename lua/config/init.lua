@@ -62,6 +62,7 @@
 ---@field env? table<string, string>
 ---@field setup? fun(opts: CustomNvimConfig)
 ---@field transparent_backgroup? boolean
+---@field border? string
 
 ---@type CustomNvimConfig
 local defaults = {
