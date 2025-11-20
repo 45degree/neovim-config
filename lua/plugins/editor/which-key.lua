@@ -4,29 +4,14 @@ local choose_win = function()
   vim.api.nvim_set_current_win(picked_window_id)
 end
 
-local function toggle_profile()
-  local prof = require('profile')
-  if prof.is_recording() then
-    prof.stop()
-    vim.ui.input({ prompt = 'Save profile to:', completion = 'file', default = 'profile.json' }, function(filename)
-      if filename then
-        prof.export(filename)
-        vim.notify(string.format('Wrote %s', filename))
-      end
-    end)
-  else
-    prof.start('*')
-  end
-end
-
 local register = {
   --- ai
   { '<leader>a', group = 'ai' },
+  { '<leader>ac', group = 'codecompanion' },
+  { '<leader>ao', group = 'opencode' },
 
   -- file
   { '<leader>f', group = 'file' },
-  { '<leader>fs', '<cmd>w<cr>', desc = 'Save current file' },
-  { '<leader>fS', '<cmd>wa<cr>', desc = 'Save all file' },
   { '<leader>fc', '<cmd>e $MYVIMRC<cr>', desc = 'open neovim config file' },
 
   -- search

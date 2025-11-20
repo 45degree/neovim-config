@@ -137,13 +137,12 @@ return {
     { dir = vim.fn.stdpath('config') .. '/codecompanion-progress.nvim' },
   },
   keys = {
-    { '<leader>aa', '<cmd>CodeCompanionChat<cr>', desc = 'Add CodeCompanion Chat', mode = { 'n', 'v' } },
-    { '<leader>at', '<cmd>CodeCompanionChat Toggle<cr>', desc = 'Toggle CodeCompanion Chat', mode = { 'n', 'v' } },
-    { '<leader>ah', '<cmd>CodeCompanionHistory<cr>', desc = 'CodeCompanion Chat History' },
-    { '<leader>ac', '<cmd>CodeCompanionActions<cr>', desc = 'CodeCompanion Chat Actions', mode = { 'n', 'v' } },
-    { '<leader>ai', '<cmd>CodeCompanion<cr>', desc = 'CodeCompanion Inline', mode = { 'n', 'v' } },
+    { '<leader>aca', '<cmd>CodeCompanionChat<cr>', desc = 'Add CodeCompanion Chat', mode = { 'n', 'v' } },
+    { '<leader>act', '<cmd>CodeCompanionChat Toggle<cr>', desc = 'Toggle CodeCompanion Chat', mode = { 'n', 'v' } },
+    { '<leader>ach', '<cmd>CodeCompanionHistory<cr>', desc = 'CodeCompanion Chat History' },
+    { '<leader>acc', '<cmd>CodeCompanionActions<cr>', desc = 'CodeCompanion Chat Actions', mode = { 'n', 'v' } },
+    { '<leader>aci', '<cmd>CodeCompanion<cr>', desc = 'CodeCompanion Inline', mode = { 'n', 'v' } },
   },
-  cond = vim.fn.executable('opencode') ~= 1 or vim.fn.executable('lsof') ~= 1 or vim.fn.executable('bunx') ~= 1,
   init = function() vim.cmd([[cab cc CodeCompanion]]) end,
   opts = function(_, opts)
     local default = {
