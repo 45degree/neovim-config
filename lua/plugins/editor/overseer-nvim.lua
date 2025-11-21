@@ -6,8 +6,8 @@ return {
       local config = require('config')
       return {
         -- strategy = { 'jobstart', use_terminal = true, preserve_output = false },
-        form = { border = config.border, win_opts = { winblend = 0 } },
-        task_win = { border = config.border, win_opts = { winblend = 0 } },
+        form = { win_opts = { winblend = 0 } },
+        task_win = { win_opts = { winblend = 0 } },
         task_list = { direction = 'right' },
       }
     end,
