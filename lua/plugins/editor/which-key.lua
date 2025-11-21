@@ -7,8 +7,6 @@ end
 local register = {
   --- ai
   { '<leader>a', group = 'ai' },
-  { '<leader>ac', group = 'codecompanion' },
-  { '<leader>ao', group = 'opencode' },
 
   -- file
   { '<leader>f', group = 'file' },
