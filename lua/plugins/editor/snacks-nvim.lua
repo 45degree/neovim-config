@@ -9,6 +9,15 @@ local terminal_style = {
   },
 }
 
+local function toggle_snacks_terminal()
+  ---@type snacks.terminal.Opts
+  local terminal_opts = {
+    win = { height = 10, position = 'bottom' },
+  }
+
+  require('snacks.terminal').toggle(require('config').shell, terminal_opts)
+end
+
 return {
   {
     'folke/snacks.nvim',
@@ -35,7 +44,7 @@ return {
       },
     },
     keys = {
-      { '<M-=>', function() require('snacks.terminal').toggle(nil, { win = { height = 10, position = 'bottom' } }) end, mode = { 'n', 't' } },
+      { '<M-=>', toggle_snacks_terminal, mode = { 'n', 't' } },
     },
     config = function(_, opts)
       require('snacks').setup(opts)

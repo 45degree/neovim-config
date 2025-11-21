@@ -32,7 +32,7 @@ return {
       },
     },
     close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
-    popup_border_style = 'rounded',
+    popup_border_style = require('config').border,
     enable_git_status = true,
     enable_diagnostics = true,
     sort_case_insensitive = false, -- used when sorting files and directories in the tree
@@ -113,6 +113,8 @@ return {
           [']g'] = 'next_git_modified',
         },
       },
+      follow_current_file = { enabled = true },
+      use_libuv_file_watcher = true,
     },
     git_status = {
       window = {
