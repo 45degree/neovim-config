@@ -12,7 +12,7 @@ local terminal_style = {
 local function toggle_snacks_terminal()
   ---@type snacks.terminal.Opts
   local terminal_opts = {
-    win = { height = 10, position = 'bottom' },
+    win = { height = 10, position = 'bottom', wo = { winbar = '' } },
   }
 
   require('snacks.terminal').toggle(require('config').shell, terminal_opts)
