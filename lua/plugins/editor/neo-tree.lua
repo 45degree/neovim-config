@@ -113,8 +113,7 @@ return {
           [']g'] = 'next_git_modified',
         },
       },
-      follow_current_file = { enabled = true },
-      use_libuv_file_watcher = true,
+      follow_current_file = { enabled = true }
     },
     git_status = {
       window = {
