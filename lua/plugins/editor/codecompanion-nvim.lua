@@ -136,6 +136,7 @@ return {
     'nvim-treesitter/nvim-treesitter',
     { dir = vim.fn.stdpath('config') .. '/codecompanion-progress.nvim' },
   },
+  enabled = false,
   keys = {
     { '<leader>aa', '<cmd>CodeCompanion<cr>', desc = 'CodeCompanion Inline', mode = { 'n', 'v' } },
     { '<leader>an', '<cmd>CodeCompanionChat<cr>', desc = 'New CodeCompanion Chat', mode = { 'n', 'v' } },
