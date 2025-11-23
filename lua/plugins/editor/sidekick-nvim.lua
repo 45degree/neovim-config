@@ -1,6 +1,7 @@
 return {
   'folke/sidekick.nvim',
   lazy = true,
+  enabled = false,
   keys = {
     { '<leader>aa', function() require('sidekick.cli').send({ msg = '{this}' }) end, desc = 'Ask sidekick', mode = { 'n', 'v' } },
     { '<leader>at', function() require('sidekick.cli').toggle() end, desc = 'Toggle sidekick', mode = { 'n', 'v' } },

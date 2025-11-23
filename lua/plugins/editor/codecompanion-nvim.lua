@@ -130,18 +130,16 @@ end
 
 return {
   'olimorris/codecompanion.nvim',
-  cmd = { 'CodeCompanion', 'CodeCompanionChat', 'CodeCompanionCmd', 'CodeCompanionActions', 'CodeCompanionHistory', 'CodeCompanionSummaries' },
+  cmd = { 'CodeCompanion', 'CodeCompanionChat', 'CodeCompanionCmd', 'CodeCompanionActions' },
   dependencies = {
     'nvim-lua/plenary.nvim',
     'nvim-treesitter/nvim-treesitter',
     { dir = vim.fn.stdpath('config') .. '/codecompanion-progress.nvim' },
   },
-  enabled = false,
   keys = {
     { '<leader>aa', '<cmd>CodeCompanion<cr>', desc = 'CodeCompanion Inline', mode = { 'n', 'v' } },
     { '<leader>an', '<cmd>CodeCompanionChat<cr>', desc = 'New CodeCompanion Chat', mode = { 'n', 'v' } },
     { '<leader>at', '<cmd>CodeCompanionChat Toggle<cr>', desc = 'Toggle CodeCompanion Chat', mode = { 'n', 'v' } },
-    { '<leader>ah', '<cmd>CodeCompanionHistory<cr>', desc = 'CodeCompanion Chat History' },
     { '<leader>ac', '<cmd>CodeCompanionActions<cr>', desc = 'CodeCompanion Chat Actions', mode = { 'n', 'v' } },
   },
   init = function() vim.cmd([[cab cc CodeCompanion]]) end,
