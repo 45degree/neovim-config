@@ -59,6 +59,7 @@
 ---@field formatter? table<string, string[]>
 ---@field linter? table<string, string[]>
 ---@field shell? string[]
+---@field api_keys? table<string, string>
 ---@field env? table<string, string>
 ---@field setup? fun(opts: CustomNvimConfig)
 ---@field transparent_backgroup? boolean
