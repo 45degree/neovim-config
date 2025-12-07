@@ -19,7 +19,6 @@ return {
     require('nvim-treesitter').setup(opts)
 
     ensure_install({
-      'jsonc',
       'cpp',
       'c',
       'json',
