@@ -25,6 +25,7 @@ M.lang_to_filetype = {
   ['SCSS'] = 'scss',
   ['TypeScript'] = 'typescript',
   ['Typst'] = 'typst',
+  ['TOML'] = 'toml',
   ['VimScript'] = 'vim',
   ['Vue'] = 'vue',
   ['XML'] = 'xml',
