@@ -26,3 +26,7 @@ if vim.fn.has('win32') == 1 then
   vim.g.neovide_title_background_color = string.format('%x', vim.api.nvim_get_hl(0, { id = vim.api.nvim_get_hl_id_by_name('Normal') }).bg)
   vim.g.neovide_cursor_trail_size = 0
 end
+
+if vim.fn.has('mac') == 1 then
+  vim.g.neovide_input_macos_option_key_is_meta = 'only_left'
+end
