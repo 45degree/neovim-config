@@ -45,8 +45,12 @@ local bigmodel_adapter = function()
     },
     schema = {
       model = {
-        default = 'glm-4.6',
+        default = 'glm-4.7',
         choices = {
+          ['glm-4.7'] = {
+            formatted_name = 'GLM-4.7',
+            opts = { can_reason = true, has_vision = false },
+          },
           ['glm-4.6'] = {
             formatted_name = 'GLM-4.6',
             opts = { can_reason = true, has_vision = false },
