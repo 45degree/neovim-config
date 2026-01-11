@@ -110,6 +110,8 @@ local defaults = {
 
   env = {},
 
+  api_keys = {},
+
   shell = nil,
 }
 
