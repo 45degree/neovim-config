@@ -132,25 +132,10 @@ local kimi_cli_adapter = function()
   return adapter
 end
 
-local query_opencode_models = function()
-  local models = {
-    default = { 'opencode', 'acp' },
-  }
-  local obj = vim.system({ 'opencode', 'models' }, { text = true }, function(obj)
-    if obj.code ~= 0 then return end
-    if obj.stdout == nil then return end
-
-    for _, model in ipairs(vim.split(obj.stdout, '\n', { plain = true })) do
-      model = vim.trim(model)
-      if model == '' then goto continue end
-      models[model] = { 'opencode', 'acp', '-m', model }
-
-      ::continue::
-    end
-  end)
-  obj:wait()
-
-  return models
+local opencode_adapter = function()
+  return require('codecompanion.adapters').extend('opencode', {
+    defaults = { mcpServers = get_mcp_servers_for_acp() },
+  })
 end
 
 return {
@@ -211,9 +196,8 @@ return {
     end
 
     if vim.fn.executable('opencode') == 1 then
-      local models = query_opencode_models()
       default.adapters.acp = default.adapters.acp or {}
-      default.adapters.acp.opencode = require('codecompanion.adapters').extend('opencode', { commands = models })
+      default.adapters.acp.opencode = opencode_adapter
     end
 
     if vim.fn.executable('mcp-hub') == 1 then
