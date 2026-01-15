@@ -66,6 +66,6 @@ return {
     vim.keymap.set('n', 'gr', function() require('snacks.picker').lsp_references({ layout = 'ivy' }) end, { noremap = true, silent = true })
     vim.keymap.set('n', 'K', function(...) vim.lsp.buf.hover(...) end, { noremap = true, silent = true })
     vim.keymap.set('n', 'rn', function(...) vim.lsp.buf.rename(...) end, { noremap = true, silent = true })
-    vim.keymap.set('n', 'ca', function(...) vim.lsp.buf.code_action(...) end, { noremap = true, silent = true })
+    vim.keymap.set('n', 'ca', function(...) require('tiny-code-action').code_action(...) end, { noremap = true, silent = true })
   end,
 }
