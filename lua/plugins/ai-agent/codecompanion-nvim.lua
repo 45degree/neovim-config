@@ -5,7 +5,7 @@ local moonshot_adapter = function()
     formatted_name = 'moonshot',
     env = {
       url = 'https://api.moonshot.cn',
-      api_key = config.api_keys.MOONSHOT_API_KEY,
+      api_key = config.ai_code_agent.opts.api_keys.MOONSHOT_API_KEY,
       chat_url = '/v1/chat/completions',
     },
     schema = {
@@ -40,7 +40,7 @@ local bigmodel_adapter = function()
     formatted_name = 'bigmodel',
     env = {
       url = 'https://open.bigmodel.cn/api/coding/paas',
-      api_key = config.api_keys.BIGMODEL_API_KEY,
+      api_key = config.ai_code_agent.opts.api_keys.BIGMODEL_API_KEY,
       chat_url = '/v4/chat/completions',
     },
     schema = {
@@ -100,7 +100,7 @@ local get_mcp_servers_for_acp = function()
         name = 'tavily-remote-mcp',
         command = 'bunx',
         args = { '-y', 'mcp-remote', 'https://mcp.tavily.com/mcp/?tavilyApiKey=${TAVILY_API_KEY}' },
-        env = { { name = 'TAVILY_API_KEY', value = config.api_keys.TAVILY_API_KEY } },
+        env = { { name = 'TAVILY_API_KEY', value = config.ai_code_agent.opts.api_keys.TAVILY_API_KEY } },
       })
     end
 
@@ -109,7 +109,7 @@ local get_mcp_servers_for_acp = function()
         name = 'github',
         command = 'bunx',
         args = { '-y', '@modelcontextprotocol/server-github' },
-        env = { { name = 'GITHUB_PERSONAL_ACCESS_TOKEN', value = config.api_keys.GITHUB_PERSONAL_ACCESS_TOKEN } },
+        env = { { name = 'GITHUB_PERSONAL_ACCESS_TOKEN', value = config.ai_code_agent.opts.api_keys.GITHUB_PERSONAL_ACCESS_TOKEN } },
       })
     end
   end
@@ -141,24 +141,21 @@ end
 return {
   'olimorris/codecompanion.nvim',
   cmd = { 'CodeCompanion', 'CodeCompanionChat', 'CodeCompanionCmd', 'CodeCompanionActions' },
-  dependencies = {
-    'nvim-lua/plenary.nvim',
-    'nvim-treesitter/nvim-treesitter',
-    { dir = vim.fn.stdpath('config') .. '/codecompanion-progress.nvim' },
-  },
+  dependencies = { { dir = vim.fn.stdpath('config') .. '/codecompanion-progress.nvim' } },
   keys = {
     { '<leader>aa', '<cmd>CodeCompanion<cr>', desc = 'CodeCompanion Inline', mode = { 'n', 'v' } },
     { '<leader>an', '<cmd>CodeCompanionChat<cr>', desc = 'New CodeCompanion Chat', mode = { 'n', 'v' } },
     { '<leader>at', '<cmd>CodeCompanionChat Toggle<cr>', desc = 'Toggle CodeCompanion Chat', mode = { 'n', 'v' } },
     { '<leader>ac', '<cmd>CodeCompanionActions<cr>', desc = 'CodeCompanion Chat Actions', mode = { 'n', 'v' } },
   },
+  cond = config.ai_code_agent.name == 'codecompanion',
   init = function() vim.cmd([[cab cc CodeCompanion]]) end,
   opts = function(_, opts)
     local default = {
       adapters = { http = {} },
       strategies = {
         chat = {
-          adapter = config.codecompanion_adapter.chat,
+          adapter = config.ai_code_agent.opts.chat,
           roles = {
             ---@param adapter CodeCompanion.HTTPAdapter|CodeCompanion.ACPAdapter
             llm = function(adapter)
@@ -167,8 +164,8 @@ return {
             end,
           },
         },
-        inline = { adapter = config.codecompanion_adapter.inline },
-        cmd = { adapter = config.codecompanion_adapter.cmd },
+        inline = { adapter = config.ai_code_agent.opts.inline },
+        cmd = { adapter = config.ai_code_agent.opts.cmd },
       },
       opts = { language = 'Chinese' },
       display = { chat = { window = { position = 'right', width = 0.3, opts = { number = false, relativenumber = false, winfixwidth = true } } } },
@@ -182,8 +179,8 @@ return {
       },
     }
 
-    if config.api_keys.BIGMODEL_API_KEY ~= vim.NIL then default.adapters.http.bigmodel = bigmodel_adapter() end
-    if config.api_keys.MOONSHOT_API_KEY ~= vim.NIL then default.adapters.http.moonshot = moonshot_adapter() end
+    if config.ai_code_agent.opts.api_keys.BIGMODEL_API_KEY ~= vim.NIL then default.adapters.http.bigmodel = bigmodel_adapter() end
+    if config.ai_code_agent.opts.api_keys.MOONSHOT_API_KEY ~= vim.NIL then default.adapters.http.moonshot = moonshot_adapter() end
 
     if vim.fn.executable('claude') == 1 and vim.fn.executable('claude-code-acp') == 1 then
       default.adapters.acp = default.adapters.acp or {}

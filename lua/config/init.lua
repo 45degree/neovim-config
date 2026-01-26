@@ -42,24 +42,30 @@
 
 ---@alias AiCodeProvider 'codeium'|'copilot'|'fittencode'|'supermaven'|'none'
 
----@class CodeCompanionAdapter
+---@class CodeCompanionAdapterConfig
 ---@field chat string
 ---@field inline string
 ---@field cmd string
+---@field api_keys? table<string, string>
+
+---@class OpencodeAdapterConfig
+
+---@class AiCodeAgent
+---@field name string
+---@field opts CodeCompanionAdapterConfig | OpencodeAdapterConfig
 
 ---@alias GuiConfig {fonts: string[], widefonts: string[], font_opts: string?}
 
 ---@class CustomNvimConfig
 ---@field colorscheme? colorscheme
----@field ai? AiCodeProvider
+---@field edit_prediction_provider? AiCodeProvider
+---@field ai_code_agent? AiCodeAgent
 ---@field gui? GuiConfig
----@field codecompanion_adapter? CodeCompanionAdapter
 ---@field lang? table<string, boolean>
 ---@field lsp? {enabled?: string[], disabled?: string[]}
 ---@field formatter? table<string, string[]>
 ---@field linter? table<string, string[]>
 ---@field shell? string[]
----@field api_keys? table<string, string>
 ---@field env? table<string, string>
 ---@field setup? fun(opts: CustomNvimConfig)
 ---@field transparent_backgroup? boolean
@@ -82,11 +88,15 @@ local defaults = {
     typst = false,
   },
 
-  ai = 'copilot',
-  codecompanion_adapter = {
-    chat = 'anthropic',
-    inline = 'copilot',
-    cmd = 'deepseek',
+  edit_prediction_provider = 'copilot',
+  ai_code_agent = {
+    name = 'codecompanion',
+    opts = {
+      chat = 'anthropic',
+      inline = 'copilot',
+      cmd = 'deepseek',
+      api_keys = {},
+    },
   },
 
   transparent_backgroup = false,
@@ -109,8 +119,6 @@ local defaults = {
   },
 
   env = {},
-
-  api_keys = {},
 
   shell = nil,
 }

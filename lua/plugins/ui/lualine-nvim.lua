@@ -1,4 +1,4 @@
-local ai_component = require('config').ai == 'none' and '' or require('config').ai
+local ai_component = require('config').edit_prediction_provider == 'none' and '' or require('config').edit_prediction_provider
 
 return {
   'nvim-lualine/lualine.nvim',

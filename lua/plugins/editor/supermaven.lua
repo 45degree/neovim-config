@@ -1,7 +1,7 @@
 return {
   'supermaven-inc/supermaven-nvim',
   event = 'InsertEnter',
-  cond = require('config').ai == 'supermaven',
+  cond = require('config').edit_prediction_provider == 'supermaven',
   cmd = {
     'SupermavenStart',
     'SupermavenStop',

@@ -22,5 +22,5 @@ return {
     --
     -- vim.g.codeium_arch = vim.uv.os_uname().machine
   end,
-  cond = require('config').ai == 'codeium',
+  cond = require('config').edit_prediction_provider == 'codeium',
 }

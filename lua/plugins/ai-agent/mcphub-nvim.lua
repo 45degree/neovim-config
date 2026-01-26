@@ -6,10 +6,11 @@ return {
   cmd = 'MCPHub',
   dependencies = { 'nvim-lua/plenary.nvim' },
   build = 'bun install -g mcp-hub@latest', -- Installs `mcp-hub` node binary globally
+  cond = config.ai_code_agent.name == 'codecompanion',
   opts = {
     cmd = vim.fn.exepath('mcp-hub'),
     config = vim.fn.stdpath('config') .. '/mcphub/servers.json',
     auto_approve = true,
-    global_env = config.env
+    global_env = config.env,
   },
 }

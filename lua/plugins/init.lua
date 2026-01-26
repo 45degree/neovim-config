@@ -4,4 +4,5 @@ return {
   { import = 'plugins.lang' },
   { import = 'plugins.ui' },
   { import = 'plugins.colorscheme' },
+  { import = 'plugins.ai-agent' },
 }
