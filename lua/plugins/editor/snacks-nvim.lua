@@ -13,6 +13,7 @@ return {
       image = { enabled = true },
       indent = { indent = { enabled = true }, scope = { enabled = true } },
       quickfile = { enabled = true },
+      scroll = { enabled = true },
       notifier = {
         enabled = true,
         icons = {

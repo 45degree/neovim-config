@@ -1,10 +1,6 @@
 return {
   'mfussenegger/nvim-dap',
-  dependencies = {
-    'mason-org/mason.nvim',
-    'theHamsta/nvim-dap-virtual-text',
-    'rcarriga/nvim-dap-ui',
-  },
+  dependencies = { 'rcarriga/nvim-dap-ui' },
   lazy = true,
   init = function()
     -- set key map
