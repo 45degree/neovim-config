@@ -16,6 +16,10 @@ return {
       hx = { glyph = '', hl = 'MiniIconsOrange' },
       mm = { glyph = '', hl = 'MiniIconsBlue' },
       m = { glyph = '', hl = 'MiniIconsBlue' },
+      qrc = { glyph = '', hl = 'MiniIconsGreen' },
+      qml = { glyph = '', hl = 'MiniIconsGreen' },
+      qmlproject = { glyph = '', hl = 'MiniIconsGreen' },
+      qmproject = { glyph = '', hl = 'MiniIconsGreen' },
     },
   },
   init = function()

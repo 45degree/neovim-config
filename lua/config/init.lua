@@ -51,7 +51,7 @@
 ---@class OpencodeAdapterConfig
 
 ---@class AiCodeAgent
----@field name string
+---@field name 'codecompanion'|'opencode'
 ---@field opts CodeCompanionAdapterConfig | OpencodeAdapterConfig
 
 ---@alias GuiConfig {fonts: string[], widefonts: string[], font_opts: string?}
