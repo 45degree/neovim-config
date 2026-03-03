@@ -1,7 +1,11 @@
+local enabled_filetypes = { 'markdown', 'typst', 'codecompanion', 'opencode_input', 'opencode_output' }
+
 return {
   'OXY2DEV/markview.nvim',
   submodules = false,
-  ft = { 'markdown', 'typst', 'codecompanion' },
+  ft = enabled_filetypes,
   cmd = 'Markview',
-  opts = { preview = { enable = true, filetypes = { 'markdown', 'typst', 'codecompanion' }, ignore_buftypes = {} } },
+  opts = {
+    preview = { enable = true, filetypes = enabled_filetypes, ignore_buftypes = {} },
+  },
 }

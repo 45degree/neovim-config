@@ -18,28 +18,9 @@ return {
   config = function(_, opts)
     require('nvim-treesitter').setup(opts)
 
-    ensure_install({
-      'cpp',
-      'c',
-      'json',
-      'vim',
-      'markdown',
-      'lua',
-      'bash',
-      'regex',
-      'markdown_inline',
-      'css',
-      'html',
-      'javascript',
-      'latex',
-      'scss',
-      'svelte',
-      'tsx',
-      'typst',
-      'vue',
-      'yaml',
-      'toml',
-    })
+    ensure_install({ 'cpp', 'c', 'comment', 'json', 'vim', 'lua', 'bash' })
+    ensure_install({ 'latex', 'typst', 'markdown', 'markdown_inline' })
+    ensure_install({ 'css', 'html', 'javascript', 'tsx', 'scss', 'svelte', 'vue', 'yaml', 'toml' })
 
     vim.api.nvim_create_autocmd('BufEnter', {
       callback = function()
