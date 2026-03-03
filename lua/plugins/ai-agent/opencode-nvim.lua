@@ -2,6 +2,7 @@ local editor_keymap = {
   ['<leader>at'] = { 'toggle', desc = 'Toggle opencode' },
   ['<leader>aa'] = { 'quick_chat', mode = { 'n', 'x' }, desc = 'Quick chat' },
   ['<leader>as'] = { 'select_session', mode = { 'n', 'x' }, desc = 'Select session' },
+  ['<leader>av'] = { 'add_visual_selection', mode = { 'v' }, desc = 'Add visual selection' },
 }
 
 local input_window_keymap = {
