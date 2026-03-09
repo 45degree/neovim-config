@@ -1,3 +1,5 @@
+---@diagnostic disable: missing-fields
+
 local editor_keymap = {
   ['<leader>at'] = { 'toggle', desc = 'Toggle opencode' },
   ['<leader>aa'] = { 'quick_chat', mode = { 'n', 'x' }, desc = 'Quick chat' },
@@ -6,10 +8,9 @@ local editor_keymap = {
 }
 
 local input_window_keymap = {
-  ['<esc><esc>'] = { 'cancel', mode = { 'n' } },
-  ['<S-cr>'] = { 'submit_input_prompt', mode = { 'n', 'i' } }, -- Submit prompt (normal mode and insert mode)
-  ['q'] = { 'close', mode = { 'n' } },
-  ['<C-c>'] = { 'cancel' },
+  ['<S-cr>'] = { 'submit_input_prompt', desc = 'Submit input prompt', mode = { 'n' } },
+  ['q'] = { 'close', mode = { 'n' }, desc = 'Close Opencode Window' },
+  ['<C-c>'] = { 'cancel', desc = 'Cancel Agent Response' },
   ['~'] = { 'mention_file', mode = 'i' },
   ['@'] = { 'mention', mode = 'i' },
   ['/'] = { 'slash_commands', mode = 'i' },
@@ -23,18 +24,14 @@ local input_window_keymap = {
 }
 
 local output_window_keymap = {
-  ['<esc><esc>'] = { 'cancel', mode = { 'n' } },
-  ['q'] = { 'close' },
-  ['<C-c>'] = { 'cancel' },
+  ['q'] = { 'close', mode = { 'n' }, desc = 'Close Opencode Window' },
+  ['<C-c>'] = { 'cancel', desc = 'Cancel Agent Response' },
   [']]'] = { 'next_message' },
   ['[['] = { 'prev_message' },
   ['<tab>'] = { 'switch_mode', mode = { 'n' } },
   ['i'] = { 'focus_input', 'n' },
   ['<M-r>'] = { 'cycle_variant', mode = { 'n' } },
-  ['<leader>aS'] = { 'select_child_session', desc = 'Select child session' },
-  ['<leader>aD'] = { 'debug_message', desc = 'Debug message' },
-  ['<leader>aO'] = { 'debug_output', desc = 'Debug output' },
-  ['<leader>ads'] = { 'debug_session', desc = 'Debug session' },
+  ['<leader>aS'] = { 'select_child_session', desc = 'Select Child Session' },
 }
 
 return {
@@ -42,11 +39,15 @@ return {
   cond = require('config').ai_code_agent.name == 'opencode',
   lazy = true,
   dependencies = 'OXY2DEV/markview.nvim',
+  ---@type OpencodeConfig
   opts = {
     keymap = {
       editor = editor_keymap,
       input_window = input_window_keymap,
       output_window = output_window_keymap,
+    },
+    context = {
+      current_file = { enabled = false },
     },
   },
   keys = function()
