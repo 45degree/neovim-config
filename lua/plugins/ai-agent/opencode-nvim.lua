@@ -47,9 +47,8 @@ return {
       input_window = input_window_keymap,
       output_window = output_window_keymap,
     },
-    context = {
-      current_file = { enabled = false },
-    },
+    context = { current_file = { enabled = false } },
+    quick_chat = { default_agent = 'build', default_model = 'openrouter/minimax/minimax-m2.7' },
   },
   keys = function()
     local result = {}
