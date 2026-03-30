@@ -1,5 +1,7 @@
 ---@diagnostic disable: missing-fields
 
+local config = require('config')
+
 local editor_keymap = {
   ['<leader>at'] = { 'toggle', desc = 'Toggle opencode' },
   ['<leader>aa'] = { 'quick_chat', mode = { 'n', 'x' }, desc = 'Quick chat' },
@@ -48,7 +50,7 @@ return {
       output_window = output_window_keymap,
     },
     context = { current_file = { enabled = false } },
-    quick_chat = { default_agent = 'build', default_model = 'openrouter/minimax/minimax-m2.7' },
+    quick_chat = { default_agent = 'build', default_model = config.ai_code_agent.opts.quick_chat_model },
   },
   keys = function()
     local result = {}

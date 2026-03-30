@@ -49,6 +49,7 @@
 ---@field api_keys? table<string, string>
 
 ---@class OpencodeAdapterConfig
+---@field quick_chat_model string
 
 ---@class AiCodeAgent
 ---@field name 'codecompanion'|'opencode'
