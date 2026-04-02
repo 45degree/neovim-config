@@ -59,20 +59,20 @@ if vim.fn.has('win32') ~= 1 and vim.fn.executable('fcitx5-remote') == 1 then
   return
 end
 
-if vim.fn.executable('macism') == 1 and vim.fn.has('macunix') == 1 then
-  local default_ime_select = 'com.apple.keylayout.ABC'
-
-  vim.api.nvim_create_autocmd({ 'InsertLeave' }, {
-    callback = function()
-      local ime_previous_states = vim.fn.system({ 'macism' }):match('^%s*(.-)%s*$')
-      vim.api.nvim_set_var('ime_saved_states', ime_previous_states)
-      vim.fn.system({ 'macism', default_ime_select })
-    end,
-  })
-
-  vim.api.nvim_create_autocmd({ 'InsertEnter' }, {
-    callback = function()
-      if vim.g['ime_saved_states'] ~= nil then vim.fn.system({ 'macism', vim.g['ime_saved_states'] }) end
-    end,
-  })
-end
+-- if vim.fn.executable('macism') == 1 and vim.fn.has('macunix') == 1 then
+--   local default_ime_select = 'com.apple.keylayout.ABC'
+--
+--   vim.api.nvim_create_autocmd({ 'InsertLeave' }, {
+--     callback = function()
+--       local ime_previous_states = vim.fn.system({ 'macism' }):match('^%s*(.-)%s*$')
+--       vim.api.nvim_set_var('ime_saved_states', ime_previous_states)
+--       vim.fn.system({ 'macism', default_ime_select })
+--     end,
+--   })
+--
+--   vim.api.nvim_create_autocmd({ 'InsertEnter' }, {
+--     callback = function()
+--       if vim.g['ime_saved_states'] ~= nil then vim.fn.system({ 'macism', vim.g['ime_saved_states'] }) end
+--     end,
+--   })
+-- end
