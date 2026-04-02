@@ -18,6 +18,7 @@ vim.opt.timeoutlen = 500
 vim.opt.showtabline = 2
 vim.cmd([[syntax on]]) -- 语法高亮
 vim.opt.winborder = require('config').border
+vim.opt.cmdheight = 0
 
 -- 缩进设置
 vim.opt.autoindent = true -- 格式保持一致
