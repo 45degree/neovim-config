@@ -92,12 +92,5 @@ return {
     end
 
     require('opencode').setup(opts)
-
-    vim.api.nvim_create_autocmd('BufWinEnter', {
-      pattern = '*',
-      callback = function(ev)
-        if string.match(vim.bo[ev.buf].filetype, 'opencode_*') then vim.opt_local.foldenable = false end
-      end,
-    })
   end,
 }
