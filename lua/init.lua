@@ -1,4 +1,4 @@
-require('vim._core.ui2').enable({})
+require('vim._core.ui2').enable({ msg = { targets = 'msg', msg = { height = 0.2, timeout = 2000 } } })
 
 require('options')
 require('ime-config')

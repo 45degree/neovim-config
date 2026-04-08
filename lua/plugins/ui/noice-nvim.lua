@@ -12,15 +12,8 @@ return {
       hover = { enabled = true },
       signature = { enabled = true },
     },
-    messages = {
-      enabled = true, -- enables the Noice messages UI
-      view = 'mini', -- default view for messages
-      view_error = 'mini', -- view for errors
-      view_warn = 'mini', -- view for warnings
-      view_history = 'messages', -- view for :messages
-      view_search = 'virtualtext', -- view for search count messages. Set to `false` to disable
-    },
-    cmdline = {enabled = false},
+    messages = { enabled = false },
+    cmdline = { enabled = false },
     routes = {},
     presets = {
       bottom_search = true,
@@ -33,5 +26,5 @@ return {
       cmdline_popup = { border = { style = require('config').border } },
       hover = { border = { style = require('config').border } },
     },
-  }
+  },
 }
