@@ -1,9 +1,7 @@
 return {
-  'sindrets/diffview.nvim',
+  'dlyongemallo/diffview.nvim',
   cmd = { 'DiffviewOpen', 'DiffviewFileHistory' },
-  dependencies = {
-    'nvim-lua/plenary.nvim',
-  },
+  dependencies = { 'nvim-lua/plenary.nvim' },
   opts = {
     view = {
       default = {
