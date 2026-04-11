@@ -25,38 +25,71 @@ if vim.g.neovide ~= nil then
 end
 
 if vim.fn.has('win32') ~= 1 and vim.fn.executable('fcitx5-remote') == 1 then
-  vim.g.fcitx_version = vim.fn.system('command -v fcitx5')
-  if vim.fn.empty(vim.g.fcitx_version) == 0 then
-    vim.g.fcitx_version = 'fcitx5-remote'
-  else
-    vim.g.fcitx_version = 'fcitx-remote'
+  local current_im = vim.fn.system('fcitx5-remote -n'):gsub('%s+', '')
+
+  local function rime_is_ascii_mode()
+    local result = vim.fn.system({
+      'dbus-send',
+      '--session',
+      '--print-reply',
+      '--dest=org.fcitx.Fcitx5',
+      '/rime',
+      'org.fcitx.Fcitx.Rime1.IsAsciiMode',
+    })
+    return result:match('boolean (%a+)') == 'true'
+  end
+
+  local function rime_set_ascii_mode(enabled)
+    vim.fn.system({
+      'dbus-send',
+      '--session',
+      '--type=method_call',
+      '--dest=org.fcitx.Fcitx5',
+      '/rime',
+      'org.fcitx.Fcitx.Rime1.SetAsciiMode',
+      'boolean:' .. tostring(enabled),
+    })
+  end
+
+  if current_im == 'rime' and vim.fn.executable('dbus-send') == 1 and pcall(rime_is_ascii_mode) then
+    vim.api.nvim_create_autocmd({ 'InsertLeave' }, {
+      callback = function()
+        if not rime_is_ascii_mode() then
+          vim.b.inputtoggle = 1
+          rime_set_ascii_mode(true)
+        end
+      end,
+    })
+
+    vim.api.nvim_create_autocmd({ 'InsertEnter' }, {
+      callback = function()
+        if vim.b.inputtoggle == 1 then
+          rime_set_ascii_mode(false)
+          vim.b.inputtoggle = 0
+        end
+      end,
+    })
+    return
   end
 
   vim.api.nvim_create_autocmd({ 'InsertLeave' }, {
     callback = function()
-      local input_status = vim.fn.system(vim.g.fcitx_version)
+      local input_status = vim.fn.system('fcitx5-remote')
       if tonumber(input_status) == 2 then
         vim.b.inputtoggle = 1
-        vim.fn.system(vim.g.fcitx_version .. ' -c')
+        vim.fn.system('fcitx5-remote -c')
       end
     end,
   })
 
   vim.api.nvim_create_autocmd({ 'InsertEnter' }, {
     callback = function()
-      vim.cmd([[
-      try
-      if b:inputtoggle == 1
-          call system(g:fcitx_version..' -o')
-          let b:inputtoggle = 0
-      endif
-      catch /inputtoggle/
-          let b:inputtoggle = 0
-      endtry
-    ]])
+      if vim.b.inputtoggle == 1 then
+        vim.fn.system('fcitx5-remote -o')
+        vim.b.inputtoggle = 0
+      end
     end,
   })
-  return
 end
 
 -- if vim.fn.executable('macism') == 1 and vim.fn.has('macunix') == 1 then
