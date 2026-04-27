@@ -18,32 +18,17 @@ return {
   config = function(_, opts)
     require('nvim-treesitter').setup(opts)
 
-    ensure_install({ 'cpp', 'c', 'comment', 'json', 'vim', 'lua', 'bash' })
+    ensure_install({ 'cpp', 'c', 'comment', 'doxygen', 'json', 'vim', 'lua', 'bash' })
     ensure_install({ 'latex', 'typst', 'markdown', 'markdown_inline' })
     ensure_install({ 'css', 'html', 'javascript', 'tsx', 'scss', 'svelte', 'vue', 'yaml', 'toml' })
 
-    vim.api.nvim_create_autocmd('BufEnter', {
-      callback = function()
-        local buf = vim.api.nvim_get_current_buf()
-        local methods = vim.lsp.protocol.Methods
-        local parser = vim.treesitter.get_parser(buf, nil, { error = false })
-        if parser == nil then return end
-
-        local max_filesize = 100 * 1024 -- 100 KB
-        local ok, stats = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(buf))
-        if ok and stats and stats.size > max_filesize then
-          vim.treesitter.stop(buf)
-          return
-        end
-
-        local clients = vim.lsp.get_clients({ bufnr = buf })
-        for _, client in ipairs(clients) do
-          if client:supports_method(methods.textDocument_semanticTokens_full) then
-            vim.treesitter.stop(buf)
-            return
-          end
-        end
-        vim.treesitter.start(buf)
+    vim.api.nvim_create_autocmd('FileType', {
+      desc = 'Enable treesitter-based features for supported filetypes',
+      callback = function(args)
+        local bufnr = args.buf
+        local filetype = args.match
+        local lang = vim.treesitter.language.get_lang(filetype)
+        if lang and vim.treesitter.language.add(lang) then vim.treesitter.start(bufnr, lang) end
       end,
     })
   end,
