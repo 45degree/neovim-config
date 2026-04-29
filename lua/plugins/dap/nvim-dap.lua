@@ -23,6 +23,6 @@ return {
     vim.fn.sign_define('DapBreakpointCondition', { text = ' ', texthl = 'DiagnosticError', linehl = '', numhl = '' })
     vim.fn.sign_define('DapStopped', { text = ' ', texthl = 'DiagnosticOk', linehl = '', numhl = '' })
     vim.fn.sign_define('DapBreakpointRejected', { text = ' ', texthl = 'Comment', linehl = '', numhl = '' })
-    require('plugins.dap.dapconfig.dap-config').setup()
+    require('config.dap.init').setup()
   end,
 }

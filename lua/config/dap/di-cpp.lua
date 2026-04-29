@@ -9,7 +9,9 @@ local inputProgram = function()
   return programFile
 end
 
+---@type dap.ServerAdapter
 dap.adapters.codelldb = {
+  id = 'codelldb',
   type = 'server',
   port = '${port}',
   executable = {
