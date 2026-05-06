@@ -5,7 +5,7 @@ local config = require('config')
 local editor_keymap = {
   ['<leader>at'] = { 'toggle', desc = 'Toggle opencode' },
   ['<leader>aa'] = { 'quick_chat', mode = { 'n', 'x' }, desc = 'Quick chat' },
-  ['<leader>as'] = { 'select_session', mode = { 'n', 'x' }, desc = 'Select session' },
+  ['<leader>asc'] = { 'select_session', mode = { 'n', 'x' }, desc = 'Select session' },
   ['<leader>av'] = { 'add_visual_selection', mode = { 'v' }, desc = 'Add visual selection' },
   ['<leader>aV'] = { 'add_visual_selection_inline', mode = { 'v' }, desc = 'Add visual selection as code' },
 }
@@ -34,7 +34,9 @@ local output_window_keymap = {
   ['<tab>'] = { 'switch_mode', mode = { 'n' } },
   ['i'] = { 'focus_input', 'n' },
   ['<M-r>'] = { 'cycle_variant', mode = { 'n' } },
-  ['<leader>aS'] = { 'select_child_session', desc = 'Select Child Session' },
+  ['<leader>asj'] = { 'navigate_session_tree', { 'child', 'picker' }, desc = 'Select child session', mode = { 'n' } },
+  ['<leader>ask'] = { 'navigate_session_tree', { 'parent' }, desc = 'Go to parent session', mode = { 'n' } },
+  ['<leader>asl'] = { 'navigate_session_tree', { 'sibling', 'picker' }, desc = 'Select sibling session', mode = { 'n' } },
 }
 
 return {
