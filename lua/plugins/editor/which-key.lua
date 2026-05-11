@@ -27,7 +27,9 @@ local register = {
   -- code
   { '<leader>c', group = 'code' },
   { '<leader>cf', function() require('conform').format({ async = true, lsp_format = 'fallback' }) end, desc = 'format the code' },
-  { '<leader>cT', '<cmd>Trouble diagnostics<cr>', desc = 'open code diagnostics' },
+  { '<leader>cc', function() vim.lsp.codelens.enable(not vim.lsp.codelens.is_enabled()) end, desc = 'toggle codelens' },
+  { '<leader>ct', function() require('neotest').summary.toggle() end, desc = 'toggle test panel' },
+  { '<leader>cT', '<cmd>Trouble diagnostics<cr>', desc = 'toggle code diagnostics' },
   { '<leader>ch', function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, desc = 'toggle inlay hints' },
 
   -- code debug

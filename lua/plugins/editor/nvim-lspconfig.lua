@@ -42,17 +42,17 @@ return {
 
         if client:supports_method(methods.textDocument_semanticTokens_full) then vim.treesitter.stop(bufnr) end
 
-        if client:supports_method(methods.textDocument_codeLens) then
-          local code_lens_group = vim.api.nvim_create_augroup('toggle_code_lens', { clear = false })
-          vim.defer_fn(function() vim.lsp.codelens.enable() end, 500)
-
-          vim.api.nvim_create_autocmd({ 'BufEnter', 'CursorHold', 'InsertLeave' }, {
-            buffer = bufnr,
-            callback = function() vim.lsp.codelens.enable() end,
-            desc = 'Refresh Code Lens',
-            group = code_lens_group,
-          })
-        end
+        -- if client:supports_method(methods.textDocument_codeLens) then
+        --   local code_lens_group = vim.api.nvim_create_augroup('toggle_code_lens', { clear = false })
+        --   vim.defer_fn(function() vim.lsp.codelens.enable() end, 500)
+        --
+        --   vim.api.nvim_create_autocmd({ 'BufEnter', 'CursorHold', 'InsertLeave' }, {
+        --     buffer = bufnr,
+        --     callback = function() vim.lsp.codelens.enable() end,
+        --     desc = 'Refresh Code Lens',
+        --     group = code_lens_group,
+        --   })
+        -- end
 
         if client:supports_method(methods.textDocument_foldingRange) then
           local win = vim.api.nvim_get_current_win()
