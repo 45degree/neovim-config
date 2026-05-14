@@ -3,4 +3,5 @@ return {
   event = 'LazyFile',
   cond = vim.env['WAKATIME_API_KEY'] ~= nil,
   cmd = { 'WakaTimeApiKey', 'WakaTimeDebugEnable', 'WakaTimeDebugDisable', 'WakaTimeScreenRedrawDisable', 'WakaTimeToday' },
+  opts = { status_bar_enabled = false },
 }
