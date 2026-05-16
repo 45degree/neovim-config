@@ -15,15 +15,6 @@ return {
   opts = {
     event_handlers = {
       {
-        event = 'neo_tree_window_after_close',
-        handler = function()
-          if package.loaded['dapui'] then
-            local dapui_windows = require('dapui.windows')
-            if #dapui_windows.layouts > 0 and dapui_windows.layouts[1]:is_open() then require('dapui').open({ reset = true }) end
-          end
-        end,
-      },
-      {
         event = 'neo_tree_popup_input_ready',
         handler = function(args)
           -- enter input popup with normal mode by default.
@@ -113,7 +104,7 @@ return {
           [']g'] = 'next_git_modified',
         },
       },
-      follow_current_file = { enabled = true }
+      follow_current_file = { enabled = true },
     },
     git_status = {
       window = {

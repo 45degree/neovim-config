@@ -1,5 +1,5 @@
 local ignore_bf = { 'nofile' }
-local ignore_ft = { 'dap-repl', 'dapui_scopes', 'dapui_breakpoints', 'snacks_terminal' }
+local ignore_ft = { 'dap-repl', 'dap-view', 'snacks_terminal' }
 
 return {
   'Bekaboo/dropbar.nvim',

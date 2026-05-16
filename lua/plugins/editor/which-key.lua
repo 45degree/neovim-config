@@ -34,10 +34,10 @@ local register = {
 
   -- code debug
   { '<leader>cd', group = 'debug' },
-  { '<leader>cd=', function() require('dapui').open({ reset = true }) end, desc = 'balance debug window' },
+  { '<leader>cd=', function() require('dap-view').open() end, desc = 'balance debug window' },
   { '<leader>cdc', function() require('dap').terminate() end, desc = 'terninate debug' },
   { '<leader>cdr', function() require('dap').run_last() end, desc = 'run last debug' },
-  { '<leader>cdw', function() require('dapui').toggle() end, desc = 'toggle debug windows' },
+  { '<leader>cdw', function() require('dap-view').toggle() end, desc = 'toggle debug windows' },
 
   -- git
   { '<leader>g', group = 'git' },
