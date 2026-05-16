@@ -5,6 +5,7 @@ return {
   event = { 'InsertEnter', 'CmdlineEnter' },
   dependencies = {
     'rafamadriz/friendly-snippets',
+    'mayromr/blink-cmp-dap',
     { 'Saghen/blink.compat', version = '*', lazy = true },
     { 'disrupted/blink-cmp-conventional-commits', lazy = true },
   },
@@ -17,7 +18,7 @@ return {
     },
     snippets = { preset = 'default' },
     sources = {
-      default = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev', 'conventional_commits' },
+      default = { 'lsp', 'dap', 'path', 'snippets', 'buffer', 'lazydev', 'conventional_commits' },
       providers = {
         conventional_commits = {
           name = 'Conventional Commits',
@@ -25,6 +26,7 @@ return {
           enabled = function() return vim.bo.filetype == 'gitcommit' end,
         },
         lazydev = { name = 'Development', module = 'lazydev.integrations.blink' },
+        dap = { name = 'dap', module = 'blink-cmp-dap' },
       },
     },
     cmdline = {
