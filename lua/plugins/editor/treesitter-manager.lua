@@ -6,8 +6,8 @@ return {
   config = function(_, opts)
     local ensure_installed = {
       opts.ensure_installed or {},
-      { 'cpp', 'c', 'comment', 'doxygen', 'json', 'vim', 'lua', 'bash' },
-      { 'latex', 'typst', 'markdown', 'markdown_inline' },
+      { 'cpp', 'c', 'comment', 'doxygen', 'json', 'vim', 'lua', 'bash', 'json5' },
+      { 'latex', 'typst', 'markdown', 'markdown_inline', 'regex' },
       { 'css', 'html', 'javascript', 'tsx', 'scss', 'svelte', 'vue', 'yaml', 'toml' },
     }
     opts.ensure_installed = vim.iter(ensure_installed):flatten():totable()

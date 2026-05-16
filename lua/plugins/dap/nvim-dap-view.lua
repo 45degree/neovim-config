@@ -9,7 +9,7 @@ return {
     },
     auto_toggle = true,
     virtual_text = { enabled = true },
-    switchbuf = function(bufnr, winnr)
+    switchbuf = function()
       local wins = vim.api.nvim_tabpage_list_wins(0)
       for _, win in ipairs(wins) do
         local buf = vim.api.nvim_win_get_buf(win)
