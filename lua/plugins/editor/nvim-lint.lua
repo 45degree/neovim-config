@@ -69,6 +69,10 @@ return {
     end
 
     require('lint').linters_by_ft = opts_kv
+
+    -- Add extra args for cppcheck to enable more checks
+    local cppcheck = require('lint').linters.cppcheck
+    table.insert(cppcheck.args, '--check-level=exhaustive')
   end,
   init = function()
     vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
