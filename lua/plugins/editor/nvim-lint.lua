@@ -8,7 +8,7 @@ local function registry_linter_by_package(opts, pkg, package_to_nvimlint)
 
     local package_name = package_to_nvimlint[pkg.name]
     if package_name == nil then return end
-    table.insert(opts[filetype], package_name)
+    if not vim.tbl_contains(opts[filetype], package_name) then table.insert(opts[filetype], package_name) end
   end
 
   if #pkg.lang == 0 then
@@ -57,13 +57,13 @@ return {
         for _, ft in pairs(ft_mapping) do
           opts_kv[ft] = opts_kv[ft] or {}
           for _, linter in ipairs(linters) do
-            table.insert(opts_kv[ft], linter)
+            if not vim.tbl_contains(opts_kv[ft], linter) then table.insert(opts_kv[ft], linter) end
           end
         end
       else
-        opts_kv[filetype] = {}
+        opts_kv[filetype] = opts_kv[filetype] or {}
         for _, linter in ipairs(linters) do
-          table.insert(opts_kv[filetype], linter)
+          if not vim.tbl_contains(opts_kv[filetype], linter) then table.insert(opts_kv[filetype], linter) end
         end
       end
     end
