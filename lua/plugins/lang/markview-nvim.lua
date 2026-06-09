@@ -1,4 +1,4 @@
-local enabled_filetypes = { 'markdown', 'typst', 'codecompanion', 'opencode_input', 'opencode_output' }
+local enabled_filetypes = { 'markdown', 'typst', 'opencode_input', 'opencode_output' }
 
 return {
   'OXY2DEV/markview.nvim',

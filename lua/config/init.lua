@@ -42,18 +42,14 @@
 
 ---@alias AiCodeProvider 'codeium'|'copilot'|'fittencode'|'supermaven'|'none'
 
----@class CodeCompanionAdapterConfig
----@field chat string
----@field inline string
----@field cmd string
----@field api_keys? table<string, string>
-
 ---@class OpencodeAdapterConfig
----@field quick_chat_model string
+---@field quick_chat_model? string
 
----@class AiCodeAgent
----@field name 'codecompanion'|'opencode'
----@field opts CodeCompanionAdapterConfig | OpencodeAdapterConfig
+---@class AiCodeAgentOpencode
+---@field name 'opencode'
+---@field opts OpencodeAdapterConfig
+
+---@alias AiCodeAgent AiCodeAgentOpencode
 
 ---@alias GuiConfig {fonts: string[], widefonts: string[], font_opts: string?}
 
@@ -91,13 +87,8 @@ local defaults = {
 
   edit_prediction_provider = 'copilot',
   ai_code_agent = {
-    name = 'codecompanion',
-    opts = {
-      chat = 'anthropic',
-      inline = 'copilot',
-      cmd = 'deepseek',
-      api_keys = {},
-    },
+    name = 'opencode',
+    opts = {},
   },
 
   transparent_backgroup = false,
