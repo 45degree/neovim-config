@@ -50,6 +50,7 @@ local register = {
   { '<leader>grh', '<cmd>Gitsigns reset_hunk<cr>', desc = 'reset git hunk' },
   { '<leader>gsh', '<cmd>Gitsigns stage_hunk<cr>', desc = 'stage git hunk' },
   { '<leader>guh', '<cmd>Gitsigns undo_stage_hunk<cr>', desc = 'undo git hunk' },
+  { '<leader>gL', function() require('util.gitlogdiff').open() end, desc = 'pick commits to diff', mode = { 'n' } },
 
   -- filesystem and outlines
   { '<leader>t', '<cmd>Neotree toggle<cr>', desc = 'toggle filesystem', icon = '󰙅' },
