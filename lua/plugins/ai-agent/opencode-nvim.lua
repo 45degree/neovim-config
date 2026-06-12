@@ -2,6 +2,12 @@
 
 local config = require('config')
 
+local function on_output_rendered(_, win)
+  if win and vim.api.nvim_win_is_valid(win) then
+    pcall(vim.api.nvim_set_option_value, 'fillchars', vim.go.fillchars, { win = win, scope = 'local' })
+  end
+end
+
 local editor_keymap = {
   ['<leader>at'] = { 'toggle', desc = 'Toggle opencode' },
   ['<leader>aa'] = { 'quick_chat', mode = { 'n', 'x' }, desc = 'Quick chat' },
@@ -53,6 +59,7 @@ return {
     },
     context = { current_file = { enabled = false } },
     quick_chat = { default_agent = 'build', default_model = config.ai_code_agent.opts.quick_chat_model },
+    ui = { output = { rendering = { on_data_rendered = on_output_rendered } } },
   },
   keys = function()
     local result = {}
