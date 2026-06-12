@@ -53,7 +53,6 @@ vim.opt.signcolumn = 'auto'
 vim.opt.exrc = true -- project local setting
 vim.opt.jumpoptions = 'stack'
 
-if vim.fn.has('nvim') then vim.env.NVIM_TUI_ENABLE_TRUE_COLOR = 1 end
 
 -- 解决插入模式下delete/backspace键失效问题
 vim.opt.backspace = '2'
