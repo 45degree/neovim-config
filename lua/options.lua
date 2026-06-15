@@ -39,6 +39,7 @@ vim.opt.smartcase = true -- 搜索时智能忽略大小写
 vim.opt.writebackup = false
 vim.opt.backup = false -- 不创建备份文件
 vim.opt.swapfile = false -- 不创建交换文件
+vim.opt.shadafile = 'NONE'
 vim.opt.undofile = true -- 保留撤销历史
 vim.opt.autochdir = true -- 自动切换工作目录
 vim.opt.errorbells = false -- 出错不发出响声
