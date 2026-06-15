@@ -101,5 +101,36 @@ return {
     end
 
     require('opencode').setup(opts)
+
+    -- Workaround: after a compaction the plugin restores the active model
+    -- from the most recent message (the compaction summary), which switches
+    -- the session to the compaction model. Capture the model in use right
+    -- before compaction and restore it when the post-compaction re-render
+    -- tries to change it. Uses only public opencode.nvim APIs.
+    local state = require('opencode.state')
+    local restore_target
+    local reverting = false
+
+    if state.event_manager then
+      state.event_manager:subscribe('session.compacted', function(properties)
+        if not properties or not properties.sessionID or (state.active_session and properties.sessionID ~= state.active_session.id) then return end
+        restore_target = state.current_model
+        -- safety net: drop a stale target so it can never affect a later,
+        -- unrelated model switch if the restore somehow doesn't trigger
+        vim.defer_fn(function() restore_target = nil end, 10000)
+      end)
+    end
+
+    state.store.subscribe('current_model', function(_, new_val)
+      if reverting or not restore_target then return end
+      if new_val == restore_target then
+        restore_target = nil
+        return
+      end
+      reverting = true
+      state.model.set_model(restore_target)
+      reverting = false
+      restore_target = nil
+    end)
   end,
 }
