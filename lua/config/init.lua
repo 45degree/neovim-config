@@ -43,6 +43,7 @@
 ---@alias AiCodeProvider 'codeium'|'copilot'|'fittencode'|'supermaven'|'none'
 
 ---@class OpencodeAdapterConfig
+---@field quick_chat_agent? string
 ---@field quick_chat_model? string
 
 ---@class AiCodeAgentOpencode

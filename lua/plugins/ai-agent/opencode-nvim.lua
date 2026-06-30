@@ -52,7 +52,7 @@ return {
       output_window = output_window_keymap,
     },
     context = { current_file = { enabled = false } },
-    quick_chat = { default_agent = 'build', default_model = config.ai_code_agent.opts.quick_chat_model },
+    quick_chat = { default_agent = config.ai_code_agent.opts.quick_chat_agent, default_model = config.ai_code_agent.opts.quick_chat_model },
   },
   keys = function()
     local result = {}
