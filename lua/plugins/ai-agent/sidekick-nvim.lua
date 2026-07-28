@@ -14,6 +14,10 @@ return {
           cmd = { 'qoderclicn' },
           url = 'https://docs.qoder.com/cli/installation',
         },
+        codebuddy = {
+          cmd = { 'codebuddy' },
+          url = 'https://www.codebuddy.cn/docs/cli/overview',
+        },
       },
     },
   },
