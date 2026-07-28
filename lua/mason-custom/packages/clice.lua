@@ -11,22 +11,37 @@ A next-generation C++ language server written from scratch on LLVM/Clang, with t
   categories = { 'LSP' },
 
   source = {
-    id = 'pkg:github/clice-io/clice@v0.1.0-alpha.3',
+    id = 'pkg:github/clice-io/clice@v0.1.2026072005',
     asset = {
       {
         target = 'linux_x64_gnu',
-        file = 'clice-x86_64-linux-gnu.tar.gz',
-        bin = 'bin/clice',
+        file = 'clice-x64-linux-gnu.tar.gz',
+        bin = 'clice/bin/clice',
+      },
+      {
+        target = 'linux_arm64_gnu',
+        file = 'clice-arm64-linux-gnu.tar.gz',
+        bin = 'clice/bin/clice',
       },
       {
         target = 'darwin_arm64',
         file = 'clice-arm64-macos-darwin.tar.gz',
-        bin = 'bin/clice',
+        bin = 'clice/bin/clice',
+      },
+      {
+        target = 'darwin_x64',
+        file = 'clice-x64-macos-darwin.tar.gz',
+        bin = 'clice/bin/clice',
       },
       {
         target = 'win_x64',
         file = 'clice-x64-windows-msvc.zip',
-        bin = 'bin/clice.exe',
+        bin = 'clice/bin/clice.exe',
+      },
+      {
+        target = 'win_arm64',
+        file = 'clice-arm64-windows-msvc.zip',
+        bin = 'clice/bin/clice.exe',
       },
     },
   },

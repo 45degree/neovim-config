@@ -10,4 +10,12 @@ return {
     'compile_flags.txt',
     'configure.ac',
   },
+  capabilities = {
+    textDocument = {
+      completion = {
+        editsNearCursor = true,
+      },
+    },
+    offsetEncoding = { 'utf-8' },
+  },
 }
