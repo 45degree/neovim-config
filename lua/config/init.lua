@@ -50,7 +50,10 @@
 ---@field name 'opencode'
 ---@field opts OpencodeAdapterConfig
 
----@alias AiCodeAgent AiCodeAgentOpencode
+---@class AiCodeAgentSidekick
+---@field name 'sidekick'
+
+---@alias AiCodeAgent AiCodeAgentOpencode | AiCodeAgentSidekick
 
 ---@alias GuiConfig {fonts: string[], widefonts: string[], font_opts: string?}
 
