@@ -11,36 +11,36 @@ A next-generation C++ language server written from scratch on LLVM/Clang, with t
   categories = { 'LSP' },
 
   source = {
-    id = 'pkg:github/clice-io/clice@v0.1.2026080803',
+    id = 'pkg:github/clice-io/clice@v0.1.2026080903',
     asset = {
       {
         target = 'linux_x64_gnu',
-        file = 'clice-x64-linux-gnu.tar.gz',
+        file = 'clice-{{version | strip_prefix "v"}}.x86_64-unknown-linux-gnu.tar.gz',
         bin = 'clice/bin/clice',
       },
       {
         target = 'linux_arm64_gnu',
-        file = 'clice-arm64-linux-gnu.tar.gz',
+        file = 'clice-{{version | strip_prefix "v"}}.aarch64-unknown-linux-gnu.tar.gz',
         bin = 'clice/bin/clice',
       },
       {
         target = 'darwin_arm64',
-        file = 'clice-arm64-macos-darwin.tar.gz',
+        file = 'clice-{{version | strip_prefix "v"}}.aarch64-apple-darwin.tar.gz',
         bin = 'clice/bin/clice',
       },
       {
         target = 'darwin_x64',
-        file = 'clice-x64-macos-darwin.tar.gz',
+        file = 'clice-{{version | strip_prefix "v"}}.x86_64-apple-darwin.tar.gz',
         bin = 'clice/bin/clice',
       },
       {
         target = 'win_x64',
-        file = 'clice-x64-windows-msvc.zip',
+        file = 'clice-{{version | strip_prefix "v"}}.x86_64-pc-windows-msvc.zip',
         bin = 'clice/bin/clice.exe',
       },
       {
         target = 'win_arm64',
-        file = 'clice-arm64-windows-msvc.zip',
+        file = 'clice-{{version | strip_prefix "v"}}.aarch64-pc-windows-msvc.zip',
         bin = 'clice/bin/clice.exe',
       },
     },
