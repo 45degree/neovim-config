@@ -11,7 +11,7 @@ A next-generation C++ language server written from scratch on LLVM/Clang, with t
   categories = { 'LSP' },
 
   source = {
-    id = 'pkg:github/clice-io/clice@v0.1.2026081503',
+    id = 'pkg:github/clice-io/clice@v0.1.2026081703',
     asset = {
       {
         target = 'linux_x64_gnu',
