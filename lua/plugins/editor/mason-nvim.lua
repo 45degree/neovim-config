@@ -2,6 +2,10 @@ return {
   'mason-org/mason.nvim',
   cmd = 'Mason',
   opts = {
+    registries = {
+      "lua:mason-custom",
+      "github:mason-org/mason-registry",
+    },
     ui = {
       border = require('config').border,
       icons = {
