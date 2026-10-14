@@ -11,7 +11,7 @@ A next-generation C++ language server written from scratch on LLVM/Clang, with t
   categories = { 'LSP' },
 
   source = {
-    id = 'pkg:github/clice-io/clice@v0.1.2026090310',
+    id = 'pkg:github/clice-io/clice@v0.1.2026101407',
     asset = {
       {
         target = 'linux_x64_gnu',
@@ -35,12 +35,12 @@ A next-generation C++ language server written from scratch on LLVM/Clang, with t
       },
       {
         target = 'win_x64',
-        file = 'clice-{{version | strip_prefix "v"}}.x86_64-pc-windows-msvc.zip',
+        file = 'clice-{{version | strip_prefix "v"}}.x86_64-w64-mingw32.zip',
         bin = 'clice/bin/clice.exe',
       },
       {
         target = 'win_arm64',
-        file = 'clice-{{version | strip_prefix "v"}}.aarch64-pc-windows-msvc.zip',
+        file = 'clice-{{version | strip_prefix "v"}}.aarch64-w64-mingw32.zip',
         bin = 'clice/bin/clice.exe',
       },
     },
