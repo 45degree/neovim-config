@@ -19,7 +19,7 @@ return {
     require('nvim-treesitter').setup(opts)
 
     ensure_install({ 'cpp', 'c', 'comment', 'doxygen', 'json', 'vim', 'lua', 'bash' })
-    ensure_install({ 'latex', 'typst', 'markdown', 'markdown_inline' })
+    ensure_install({ 'latex', 'typst', 'markdown', 'markdown_inline', 'mermaid' })
     ensure_install({ 'css', 'html', 'javascript', 'tsx', 'scss', 'svelte', 'vue', 'yaml', 'toml' })
 
     vim.api.nvim_create_autocmd('FileType', {
