@@ -1,7 +1,6 @@
 return {
-  'dlyongemallo/diffview.nvim',
+  'dlyongemallo/diffview-plus.nvim',
   cmd = { 'DiffviewOpen', 'DiffviewFileHistory' },
-  dependencies = { 'nvim-lua/plenary.nvim' },
   opts = {
     view = {
       default = {
