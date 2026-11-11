@@ -42,7 +42,7 @@
 
 ---@class MinuetEditPredictionConfig
 ---@field name 'minuet'
----@field opts { api_key: 'deepseek', name: string }
+---@field opts { api_key: string, name: 'deepseek' }
 
 ---@alias AiEditPredictionProvider MinuetEditPredictionConfig | { name: "copilot"} | { name: "none" }
 
