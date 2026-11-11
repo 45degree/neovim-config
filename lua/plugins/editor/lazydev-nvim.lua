@@ -11,7 +11,6 @@ return {
         { path = 'luvit-meta/library', words = { 'vim%.uv' } },
         { path = 'xmake-luals-addon/library', files = { 'xmake.lua' } },
         { path = 'overseer.nvim', mods = { 'overseer' } },
-        { path = 'fittencode.nvim', mods = { 'fittencode' } },
         { path = 'wezterm-types', mods = { 'wezterm' } },
       },
     },

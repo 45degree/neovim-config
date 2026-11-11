@@ -40,7 +40,11 @@
 ---| 'onedark_dark'
 ---| 'onedark_vivid'
 
----@alias AiCodeProvider 'codeium'|'copilot'|'fittencode'|'supermaven'|'none'
+---@class MinuetEditPredictionConfig
+---@field name 'minuet'
+---@field opts { api_key: 'deepseek', name: string }
+
+---@alias AiEditPredictionProvider MinuetEditPredictionConfig | { name: "copilot"} | { name: "none" }
 
 ---@class OpencodeAdapterConfig
 ---@field quick_chat_agent? string
@@ -59,7 +63,7 @@
 
 ---@class CustomNvimConfig
 ---@field colorscheme? colorscheme
----@field edit_prediction_provider? AiCodeProvider
+---@field edit_prediction_provider? AiEditPredictionProvider
 ---@field ai_code_agent? AiCodeAgent
 ---@field gui? GuiConfig
 ---@field lang? table<string, boolean>
@@ -89,7 +93,7 @@ local defaults = {
     typst = false,
   },
 
-  edit_prediction_provider = 'copilot',
+  edit_prediction_provider = { name = 'none' },
   ai_code_agent = {
     name = 'opencode',
     opts = {},

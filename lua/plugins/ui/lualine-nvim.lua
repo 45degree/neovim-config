@@ -1,4 +1,5 @@
-local ai_component = require('config').edit_prediction_provider == 'none' and '' or require('config').edit_prediction_provider
+local provider = require('config').edit_prediction_provider.name
+local ai_component = provider == 'minuet' and 'minuet' or provider == 'copilot' and 'copilot' or ''
 
 return {
   'nvim-lualine/lualine.nvim',
