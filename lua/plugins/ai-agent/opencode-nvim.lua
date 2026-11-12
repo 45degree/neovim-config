@@ -46,6 +46,7 @@ return {
   dependencies = 'OXY2DEV/markview.nvim',
   ---@type OpencodeConfig
   opts = {
+    default_model = config.ai_code_agent.opts.default_agent,
     keymap = {
       editor = editor_keymap,
       input_window = input_window_keymap,

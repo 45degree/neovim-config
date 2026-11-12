@@ -49,6 +49,7 @@
 ---@class OpencodeAdapterConfig
 ---@field quick_chat_agent? string
 ---@field quick_chat_model? string
+---@field default_agent? string
 
 ---@class AiCodeAgentOpencode
 ---@field name 'opencode'
