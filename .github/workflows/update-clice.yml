@@ -27,7 +27,7 @@ jobs:
           # Clice publishes nightly builds as prereleases, so /releases/latest
           # always returns 404. Releases are newest-first; select the newest
           # non-draft tag with the expected version format instead.
-          LATEST_TAG="$(gh api 'repos/clice-io/clice/releases?per_page=100' --jq '[.[] | select(.draft == false and (.tag_name | test("^v0\\.1\\.[0-9]+$"))) | .tag_name][0] // empty')"
+          LATEST_TAG="$(gh api 'repos/clice-io/clice/releases?per_page=100' --jq '[.[] | select(.draft == false and (.tag_name | test("^v[0-9]+\\.[0-9]+\\.[0-9]+$"))) | .tag_name][0] // empty')"
 
           if [ -z "$LATEST_TAG" ]; then
             echo "::error::No release found for clice-io/clice"
@@ -36,9 +36,9 @@ jobs:
 
           echo "Latest release tag: $LATEST_TAG"
 
-          # Accept only v0.1.<digits> tags
-          if ! [[ "$LATEST_TAG" =~ ^v0\.1\.[0-9]+$ ]]; then
-            echo "::warning::Tag '$LATEST_TAG' does not match v0.1.<digits>, skipping"
+          # Accept only v<digits>.<digits>.<digits> tags
+          if ! [[ "$LATEST_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::warning::Tag '$LATEST_TAG' does not match v<digits>.<digits>.<digits>, skipping"
             exit 0
           fi
 
@@ -46,7 +46,7 @@ jobs:
           # grep -m1 avoids a | head pipe (SIGPIPE under pipefail).
           # || true prevents set -e from exiting on grep "no match" (exit 1)
           # before the empty-check below can print a useful error.
-          CURRENT_TAG="$(grep -oP -m1 'pkg:github/clice-io/clice@\Kv0\.1\.[0-9]+' "$FILE" || true)"
+          CURRENT_TAG="$(grep -oP -m1 'pkg:github/clice-io/clice@\Kv[0-9]+\.[0-9]+\.[0-9]+' "$FILE" || true)"
 
           if [ -z "$CURRENT_TAG" ]; then
             echo "::error::Could not extract current clice version from $FILE"
@@ -70,7 +70,7 @@ jobs:
           path, latest_tag = sys.argv[1:]
           source = open(path, encoding="utf-8").read()
           updated, count = re.subn(
-              r"pkg:github/clice-io/clice@v0\.1\.\d+",
+              r"pkg:github/clice-io/clice@v[0-9]+\.[0-9]+\.[0-9]+",
               f"pkg:github/clice-io/clice@{latest_tag}",
               source,
               count=1,
@@ -81,7 +81,7 @@ jobs:
           PY
 
           # Verify the replacement landed correctly
-          NEW_TAG="$(grep -oP -m1 'pkg:github/clice-io/clice@\Kv0\.1\.[0-9]+' "$FILE" || true)"
+          NEW_TAG="$(grep -oP -m1 'pkg:github/clice-io/clice@\Kv[0-9]+\.[0-9]+\.[0-9]+' "$FILE" || true)"
 
           if [ "$NEW_TAG" != "$LATEST_TAG" ]; then
             echo "::error::Replacement failed: expected '$LATEST_TAG', got '$NEW_TAG'"
